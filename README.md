@@ -9,11 +9,10 @@ based are heavily influenced by other open source project with the name [Nutgram
 ```php
 <?php
 
-use function DevDasher\BotProc\PTB;
-use function DevDasher\BotProc\initPTB;
-use function DevDasher\BotProc\onMessageText;
-use function DevDasher\BotProc\sendMessage;
-use function DevDasher\BotProc\run;
+use function DevDasher\PTB\initPTB;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB\run;
 
 initPTB(
     token: 'TOKEN',
