@@ -1,4 +1,4 @@
-# PTB = Procedure Telegram Bot (Library)
+# PTB = Procedure Telegram Bot (PHP Library)
 
 > The PTB Library gives your project flexibility, scalability and super speed
 
