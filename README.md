@@ -43,7 +43,7 @@ When it comes to choosing between a procedural or object-oriented programming (O
 You can install the package via composer:
 
 ```bash
-composer require devdasher/ptb
+composer require devdasher/ptb-php
 ```
 
 ## Usage
@@ -61,4 +61,4 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## License
 
-The GNU License (GNU v3). Please see [License File](LICENSE.md) for more information.
+The GNU License (GNU v3.0). Please see [License File](LICENSE.md) for more information.
