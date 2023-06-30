@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.0.3
+ * @version 1.0.4
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher
  * @link http://t.me/DevDasher
@@ -408,7 +408,7 @@ function onApiError(Closure $closure): void {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function inlineKeyboard(array $inline_keyboard): array {
-    return array_filter(get_defined_vars());
+    return _removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function inlineKeyboardButton(
@@ -422,7 +422,7 @@ function inlineKeyboardButton(
     ?array $callback_game = null,
     ?bool $pay = null,
 ): array {
-    return array_filter(get_defined_vars());
+    return _removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function keyboard(
@@ -1065,22 +1065,19 @@ function fileTypes(array $exclude = []): ?array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMe(): array {
-    return _makeRequest(basename(__FUNCTION__));
+    return _prepareAndMakeRequest(__FUNCTION__);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function logOut(): array {
-    return _makeRequest(basename(__FUNCTION__));
+    return _prepareAndMakeRequest(__FUNCTION__);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function close(): array {
-    return _makeRequest(basename(__FUNCTION__));
+    return _prepareAndMakeRequest(__FUNCTION__);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteMessage(int $message_id, ?int $chat_id = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendMessage(
@@ -1096,10 +1093,7 @@ function sendMessage(
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function forwardMessage(
@@ -1110,10 +1104,7 @@ function forwardMessage(
     ?bool $disable_notification = null,
     ?bool $protect_content = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function copyMessage(
@@ -1130,10 +1121,7 @@ function copyMessage(
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendPhoto(
@@ -1150,10 +1138,7 @@ function sendPhoto(
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendAudio(
@@ -1173,10 +1158,7 @@ function sendAudio(
     ?string $title = null,
     ?string $thumbnail = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendDocument(
@@ -1194,10 +1176,7 @@ function sendDocument(
     ?string $thumbnail = null,
     ?bool $disable_content_type_detection = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVideo(
@@ -1219,10 +1198,7 @@ function sendVideo(
     ?bool $has_spoiler = null,
     ?bool $supports_streaming = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendAnimation(
@@ -1245,10 +1221,7 @@ function sendAnimation(
     ?bool $supports_streaming = null,
     ?int $duration = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVoice(
@@ -1264,10 +1237,7 @@ function sendVoice(
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVideoNote(
@@ -1286,10 +1256,7 @@ function sendVideoNote(
     ?int $length = null,
     ?string $thumbnail = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendMediaGroup(
@@ -1301,10 +1268,7 @@ function sendMediaGroup(
     ?int $reply_to_message_id = null,
     ?bool $allow_sending_without_reply = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendLocation(
@@ -1322,10 +1286,7 @@ function sendLocation(
     ?int $heading = null,
     ?int $proximity_alert_radius = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVenue(
@@ -1345,10 +1306,7 @@ function sendVenue(
     ?string $google_place_id = null,
     ?string $google_place_type = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendContact(
@@ -1364,10 +1322,7 @@ function sendContact(
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendPoll(
@@ -1391,10 +1346,7 @@ function sendPoll(
     ?int $close_date = null,
     ?bool $is_closed = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendDice(
@@ -1407,10 +1359,7 @@ function sendDice(
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendChatAction(
@@ -1418,10 +1367,7 @@ function sendChatAction(
     ?int $chat_id = null,
     ?int $message_thread_id = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getUserProfilePhotos(
@@ -1429,17 +1375,11 @@ function getUserProfilePhotos(
     ?int $offset = null,
     ?int $limit = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getFile(string $file_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function banChatMember(
@@ -1448,10 +1388,7 @@ function banChatMember(
     ?int $until_date = null,
     ?bool $revoke_messages = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unbanChatMember(
@@ -1459,10 +1396,7 @@ function unbanChatMember(
     int $user_id,
     ?bool $only_if_banned = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function restrictChatMember(
@@ -1473,10 +1407,7 @@ function restrictChatMember(
     ?bool $use_independent_chat_permissions = null,
     ?int $until_date = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function promoteChatMember(
@@ -1495,45 +1426,27 @@ function promoteChatMember(
     ?bool $can_pin_messages = null,
     ?bool $can_manage_topics = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatAdministratorCustomTitle(int $chat_id,int $user_id,string $custom_title): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function banChatSenderChat(int $chat_id, int $sender_chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unbanChatSenderChat(int $chat_id, int $sender_chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatPermissions(int|string $chat_id, array $permissions, ?bool $use_independent_chat_permissions = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function exportChatInviteLink(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createChatInviteLink(
@@ -1543,10 +1456,7 @@ function createChatInviteLink(
     ?int $member_limit = null,
     ?bool $creates_join_request = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editChatInviteLink(
@@ -1557,136 +1467,79 @@ function editChatInviteLink(
     ?int $member_limit = null,
     ?bool $creates_join_request = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function revokeChatInviteLink(int|string $chat_id, string $invite_link): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function approveChatJoinRequest(int|string $chat_id, int $user_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function declineChatJoinRequest(int|string $chat_id, int $user_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatPhoto(int|string $chat_id, string $photo): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteChatPhoto(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatTitle(int|string $chat_id, string $title): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatDescription(int|string $chat_id, string $description): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function pinChatMessage(int|string $chat_id, bool $message_id, ?bool $disable_notification = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unpinChatMessage(int|string $chat_id, bool $message_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unpinAllChatMessages(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function leaveChat(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChat(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatAdministrators(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatMemberCount(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatMember(int|string $chat_id, int $user_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatStickerSet(int|string $chat_id, string $sticker_set_name): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteChatStickerSet(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getForumTopicIconStickers(): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createForumTopic(
@@ -1695,10 +1548,7 @@ function createForumTopic(
     ?int $icon_color = null,
     ?string $icon_custom_emoji_id = null
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editForumTopic(
@@ -1707,73 +1557,43 @@ function editForumTopic(
     ?string $name,
     ?string $icon_custom_emoji_id = null
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function closeForumTopic(int|string $chat_id, int $message_thread_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function reopenForumTopic(int|string $chat_id, int $message_thread_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteForumTopic(int|string $chat_id, int $message_thread_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unpinAllForumTopicMessages(int|string $chat_id, int $message_thread_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editGeneralForumTopic(int|string $chat_id, string $name): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function closeGeneralForumTopic(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function reopenGeneralForumTopic(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function hideGeneralForumTopic(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unhideGeneralForumTopic(int|string $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerCallbackQuery(
@@ -1783,101 +1603,59 @@ function answerCallbackQuery(
     ?int $cache_time = null,
     ?int $callback_query_id = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyCommands(array $commands, ?array $scope = null, ?string $language_code = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteMyCommands(?array $scope = null, ?string $language_code = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyCommands(?array $scope = null, ?string $language_code = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyName(?string $name = null, ?string $language_code = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyName(?string $language_code = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyDescription(?string $description = null, ?string $language_code = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyDescription(?string $language_code = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyShortDescription(?string $short_description = null, ?string $language_code = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyShortDescription(?string $language_code = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatMenuButton(int $chat_id, ?array $menu_button = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatMenuButton(int $chat_id): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyDefaultAdministratorRights(?array $rights = null, ?bool $for_channels = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyDefaultAdministratorRights(?bool $for_channels = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageText(
@@ -1890,10 +1668,7 @@ function editMessageText(
     ?bool $disable_web_page_preview = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageCaption(
@@ -1905,10 +1680,7 @@ function editMessageCaption(
     ?array $caption_entities = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageMedia(
@@ -1918,10 +1690,7 @@ function editMessageMedia(
     ?string $inline_message_id = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageLiveLocation(
@@ -1935,10 +1704,7 @@ function editMessageLiveLocation(
     ?int $heading = null,
     ?int $proximity_alert_radius = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function stopMessageLiveLocation(
@@ -1947,10 +1713,7 @@ function stopMessageLiveLocation(
     ?string $inline_message_id = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageReplyMarkup(
@@ -1959,10 +1722,7 @@ function editMessageReplyMarkup(
     ?string $inline_message_id = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function stopPoll(
@@ -1970,10 +1730,7 @@ function stopPoll(
     ?int $message_id = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendSticker(
@@ -1987,31 +1744,19 @@ function sendSticker(
     ?bool $allow_sending_without_reply = null,
     ?string $emoji = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getStickerSet(string $name): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getCustomEmojiStickers(array $custom_emoji_ids): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function uploadStickerFile(int $user_id, string $sticker, string $sticker_format): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createNewStickerSet(
@@ -2023,80 +1768,47 @@ function createNewStickerSet(
     ?string $sticker_type = null,
     ?bool $needs_repainting = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function addStickerToSet(int $user_id, string $name, array $sticker): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerPositionInSet(string $sticker, int $position): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteStickerFromSet(string $sticker): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerEmojiList(string $sticker, array $emoji_list): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerKeywords(string $sticker, ?array $keywords = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerMaskPosition(string $sticker, ?array $mask_position = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerSetTitle(string $name, string $title): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerSetThumbnail(string $name, int $user_id, ?string $thumbnail = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setCustomEmojiStickerSetThumbnail(string $name, ?string $custom_emoji_id = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteStickerSet(string $name): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerInlineQuery(
@@ -2107,17 +1819,11 @@ function answerInlineQuery(
     ?array $button = null,
     ?string $inline_query_id = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerWebAppQuery(array $result, ?string $web_app_query_id = null): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendInvoice(
@@ -2150,10 +1856,7 @@ function sendInvoice(
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createInvoiceLink(
@@ -2178,10 +1881,7 @@ function createInvoiceLink(
     ?bool $send_email_to_provider = null,
     ?bool $is_flexible = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerShippingQuery(
@@ -2190,10 +1890,7 @@ function answerShippingQuery(
     ?string $error_message = null,
     ?string $shipping_query_id = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerPreCheckoutQuery(
@@ -2201,17 +1898,11 @@ function answerPreCheckoutQuery(
     ?string $error_message = null,
     ?string $pre_checkout_query_id = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setPassportDataErrors(int $user_id, array $errors): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendGame(
@@ -2224,10 +1915,7 @@ function sendGame(
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setGameScore(
@@ -2239,10 +1927,7 @@ function setGameScore(
     ?int $message_id = null,
     ?string $inline_message_id = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getGameHighScores(
@@ -2251,10 +1936,7 @@ function getGameHighScores(
     ?int $message_id = null,
     ?string $inline_message_id = null,
 ): array {
-    return _makeRequest(
-        method: basename(__FUNCTION__),
-        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()), fn($value) => $value !== null)
-    );
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getUpdates(
@@ -2263,7 +1945,7 @@ function getUpdates(
     ?int $offset = null,
     ?array $allowed_updates = null
 ): array {
-    return _makeRequest(basename(__FUNCTION__), array_filter(get_defined_vars()));
+    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _autoFillSpecifiedParameters($parameters) {
@@ -2536,3 +2218,14 @@ function _getData(array $data, ?string $keys = null): mixed {
     return _arrayGet($data, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _prepareFuncParameters(array $parameters): array {
+    return _removeNullValues(_autoFillSpecifiedParameters($parameters));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _removeNullValues(array $array): array {
+    return array_filter($array, fn($value) => $value !== null);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _prepareAndMakeRequest(string $function, array $funcParameters = [], array $requestOptions = []): array {
+    return _makeRequest(basename($function), _prepareFuncParameters($funcParameters), $requestOptions);
+}
