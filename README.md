@@ -26,6 +26,8 @@ use function DevDasher\PTB\initPTB;
 use function DevDasher\PTB\messageId;
 use function DevDasher\PTB\onMessageSticker;
 use function DevDasher\PTB\photo;
+use function DevDasher\PTB\setGlobalData;
+use function DevDasher\PTB\getGlobalData;
 use function DevDasher\PTB\sticker;
 use function DevDasher\PTB\user;
 
@@ -42,6 +44,29 @@ initPTB(
         // ...
     ],
 );
+
+// Global middleware, That runs before handlers
+middleware(function() {
+    // some code here
+    // maybe you want store the user's information ...
+    // or check some other stuffs
+
+    //example:
+    $user = user(); // user's info in the telegram
+    $user = [ 
+        'user_id' => $user['id'],
+        'frist_name' => $user['frist_name'],
+        'last_name' => $user['last_name'],
+        'username' => $user['username'],
+    ];
+    // $user = save_user_info_in_database($user); // This is a hypothetical function
+
+    // set user's info in the global_data
+    setGlobalData('user', $user);
+    // you can use getGlobalData('user') to get the user's info from other handlers
+    
+    sendMessage('Middleware');
+});
 
 onMessageText('/start', function() {
     sendMessage(
