@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.0.2
+ * @version 1.0.3
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher
  * @link http://t.me/DevDasher
@@ -935,7 +935,7 @@ function message(?string $keys = null): mixed {
     return _arrayGet($message, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function id(): ?int {
+function messageId(): ?int {
     return message('message_id');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -2277,7 +2277,7 @@ function _autoFillSpecifiedParameters($parameters) {
         $parameters['from_chat_id'] = chatId();
     }
     if (key_exists('message_id', $parameters) && !$parameters['message_id']) {
-        $parameters['message_id'] = id();
+        $parameters['message_id'] = messageId();
     }
     if (key_exists('callback_query_id', $parameters) && !$parameters['callback_query_id']) {
         $parameters['callback_query_id'] = callbackQueryId();
@@ -2421,7 +2421,7 @@ function _addMiddleware(Closure $closure, ?string $keys = null): void {
     _setOrPushValue($GLOBALS['_devdasher/ptb']['middlewares'], $closure, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _processUpdate(): mixed {
+function _processUpdate() {
     $middlewares = _config('middlewares');
     if ($middlewares) {
         _fireMiddlewares($middlewares);
