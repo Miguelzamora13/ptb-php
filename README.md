@@ -71,12 +71,12 @@ onMessageText('My name is {name}', function(string $name) {
 
 onMessagePhoto(function() {
     $photo = photo();
-    sendMessage("You send a photo!\n\n".json_encode($photo, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+    sendMessage("You sent a photo!\n\n".json_encode($photo, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 });
 
 onMessageSticker(function() {
     $sticker = sticker();
-    sendMessage("You send a sticker!\n\n".json_encode($sticker, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+    sendMessage("You sent a sticker!\n\n".json_encode($sticker, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 });
 
 onEditedMessageText('/help', function() {
@@ -127,6 +127,14 @@ onApiError(function(array $response) {
 
 run();
 ```
+# Why Procedural and NOT OOP?
+Procedural programming is often considered faster than Object-Oriented Programming (OOP) due to its lower overhead and the smaller number of operations required for execution. In procedural programming, the focus is on writing sequential instructions in a step-by-step manner to accomplish a task. This approach allows for efficient execution as the program directly operates on data using straightforward instructions.
+
+One key factor that contributes to the perceived speed advantage of procedural programming is the reduced number of OPcodes (operation codes) involved. OPcodes are fundamental instructions understood by the computer's hardware and define specific operations like arithmetic calculations or memory access. Since procedural programs typically involve fewer layers of abstraction and direct manipulation of data, they tend to require fewer OPcodes to achieve a given functionality.
+
+In contrast, OOP introduces additional layers of complexity through concepts such as classes, objects, and inheritance. While these features provide benefits like code reusability, modularity, and maintainability, they also introduce some performance overhead. OOP programs often involve more intricate interactions between objects, which may require additional processing steps and indirections. These factors can lead to a slightly slower execution compared to procedural programs, especially in scenarios where performance is critical and the additional features of OOP are not heavily utilized.
+
+It is important to note that the performance difference between procedural and OOP approaches is contextual and may vary based on several factors, such as the specific programming language used, the efficiency of the compiler or interpreter, the design choices made, and the nature of the problem being solved. Therefore, while procedural programming can be perceived as faster due to its streamlined execution model and reduced OPcode usage, it is not a definitive rule, and OOP can provide significant advantages in terms of code organization, maintainability, and extensibility.
 
 ## Installation
 
