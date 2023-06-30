@@ -1,10 +1,10 @@
-# PTB = Procedure Telegram Bot (PHP Library)
+# PTB = Procedural Telegram Bot (PHP Library)
 
 > The PTB Library gives your project flexibility, scalability and super speed
 
 This library takes advantage of the latest **PHP 8** features, and tries to make the **speed**, **scalability** and **flexibility** of use its strength, it will allow you to quickly make simple bots, but at the same time, it provides
 more **advanced features** to handle even the most complicated flows. Some architectural concepts on which PTB is
-based are heavily influenced by other open source project with the name [Nutgram](https://github.com/nutgram/nutgram)! check them out too!
+based are heavily influenced by other open source project with the name [Nutgram](https://github.com/nutgram/nutgram)! check it out too!
 
 ```php
 <?php
@@ -133,7 +133,7 @@ run();
 You can install the package via composer:
 
 ```bash
-composer require devdasher/ptb
+composer require devdasher/ptb-php
 ```
 
 ## Usage
