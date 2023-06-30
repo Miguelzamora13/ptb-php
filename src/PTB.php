@@ -276,12 +276,64 @@ function onMessage(Closure $closure): void {
     _addHandler($closure, UPDATE_TYPE_MESSAGE.'.self');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessage(Closure $closure): void {
-    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.self');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onEditedMessageText(string $pattern, Closure $closure): void {
     _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_TEXT.'.'.$pattern);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageSticker(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_STICKER);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessagePhoto(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_PHOTO);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageDocument(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_DOCUMENT);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageContact(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_CONTACT);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageLocation(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_LOCATION);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageAudio(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_AUDIO);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageVoice(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_VOICE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageDice(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_DICE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageGame(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_GAME);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageVenue(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_VENUE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageVideo(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_VIDEO);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageVideoNote(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_VIDEO_NOTE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageAnimation(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.'.MESSAGE_TYPE_ANIMATION);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessage(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_MESSAGE.'.self');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onCallbackQuery(Closure $closure): void {
