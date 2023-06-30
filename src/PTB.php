@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.0.1
+ * @version 1.0.2
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher
  * @link http://t.me/DevDasher
@@ -2421,8 +2421,7 @@ function _addMiddleware(Closure $closure, ?string $keys = null): void {
     _setOrPushValue($GLOBALS['_devdasher/ptb']['middlewares'], $closure, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _processUpdate() {
-
+function _processUpdate(): mixed {
     $middlewares = _config('middlewares');
     if ($middlewares) {
         _fireMiddlewares($middlewares);
