@@ -71,12 +71,12 @@ onMessageText('My name is {name}', function(string $name) {
 
 onMessagePhoto(function() {
     $photo = photo();
-    sendMessage("You send a photo!\n\n".json_encode($photo, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+    sendMessage("You sent a photo!\n\n".json_encode($photo, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 });
 
 onMessageSticker(function() {
     $sticker = sticker();
-    sendMessage("You send a sticker!\n\n".json_encode($sticker, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+    sendMessage("You sent a sticker!\n\n".json_encode($sticker, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 });
 
 onEditedMessageText('/help', function() {
