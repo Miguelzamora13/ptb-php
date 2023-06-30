@@ -1,0 +1,22 @@
+{
+    "name": "devdasher/ptb-php",
+    "description": "A PHP Procedural library for Telegram Bot API",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "DevDasher\\PTB\\": "src/"
+        },
+        "files": [
+            "src/PTB.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Pooria Bashiri",
+            "email": "po.pooria@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
