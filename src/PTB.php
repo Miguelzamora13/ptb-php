@@ -736,7 +736,7 @@ function inlineQuery(?string $keys = null): mixed {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function inlineQueryString(): ?string {
-    return update(UPDATE_TYPE_INLINE_QUERY.'query');
+    return update(UPDATE_TYPE_INLINE_QUERY.'.query');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function shippingQuery(?string $keys = null): mixed {
@@ -756,135 +756,134 @@ function preCheckoutQuery(?string $keys = null): mixed {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function pollAnswer(?string $keys = null): mixed {
-    return null;
+    
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsMessage(): bool {
+function isMessage(): bool {
     return updateType() === UPDATE_TYPE_MESSAGE;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsCallbackQuery(): bool {
+function isCallbackQuery(): bool {
     return updateType() === UPDATE_TYPE_CALLBACK_QUERY;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsEditedMessage(): bool {
+function isEditedMessage(): bool {
     return updateType() === UPDATE_TYPE_EDITED_MESSAGE;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsChannelPost(): bool {
+function isChannelPost(): bool {
     return updateType() === UPDATE_TYPE_CHANNEL_POST;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsEditedChannelPost(): bool {
+function isEditedChannelPost(): bool {
     return updateType() === UPDATE_TYPE_EDITED_CHANNEL_POST;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsShippingQuery(): bool {
+function isShippingQuery(): bool {
     return updateType() === UPDATE_TYPE_SHIPPING_QUERY;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsChatJoinRequest(): bool {
+function isChatJoinRequest(): bool {
     return updateType() === UPDATE_TYPE_CHAT_JOIN_REQUEST;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsInlineQuery(): bool {
+function isInlineQuery(): bool {
     return updateType() === UPDATE_TYPE_INLINE_QUERY;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsMyChatMember(): bool {
+function isMyChatMember(): bool {
     return updateType() === UPDATE_TYPE_MY_CHAT_MEMBER;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsChatMember(): bool {
+function isChatMember(): bool {
     return updateType() === UPDATE_TYPE_CHAT_MEMBER;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsChosenInlineQuery(): bool {
+function isChosenInlineQuery(): bool {
     return updateType() === UPDATE_TYPE_CHOSEN_INLINE_QUERY;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsPoll(): ?bool {
-    return null;
-    // return updateType() === UPDATE_TYPE_POLL;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypeIsPreCheckOutQuery(): ?bool {
+function isPreCheckOutQuery(): bool {
     return updateType() === UPDATE_TYPE_PRE_CHECKOUT_QUERY;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsPhoto(): ?bool {
+function isPhoto(): bool {
     return messageType() === MESSAGE_TYPE_PHOTO;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsSticker(): ?bool {
+function isPoll(): bool {
+    return messageType() === MESSAGE_TYPE_POLL;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function isSticker(): bool {
     return messageType() === MESSAGE_TYPE_STICKER;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsAnimation(): ?bool {
+function isAnimation(): bool {
     return messageType() === MESSAGE_TYPE_ANIMATION;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsVideo(): ?bool {
+function isVideo(): bool {
     return messageType() === MESSAGE_TYPE_VIDEO;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsVideoNote(): ?bool {
+function isVideoNote(): bool {
     return messageType() === MESSAGE_TYPE_VIDEO_NOTE;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsDice(): ?bool {
+function isDice(): bool {
     return messageType() === MESSAGE_TYPE_DICE;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsGame(): ?bool {
+function isGame(): bool {
     return messageType() === MESSAGE_TYPE_GAME;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsVenue(): ?bool {
+function isVenue(): bool {
     return messageType() === MESSAGE_TYPE_VENUE;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsVoice(): ?bool {
+function isVoice(): bool {
     return messageType() === MESSAGE_TYPE_VOICE;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsDocument(): ?bool {
+function isDocument(): bool {
     return messageType() === MESSAGE_TYPE_DOCUMENT;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsLocation(): ?bool {
+function isLocation(): bool {
     return messageType() === MESSAGE_TYPE_LOCATION;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsContact(): ?bool {
+function isContact(): bool {
     return messageType() === MESSAGE_TYPE_CONTACT;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsAudio(): ?bool {
+function isAudio(): bool {
     return messageType() === MESSAGE_TYPE_AUDIO;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypeIsText(): ?bool {
+function isText(): bool {
     return messageType() === MESSAGE_TYPE_TEXT;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chatTypeIsGroup(): ?bool {
+function isGroup(): bool {
     return chatType() === CHAT_TYPE_GROUP;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chatTypeIsSupergroup(): ?bool {
+function isSupergroup(): bool {
     return chatType() === CHAT_TYPE_SUPERGROUP;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chatTypeIsPrivate(): ?bool {
+function isPrivate(): ?bool {
     return chatType() === CHAT_TYPE_PRIVATE;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chatTypeIsChannel(): ?bool {
+function isChannel(): ?bool {
     return chatType() === CHAT_TYPE_CHANNEL;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageIsForwarded(): ?bool {
+function isForwarded(): ?bool {
     return boolval(message('forward_date') ?? message('forward_sender_name'));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -904,7 +903,7 @@ function forwardFromChat(?string $keys = null): mixed {
     return _arrayGet($forwardFromChat, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function forwardFromMessageId(): ?int {
+function forwardFromid(): ?int {
     return message('forward_from_message_id');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -929,7 +928,7 @@ function message(?string $keys = null): mixed {
     return _arrayGet($message, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageId(): ?int {
+function id(): ?int {
     return message('message_id');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -1058,16 +1057,6 @@ function fileTypes(array $exclude = []): ?array {
     ], $exclude);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function deleteMessage(
-    ?int $chat_id = null,
-    ?int $message_id = null,
-): array {
-    $parameters = get_defined_vars();
-    $parameters['chat_id'] ??= userId();
-    $parameters['message_id'] ??= message('message_id');
-    return _makeRequest(basename(__FUNCTION__), array_filter($parameters));
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMe(): array {
     return _makeRequest(basename(__FUNCTION__));
 }
@@ -1078,6 +1067,13 @@ function logOut(): array {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function close(): array {
     return _makeRequest(basename(__FUNCTION__));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function deleteMessage(int $message_id, ?int $chat_id = null): array {
+    return _makeRequest(
+        method: basename(__FUNCTION__),
+        parameters: array_filter(_autoFillSpecifiedParameters(get_defined_vars()))
+    );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendMessage(
@@ -2274,7 +2270,7 @@ function _autoFillSpecifiedParameters($parameters) {
         $parameters['from_chat_id'] = chatId();
     }
     if (key_exists('message_id', $parameters) && !$parameters['message_id']) {
-        $parameters['message_id'] = messageId();
+        $parameters['message_id'] = id();
     }
     if (key_exists('callback_query_id', $parameters) && !$parameters['callback_query_id']) {
         $parameters['callback_query_id'] = callbackQueryId();
@@ -2414,7 +2410,6 @@ function _addMiddleware(Closure $closure, ?string $keys = null): void {
     }
     _setOrPushValue($GLOBALS['_devdasher/ptb']['middlewares'], $closure, $keys);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _processUpdate() {
     $handlers = _config('handlers');
