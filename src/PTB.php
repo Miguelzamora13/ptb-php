@@ -1999,20 +1999,15 @@ function _makeRequest(string $method, array $parameters = [], array $options = [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
         CURLOPT_POSTFIELDS => $parameters,
-        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYPEER => true,
         CURLOPT_SSL_SESSIONID_CACHE => true,
         CURLOPT_TCP_FASTOPEN => true,
         CURLOPT_TCP_NODELAY => true,
-        CURLOPT_TCP_KEEPALIVE => 1,
-        // CURLOPT_TCP_KEEPIDLE => 120,
-        // CURLOPT_TCP_KEEPINTVL => 60,
-        // CURLOPT_TIMEOUT => 30,
-        // CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_TIMEOUT => 3,
+        CURLOPT_CONNECTTIMEOUT => 2,
         CURLOPT_FORBID_REUSE => false,
         CURLOPT_FRESH_CONNECT => false,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
-        // CURLOPT_ENCODING => 'gzip',
-        // CURLOPT_HEADER => false,
     ] + ($options['default_curl_options'] ?? _config('default_curl_options'));
     curl_setopt_array($ch, $curlOptions);
     $responseBody = curl_exec($ch);
@@ -2020,7 +2015,6 @@ function _makeRequest(string $method, array $parameters = [], array $options = [
     if (curl_errno($ch)) {
         throw new \Exception('CURL ERROR: '.curl_error($ch));
     }
-    echo $responseBody.PHP_EOL;
     $response = json_decode($responseBody, true);
     if (isset($response['ok']) && !$response['ok']) {
         $handlers = _config('handlers');
@@ -2162,7 +2156,7 @@ function _processUpdate() {
         if (isset($fallbackHandlers['self'])) {
             return $fallbackHandlers['self']();
         }
-    } catch (\Throwable $e) {
+    } catch (Throwable $e) {
         if (isset($handlers['exception'])) {
             return $handlers['exception']($e);
         }
