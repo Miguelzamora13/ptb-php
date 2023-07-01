@@ -56,9 +56,9 @@ middleware(function() {
     $user = user(); // user's info in the telegram
     $user = [ 
         'user_id' => $user['id'],
-        'frist_name' => $user['frist_name'],
-        'last_name' => $user['last_name'],
-        'username' => $user['username'],
+        'first_name' => $user['first_name'] ?? null,
+        'last_name' => $user['last_name'] ?? null,
+        'username' => $user['username'] ?? null,
     ];
     // $user = save_user_info_in_database($user); // This is a hypothetical function
 
