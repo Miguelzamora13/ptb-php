@@ -471,7 +471,11 @@ function onChatMember(Closure $closure): void {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onPoll(Closure $closure): void {
-    _addHandler($closure, UPDATE_TYPE_MESSAGE.'.'.MESSAGE_TYPE_POLL.'.self');
+    _addHandler($closure, UPDATE_TYPE_POLL.'.self');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onUserPoll(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_MESSAGE.'.'.MESSAGE_TYPE_POLL);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onPollAnswer(Closure $closure): void {
