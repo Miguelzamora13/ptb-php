@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.0.4
+ * @version 1.0.6
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher
  * @link http://t.me/DevDasher
@@ -170,6 +170,7 @@ function initPTB(
     array $default_curl_options = [],
 ): void {
     $GLOBALS['_devdasher/ptb'] = array_merge(get_defined_vars(), [
+        'update' => [],
         'global_data' => [],
         'middlewares' => [],
         'handlers' => [],
@@ -199,7 +200,7 @@ function run(): void {
                 _processUpdate();
                 $offset = $update['update_id'] + 1;
             }
-            usleep(300000);
+            usleep(3000000);
         }
     }
 }
@@ -2003,15 +2004,15 @@ function _makeRequest(string $method, array $parameters = [], array $options = [
         CURLOPT_TCP_FASTOPEN => true,
         CURLOPT_TCP_NODELAY => true,
         CURLOPT_TCP_KEEPALIVE => 1,
-        CURLOPT_TCP_KEEPIDLE => 120,
-        CURLOPT_TCP_KEEPINTVL => 60,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_CONNECTTIMEOUT => 10,
+        // CURLOPT_TCP_KEEPIDLE => 120,
+        // CURLOPT_TCP_KEEPINTVL => 60,
+        // CURLOPT_TIMEOUT => 30,
+        // CURLOPT_CONNECTTIMEOUT => 10,
         CURLOPT_FORBID_REUSE => false,
         CURLOPT_FRESH_CONNECT => false,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
-        CURLOPT_ENCODING => 'gzip',
-        CURLOPT_HEADER => false,
+        // CURLOPT_ENCODING => 'gzip',
+        // CURLOPT_HEADER => false,
     ] + ($options['default_curl_options'] ?? _config('default_curl_options'));
     curl_setopt_array($ch, $curlOptions);
     $responseBody = curl_exec($ch);
@@ -2019,6 +2020,7 @@ function _makeRequest(string $method, array $parameters = [], array $options = [
     if (curl_errno($ch)) {
         throw new \Exception('CURL ERROR: '.curl_error($ch));
     }
+    echo $responseBody.PHP_EOL;
     $response = json_decode($responseBody, true);
     if (isset($response['ok']) && !$response['ok']) {
         $handlers = _config('handlers');
@@ -2227,5 +2229,5 @@ function _removeNullValues(array $array): array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _prepareAndMakeRequest(string $function, array $funcParameters = [], array $requestOptions = []): array {
-    return _makeRequest(basename($function), _prepareFuncParameters($funcParameters), $requestOptions);
+    return _makeRequest(basename(strtr($function, '\\', '/')), _prepareFuncParameters($funcParameters), $requestOptions);
 }

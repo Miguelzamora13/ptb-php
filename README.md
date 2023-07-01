@@ -28,6 +28,7 @@ use function DevDasher\PTB\onMessageSticker;
 use function DevDasher\PTB\photo;
 use function DevDasher\PTB\setGlobalData;
 use function DevDasher\PTB\getGlobalData;
+use function DevDasher\PTB\middleware;
 use function DevDasher\PTB\sticker;
 use function DevDasher\PTB\user;
 
@@ -38,7 +39,7 @@ initPTB(
     token: 'TOKEN',
     username: 'BOT_USERNAME',
     api_base_url: 'https://tlgr.org',
-    is_webhook: true, // or false for LongPolling running mode (from terminal)
+    is_webhook: true, // or false for LongPolling running mode (from terminal) => Command: php file.php
     default_curl_options: [
         // CURLOPT_PROXY => '127.0.0.1:2080',
         // ...
