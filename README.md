@@ -56,7 +56,7 @@ middleware(function() {
     $user = user(); // user's info in the telegram
     $user = [ 
         'user_id' => $user['id'],
-        'frist_name' => $user['frist_name'] ?? null,
+        'first_name' => $user['first_name'] ?? null,
         'last_name' => $user['last_name'] ?? null,
         'username' => $user['username'] ?? null,
     ];
