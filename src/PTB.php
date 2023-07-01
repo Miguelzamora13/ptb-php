@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.0.6
+ * @version 1.0.7
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher
  * @link http://t.me/DevDasher
@@ -196,6 +196,7 @@ function run(): void {
             }
             $updates = $response['result'];
             foreach ($updates as $update) {
+                print_r($update);
                 _setUpdate($update);
                 _processUpdate();
                 $offset = $update['update_id'] + 1;
@@ -345,8 +346,120 @@ function onCallbackQueryData(string $pattern, Closure $closure): void {
     _addHandler($closure, UPDATE_TYPE_CALLBACK_QUERY.'.data.'.$pattern);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostText(string $pattern, Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_TEXT.'.'.$pattern);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostSticker(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_STICKER);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostPhoto(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_PHOTO);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostDocument(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_DOCUMENT);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostContact(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_CONTACT);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostLocation(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_LOCATION);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostAudio(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_AUDIO);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostVoice(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_VOICE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostDice(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_DICE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostGame(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_GAME);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostVenue(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_VENUE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostVideo(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_VIDEO);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostVideoNote(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_VIDEO_NOTE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostAnimation(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.'.MESSAGE_TYPE_ANIMATION);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onChannelPost(Closure $closure): void {
     _addHandler($closure, UPDATE_TYPE_CHANNEL_POST.'.self');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostText(string $pattern, Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_TEXT.'.'.$pattern);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostSticker(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_STICKER);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostPhoto(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_PHOTO);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostDocument(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_DOCUMENT);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostContact(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_CONTACT);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostLocation(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_LOCATION);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostAudio(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_AUDIO);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostVoice(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_VOICE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostDice(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_DICE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostGame(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_GAME);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostVenue(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_VENUE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostVideo(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_VIDEO);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostVideoNote(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_VIDEO_NOTE);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostAnimation(Closure $closure): void {
+    _addHandler($closure, UPDATE_TYPE_EDITED_CHANNEL_POST.'.'.MESSAGE_TYPE_ANIMATION);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onEditedChannelPost(Closure $closure): void {
@@ -678,7 +791,6 @@ function from(?string $keys = null): mixed {
         UPDATE_TYPE_POLL_ANSWER => $update[$updateType]['user'],
         UPDATE_TYPE_MESSAGE,
         UPDATE_TYPE_EDITED_MESSAGE,
-        UPDATE_TYPE_CHANNEL_POST,
         UPDATE_TYPE_MY_CHAT_MEMBER,
         UPDATE_TYPE_CHAT_MEMBER,
         UPDATE_TYPE_CHAT_JOIN_REQUEST,
@@ -686,8 +798,7 @@ function from(?string $keys = null): mixed {
         UPDATE_TYPE_CHOSEN_INLINE_QUERY,
         UPDATE_TYPE_SHIPPING_QUERY,
         UPDATE_TYPE_PRE_CHECKOUT_QUERY,
-        UPDATE_TYPE_CALLBACK_QUERY,
-        UPDATE_TYPE_EDITED_CHANNEL_POST => $update[$updateType]['from'],
+        UPDATE_TYPE_CALLBACK_QUERY => $update[$updateType]['from'],
         default => null,
     };
     if (!$keys) {
@@ -930,6 +1041,7 @@ function message(?string $keys = null): mixed {
         UPDATE_TYPE_EDITED_CHANNEL_POST => $update[$updateType],
         default => null,
     };
+    print_r($message);
     if (!$keys) {
         return $message;
     }
@@ -2118,15 +2230,18 @@ function _processUpdate() {
             return;
         }
         $updateTypeHandlers = $handlers[$updateType];
-        if (in_array($updateType, [
-            UPDATE_TYPE_MESSAGE,
-            UPDATE_TYPE_EDITED_MESSAGE,
-            UPDATE_TYPE_CHANNEL_POST,
-            UPDATE_TYPE_EDITED_CHANNEL_POST,
-        ])) {
-            $messageType = messageType();
+        if (
+            in_array($updateType, [
+                UPDATE_TYPE_MESSAGE,
+                UPDATE_TYPE_EDITED_MESSAGE,
+                UPDATE_TYPE_CHANNEL_POST,
+                UPDATE_TYPE_EDITED_CHANNEL_POST,
+            ])
+            && isset($updateTypeHandlers[$messageType = messageType()])
+        ) {
             if ($messageType === MESSAGE_TYPE_TEXT) {
                 $text = text();
+                var_dump($text);
                 foreach ($updateTypeHandlers[$messageType] as $pattern => $callable) {
                     $parameters = _getCallableParameters($pattern, $text);
                     if (is_null($parameters)) {
@@ -2134,7 +2249,7 @@ function _processUpdate() {
                     }
                     return $callable(...$parameters);
                 }
-            } elseif (in_array($messageType, messageTypes()) && isset($updateTypeHandlers[$messageType])) {
+            } elseif (in_array($messageType, messageTypes())) {
                 return $updateTypeHandlers[$messageType]();
             }
         } elseif ($updateType === UPDATE_TYPE_CALLBACK_QUERY) {
