@@ -54,17 +54,20 @@ middleware(function() {
 
     //example:
     $user = user(); // user's info in the telegram
-    $user = [ 
-        'user_id' => $user['id'],
-        'first_name' => $user['first_name'] ?? null,
-        'last_name' => $user['last_name'] ?? null,
-        'username' => $user['username'] ?? null,
-    ];
-    // $user = save_user_info_in_database($user); // This is a hypothetical function
+    if ($user) {
+        $user = [ 
+            'user_id' => $user['id'],
+            'first_name' => $user['first_name'] ?? null,
+            'last_name' => $user['last_name'] ?? null,
+            'username' => $user['username'] ?? null,
+        ];
 
-    // set user's info in the global_data
-    setGlobalData('user', $user);
-    // you can use getGlobalData('user') to get the user's info from other handlers
+        // $user = save_user_info_in_database($user); // This is a hypothetical function
+
+        // set user's info in the global_data
+        setGlobalData('user', $user);
+        // you can use getGlobalData('user') to get the user's info from other handlers
+    }
     
     sendMessage('Middleware');
 });
