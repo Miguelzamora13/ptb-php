@@ -60,6 +60,12 @@ middleware(function() {
             'first_name' => $user['first_name'] ?? null,
             'last_name' => $user['last_name'] ?? null,
             'username' => $user['username'] ?? null,
+
+            // or you can use this way:
+            'user_id' => user('id'),
+            'first_name' => user('first_name'),
+            'last_name' => user('last_name'),
+            'username' => user('username'),
         ];
 
         // $user = save_user_info_in_database($user); // This is a hypothetical function
