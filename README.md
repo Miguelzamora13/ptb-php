@@ -90,7 +90,8 @@ onMessageText('/start', function() {
 });
 
 onMessageText('/user', function() {
-    $user = user();
+    // $user = user();
+    $user = getGlobalData('user'); // or you can get user's info that we have set in the middleware earlier...
     sendMessage(
         text: <<<TEXT
             UserID: {$user['id']},
