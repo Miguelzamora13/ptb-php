@@ -2303,8 +2303,7 @@ function _fireHandlers(array $handlers) {
             && isset($updateTypeHandlers[$messageType = messageType()])
         ) {
             if ($messageType === MESSAGE_TYPE_TEXT) {
-                $isStartedAConversation = _isStartedAConversation();
-                var_dump($isStartedAConversation);
+                $isStartedAConversation = _cache() && _isStartedAConversation();
                 $text = text();
                 foreach ($updateTypeHandlers[$messageType] as $pattern => $callable) {
                     $parameters = _getPatternParameters($pattern, $text);
