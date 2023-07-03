@@ -31,6 +31,8 @@ use function DevDasher\PTB\getGlobalData;
 use function DevDasher\PTB\middleware;
 use function DevDasher\PTB\sticker;
 use function DevDasher\PTB\user;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Psr16Cache;
 
 // require(__DIR__.'/vendor/autoload.php');
 require(__DIR__.'/path/to/PTB.php'); // Or you can require directly
@@ -44,6 +46,10 @@ initPTB(
         // CURLOPT_PROXY => '127.0.0.1:2080',
         // ...
     ],
+
+    // if you need to use conversation feature or cache data,
+    // you need to install some packages and use Composer for this
+    cache: new Psr16Cache(new FilesystemAdapter())
 );
 
 // Global middleware, That runs before handlers
@@ -106,6 +112,7 @@ onMessageText('My name is {name}', function(string $name) {
 });
 
 // Conversation Feature (To get input from user)
+// You need to use composer and set a cache adapter in initPTB for this feature
 onMessageText('/register', function() {
     sendMessage('Send your name: ');
 
