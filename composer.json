@@ -24,6 +24,6 @@
         "symfony/cache": "^6.3",
         "psr/simple-cache": "^3.0"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
