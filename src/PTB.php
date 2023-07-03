@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.0.8
+ * @version 1.0.9
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher
  * @link http://t.me/DevDasher
