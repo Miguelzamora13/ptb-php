@@ -38,8 +38,8 @@ use Symfony\Component\Cache\Psr16Cache;
 require(__DIR__.'/path/to/PTB.php'); // Or you can require directly
 
 initPTB(
-    token: 'TOKEN',
-    username: 'BOT_USERNAME',
+    bot_token: 'TOKEN',
+    bot_username: 'BOT_USERNAME',
     api_base_url: 'https://tlgr.org',
     is_webhook: true, // or false for LongPolling running mode (from terminal) => Command: php file.php
     default_curl_options: [
