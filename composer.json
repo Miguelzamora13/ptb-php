@@ -19,7 +19,10 @@
     ],
     "require": {
         "php": "^8.0",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "opis/closure": "^3.6",
+        "symfony/cache": "^6.3",
+        "psr/simple-cache": "^3.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

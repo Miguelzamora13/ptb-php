@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.0.7
+ * @version 1.0.8
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher
  * @link http://t.me/DevDasher
@@ -29,7 +29,10 @@ namespace DevDasher\PTB;
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 use Closure;
 use CURLFile;
+use DateInterval;
 use Exception;
+use Opis\Closure\SerializableClosure;
+use Psr\SimpleCache\CacheInterface;
 use Throwable;
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('UPDATE_TYPE_MESSAGE', 'message');
@@ -62,6 +65,24 @@ define('MESSAGE_TYPE_POLL', 'poll');
 define('MESSAGE_TYPE_GAME', 'game');
 define('MESSAGE_TYPE_DICE', 'dice');
 define('MESSAGE_TYPE_VENUE', 'venue');
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+define('MESSAGE_ENTITY_MENTION', 'mention');
+define('MESSAGE_ENTITY_HASHTAG', 'hashtag');
+define('MESSAGE_ENTITY_CASHTAG', 'cashtag');
+define('MESSAGE_ENTITY_BOT_COMMAND', 'bot_command');
+define('MESSAGE_ENTITY_URL', 'url');
+define('MESSAGE_ENTITY_EMAIL', 'email');
+define('MESSAGE_ENTITY_PHONE_NUMBER', 'phone_number');
+define('MESSAGE_ENTITY_BOLD', 'bold');
+define('MESSAGE_ENTITY_ITALIC', 'italic');
+define('MESSAGE_ENTITY_UNDERLINE', 'underline');
+define('MESSAGE_ENTITY_STRIKETHROUGH', 'strikethrough');
+define('MESSAGE_ENTITY_SPOILER', 'spoiler');
+define('MESSAGE_ENTITY_CODE', 'code');
+define('MESSAGE_ENTITY_PRE', 'pre');
+define('MESSAGE_ENTITY_TEXT_LINK', 'text_link');
+define('MESSAGE_ENTITY_TEXT_MENTION', 'text_mention');
+define('MESSAGE_ENTITY_CUSTOM_EMOJI', 'custom_emoji');
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('BOT_COMMAND_SCOPE_DEFAULT', 'default');
 define('BOT_COMMAND_SCOPE_ALL_PRIVATE_CHATS', 'all_private_chats');
@@ -127,6 +148,14 @@ define('MENU_BUTTON_TYPE_DEFAULT', 'default');
 define('MENU_BUTTON_TYPE_WEB_APP', 'web_app');
 define('MENU_BUTTON_TYPE_COMMANDS', 'commands');
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+define('POLL_TYPE_REGULAR', 'regular');
+define('POLL_TYPE_QUIZ', 'quiz');
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+define('SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALLOW_USER_CHATS', 'allow_user_chats');
+define('SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALLOW_BOT_CHATS', 'allow_bot_chats');
+define('SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALLOW_GROUP_CHATS', 'allow_group_chats');
+define('SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALLOW_CHANNEL_CHATS', 'allow_channel_chats');
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('STICKER_FORMAT_STATIC', 'static');
 define('STICKER_FORMAT_ANIMATED', 'animated');
 define('STICKER_FORMAT_VIDEO', 'video');
@@ -161,15 +190,20 @@ define('API_LIMIT_MESSAGE_CAPTION_MAX', 1096);
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('_REGEX_FIND_PLACEHOLDERS', '/\{([^}]+)\}/');
 define('_REGEX_PLACEHOLDERS_REPLACEMENT', '(?P<$1>\w+)');
+define('_PACKAGE_NAME', 'devdasher/ptb-php');
+define('_CACHE_CONVERSATIONS_TTL', 10800);
+define('_CACHE_USER_DATA_TTL', 120);
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function initPTB(
-    string $token,
-    string $username,
+    string $bot_token,
+    string $bot_username,
     string $api_base_url = 'https://api.telegram.org',
     bool $is_webhook = false,
     array $default_curl_options = [],
+    bool $long_polling_logger_enabled = false,
+    ?CacheInterface $cache = null,
 ): void {
-    $GLOBALS['_devdasher/ptb'] = array_merge(get_defined_vars(), [
+    $GLOBALS[_PACKAGE_NAME] = array_merge(get_defined_vars(), [
         'update' => [],
         'global_data' => [],
         'middlewares' => [],
@@ -181,24 +215,27 @@ function run(): void {
     if (_config('is_webhook')) {
         $input = file_get_contents('php://input');
         if (!$input) {
-            exit;
+            return;
         }
         $update = json_decode($input, true);
         _setUpdate($update);
-        _processUpdate();
+        _processCurrentUpdate();
     } else {
         echo 'Listening...'.PHP_EOL;
         $offset = 1;
         while (true) {
             $response = getUpdates(timeout: 10, offset: $offset);
+            print_r($response);
             if (!$response['ok']) {
                 throw new \Exception('Could not fetch updates with the getUpdates method!');
             }
             $updates = $response['result'];
             foreach ($updates as $update) {
-                print_r($update);
+                if (_longPollingLoggerEnabled()) {
+                    print_r($update);
+                }
                 _setUpdate($update);
-                _processUpdate();
+                _processCurrentUpdate();
                 $offset = $update['update_id'] + 1;
             }
             usleep(3000000);
@@ -207,11 +244,11 @@ function run(): void {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setGlobalData(int|string $key, mixed $value = null): void {
-    _setOrPushValue($GLOBALS['_devdasher/ptb'], $value, "global_data.{$key}");
+    _setOrPushValue($GLOBALS[_PACKAGE_NAME], $value, "global_data.{$key}");
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getGlobalData(int|string $key, mixed $defaultValue = null): mixed {
-    return $GLOBALS['_devdasher/ptb']['global_data'][$key] ?? $defaultValue;
+    return $GLOBALS[_PACKAGE_NAME]['global_data'][$key] ?? $defaultValue;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function middleware(Closure $closure): void {
@@ -823,14 +860,6 @@ function chatId(): ?int {
     return chat('id');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function update(?string $keys = null): mixed {
-    $update = _config('update');
-    if (!$keys) {
-        return $update;
-    }
-    return _arrayGet($update, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function callbackQuery(?string $keys = null): mixed {
     $callbackQuery = update(UPDATE_TYPE_CALLBACK_QUERY);
     if (!$keys) {
@@ -1045,7 +1074,6 @@ function message(?string $keys = null): mixed {
         UPDATE_TYPE_EDITED_CHANNEL_POST => $update[$updateType],
         default => null,
     };
-    print_r($message);
     if (!$keys) {
         return $message;
     }
@@ -1070,6 +1098,14 @@ function mediaGroupId(): ?int {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function updateId(): ?int {
     return update('update_id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function update(?string $keys = null): mixed {
+    $update = _update();
+    if (!$keys) {
+        return $update;
+    }
+    return _arrayGet($update, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function chatType(): ?string {
@@ -2101,11 +2137,11 @@ function _autoFillSpecifiedParameters($parameters) {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _makeRequest(string $method, array $parameters = [], array $options = []): array {
-    $baseUrl = $options['api_base_url'] ?? _config('api_base_url');
+    $baseUrl = $options['api_base_url'] ?? _apiBaseUrl();
     if (!$baseUrl || !filter_var($baseUrl, FILTER_VALIDATE_URL)) {
         throw new Exception("The api_base_url option is not a valid URL or IP address!");
     }
-    $token = $options['token'] ?? _config('token');
+    $token = $options['token'] ?? _botToken();
     if (!$token) {
         throw new Exception("The bot token is not specified!");
     }
@@ -2124,7 +2160,7 @@ function _makeRequest(string $method, array $parameters = [], array $options = [
         CURLOPT_FORBID_REUSE => false,
         CURLOPT_FRESH_CONNECT => false,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
-    ] + ($options['default_curl_options'] ?? _config('default_curl_options'));
+    ] + ($options['default_curl_options'] ?? _defaultCurlOptions());
     curl_setopt_array($ch, $curlOptions);
     $responseBody = curl_exec($ch);
     curl_close($ch);
@@ -2133,7 +2169,7 @@ function _makeRequest(string $method, array $parameters = [], array $options = [
     }
     $response = json_decode($responseBody, true);
     if (isset($response['ok']) && !$response['ok']) {
-        $handlers = _config('handlers');
+        $handlers = _handlers();
         if (isset($handlers['api_error'])) {
             return $handlers['api_error']($response);
         }
@@ -2146,18 +2182,17 @@ function _getCommonKeys(array $array1, array $array2): array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _config(?string $keys = null): mixed {
-    $array = $GLOBALS['_devdasher/ptb'];
+    $config = $GLOBALS[_PACKAGE_NAME];
     if (!$keys) {
-        return $array;
+        return $config;
     }
     foreach (explode('.', $keys) as $key) {
-        if (!isset($array[$key])) {
+        if (!isset($config[$key])) {
             return null;
-            throw new \Exception("The key '{$key}' does not exist in the config!");
         }
-        $array = $array[$key];
+        $config = $config[$key];
     }
-    return $array;
+    return $config;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _arrayGet(?array $data, string $keys): mixed {
@@ -2198,29 +2233,53 @@ function _setOrPushValue(array &$array, mixed $value, ?string $keys = null, bool
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _setUpdate(array $update): void {
-    _setOrPushValue($GLOBALS['_devdasher/ptb'], $update, 'update');
+    _setOrPushValue($GLOBALS[_PACKAGE_NAME], $update, 'update');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _addHandler(Closure $closure, ?string $keys = null, bool $push = false): void {
-    if (!isset($GLOBALS['_devdasher/ptb']['handlers'])) {
-        $GLOBALS['_devdasher/ptb']['handlers'] = [];
+    if (!isset($GLOBALS[_PACKAGE_NAME]['handlers'])) {
+        $GLOBALS[_PACKAGE_NAME]['handlers'] = [];
     }
-    _setOrPushValue($GLOBALS['_devdasher/ptb']['handlers'], $closure, $keys, $push);
+    _setOrPushValue($GLOBALS[_PACKAGE_NAME]['handlers'], $closure, $keys, $push);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _addMiddleware(Closure $closure, ?string $keys = null): void {
-    if (!isset($GLOBALS['_devdasher/ptb']['middlewares'])) {
-        $GLOBALS['_devdasher/ptb']['middlewares'] = [];
+    if (!isset($GLOBALS[_PACKAGE_NAME]['middlewares'])) {
+        $GLOBALS[_PACKAGE_NAME]['middlewares'] = [];
     }
-    _setOrPushValue($GLOBALS['_devdasher/ptb']['middlewares'], $closure, $keys);
+    _setOrPushValue($GLOBALS[_PACKAGE_NAME]['middlewares'], $closure, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _processUpdate() {
-    $middlewares = _config('middlewares');
+function _processCurrentUpdate() {
+    $middlewares = _middlewares();
     if ($middlewares) {
         _fireMiddlewares($middlewares);
     }
-    $handlers = _config('handlers');
+    return _fireHandlers(_handlers());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _getPatternParameters(string $pattern, string $value): ?array {
+    $pattern = preg_replace(
+        pattern: _REGEX_FIND_PLACEHOLDERS,
+        replacement: _REGEX_PLACEHOLDERS_REPLACEMENT,
+        subject: addcslashes($pattern, '/')
+    );
+    if (!preg_match("/^{$pattern}$/i", $value, $matches)) {
+        return null;
+    }
+    unset($matches[0]);
+    $parameters = array_unique($matches);
+    return $parameters;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _fireMiddlewares(array $middlewares) {
+    $middlewares = _middlewares();
+    foreach ($middlewares as $middleware) {
+        $middleware();
+    }
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _fireHandlers(array $handlers) {
     $updateType = updateType();
     $fallbackHandlers = $handlers['fallback'] ?? null;
     try {
@@ -2244,22 +2303,33 @@ function _processUpdate() {
             && isset($updateTypeHandlers[$messageType = messageType()])
         ) {
             if ($messageType === MESSAGE_TYPE_TEXT) {
+                $isStartedAConversation = _isStartedAConversation();
+                var_dump($isStartedAConversation);
                 $text = text();
-                var_dump($text);
                 foreach ($updateTypeHandlers[$messageType] as $pattern => $callable) {
-                    $parameters = _getCallableParameters($pattern, $text);
+                    $parameters = _getPatternParameters($pattern, $text);
                     if (is_null($parameters)) {
                         continue;
                     }
+                    if ($isStartedAConversation) {
+                        conversationEnd();
+                    }
                     return $callable(...$parameters);
                 }
+                if ($isStartedAConversation) {
+                    $userKey = _cacheGetUserKey();
+                    $serializedClosure = _cache()->get("conv|{$userKey}|next_step");
+                    $closure = _unserializeClosure($serializedClosure);
+                    return $closure();
+                }
+
             } elseif (in_array($messageType, messageTypes())) {
                 return $updateTypeHandlers[$messageType]();
             }
         } elseif ($updateType === UPDATE_TYPE_CALLBACK_QUERY) {
             $callbackData = callbackQueryData();
             foreach ($updateTypeHandlers['data'] as $pattern => $callable) {
-                $parameters = _getCallableParameters($pattern, $callbackData);
+                $parameters = _getPatternParameters($pattern, $callbackData);
                 if (is_null($parameters)) {
                     continue;
                 }
@@ -2281,44 +2351,6 @@ function _processUpdate() {
         }
         throw $e;
     }
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _getCallableParameters(string $pattern, string $value): ?array {
-    $pattern = preg_replace(
-        pattern: _REGEX_FIND_PLACEHOLDERS,
-        replacement: _REGEX_PLACEHOLDERS_REPLACEMENT,
-        subject: addcslashes($pattern, '/')
-    );
-    if (!preg_match("/^{$pattern}$/i", $value, $matches)) {
-        return null;
-    }
-    unset($matches[0]);
-    $parameters = array_unique($matches);
-    return $parameters;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _fireMiddlewares(array $middlewares) {
-    $middlewares = _config('middlewares');
-    foreach ($middlewares as $middleware) {
-        $middleware();
-    }
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _fireHandlers(array $handlers, string $value = ''): mixed {
-    foreach ($handlers as $pattern => $handler) {
-        if (is_string($pattern)) {
-            $pattern = preg_replace('/\{([^}]+)\}/', '(?P<$1>\w+)', addcslashes($pattern, '/'));
-            if (!preg_match("/^{$pattern}$/", $value, $matches)) {
-                continue;
-            }
-            unset($matches[0]);
-            $parameters = array_unique($matches);
-            return $handler(...$parameters);
-        } else {
-            return $handler();
-        }
-    }
-    return _fireFallback();
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _fireFallback(): mixed {
@@ -2344,3 +2376,128 @@ function _removeNullValues(array $array): array {
 function _prepareAndMakeRequest(string $function, array $funcParameters = [], array $requestOptions = []): array {
     return _makeRequest(basename(strtr($function, '\\', '/')), _prepareFuncParameters($funcParameters), $requestOptions);
 }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _serializeClosure(Closure $closure): string {
+    if (!class_exists(SerializableClosure::class) || !_cache()) {
+        throw new Exception("To use the conversation feature, you need to install rqeuired packages via Composer!");
+    }
+    $serializableClosure = new SerializableClosure($closure);
+    return serialize($serializableClosure);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _unserializeClosure(string $serializedClosure): Closure {
+    /** @var SerializableClosure */
+    $serializableClosure = unserialize($serializedClosure, [
+        'allowed_classes' => [SerializableClosure::class],
+    ]);
+    if (!$serializableClosure) {
+        throw new Exception("Can not unserialize the string '{$serializedClosure}'!");
+    }
+    return $serializableClosure->getClosure();
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function conversationNextStep(Closure $closure): void {
+    $userKey = _cacheGetUserKey();
+    _cache()->set("conv|{$userKey}|next_step", _serializeClosure($closure), _CACHE_CONVERSATIONS_TTL);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function conversationEnd(?Closure $finalStep = null): void {
+    $userKey = _cacheGetUserKey();
+    if ($finalStep) {
+        _cache()->set(
+            key: "conv|{$userKey}|next_step",
+            value: _serializeClosure(function() use ($finalStep, $userKey) {
+                $finalStep();
+                _cache()->delete("conv|{$userKey}|next_step");
+            }),
+            ttl: _CACHE_CONVERSATIONS_TTL
+        );
+    } else {
+        _cache()->delete("conv|{$userKey}|next_step");
+    }
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function conversationSetData(string $key, mixed $value, null|int|DateInterval $ttl = null): void {
+    if (!_cache()) {
+        throw new Exception("To use the conversation feature, you need to install rqeuired packages via Composer!");
+    }
+    $userKey = _cacheGetUserKey();
+    _cache()->set("conv|{$userKey}|data|{$key}", $value, $ttl ?? _CACHE_CONVERSATIONS_TTL);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function conversationGetData(string $key, mixed $defaultValue = null): mixed {
+    $userKey = _cacheGetUserKey();
+    return _cache()->get("conv|{$userKey}|data|{$key}", $defaultValue);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isStartedAConversation(?string $userKey = null): bool {
+    $userKey = $userKey ?? _cacheGetUserKey();
+    return boolval(_cache()->get("conv|{$userKey}|next_step"));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _cacheGetUserKey(): string {
+    static $key;
+    if (!$key) {
+        $key = _botUsername().'_'.chatId().'_'.userId();
+    }
+    return $key;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function setUserData(string $key, mixed $value, null|int|DateInterval $ttl = null): void {
+    $userKey = _cacheGetUserKey();
+    _cache()->set("user|{$userKey}|{$key}", $value, $ttl ?? _CACHE_USER_DATA_TTL);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function getUserData(string $key, mixed $defaultValue = null): mixed {
+    $userKey = _cacheGetUserKey();
+    return _cache()->get("user|{$userKey}|{$key}", $defaultValue);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _botToken(): string {
+    return _config('bot_token');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _botUsername(): string {
+    return _config('bot_username');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _apiBaseUrl(): string {
+    return _config('api_base_url');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isWebhook(): bool {
+    return _config('is_webhook');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _defaultCurlOptions(): array {
+    return _config('default_curl_options');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _handlers(): array {
+    return _config('handlers');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _middlewares(): array {
+    return _config('middlewares');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _globalData(): array {
+    return _config('global_data');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _update(): array {
+    return _config('update');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _cache(): ?CacheInterface {
+    static $cache;
+    if (!$cache) {
+        $cache = _config('cache');
+    }
+    return $cache;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _longPollingLoggerEnabled(): bool {
+    return _config('long_polling_logger_enabled');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

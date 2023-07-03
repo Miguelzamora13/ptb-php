@@ -105,6 +105,25 @@ onMessageText('My name is {name}', function(string $name) {
     sendMessage(text: "Hi {$name}");
 });
 
+// Conversation Feature (To get input from user)
+onMessageText('/register', function() {
+    sendMessage('Send your name: ');
+
+    // next step that will execute next time
+    conversationNextStep(function() { 
+        $name = text();
+        conversationSetData('name', $name);
+        sendMessage('Send your age: ');
+
+        // final step that will execute next time and will end conversation automatically
+        conversationEnd(function() {
+            $name = conversationGetData('name');
+            $age = text();
+            sendMessage("Name: {$name}\nAge: {$age}\n\nThank you!");
+        });
+    });
+});
+
 onMessagePhoto(function() {
     $photo = photo();
     sendMessage("You sent a photo!\n\n".json_encode($photo, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
