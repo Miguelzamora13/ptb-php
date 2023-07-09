@@ -648,7 +648,7 @@ function poll(?string $keys = null): mixed {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function pollOptions(?string $keys = null): mixed {
-    return _arrayGet(message('poll.options'), $keys);
+    return _arrayGet(poll('options'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function chatMember(?string $keys = null): mixed {
@@ -956,6 +956,10 @@ function message(?string $keys = null): mixed {
         default => null,
     };
     return _arrayGet($message, $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function repliedMessage(?string $keys = null): mixed {
+    return _arrayGet(message('reply_to_message'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function messageId(): ?int {
@@ -2068,7 +2072,7 @@ function _arrayGet(?array $data, ?string $keys = null): mixed {
     }
     foreach (explode('.', $keys) as $key) {
         if (!isset($data[$key])) {
-            throw new \Exception("The key '{$key}' does not exist!");
+            return null;
         }
         $data = $data[$key];
     }
