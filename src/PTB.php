@@ -1393,6 +1393,63 @@ function sendDice(
     return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function sendFile(
+    ?string $document = null,
+    ?string $audio = null,
+    ?string $photo = null,
+    ?string $video = null,
+    ?string $animation = null,
+    ?string $voice = null,
+    ?string $video_note = null,
+    ?string $sticker = null,
+    ?int $chat_id = null,
+    ?int $message_thread_id = null,
+    ?string $caption = null,
+    ?array $caption_entities = null,
+    ?string $parse_mode = null,
+    ?bool $disable_notification = null,
+    ?bool $protect_content = null,
+    ?int $reply_to_message_id = null,
+    ?bool $allow_sending_without_reply = null,
+    ?array $reply_markup = null,
+    ?string $thumbnail = null,
+    ?bool $disable_content_type_detection = null,
+    ?int $duration = null,
+    ?string $performer = null,
+    ?string $title = null,
+    ?int $width = null,
+    ?int $height = null,
+    ?bool $supports_streaming = null,
+    ?int $length = null,
+    ?string $emoji = null,
+): array {
+    $parameters = _removeNullValues(get_defined_vars());
+    if (isset($document)) {
+        return sendDocument(...$parameters);
+    }
+    if (isset($audio)) {
+        return sendAudio(...$parameters);
+    }
+    if (isset($photo)) {
+        return sendPhoto(...$parameters);
+    }
+    if (isset($video)) {
+        return sendVideo(...$parameters);
+    }
+    if (isset($animation)) {
+        return sendAnimation(...$parameters);
+    }
+    if (isset($voice)) {
+        return sendVoice(...$parameters);
+    }
+    if (isset($video_note)) {
+        return sendVideoNote(...$parameters);
+    }
+    if (isset($sticker)) {
+        return sendSticker(...$parameters);
+    }
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendChatAction(
     string $action,
     ?int $chat_id = null,
