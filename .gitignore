@@ -1,4 +1,3 @@
+.*
 vendor/
-.vscode/
-test-bot.php
-*.log
+temp/

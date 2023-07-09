@@ -191,7 +191,7 @@ define('API_LIMIT_MESSAGE_CAPTION_MAX', 1096);
 define('_REGEX_FIND_PLACEHOLDERS', '/\{([^}]+)\}/');
 define('_REGEX_PLACEHOLDERS_REPLACEMENT', '(?P<$1>\w+)');
 define('_PACKAGE_NAME', 'devdasher/ptb-php');
-define('_CACHE_CONVERSATIONS_TTL', 10800);
+define('_CACHE_CONVERSATION_TTL', 10800);
 define('_CACHE_USER_DATA_TTL', 120);
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function initPTB(
@@ -225,7 +225,6 @@ function run(): void {
         $offset = 1;
         while (true) {
             $response = getUpdates(timeout: 10, offset: $offset);
-            print_r($response);
             if (!$response['ok']) {
                 throw new \Exception('Could not fetch updates with the getUpdates method!');
             }
@@ -617,19 +616,11 @@ function chat(?string $keys = null): mixed {
         UPDATE_TYPE_EDITED_CHANNEL_POST => $message['chat'],
         default => null,
     };
-    if (!$keys) {
-        return $chat;
-    }
     return _arrayGet($chat, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function photo(?string $keys = null): mixed {
-    $photos = photos();
-    $photo = end($photos);
-    if (!$keys) {
-        return $photo;
-    }
-    return _arrayGet($photo, $keys);
+    return _arrayGet(end(photos()), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function photos(): ?array {
@@ -637,12 +628,7 @@ function photos(): ?array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function gamePhoto(?string $keys = null): mixed {
-    $gamePhotos = gamePhotos();
-    $gamePhoto = end($gamePhotos);
-    if (!$keys) {
-        return $gamePhoto;
-    }
-    return _arrayGet($gamePhoto, $keys);
+    return _arrayGet(end(gamePhotos()), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function gamePhotos(): ?array {
@@ -650,60 +636,33 @@ function gamePhotos(): ?array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function replyMarkup(?string $keys = null): mixed {
-    $replyMarkup = message('reply_markup');
-    if (!$keys) {
-        return $replyMarkup;
-    }
-    return _arrayGet($replyMarkup, $keys);
+    return _arrayGet(message('reply_markup'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function viaBot(?string $keys = null): mixed {
-    $viaBot = message('via_bot');
-    if (!$keys) {
-        return $viaBot;
-    }
-    return _arrayGet($viaBot, $keys);
+    return _arrayGet(message('via_bot'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function poll(?string $keys = null): mixed {
-    $poll = message('poll');
-    if (!$keys) {
-        return $poll;
-    }
-    return _arrayGet($poll, $keys);
+    return _arrayGet(message('poll'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function pollOptions(?string $keys = null): mixed {
-    $pollOptions = message('poll.options');
-    if (!$keys) {
-        return $pollOptions;
-    }
-    return _arrayGet($pollOptions, $keys);
+    return _arrayGet(message('poll.options'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function chatMember(?string $keys = null): mixed {
-    $chatMember = update(UPDATE_TYPE_CHAT_MEMBER);
-    if (!$keys) {
-        return $chatMember;
-    }
-    return _arrayGet($chatMember, $keys);
+    return _arrayGet(update(UPDATE_TYPE_CHAT_MEMBER), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function myChatMember(?string $keys = null): mixed {
-    $myChatMember = update(UPDATE_TYPE_MY_CHAT_MEMBER);
-    if (!$keys) {
-        return $myChatMember;
-    }
-    return _arrayGet($myChatMember, $keys);
+    return _arrayGet(update(UPDATE_TYPE_MY_CHAT_MEMBER), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function oldChatMember(?string $keys = null): mixed {
     $key = 'old_chat_member';
     $updateType = updateType();
     $oldChatMember = $updateType === UPDATE_TYPE_CHAT_MEMBER ? chatMember($key) : myChatMember($key);
-    if (!$keys) {
-        return $oldChatMember;
-    }
     return _arrayGet($oldChatMember, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -711,110 +670,59 @@ function newChatMember(?string $keys = null): mixed {
     $key = 'new_chat_member';
     $updateType = updateType();
     $newChatMember = $updateType === UPDATE_TYPE_CHAT_MEMBER ? chatMember($key) : myChatMember($key);
-    if (!$keys) {
-        return $newChatMember;
-    }
     return _arrayGet($newChatMember, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function document(?string $keys = null): mixed {
-    $document = message(MESSAGE_TYPE_DOCUMENT);
-    if (!$keys) {
-        return $document;
-    }
-    return _arrayGet($document, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_DOCUMENT), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sticker(?string $keys = null): mixed {
-    $sticker = message(MESSAGE_TYPE_STICKER);
-    if (!$keys) {
-        return $sticker;
-    }
-    return _arrayGet($sticker, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_STICKER), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function video(?string $keys = null): mixed {
-    $video = message(MESSAGE_TYPE_VIDEO);
-    if (!$keys) {
-        return $video;
-    }
-    return _arrayGet($video, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_VIDEO), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function videoNote(?string $keys = null): mixed {
-    $videoNote = message(MESSAGE_TYPE_VIDEO_NOTE);
-    if (!$keys) {
-        return $videoNote;
-    }
-    return _arrayGet($videoNote, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_VIDEO_NOTE), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function voice(?string $keys = null): mixed {
-    $voice = message(MESSAGE_TYPE_VOICE);
-    if (!$keys) {
-        return $voice;
-    }
-    return _arrayGet($voice, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_VOICE), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function audio(?string $keys = null): mixed {
-    $audio = message(MESSAGE_TYPE_AUDIO);
-    if (!$keys) {
-        return $audio;
-    }
-    return _arrayGet($audio, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_AUDIO), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function dice(?string $keys = null): mixed {
-    $dice = message(MESSAGE_TYPE_DICE);
-    if (!$keys) {
-        return $dice;
-    }
-    return _arrayGet($dice, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_DICE), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function game(?string $keys = null): mixed {
-    $game = message(MESSAGE_TYPE_GAME);
-    if (!$keys) {
-        return $game;
-    }
-    return _arrayGet($game, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_GAME), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function venue(?string $keys = null): mixed {
-    $venue = message(MESSAGE_TYPE_VENUE);
-    if (!$keys) {
-        return $venue;
-    }
-    return _arrayGet($venue, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_VENUE), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function location(?string $keys = null): mixed {
-    $location = message(MESSAGE_TYPE_LOCATION);
-    if (!$keys) {
-        return $location;
-    }
-    return _arrayGet($location, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_LOCATION), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function contact(?string $keys = null): mixed {
-    $contact = message(MESSAGE_TYPE_CONTACT);
-    if (!$keys) {
-        return $contact;
-    }
-    return _arrayGet($contact, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_CONTACT), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function animation(?string $keys = null): mixed {
-    $animation = message(MESSAGE_TYPE_ANIMATION);
-    if (!$keys) {
-        return $animation;
-    }
-    return _arrayGet($animation, $keys);
+    return _arrayGet(message(MESSAGE_TYPE_ANIMATION), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function text(): ?string {
-    return message('text');
+    return message(MESSAGE_TYPE_TEXT);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function caption(): ?string {
@@ -842,9 +750,6 @@ function from(?string $keys = null): mixed {
         UPDATE_TYPE_CALLBACK_QUERY => $update[$updateType]['from'],
         default => null,
     };
-    if (!$keys) {
-        return $user;
-    }
     return _arrayGet($user, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -861,11 +766,7 @@ function chatId(): ?int {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function callbackQuery(?string $keys = null): mixed {
-    $callbackQuery = update(UPDATE_TYPE_CALLBACK_QUERY);
-    if (!$keys) {
-        return $callbackQuery;
-    }
-    return _arrayGet($callbackQuery, $keys);
+    return _arrayGet(update(UPDATE_TYPE_CALLBACK_QUERY), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function callbackQueryData(): ?string {
@@ -873,31 +774,19 @@ function callbackQueryData(): ?string {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function inlineQuery(?string $keys = null): mixed {
-    $inlineQuery = update(UPDATE_TYPE_INLINE_QUERY);
-    if (!$keys) {
-        return $inlineQuery;
-    }
-    return _arrayGet($inlineQuery, $keys);
+    return _arrayGet(update(UPDATE_TYPE_INLINE_QUERY), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function inlineQueryString(): ?string {
-    return update(UPDATE_TYPE_INLINE_QUERY.'.query');
+    return inlineQuery('query');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function shippingQuery(?string $keys = null): mixed {
-    $shippingQuery = update(UPDATE_TYPE_SHIPPING_QUERY);
-    if (!$keys) {
-        return $shippingQuery;
-    }
-    return _arrayGet($shippingQuery, $keys);
+    return _arrayGet(update(UPDATE_TYPE_SHIPPING_QUERY), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function preCheckoutQuery(?string $keys = null): mixed {
-    $preCheckoutQuery = update(UPDATE_TYPE_PRE_CHECKOUT_QUERY);
-    if (!$keys) {
-        return $preCheckoutQuery;
-    }
-    return _arrayGet($preCheckoutQuery, $keys);
+    return _arrayGet(update(UPDATE_TYPE_PRE_CHECKOUT_QUERY), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function pollAnswer(?string $keys = null): mixed {
@@ -1040,22 +929,14 @@ function isForwarded(): ?bool {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function forwardFrom(?string $keys = null): mixed {
-    $forwardFrom = message('forward_from');
-    if (!$keys) {
-        return $forwardFrom;
-    }
-    return _arrayGet($forwardFrom, $keys);
+    return _arrayGet(message('forward_from'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function forwardFromChat(?string $keys = null): mixed {
-    $forwardFromChat = message('forward_from_chat');
-    if (!$keys) {
-        return $forwardFromChat;
-    }
-    return _arrayGet($forwardFromChat, $keys);
+    return _arrayGet(message('forward_from_chat'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function forwardFromid(): ?int {
+function forwardFromId(): ?int {
     return message('forward_from_message_id');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -1074,9 +955,6 @@ function message(?string $keys = null): mixed {
         UPDATE_TYPE_EDITED_CHANNEL_POST => $update[$updateType],
         default => null,
     };
-    if (!$keys) {
-        return $message;
-    }
     return _arrayGet($message, $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -1101,11 +979,7 @@ function updateId(): ?int {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function update(?string $keys = null): mixed {
-    $update = _update();
-    if (!$keys) {
-        return $update;
-    }
-    return _arrayGet($update, $keys);
+    return _arrayGet(_update(), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function chatType(): ?string {
@@ -2155,8 +2029,8 @@ function _makeRequest(string $method, array $parameters = [], array $options = [
         CURLOPT_SSL_SESSIONID_CACHE => true,
         CURLOPT_TCP_FASTOPEN => true,
         CURLOPT_TCP_NODELAY => true,
-        CURLOPT_TIMEOUT => 3,
-        CURLOPT_CONNECTTIMEOUT => 2,
+        CURLOPT_TIMEOUT => _isWebhook() ? 3 : 10,
+        CURLOPT_CONNECTTIMEOUT => _isWebhook() ? 2 : 10,
         CURLOPT_FORBID_REUSE => false,
         CURLOPT_FRESH_CONNECT => false,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
@@ -2182,22 +2056,15 @@ function _getCommonKeys(array $array1, array $array2): array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _config(?string $keys = null): mixed {
-    $config = $GLOBALS[_PACKAGE_NAME];
-    if (!$keys) {
-        return $config;
-    }
-    foreach (explode('.', $keys) as $key) {
-        if (!isset($config[$key])) {
-            return null;
-        }
-        $config = $config[$key];
-    }
-    return $config;
+    return _arrayGet($GLOBALS[_PACKAGE_NAME], $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _arrayGet(?array $data, string $keys): mixed {
-    if (is_null($data)) {
+function _arrayGet(?array $data, ?string $keys = null): mixed {
+    if (!$data) {
         return null;
+    }
+    if (!$keys) {
+        return $data;
     }
     foreach (explode('.', $keys) as $key) {
         if (!isset($data[$key])) {
@@ -2357,13 +2224,6 @@ function _fireFallback(): mixed {
     return $fallback ? $fallback() : null;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _getData(array $data, ?string $keys = null): mixed {
-    if (!$keys) {
-        return $data;
-    }
-    return _arrayGet($data, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _prepareFuncParameters(array $parameters): array {
     return _removeNullValues(_autoFillSpecifiedParameters($parameters));
 }
@@ -2372,8 +2232,12 @@ function _removeNullValues(array $array): array {
     return array_filter($array, fn($value) => $value !== null);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _extractFunctionName(string $function): string {
+    return basename(strtr($function, '\\', '/'));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _prepareAndMakeRequest(string $function, array $funcParameters = [], array $requestOptions = []): array {
-    return _makeRequest(basename(strtr($function, '\\', '/')), _prepareFuncParameters($funcParameters), $requestOptions);
+    return _makeRequest(_extractFunctionName($function), _prepareFuncParameters($funcParameters), $requestOptions);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _serializeClosure(Closure $closure): string {
@@ -2397,7 +2261,7 @@ function _unserializeClosure(string $serializedClosure): Closure {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function conversationNextStep(Closure $closure): void {
     $userKey = _cacheGetUserKey();
-    _cache()->set("conv|{$userKey}|next_step", _serializeClosure($closure), _CACHE_CONVERSATIONS_TTL);
+    _cache()->set("conv|{$userKey}|next_step", _serializeClosure($closure), _CACHE_CONVERSATION_TTL);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function conversationEnd(?Closure $finalStep = null): void {
@@ -2409,7 +2273,7 @@ function conversationEnd(?Closure $finalStep = null): void {
                 $finalStep();
                 _cache()->delete("conv|{$userKey}|next_step");
             }),
-            ttl: _CACHE_CONVERSATIONS_TTL
+            ttl: _CACHE_CONVERSATION_TTL
         );
     } else {
         _cache()->delete("conv|{$userKey}|next_step");
@@ -2421,7 +2285,7 @@ function conversationSetData(string $key, mixed $value, null|int|DateInterval $t
         throw new Exception("To use the conversation feature, you need to install rqeuired packages via Composer!");
     }
     $userKey = _cacheGetUserKey();
-    _cache()->set("conv|{$userKey}|data|{$key}", $value, $ttl ?? _CACHE_CONVERSATIONS_TTL);
+    _cache()->set("conv|{$userKey}|data|{$key}", $value, $ttl ?? _CACHE_CONVERSATION_TTL);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function conversationGetData(string $key, mixed $defaultValue = null): mixed {
@@ -2489,11 +2353,7 @@ function _update(): array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _cache(): ?CacheInterface {
-    static $cache;
-    if (!$cache) {
-        $cache = _config('cache');
-    }
-    return $cache;
+    return _config('cache');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _longPollingLoggerEnabled(): bool {
