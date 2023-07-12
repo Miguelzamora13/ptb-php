@@ -1125,6 +1125,18 @@ function onMessage(
         skip_middlewares: $skip_middlewares,
     );
 }
+function onAny(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "any",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onEditedMessageText(
     string $pattern,
@@ -3709,6 +3721,9 @@ function _fireHandlers(array $handlers) {
     $fallbackHandlers = $handlers['fallback'] ?? null;
     try {
         if (!isset($handlers[$updateType])) {
+            if (isset($handlers['any'])) {
+                return $handlers['any']['callable']();
+            }
             if (isset($fallbackHandlers[$updateType])) {
                 return $fallbackHandlers[$updateType]['callable']();
             }
