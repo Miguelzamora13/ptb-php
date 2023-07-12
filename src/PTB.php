@@ -3533,6 +3533,12 @@ function _autoFillApiMethodParameters($parameters) {
     if (key_exists('reply_markup', $parameters) && $parameters['reply_markup']) {
         $parameters['reply_markup'] = json_encode($parameters['reply_markup']);
     }
+    if (key_exists('entities', $parameters) && $parameters['entities']) {
+        $parameters['entities'] = json_encode($parameters['entities']);
+    }
+    if (key_exists('caption_entities', $parameters) && $parameters['caption_entities']) {
+        $parameters['caption_entities'] = json_encode($parameters['caption_entities']);
+    }
     if (key_exists('options', $parameters) && $parameters['options']) {
         $parameters['options'] = json_encode($parameters['options']);
     }
