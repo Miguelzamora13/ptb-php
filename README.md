@@ -1,3 +1,5 @@
+## 🇮🇷 [توضیحات فارسی](docs/fa/README.md)
+
 # PTB = Procedural Telegram Bot (PHP Library)
 
 > The PTB Library gives your project flexibility, scalability and super speed
@@ -6,188 +8,71 @@ This library takes advantage of the latest **PHP 8** features, and tries to make
 more **advanced features** to handle even the most complicated flows. Some architectural concepts on which PTB is
 based are heavily influenced by other open source project with the name [Nutgram](https://github.com/nutgram/nutgram)! check it out too!
 
+# A Basic Example
 ```php
 <?php
 
-use function DevDasher\PTB\answerCallbackQuery;
-use function DevDasher\PTB\fallback;
-use function DevDasher\PTB\fallbackOn;
-use function DevDasher\PTB\inlineKeyboard;
-use function DevDasher\PTB\inlineKeyboardButton;
-use function DevDasher\PTB\run;
-use function DevDasher\PTB\sendMessage;
-use function DevDasher\PTB\onApiError;
-use function DevDasher\PTB\onCallbackQueryData;
-use function DevDasher\PTB\onEditedMessageText;
-use function DevDasher\PTB\onException;
-use function DevDasher\PTB\onMessagePhoto;
+use function DevDasher\PTB\configurePTB;
 use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\initPTB;
-use function DevDasher\PTB\messageId;
-use function DevDasher\PTB\onMessageSticker;
-use function DevDasher\PTB\photo;
-use function DevDasher\PTB\setGlobalData;
-use function DevDasher\PTB\getGlobalData;
-use function DevDasher\PTB\middleware;
-use function DevDasher\PTB\sticker;
-use function DevDasher\PTB\user;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Component\Cache\Psr16Cache;
+use function DevDasher\PTB\sendMessage;
 
-// require(__DIR__.'/vendor/autoload.php');
-require(__DIR__.'/path/to/PTB.php'); // Or you can require directly
+// require(__DIR__.'/vendor/autoload.php'); // You can use Composer's autolaod
+require(__DIR__.'/path/to/PTB.php'); // Or require the PTB.php file directly
 
-initPTB(
-    bot_token: 'TOKEN',
-    bot_username: 'BOT_USERNAME',
-    api_base_url: 'https://tlgr.org',
-    is_webhook: true, // or false for LongPolling running mode (from terminal) => Command: php file.php
-    default_curl_options: [
-        // CURLOPT_PROXY => '127.0.0.1:2080',
-        // ...
-    ],
-
-    // if you need to use conversation feature or cache data,
-    // you need to install some packages and use Composer for this
-    cache: new Psr16Cache(new FilesystemAdapter())
+/*
+    This function is for setting the initial settings of the library
+    It should be defined and called at the top of the code and before the handlers
+*/
+configurePTB(
+    token: 'TOKEN', // Your bot token
+    username: 'USERNAME', // Your bot username
+    // ...
 );
 
-// Global middleware, That runs before handlers
-middleware(function() {
-    // some code here
-    // maybe you want store the user's information ...
-    // or check some other stuffs
+/*
+    This handler is used to check text inputs in the 'message' update type
+*/
+onMessageText(
+    # Enter your text pattern here
+    pattern: '/start', 
 
-    //example:
-    $user = user(); // user's info in the telegram
-    if ($user) {
-        $user = [ 
-            'user_id' => $user['id'],
-            'first_name' => $user['first_name'] ?? null,
-            'last_name' => $user['last_name'] ?? null,
-            'username' => $user['username'] ?? null,
+    # The function that is executed after checking the pattern in response to the user
+    callable: function() { 
+        sendMessage(text: 'Hello World'); // A function to send a message to the user
 
-            // or you can use this way:
-            'user_id' => user('id'),
-            'first_name' => user('first_name'),
-            'last_name' => user('last_name'),
-            'username' => user('username'),
-        ];
+        /*
+            In short, if the user sends the /start command to the bot,
+            the response "Hello World" will be sent to the user
+        */
+    },
+);
 
-        // $user = save_user_info_in_database($user); // This is a hypothetical function
-
-        // set user's info in the global_data
-        setGlobalData('user', $user);
-        // you can use getGlobalData('user') to get the user's info from other handlers
-    }
+# Here we examine another example together
+onMessageText(
+    # Text pattern with a placeholder
+    pattern: 'My name is {name}', 
     
-    sendMessage('Middleware');
-});
+    # The function that is executed after checking the pattern in response to the user
+    callable: function($name) { // Note that you receive the corresponding placeholder as a parameter in the function
+        sendMessage(text: "Hello $name");
 
-onMessageText('/start', function() {
-    sendMessage(
-        text: 'Hello World!',
-        reply_markup: inlineKeyboard([
-            [inlineKeyboardButton(text: 'btn1', callback_data: 'btn1')],
-            [inlineKeyboardButton(text: 'btn2', callback_data: 'btn2/SOME_VALUE')],
-            [inlineKeyboardButton(text: 'btn3', callback_data: 'btn3')],
-        ]),
-    );
-});
+        /*
+            In short, if the user sends the following text:
+            "My name is Pooria"
+            The bot will also send the reply "Hello Pooria" to the user
+        */
+    },
+);
 
-onMessageText('/user', function() {
-    // $user = user();
-    $user = getGlobalData('user'); // or you can get user's info that we have set in the middleware earlier...
-    sendMessage(
-        text: <<<TEXT
-            UserID: {$user['id']},
-            UserFirstName: {$user['first_name']}
-            UserUsername: {$user['username']}
-        TEXT,
-    );
-});
-
-onMessageText('My name is {name}', function(string $name) {
-    sendMessage(text: "Hi {$name}");
-});
-
-// Conversation Feature (To get input from user)
-// You need to use composer and set a cache adapter in initPTB for this feature
-onMessageText('/register', function() {
-    sendMessage('Send your name: ');
-
-    // next step that will execute next time
-    conversationNextStep(function() { 
-        $name = text();
-        conversationSetData('name', $name);
-        sendMessage('Send your age: ');
-
-        // final step that will execute next time and will end conversation automatically
-        conversationEnd(function() {
-            $name = conversationGetData('name');
-            $age = text();
-            sendMessage("Name: {$name}\nAge: {$age}\n\nThank you!");
-        });
-    });
-});
-
-onMessagePhoto(function() {
-    $photo = photo();
-    sendMessage("You sent a photo!\n\n".json_encode($photo, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
-});
-
-onMessageSticker(function() {
-    $sticker = sticker();
-    sendMessage("You sent a sticker!\n\n".json_encode($sticker, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
-});
-
-onEditedMessageText('/help', function() {
-    sendMessage(
-        text: 'You edited this message to the command /help, and this handler was executed!',
-        reply_to_message_id: messageId(),
-    );
-});
-
-onCallbackQueryData('btn1', function() {
-    answerCallbackQuery(
-        text: 'You clicked on button btn1!',
-        show_alert: true,
-    );
-});
-
-onCallbackQueryData('btn2/{value}', function(string $value) {
-    answerCallbackQuery(
-        text: 'You clicked on button btn2! with callback parameter value: '.$value,
-        show_alert: true,
-    );
-});
-
-// other handlers here...
-
-fallbackOn(UPDATE_TYPE_MESSAGE, function() {
-    sendMessage("Unknown command! (on 'message' update type)");
-});
-
-fallbackOn(UPDATE_TYPE_CALLBACK_QUERY, function() {
-    answerCallbackQuery(
-        text: "Unknown command! (on 'callback_query' update type)",
-        show_alert: true
-    );
-});
-
-fallback(function() {
-    sendMessage('Unknown command!');
-});
-
-onException(function(\Throwable $e) {
-    sendMessage(text: 'onException ' . $e->getMessage());
-});
-
-onApiError(function(array $response) {
-    sendMessage(text: 'onApiError ' . $response['error_code']);
-});
-
+/*
+    This function should always be at the end of the code (after the handlers).
+    After this function is called, the library checks the available handlers
+    and executes the relevant codes accordingly and sends the appropriate response to the user
+    The response you specified in an anonymous function in previous handlers
+*/
 run();
+
+
 ```
 # Why Procedural and NOT OOP?
 Procedural programming is often considered faster than Object-Oriented Programming (OOP) due to its lower overhead and the smaller number of operations required for execution. In procedural programming, the focus is on writing sequential instructions in a step-by-step manner to accomplish a task. This approach allows for efficient execution as the program directly operates on data using straightforward instructions.
@@ -198,27 +83,25 @@ In contrast, OOP introduces additional layers of complexity through concepts suc
 
 It is important to note that the performance difference between procedural and OOP approaches is contextual and may vary based on several factors, such as the specific programming language used, the efficiency of the compiler or interpreter, the design choices made, and the nature of the problem being solved. Therefore, while procedural programming can be perceived as faster due to its streamlined execution model and reduced OPcode usage, it is not a definitive rule, and OOP can provide significant advantages in terms of code organization, maintainability, and extensibility.
 
-## Installation
+# Documentation
+This library is constantly being updated and currently has many features.  
+We will complete this section later
 
+# Installation
 You can install the package via composer:
 
 ```bash
 composer require devdasher/ptb-php
 ```
 
-## Usage
+Or you can include the PTB.php file in your PHP code directly
 
-- Official Documentation
-
-## Changelog
-
+# Changelog
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-## Credits
-
+# Credits
 - [Pooria Bashiri](https://github.com/devdahser)
 - [All Contributors](../../contributors)
 
-## License
-
+# License
 The GNU License (GNU v3). Please see [License File](LICENSE.md) for more information.
