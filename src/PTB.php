@@ -828,6 +828,8 @@ define('API_LIMIT_MESSAGE_CAPTION_MIN', 1);
 define('API_LIMIT_MESSAGE_CAPTION_MAX', 1096);
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('API_BASE_URL', 'https://api.telegram.org');
+define('API_BASE_URL_BOT', 'https://api.telegram.org/bot');
+define('API_BASE_URL_FILE', 'https://api.telegram.org/file/bot');
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('REGEX_BOT_TOKEN', '/(?<token>(?<bot_id>\d{8,10})\:(?<hash>[\w-]{35}))/');
 define('REGEX_INVITE_LINK', '/(?<invite_link>(?:http[s]://)?(?:t|telegram)\.(?:me|dog)\/(?:joinchat\/|\+)(?<hash>[\w\-]+))/i');
@@ -2484,15 +2486,15 @@ function fileTypes(array $exclude = []): ?array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMe(?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, options: $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function logOut(?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, options: $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function close(?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, options: $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteMessage(
@@ -2500,7 +2502,7 @@ function deleteMessage(
     ?int $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendMessage(
@@ -2517,7 +2519,7 @@ function sendMessage(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function forwardMessage(
@@ -2529,7 +2531,7 @@ function forwardMessage(
     ?bool $protect_content = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function copyMessage(
@@ -2547,7 +2549,7 @@ function copyMessage(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendPhoto(
@@ -2565,7 +2567,7 @@ function sendPhoto(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendAudio(
@@ -2586,7 +2588,7 @@ function sendAudio(
     ?string $thumbnail = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendDocument(
@@ -2605,7 +2607,7 @@ function sendDocument(
     ?bool $disable_content_type_detection = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVideo(
@@ -2628,7 +2630,7 @@ function sendVideo(
     ?bool $supports_streaming = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendAnimation(
@@ -2652,7 +2654,7 @@ function sendAnimation(
     ?int $duration = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVoice(
@@ -2669,7 +2671,7 @@ function sendVoice(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVideoNote(
@@ -2689,7 +2691,7 @@ function sendVideoNote(
     ?string $thumbnail = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendMediaGroup(
@@ -2702,7 +2704,7 @@ function sendMediaGroup(
     ?bool $allow_sending_without_reply = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendLocation(
@@ -2721,7 +2723,7 @@ function sendLocation(
     ?int $proximity_alert_radius = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVenue(
@@ -2742,7 +2744,7 @@ function sendVenue(
     ?string $google_place_type = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendContact(
@@ -2759,7 +2761,7 @@ function sendContact(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendPoll(
@@ -2784,7 +2786,7 @@ function sendPoll(
     ?bool $is_closed = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendDice(
@@ -2798,7 +2800,7 @@ function sendDice(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendFile(
@@ -2865,7 +2867,7 @@ function sendChatAction(
     ?int $message_thread_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getUserProfilePhotos(
@@ -2874,14 +2876,14 @@ function getUserProfilePhotos(
     ?int $limit = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getFile(
     string $file_id,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function banChatMember(
@@ -2891,7 +2893,7 @@ function banChatMember(
     ?bool $revoke_messages = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unbanChatMember(
@@ -2900,7 +2902,7 @@ function unbanChatMember(
     ?bool $only_if_banned = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function restrictChatMember(
@@ -2912,7 +2914,7 @@ function restrictChatMember(
     ?int $until_date = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function promoteChatMember(
@@ -2932,7 +2934,7 @@ function promoteChatMember(
     ?bool $can_manage_topics = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatAdministratorCustomTitle(
@@ -2941,7 +2943,7 @@ function setChatAdministratorCustomTitle(
     string $custom_title,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function banChatSenderChat(
@@ -2949,7 +2951,7 @@ function banChatSenderChat(
     int $sender_chat_id,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unbanChatSenderChat(
@@ -2957,7 +2959,7 @@ function unbanChatSenderChat(
     int $sender_chat_id,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatPermissions(
@@ -2966,11 +2968,11 @@ function setChatPermissions(
     ?bool $use_independent_chat_permissions = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function exportChatInviteLink(int|string $chat_id, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createChatInviteLink(
@@ -2981,7 +2983,7 @@ function createChatInviteLink(
     ?bool $creates_join_request = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editChatInviteLink(
@@ -2993,35 +2995,35 @@ function editChatInviteLink(
     ?bool $creates_join_request = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function revokeChatInviteLink(int|string $chat_id, string $invite_link, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function approveChatJoinRequest(int|string $chat_id, int $user_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function declineChatJoinRequest(int|string $chat_id, int $user_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatPhoto(int|string $chat_id, string $photo, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteChatPhoto(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatTitle(int|string $chat_id, string $title, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatDescription(int|string $chat_id, string $description, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function pinChatMessage(
@@ -3030,47 +3032,47 @@ function pinChatMessage(
     ?bool $disable_notification = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unpinChatMessage(int|string $chat_id, bool $message_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unpinAllChatMessages(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function leaveChat(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChat(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatAdministrators(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatMemberCount(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatMember(int|string $chat_id, int $user_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatStickerSet(int|string $chat_id, string $sticker_set_name, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteChatStickerSet(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getForumTopicIconStickers(?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createForumTopic(
@@ -3080,7 +3082,7 @@ function createForumTopic(
     ?string $icon_custom_emoji_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editForumTopic(
@@ -3090,43 +3092,43 @@ function editForumTopic(
     ?string $icon_custom_emoji_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function closeForumTopic(int|string $chat_id, int $message_thread_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function reopenForumTopic(int|string $chat_id, int $message_thread_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteForumTopic(int|string $chat_id, int $message_thread_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unpinAllForumTopicMessages(int|string $chat_id, int $message_thread_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editGeneralForumTopic(int|string $chat_id, string $name, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function closeGeneralForumTopic(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function reopenGeneralForumTopic(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function hideGeneralForumTopic(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unhideGeneralForumTopic(int|string $chat_id, ?array $_options = [],): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerCallbackQuery(
@@ -3137,7 +3139,7 @@ function answerCallbackQuery(
     ?int $callback_query_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyCommands(
@@ -3146,55 +3148,55 @@ function setMyCommands(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteMyCommands(?array $scope = null, ?string $language_code = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyCommands(?array $scope = null, ?string $language_code = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyName(?string $name = null, ?string $language_code = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyName(?string $language_code = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyDescription(?string $description = null, ?string $language_code = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyDescription(?string $language_code = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyShortDescription(?string $short_description = null, ?string $language_code = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyShortDescription(?string $language_code = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatMenuButton(int $chat_id, ?array $menu_button = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatMenuButton(int $chat_id, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyDefaultAdministratorRights(?array $rights = null, ?bool $for_channels = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyDefaultAdministratorRights(?bool $for_channels = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageText(
@@ -3208,7 +3210,7 @@ function editMessageText(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageCaption(
@@ -3221,7 +3223,7 @@ function editMessageCaption(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageMedia(
@@ -3232,7 +3234,7 @@ function editMessageMedia(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageLiveLocation(
@@ -3247,7 +3249,7 @@ function editMessageLiveLocation(
     ?int $proximity_alert_radius = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function stopMessageLiveLocation(
@@ -3257,7 +3259,7 @@ function stopMessageLiveLocation(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageReplyMarkup(
@@ -3267,7 +3269,7 @@ function editMessageReplyMarkup(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function stopPoll(
@@ -3276,7 +3278,7 @@ function stopPoll(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendSticker(
@@ -3291,19 +3293,19 @@ function sendSticker(
     ?string $emoji = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getStickerSet(string $name, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getCustomEmojiStickers(array $custom_emoji_ids, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function uploadStickerFile(int $user_id, string $sticker, string $sticker_format, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createNewStickerSet(
@@ -3316,35 +3318,35 @@ function createNewStickerSet(
     ?bool $needs_repainting = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function addStickerToSet(int $user_id, string $name, array $sticker, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerPositionInSet(string $sticker, int $position, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteStickerFromSet(string $sticker, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerEmojiList(string $sticker, array $emoji_list, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerKeywords(string $sticker, ?array $keywords = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerMaskPosition(string $sticker, ?array $mask_position = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerSetTitle(string $name, string $title, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerSetThumbnail(
@@ -3353,15 +3355,15 @@ function setStickerSetThumbnail(
     ?string $thumbnail = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setCustomEmojiStickerSetThumbnail(string $name, ?string $custom_emoji_id = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteStickerSet(string $name, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerInlineQuery(
@@ -3373,11 +3375,11 @@ function answerInlineQuery(
     ?string $inline_query_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerWebAppQuery(array $result, ?string $web_app_query_id = null, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendInvoice(
@@ -3411,7 +3413,7 @@ function sendInvoice(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createInvoiceLink(
@@ -3437,7 +3439,7 @@ function createInvoiceLink(
     ?bool $is_flexible = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerShippingQuery(
@@ -3447,7 +3449,7 @@ function answerShippingQuery(
     ?string $shipping_query_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerPreCheckoutQuery(
@@ -3456,11 +3458,11 @@ function answerPreCheckoutQuery(
     ?string $pre_checkout_query_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setPassportDataErrors(int $user_id, array $errors, ?array $_options = []): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendGame(
@@ -3474,7 +3476,7 @@ function sendGame(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setGameScore(
@@ -3487,7 +3489,7 @@ function setGameScore(
     ?string $inline_message_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getGameHighScores(
@@ -3497,7 +3499,7 @@ function getGameHighScores(
     ?string $inline_message_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getUpdates(
@@ -3507,7 +3509,7 @@ function getUpdates(
     ?array $allowed_updates = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _autoFillApiMethodParameters($parameters) {
@@ -3551,17 +3553,56 @@ function _autoFillApiMethodParameters($parameters) {
     return $parameters;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _makeRequest(string $method, array $parameters = [], array $options = []): array {
-    $baseUrl = $options['api_base_url'] ?? _apiBaseUrl();
-    if (!$baseUrl || !filter_var($baseUrl, FILTER_VALIDATE_URL)) {
-        throw new Exception("The api_base_url option is not a valid URL or IP address!");
+function downloadBotFile(
+    array|string $file,
+    string $save_path,
+    ?array $options = [],
+): bool {
+    if (is_string($file)) {
+        $file = getFile(file_id: $file);
+        if (!$file || !$file['ok']) {
+            throw new Exception("File not found!");
+        }
+    }
+    $filePath = $file['file_path'] ?? $file['result']['file_path'] ?? null;
+    if (!$filePath) {
+        throw new Exception("The 'file_path' is not specified!");
+    }
+    $apiBaseUrl = ($options['api_base_url'] ?? _apiBaseUrl()).'/file';
+    if (!$apiBaseUrl) {
+        throw new Exception("The api base url is not specified!");
     }
     $token = $options['via_token'] ?? _botToken($options['to_bot'] ?? null);
     if (!$token) {
         throw new Exception("The bot token is not specified!");
     }
-    $url = "{$baseUrl}/bot{$token}/{$method}";
-    $ch = curl_init($url);
+    $url = "$apiBaseUrl/bot{$token}/{$filePath}";
+    return downloadFile(url: $url, save_path: $save_path);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function downloadFile(string $url, string $save_path, array $curl_options = []): bool {
+    $fp = fopen($save_path, 'w+');
+    $result = _makeCurlRequest(url: $url, options: [
+        CURLOPT_FILE => $fp,
+    ]);
+    fclose($fp);
+    return $result;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _makeApiRequest(
+    string $method = null,
+    array $parameters = [],
+    array $options = [],
+): array|bool {
+    $apiBaseUrl = $options['api_base_url'] ?? _apiBaseUrl();
+    if (!$apiBaseUrl) {
+        throw new Exception("The api base url is not specified!");
+    }
+    $token = $options['via_token'] ?? _botToken($options['to_bot'] ?? null);
+    if (!$token) {
+        throw new Exception("The bot token is not specified!");
+    }
+    $url = "{$apiBaseUrl}/bot{$token}/{$method}";
     $curlOptions = [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
@@ -3576,13 +3617,11 @@ function _makeRequest(string $method, array $parameters = [], array $options = [
         CURLOPT_FRESH_CONNECT => false,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
     ] + ($options['curl_options'] ?? _defaultCurlOptions());
-    curl_setopt_array($ch, $curlOptions);
-    $responseBody = curl_exec($ch);
-    curl_close($ch);
-    if (curl_errno($ch)) {
-        throw new \Exception('CURL ERROR: '.curl_error($ch));
+    $result = _makeCurlRequest(url: $url, options: $curlOptions);
+    if (is_bool($result)) {
+        return $result;
     }
-    $response = json_decode($responseBody, true);
+    $response = json_decode($result, true);
     if (isset($response['ok']) && !$response['ok']) {
         $handlers = _handlers();
         if (isset($handlers['api_error'])) {
@@ -3590,6 +3629,20 @@ function _makeRequest(string $method, array $parameters = [], array $options = [
         }
     }
     return $response;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _makeCurlRequest(string $url, array $options = []): string|bool {
+    if (!filter_var($url, FILTER_VALIDATE_URL)) {
+        throw new Exception("Invalid URL!");
+    }
+    $ch = curl_init($url);
+    curl_setopt_array($ch, $options);
+    $result = curl_exec($ch);
+    curl_close($ch);
+    if (curl_errno($ch)) {
+        throw new \Exception('CURL ERROR: '.curl_error($ch));
+    }
+    return $result;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _getCommonKeys(array $array1, array $array2): array {
@@ -3830,8 +3883,8 @@ function _extractFunctionName(string $function): string {
     return basename(strtr($function, '\\', '/'));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _prepareAndMakeRequest(string $function, array $parameters = [], array $options = []): array {
-    return _makeRequest(_extractFunctionName($function), _prepareApiMethodParameters($parameters), $options);
+function _prepareAndMakeApiRequest(string $function, array $parameters = [], array $options = []): array {
+    return _makeApiRequest(_extractFunctionName($function), _prepareApiMethodParameters($parameters), $options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _serializeClosure(Closure $closure): string {
