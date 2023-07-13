@@ -826,6 +826,7 @@ define('API_LIMIT_MESSAGE_TEXT_MIN', 1);
 define('API_LIMIT_MESSAGE_TEXT_MAX', 4096);
 define('API_LIMIT_MESSAGE_CAPTION_MIN', 1);
 define('API_LIMIT_MESSAGE_CAPTION_MAX', 1096);
+define('API_LIMIT_DOWNLOAD_FILE_SIZE_MAX', 20971520);
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('API_BASE_URL', 'https://api.telegram.org');
 define('API_BASE_URL_BOT', 'https://api.telegram.org/bot');
@@ -2005,6 +2006,18 @@ function chat(?string $keys = null): mixed {
         default => null,
     };
     return _arrayGet($chat, $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function file(?string $keys = null): mixed {
+    if (!isFile()) {
+        throw new Exception('The message type is not a file, you called this function in inappropriate place!');
+    }
+    $function = __NAMESPACE__.'\\'._snakeToCamelCase(messageType());
+    return $function($keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function isFile(): bool {
+    return in_array(messageType(), fileTypes());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function photo(?string $keys = null): mixed {
@@ -3553,11 +3566,7 @@ function _autoFillApiMethodParameters($parameters) {
     return $parameters;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function downloadBotFile(
-    array|string $file,
-    string $save_path,
-    ?array $options = [],
-): bool {
+function downloadBotFile(array|string $file,string $save_path,?array $options = []): bool {
     if (is_string($file)) {
         $file = getFile(file_id: $file);
         if (!$file || !$file['ok']) {
@@ -3580,7 +3589,7 @@ function downloadBotFile(
     return downloadFile(url: $url, save_path: $save_path);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function downloadFile(string $url, string $save_path, array $curl_options = []): bool {
+function downloadFile(string $url, string $save_path): bool {
     $fp = fopen($save_path, 'w+');
     $result = _makeCurlRequest(url: $url, options: [
         CURLOPT_FILE => $fp,
@@ -3589,11 +3598,7 @@ function downloadFile(string $url, string $save_path, array $curl_options = []):
     return $result;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _makeApiRequest(
-    string $method = null,
-    array $parameters = [],
-    array $options = [],
-): array|bool {
+function _makeApiRequest(string $method = null, array $parameters = [], array $options = []): array|bool {
     $apiBaseUrl = $options['api_base_url'] ?? _apiBaseUrl();
     if (!$apiBaseUrl) {
         throw new Exception("The api base url is not specified!");
@@ -3853,8 +3858,6 @@ function _fireHandlers(array $handlers) {
         }
     } catch (Throwable $e) {
         if (isset($handlers['exception']['callable'])) {
-            _fireGlobalMiddlewares(_middlewares(), $handlers['exception']['skip_middlewares'] ?? []);
-            _fireHandlerMiddlewares($handlers['exception']['middlewares'] ?? []);
             return $handlers['exception']['callable']($e);
         }
         throw $e;
@@ -4011,3 +4014,9 @@ function _longPollingLoggerEnabled(): bool {
     return _config('long_polling_logger_enabled');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _snakeToCamelCase(string $string) {
+    $string = preg_replace_callback('/_([a-z])/', function($matches) {
+        return strtoupper($matches[1]);
+    }, $string);
+    return lcfirst($string);
+}
