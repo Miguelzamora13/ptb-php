@@ -2006,7 +2006,8 @@ function chat(?string $keys = null): mixed {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function photo(?string $keys = null): mixed {
-    return _arrayGet(end(photos()), $keys);
+    $photos = photos();
+    return _arrayGet(end($photos), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function photos(): ?array {
@@ -2014,7 +2015,8 @@ function photos(): ?array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function gamePhoto(?string $keys = null): mixed {
-    return _arrayGet(end(gamePhotos()), $keys);
+    $gamePhotos = gamePhotos();
+    return _arrayGet(end($gamePhotos), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function gamePhotos(): ?array {
