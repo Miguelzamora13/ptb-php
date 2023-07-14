@@ -213,70 +213,70 @@ The list below is only a part of the library's facilities and soon this part of 
 
 ## Available Helpers
 
-| Helper | Description | Return Type
-|-------------------|-------------|--------------
-| `update(...)` | Returns the update | `array` for itself, `mixed` for subkeys
-| `updateId()` | Returns the update | `?int`
-| `updateType()` | Returns the update | `?string`
-| `message(...)` | Returns `message` if available, `null` otherwise. | `array` for itself, `mixed` for subkeys
-| `messageType(...)` | Returns the current message type if available, `null` otherwise. | `?string`
-| `messageId(...)` | Returns `message->message_id` if available, `null` otherwise. | `?int`
-| `repliedMessage(...)` | Returns `message->reply_to_message` if available, `null` otherwise. | `array` for itself, `mixed` for subkeys
-| `callbackQuery(...)` | Returns `callback_query` if available, `null` otherwise. | `array` for itself, `mixed` for subkeys
-| `callbackQueryData(...)` | Returns `callback_query->data` if available, `null` otherwise. | `?string`
-| `callbackQueryId(...)` | Returns `callback_query->data` if available, `null` otherwise. | `?int`
-| `inlineQuery(...)` | Returns `inline_query` if available, `null` otherwise. | `array` for itself, `mixed` for subkeys
-| `inlineQueryId(...)` | Returns `inline_query` if available, `null` otherwise. | `?int`
-| `inlineQueryString(...)` | Returns `inline_query->query` if available, `null` otherwise. | `?string`
-| `shippingQuery(...)` | Returns `shipping_query` if available, `null` otherwise. | `array` for itself, `mixed` for subkeys
-| `preCheckoutQuery(...)` | Returns `pre_checkout_query` if available, `null` otherwise. | `array` for itself, `mixed` for subkeys
-| `user(...)` | Returns the current `user` if available, `null` otherwise | `array` for itself, `mixed` for subkeys
-| `chat(...)` | Returns the current `chat` if available, `null` otherwise | `array` for itself, `mixed` for subkeys
-| `chatType()` | Returns the current `chat->type` if available, `null` otherwise | `?string`
-| `chatTypes(...)` | Returns all available chat types | `array` of strings
-| `chatMemberStatuses(...)` | Returns all available member statuses | `array` of strings
-| `formattingOptions(...)` | Returns all available formatting options | `array` of strings
-| `chatActions(...)` | Returns all available chat actions | `array` of strings
-| `updateTypes(...)` | Returns all available update types | `array` of strings
-| `messageTypes(...)` | Returns all available message types | `array` of strings
-| `fileTypes(...)` | Returns all available message types that are files | `array` of strings
-| `mediaGroupId()` | Returns `message->media_group_id` if available, `null` otherwise | `?int`
-| `forwardFrom(...)` | Returns `message->forward_from` if available, `null` otherwise | `array` for itself, `mixed` for subkeys
-| `forwardFromChat(...)` | Returns `message->forward_from_chat` if available, `null` otherwise | `array` for itself, `mixed` for subkeys
-| `forwardFromId(...)` | Returns `message->forward_from_message_id` if available, `null` otherwise | ?int
-| `forwardDate(...)` | Returns `message->forward_date` if available, `null` otherwise | ?int
-| `isMessage()` | Returns `true` if the current update type was `message`, `false` otherwise | `bool`
-| `isCallbackQuery()` | Returns `true` if the current update type was `callback_query`, `false` otherwise | `bool`
-| `isEditedMessage()` | Returns `true` if the current update type was `edited_message`, `false` otherwise | `bool`
-| `isChannelPost()` | Returns `true` if the current update type was `channel_post`, `false` otherwise | `bool`
-| `isEditedChannelPost()` | Returns `true` if the current update type was `edited_channel_post`, `false` otherwise | `bool`
-| `isShippingQuery()` | Returns `true` if the current update type was `shipping_query`, `false` otherwise | `bool`
-| `isChatJoinRequest()` | Returns `true` if the current update type was `chat_join_request`, `false` otherwise | `bool`
-| `isInlineQuery()` | Returns `true` if the current update type was `inline_query`, `false` otherwise | `bool`
-| `isMyChatMember()` | Returns `true` if the current update type was `my_chat_member`, `false` otherwise | `bool`
-| `isChatMember()` | Returns `true` if the current update type was `chat_member`, `false` otherwise | `bool`
-| `isChosenInlineResult()` | Returns `true` if the current update type was `chosen_inline_result`, `false` otherwise | `bool`
-| `isPollAnswer()` | Returns `true` if the current update type was `poll_answer`, `false` otherwise | `bool`
-| `isPoll(...)` | Returns `true` if the current update type was `poll`, `false` otherwise, pass `true` to the first parameter if you want to check the message type | `bool`
-| `isPhoto()` | Returns `true` if the current message type was `photo`, `false` otherwise | `bool`
-| `isSticker()` | Returns `true` if the current message type was `sticker`, `false` otherwise | `bool`
-| `isAnimation()` | Returns `true` if the current message type was `animation`, `false` otherwise | `bool`
-| `isVideo()` | Returns `true` if the current message type was `video`, `false` otherwise | `bool`
-| `isVideoNote()` | Returns `true` if the current message type was `video_note`, `false` otherwise | `bool`
-| `isDice()` | Returns `true` if the current message type was `dice`, `false` otherwise | `bool`
-| `isGame()` | Returns `true` if the current message type was `game`, `false` otherwise | `bool`
-| `isVenue()` | Returns `true` if the current message type was `venue`, `false` otherwise | `bool`
-| `isVoice()` | Returns `true` if the current message type was `voice`, `false` otherwise | `bool`
-| `isDocument()` | Returns `true` if the current message type was `document`, `false` otherwise | `bool`
-| `isLocation()` | Returns `true` if the current message type was `location`, `false` otherwise | `bool`
-| `isContact()` | Returns `true` if the current message type was `contact`, `false` otherwise | `bool`
-| `isAudio()` | Returns `true` if the current message type was `audio`, `false` otherwise | `bool`
-| `isText()` | Returns `true` if the current message type was `text`, `false` otherwise | `bool`
-| `isGroup()` | Returns `true` if the current chat type was `gorup` | `bool`
-| `isSupergroup()` | Returns `true` if the current chat type was `supergroup` | `bool`
-| `isPrivate()` | Returns `true` if the current chat type was `private` | `bool`
-| `isChannel()` | Returns `true` if the current chat type was `channel` | `bool`
-| `isForwarded()` | Returns `true` if a message was forwarded | `bool`
+| Helper                                    | Description                                                                                                                                                       | Return Type
+|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------
+| `update(?string $keys = null)`            | Returns the update                                                                                                                                                | `array` for itself, `mixed` for subkeys
+| `updateId()`                              | Returns the `update_id`                                                                                                                                           | `?int`
+| `updateType()`                            | Returns the current update type                                                                                                                                   | `?string`
+| `message(?string $keys = null)`           | Returns `message` if available, `null` otherwise.                                                                                                                 | `array` for itself, `mixed` for subkeys
+| `messageType(?string $keys = null)`       | Returns the current message type if available, `null` otherwise.                                                                                                  | `?string`
+| `messageId(?string $keys = null)`         | Returns `message->message_id` if available, `null` otherwise.                                                                                                     | `?int`
+| `repliedMessage(?string $keys = null)`    | Returns `message->reply_to_message` if available, `null` otherwise.                                                                                               | `array` for itself, `mixed` for subkeys
+| `callbackQuery(?string $keys = null)`     | Returns `callback_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
+| `callbackQueryData()`                     | Returns `callback_query->data` if available, `null` otherwise.                                                                                                    | `?string`
+| `callbackQueryId()`                       | Returns `callback_query->data` if available, `null` otherwise.                                                                                                    | `?int`
+| `inlineQuery(?string $keys = null)`       | Returns `inline_query` if available, `null` otherwise.                                                                                                            | `array` for itself, `mixed` for subkeys
+| `inlineQueryId()`                         | Returns `inline_query` if available, `null` otherwise.                                                                                                            | `?int`
+| `inlineQueryString()`                     | Returns `inline_query->query` if available, `null` otherwise.                                                                                                     | `?string`
+| `shippingQuery(?string $keys = null)`     | Returns `shipping_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
+| `preCheckoutQuery(?string $keys = null)`  | Returns `pre_checkout_query` if available, `null` otherwise.                                                                                                      | `array` for itself, `mixed` for subkeys
+| `user(?string $keys = null)`              | Returns the current `user` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `chat(?string $keys = null)`              | Returns the current `chat` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `chatType()`                              | Returns the current `chat->type` if available, `null` otherwise                                                                                                   | `?string`
+| `chatTypes(array $exclude = [])`          | Returns all available chat types                                                                                                                                  | `array` of strings
+| `chatMemberStatuses(array $exclude = [])` | Returns all available member statuses                                                                                                                             | `array` of strings
+| `formattingOptions(array $exclude = [])`  | Returns all available formatting options                                                                                                                          | `array` of strings
+| `chatActions(array $exclude = [])`        | Returns all available chat actions                                                                                                                                | `array` of strings
+| `updateTypes(array $exclude = [])`        | Returns all available update types                                                                                                                                | `array` of strings
+| `messageTypes(array $exclude = [])`       | Returns all available message types                                                                                                                               | `array` of strings
+| `fileTypes(array $exclude = [])`          | Returns all available message types that are files                                                                                                                | `array` of strings
+| `mediaGroupId()`                          | Returns `message->media_group_id` if available, `null` otherwise                                                                                                  | `?int`
+| `forwardFrom(?string $keys = null)`       | Returns `message->forward_from` if available, `null` otherwise                                                                                                    | `array` for itself, `mixed` for subkeys
+| `forwardFromChat(?string $keys = null)`   | Returns `message->forward_from_chat` if available, `null` otherwise                                                                                               | `array` for itself, `mixed` for subkeys
+| `forwardFromMessageId()`                  | Returns `message->forward_from_message_id` if available, `null` otherwise                                                                                         | `?int`
+| `forwardDate()`                           | Returns `message->forward_date` if available, `null` otherwise                                                                                                    | `?int`
+| `isMessage()`                             | Returns `true` if the current update type was `message`, `false` otherwise                                                                                        | `bool`
+| `isCallbackQuery()`                       | Returns `true` if the current update type was `callback_query`, `false` otherwise                                                                                 | `bool`
+| `isEditedMessage()`                       | Returns `true` if the current update type was `edited_message`, `false` otherwise                                                                                 | `bool`
+| `isChannelPost()`                         | Returns `true` if the current update type was `channel_post`, `false` otherwise                                                                                   | `bool`
+| `isEditedChannelPost()`                   | Returns `true` if the current update type was `edited_channel_post`, `false` otherwise                                                                            | `bool`
+| `isShippingQuery()`                       | Returns `true` if the current update type was `shipping_query`, `false` otherwise                                                                                 | `bool`
+| `isChatJoinRequest()`                     | Returns `true` if the current update type was `chat_join_request`, `false` otherwise                                                                              | `bool`
+| `isInlineQuery()`                         | Returns `true` if the current update type was `inline_query`, `false` otherwise                                                                                   | `bool`
+| `isMyChatMember()`                        | Returns `true` if the current update type was `my_chat_member`, `false` otherwise                                                                                 | `bool`
+| `isChatMember()`                          | Returns `true` if the current update type was `chat_member`, `false` otherwise                                                                                    | `bool`
+| `isChosenInlineResult()`                  | Returns `true` if the current update type was `chosen_inline_result`, `false` otherwise                                                                           | `bool`
+| `isPollAnswer()`                          | Returns `true` if the current update type was `poll_answer`, `false` otherwise                                                                                    | `bool`
+| `isPoll(?string $keys = null)`            | Returns `true` if the current update type was `poll`, `false` otherwise, pass `true` to the first parameter if you want to check the message type                 | `bool`
+| `isPhoto()`                               | Returns `true` if the current message type was `photo`, `false` otherwise                                                                                         | `bool`
+| `isSticker()`                             | Returns `true` if the current message type was `sticker`, `false` otherwise                                                                                       | `bool`
+| `isAnimation()`                           | Returns `true` if the current message type was `animation`, `false` otherwise                                                                                     | `bool`
+| `isVideo()`                               | Returns `true` if the current message type was `video`, `false` otherwise                                                                                         | `bool`
+| `isVideoNote()`                           | Returns `true` if the current message type was `video_note`, `false` otherwise                                                                                    | `bool`
+| `isDice()`                                | Returns `true` if the current message type was `dice`, `false` otherwise                                                                                          | `bool`
+| `isGame()`                                | Returns `true` if the current message type was `game`, `false` otherwise                                                                                          | `bool`
+| `isVenue()`                               | Returns `true` if the current message type was `venue`, `false` otherwise                                                                                         | `bool`
+| `isVoice()`                               | Returns `true` if the current message type was `voice`, `false` otherwise                                                                                         | `bool`
+| `isDocument()`                            | Returns `true` if the current message type was `document`, `false` otherwise                                                                                      | `bool`
+| `isLocation()`                            | Returns `true` if the current message type was `location`, `false` otherwise                                                                                      | `bool`
+| `isContact()`                             | Returns `true` if the current message type was `contact`, `false` otherwise                                                                                       | `bool`
+| `isAudio()`                               | Returns `true` if the current message type was `audio`, `false` otherwise                                                                                         | `bool`
+| `isText()`                                | Returns `true` if the current message type was `text`, `false` otherwise                                                                                          | `bool`
+| `isGroup()`                               | Returns `true` if the current chat type was `gorup`                                                                                                               | `bool`
+| `isSupergroup()`                          | Returns `true` if the current chat type was `supergroup`                                                                                                          | `bool`
+| `isPrivate()`                             | Returns `true` if the current chat type was `private`                                                                                                             | `bool`
+| `isChannel()`                             | Returns `true` if the current chat type was `channel`                                                                                                             | `bool`
+| `isForwarded()`                           | Returns `true` if a message was forwarded                                                                                                                         | `bool`
 
 ### And there is more! This list will be updated soon...
 
