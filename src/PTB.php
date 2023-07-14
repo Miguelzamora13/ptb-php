@@ -2339,7 +2339,7 @@ function forwardFromChat(?string $keys = null): mixed {
     return _arrayGet(message('forward_from_chat'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function forwardFromId(): ?int {
+function forwardFromMessageId(): ?int {
     return message('forward_from_message_id');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
