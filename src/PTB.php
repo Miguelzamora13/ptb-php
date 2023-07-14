@@ -2236,7 +2236,7 @@ function isChatMember(): bool {
     return updateType() === UPDATE_TYPE_CHAT_MEMBER;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isChosenInlineQuery(): bool {
+function isChosenInlineResult(): bool {
     return updateType() === UPDATE_TYPE_CHOSEN_INLINE_RESULT;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -2248,11 +2248,11 @@ function isPollAnswer(): bool {
     return updateType() === UPDATE_TYPE_POLL;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isPoll(bool $checkUpdateType = false): bool {
-    if ($checkUpdateType) {
-        return updateType() === UPDATE_TYPE_POLL;
+function isPoll(bool $checkMessageType = false): bool {
+    if ($checkMessageType) {
+        return messageType() === MESSAGE_TYPE_POLL;
     }
-    return messageType() === MESSAGE_TYPE_POLL;
+    return updateType() === UPDATE_TYPE_POLL;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function isPhoto(): bool {
