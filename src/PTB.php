@@ -879,38 +879,6 @@ function registerNewBot(
     }
     $GLOBALS[_PACKAGE_NAME]['bots'][$username] = get_defined_vars();
 }
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function run(): void {
-    if (_config('is_webhook')) {
-        $input = file_get_contents('php://input');
-        if (!$input) {
-            return;
-        }
-        $update = json_decode($input, true);
-        _setUpdate($update);
-        _processCurrentUpdate();
-    } else {
-        echo 'Listening...'.PHP_EOL;
-        $offset = 1;
-        while (true) {
-            $response = getUpdates(timeout: 10, offset: $offset);
-            if (!$response['ok']) {
-                throw new \Exception('Could not fetch updates with the getUpdates method!');
-            }
-            $updates = $response['result'];
-            foreach ($updates as $update) {
-                if (_longPollingLoggerEnabled()) {
-                    print_r($update);
-                }
-                _setUpdate($update);
-                _processCurrentUpdate();
-                $offset = $update['update_id'] + 1;
-            }
-            usleep(3000000);
-        }
-    }
-}
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setGlobalData(int|string $key, mixed $value = null): void {
     _setOrPushValue($GLOBALS[_PACKAGE_NAME], $value, "global_data.{$key}");
@@ -947,19 +915,6 @@ function onMessageText(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageSticker(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: "message.sticker",
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onMessagePhoto(
     callable $callable,
     callable|array $middlewares = [],
@@ -973,104 +928,13 @@ function onMessagePhoto(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageDocument(
+function onMessageAnimation(
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
     _addHandler(
-        keys: "message.document",
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageContact(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: "message.contact",
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageLocation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: "message.location",
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageAudio(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: "message.audio",
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageVoice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: "message.voice",
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageDice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: "message.dice",
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageGame(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: "message.game",
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageVenue(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: "message.venue",
+        keys: "message.animation",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1103,13 +967,130 @@ function onMessageVideoNote(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageAnimation(
+function onMessageAudio(
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
     _addHandler(
-        keys: "message.animation",
+        keys: "message.audio",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageVoice(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "message.voice",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageDocument(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "message.document",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageLocation(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "message.location",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageContact(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "message.contact",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessagePoll(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'message.poll',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageVenue(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "message.venue",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageGame(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "message.game",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageDice(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "message.dice",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageSticker(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "message.sticker",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1128,6 +1109,7 @@ function onMessage(
         skip_middlewares: $skip_middlewares,
     );
 }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onAny(
     callable $callable,
     callable|array $middlewares = [],
@@ -1155,19 +1137,6 @@ function onEditedMessageText(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessageSticker(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_message.sticker',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onEditedMessagePhoto(
     callable $callable,
     callable|array $middlewares = [],
@@ -1181,104 +1150,13 @@ function onEditedMessagePhoto(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessageDocument(
+function onEditedMessageAnimation(
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
     _addHandler(
-        keys: 'edited_message.document',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessageContact(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_message.contact',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessageLocation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_message.location',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessageAudio(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_message.audio',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessageVoice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_message.voice',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessageDice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_message.dice',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessageGame(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_message.game',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessageVenue(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_message.venue',
+        keys: 'edited_message.animation',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1311,13 +1189,130 @@ function onEditedMessageVideoNote(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedMessageAnimation(
+function onEditedMessageAudio(
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
     _addHandler(
-        keys: 'edited_message.animation',
+        keys: 'edited_message.audio',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageVoice(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_message.voice',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageDocument(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_message.document',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageLocation(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_message.location',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageContact(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_message.contact',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessagePoll(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_message.poll',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageVenue(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_message.venue',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageGame(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_message.game',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageDice(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_message.dice',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedMessageSticker(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_message.sticker',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1378,19 +1373,6 @@ function onChannelPostText(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onChannelPostSticker(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'channel_post.sticker',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onChannelPostPhoto(
     callable $callable,
     callable|array $middlewares = [],
@@ -1404,104 +1386,13 @@ function onChannelPostPhoto(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onChannelPostDocument(
+function onChannelPostAnimation(
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
     _addHandler(
-        keys: 'channel_post.document',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onChannelPostContact(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'channel_post.contact',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onChannelPostLocation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'channel_post.location',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onChannelPostAudio(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'channel_post.audio',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onChannelPostVoice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'channel_post.voice',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onChannelPostDice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'channel_post.dice',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onChannelPostGame(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'channel_post.game',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onChannelPostVenue(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'channel_post.venue',
+        keys: 'channel_post.animation',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1534,13 +1425,130 @@ function onChannelPostVideoNote(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onChannelPostAnimation(
+function onChannelPostAudio(
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
     _addHandler(
-        keys: 'channel_post.animation',
+        keys: 'channel_post.audio',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostVoice(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'channel_post.voice',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostDocument(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'channel_post.document',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostLocation(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'channel_post.location',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostContact(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'channel_post.contact',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostPoll(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'channel_post.poll',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostVenue(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'channel_post.venue',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostGame(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'channel_post.game',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostDice(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'channel_post.dice',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostSticker(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'channel_post.sticker',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1574,19 +1582,6 @@ function onEditedChannelPostText(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedChannelPostSticker(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_channel_post.sticker',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onEditedChannelPostPhoto(
     callable $callable,
     callable|array $middlewares = [],
@@ -1600,104 +1595,13 @@ function onEditedChannelPostPhoto(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedChannelPostDocument(
+function onEditedChannelPostAnimation(
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
     _addHandler(
-        keys: 'edited_channel_post.document',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedChannelPostContact(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_channel_post.contact',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedChannelPostLocation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_channel_post.location',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedChannelPostAudio(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_channel_post.audio',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedChannelPostVoice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_channel_post.voice',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedChannelPostDice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_channel_post.dice',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedChannelPostGame(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_channel_post.game',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedChannelPostVenue(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'edited_channel_post.venue',
+        keys: 'edited_channel_post.animation',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1730,13 +1634,130 @@ function onEditedChannelPostVideoNote(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onEditedChannelPostAnimation(
+function onEditedChannelPostAudio(
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
     _addHandler(
-        keys: 'edited_channel_post.animation',
+        keys: 'edited_channel_post.audio',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostVoice(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_channel_post.voice',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostDocument(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_channel_post.document',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostLocation(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_channel_post.location',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostContact(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_channel_post.contact',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostPoll(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_channel_post.poll',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostVenue(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_channel_post.venue',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostGame(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_channel_post.game',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostDice(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_channel_post.dice',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onEditedChannelPostSticker(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'edited_channel_post.sticker',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1769,6 +1790,19 @@ function onChatMember(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMyChatMember(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'my_chat_member',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onPoll(
     callable $callable,
     callable|array $middlewares = [],
@@ -1776,19 +1810,6 @@ function onPoll(
 ): void {
     _addHandler(
         keys: 'poll',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onUserPoll(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'message.poll',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1815,19 +1836,6 @@ function onInlineQuery(
 ): void {
     _addHandler(
         keys: 'inline_query',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMyChatMember(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'my_chat_member',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1886,19 +1894,6 @@ function onChosenInlineResult(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function fallback(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: 'fallback',
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function fallbackOn(
     string $updateType,
     callable $callable,
@@ -1910,6 +1905,19 @@ function fallbackOn(
     }
     _addHandler(
         keys: "fallback.{$updateType}",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function fallback(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'fallback',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -4019,4 +4027,35 @@ function _snakeToCamelCase(string $string) {
         return strtoupper($matches[1]);
     }, $string);
     return lcfirst($string);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function run(): void {
+    if (_config('is_webhook')) {
+        $input = file_get_contents('php://input');
+        if (!$input) {
+            return;
+        }
+        $update = json_decode($input, true);
+        _setUpdate($update);
+        _processCurrentUpdate();
+    } else {
+        echo 'Listening...'.PHP_EOL;
+        $offset = 1;
+        while (true) {
+            $response = getUpdates(timeout: 10, offset: $offset);
+            if (!$response['ok']) {
+                throw new \Exception('Could not fetch updates with the getUpdates method!');
+            }
+            $updates = $response['result'];
+            foreach ($updates as $update) {
+                if (_longPollingLoggerEnabled()) {
+                    print_r($update);
+                }
+                _setUpdate($update);
+                _processCurrentUpdate();
+                $offset = $update['update_id'] + 1;
+            }
+            usleep(3000000);
+        }
+    }
 }

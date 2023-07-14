@@ -126,29 +126,31 @@ The list below is only a part of the library's facilities and soon this part of 
 | `onMessageDocument`  | Handles `document` on `message` update type
 | `onMessageLocation`  | Handles `location` on `message` update type
 | `onMessageContact`   | Handles `contact` on `message` update type
+| `onMessagePoll`      | Handles `poll` on `message` update type
 | `onMessageVenue`     | Handles `venue` on `message` update type
 | `onMessageGame`      | Handles `game` on `message` update type
 | `onMessageDice`      | Handles `dice` on `message` update type
 | `onMessageSticker`   | Handles `sticker` on `message` update type
 | `onMessage`          | Will be called if none of the above handlers match
 
-| EditedMessage Handlers     | Description
-|----------------------------|-------------
-| `onEditedMessageText`      | Handles `text` on `edited_message` update type
-| `onEditedMessagePhoto`     | Handles `photo` on `edited_message` update type
-| `onEditedMessageAnimation` | Handles `animation` on `edited_message` update type
-| `onEditedMessageVideo`     | Handles `video` on `edited_message` update type
-| `onEditedMessageVideoNote` | Handles `video note` on `edited_message` update type
-| `onEditedMessageAudio`     | Handles `audio` on `edited_message` update type
-| `onEditedMessageVoice`     | Handles `voice` on `edited_message` update type
-| `onEditedMessageDocument`  | Handles `document` on `edited_message` update type
-| `onEditedMessageLocation`  | Handles `location` on `edited_message` update type
-| `onEditedMessageContact`   | Handles `contact` on `edited_message` update type
-| `onEditedMessageVenue`     | Handles `venue` on `edited_message` update type
-| `onEditedMessageGame`      | Handles `game` on `edited_message` update type
-| `onEditedMessageDice`      | Handles `dice` on `edited_message` update type
-| `onEditedMessageSticker`   | Handles `sticker` on `edited_message` update type
-| `onEditedMessage`          | Will be called if none of the above handlers match
+| EditedMessage Handlers         | Description
+|--------------------------------|-------------
+| `onEditedMessageText`          | Handles `text` on `edited_message` update type
+| `onEditedMessagePhoto`         | Handles `photo` on `edited_message` update type
+| `onEditedMessageAnimation`     | Handles `animation` on `edited_message` update type
+| `onEditedMessageVideo`         | Handles `video` on `edited_message` update type
+| `onEditedMessageVideoNote`     | Handles `video note` on `edited_message` update type
+| `onEditedMessageAudio`         | Handles `audio` on `edited_message` update type
+| `onEditedMessageVoice`         | Handles `voice` on `edited_message` update type
+| `onEditedMessageDocument`      | Handles `document` on `edited_message` update type
+| `onEditedMessageLocation`      | Handles `location` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
+| `onEditedMessageContact [!]`   | Handles `contact` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
+| `onEditedMessagePoll [!]`      | Handles `poll` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
+| `onEditedMessageVenue [!]`     | Handles `venue` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
+| `onEditedMessageGame [!]`      | Handles `game` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
+| `onEditedMessageDice [!]`      | Handles `dice` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
+| `onEditedMessageSticker [!]`   | Handles `sticker` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
+| `onEditedMessage`              | Will be called if none of the above handlers match
 
 | ChannelPost Handlers     | Description
 |--------------------------|-------------
@@ -162,6 +164,7 @@ The list below is only a part of the library's facilities and soon this part of 
 | `onChannelPostDocument`  | Handles `document` on `channel_post` update type
 | `onChannelPostLocation`  | Handles `location` on `channel_post` update type
 | `onChannelPostContact`   | Handles `contact` on `channel_post` update type
+| `onChannelPostPoll`      | Handles `poll` on `channel_post` update type
 | `onChannelPostVenue`     | Handles `venue` on `channel_post` update type
 | `onChannelPostGame`      | Handles `game` on `channel_post` update type
 | `onChannelPostDice`      | Handles `dice` on `channel_post` update type
@@ -178,12 +181,13 @@ The list below is only a part of the library's facilities and soon this part of 
 | `onEditedChannelPostAudio`     | Handles `audio` on `edited_channel_post` update type
 | `onEditedChannelPostVoice`     | Handles `voice` on `edited_channel_post` update type
 | `onEditedChannelPostDocument`  | Handles `document` on `edited_channel_post` update type
-| `onEditedChannelPostLocation`  | Handles `location` on `edited_channel_post` update type
-| `onEditedChannelPostContact`   | Handles `contact` on `edited_channel_post` update type
-| `onEditedChannelPostVenue`     | Handles `venue` on `edited_channel_post` update type
-| `onEditedChannelPostGame`      | Handles `game` on `edited_channel_post` update type
-| `onEditedChannelPostDice`      | Handles `dice` on `edited_channel_post` update type
-| `onEditedChannelPostSticker`   | Handles `sticker` on `edited_channel_post` update type
+| `onEditedChannelPostLocation`  | Handles `location` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
+| `onEditedChannelPostContact`   | Handles `contact` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
+| `onEditedChannelPostPoll`      | Handles `poll` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
+| `onEditedChannelPostVenue`     | Handles `venue` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
+| `onEditedChannelPostGame`      | Handles `game` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
+| `onEditedChannelPostDice`      | Handles `dice` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
+| `onEditedChannelPostSticker`   | Handles `sticker` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
 | `onEditedChannelPost`          | Will be called if none of the above handlers match
 
 | ChatMember Handlers | Description
