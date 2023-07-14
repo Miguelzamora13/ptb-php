@@ -2050,8 +2050,8 @@ function poll(?string $keys = null): mixed {
     return _arrayGet(message('poll'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function pollOptions(?string $keys = null): mixed {
-    return _arrayGet(poll('options'), $keys);
+function pollOptions(): mixed {
+    return _arrayGet(poll('options'));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function chatMember(?string $keys = null): mixed {
