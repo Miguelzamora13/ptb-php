@@ -2201,7 +2201,7 @@ function preCheckoutQuery(?string $keys = null): mixed {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function pollAnswer(?string $keys = null): mixed {
-    // ....
+    return _arrayGet(update(UPDATE_TYPE_POLL_ANSWER), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function isMessage(): bool {
@@ -2317,6 +2317,10 @@ function isAudio(): bool {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function isText(): bool {
     return messageType() === MESSAGE_TYPE_TEXT;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function isSender(): bool {
+    return chatType() === CHAT_TYPE_SENDER;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function isGroup(): bool {
@@ -3870,11 +3874,6 @@ function _fireHandlers(array $handlers) {
         }
         throw $e;
     }
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _fireFallback(): mixed {
-    $fallback = _config('handlers.fallback') ?? null;
-    return $fallback ? $fallback() : null;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _prepareApiMethodParameters(array $parameters): array {
