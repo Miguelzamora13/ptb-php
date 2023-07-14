@@ -4,11 +4,25 @@
 
 > The PTB Library gives your project flexibility, scalability and super speed
 
+# Quick Access
+- [Introduction](#introduction)
+- [A Basic Example](#basic-example)
+- [Installation](#installation)
+- [Why Procedural and NOT OOP?](#why-procedural)
+- [Documentation](#documentation)
+    - [Available Handlers](#available-handlers)
+    - [Available Helpers](#available-helpers)
+    - [Available Methods](#available-methods)
+- [Changelog](#available-changelog)
+- [Credits](#available-credits)
+- [License](#available-license)
+
+# Introduction <a name="introduction"></a>
 This library takes advantage of the latest **PHP 8** features, and tries to make the **speed**, **scalability** and **flexibility** of use its strength, it will allow you to quickly make simple bots, but at the same time, it provides
 more **advanced features** to handle even the most complicated flows. Some architectural concepts on which PTB is
 based are heavily influenced by other open source project with the name [Nutgram](https://github.com/nutgram/nutgram)! check it out too!
 
-# A Basic Example
+# A Basic Example <a name="basic-example"></a>
 ```php
 <?php
 
@@ -74,7 +88,17 @@ run();
 
 
 ```
-# Why Procedural and NOT OOP?
+
+# Installation <a name="installation"></a>
+You can install the package via composer:
+
+```bash
+composer require devdasher/ptb-php
+```
+
+Or you can include the PTB.php file on your PHP code directly
+
+# Why Procedural and NOT OOP? <a name="why-procedural"></a>
 Procedural programming is often considered faster than Object-Oriented Programming (OOP) due to its lower overhead and the smaller number of operations required for execution. In procedural programming, the focus is on writing sequential instructions on a step-by-step manner to accomplish a task. This approach allows for efficient execution as the program directly operates on data using straightforward instructions.
 
 One key factor that contributes to the perceived speed advantage of procedural programming is the reduced number of OPcodes (operation codes) involved. OPcodes are fundamental instructions understood by the computer's hardware and define specific operations like arithmetic calculations or memory access. Since procedural programs typically involve fewer layers of abstraction and direct manipulation of data, they tend to require fewer OPcodes to achieve a given functionality.
@@ -83,12 +107,12 @@ In contrast, OOP introduces additional layers of complexity through concepts suc
 
 It is important to note that the performance difference between procedural and OOP approaches is contextual and may vary based on several factors, such as the specific programming language used, the efficiency of the compiler or interpreter, the design choices made, and the nature of the problem being solved. Therefore, while procedural programming can be perceived as faster due to its streamlined execution model and reduced OPcode usage, it is not a definitive rule, and OOP can provide significant advantages on terms of code organization, maintainability, and extensibility.
 
-# Documentation
+# Documentation <a name="documentation"></a>
 This library is constantly being updated and currently has many features.  
 
 The list below is only a part of the library's facilities and soon this part of the document will be more complete. Below you can see the most important things:
 
-## Available Handlers
+## Available Handlers <a name="available-handlers"></a>
 
 | Message Handlers     | Description
 |----------------------|-------------
@@ -211,40 +235,65 @@ The list below is only a part of the library's facilities and soon this part of 
 |-------------------|-------------
 | `onApiError`      | Will be called if an error occurs on the Telegram side while sending the request
 
-## Available Helpers
+## Available Helpers <a name="available-helpers"></a>
 
 | Helper                                    | Description                                                                                                                                                       | Return Type
 |-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------
 | `update(?string $keys = null)`            | Returns the update                                                                                                                                                | `array` for itself, `mixed` for subkeys
 | `updateId()`                              | Returns the `update_id`                                                                                                                                           | `?int`
 | `updateType()`                            | Returns the current update type                                                                                                                                   | `?string`
+| `updateTypes(array $exclude = [])`        | Returns all available update types                                                                                                                                | `array` of strings
 | `message(?string $keys = null)`           | Returns `message` if available, `null` otherwise.                                                                                                                 | `array` for itself, `mixed` for subkeys
-| `messageType()`                           | Returns the current message type if available, `null` otherwise.                                                                                                  | `?string`
 | `messageId()`                             | Returns `message->message_id` if available, `null` otherwise.                                                                                                     | `?int`
+| `messageType()`                           | Returns the current message type if available, `null` otherwise.                                                                                                  | `?string`
+| `messageTypes(array $exclude = [])`       | Returns all available message types                                                                                                                               | `array` of strings
+| `mediaGroupId()`                          | Returns `message->media_group_id` if available, `null` otherwise                                                                                                  | `?int`
 | `repliedMessage(?string $keys = null)`    | Returns `message->reply_to_message` if available, `null` otherwise.                                                                                               | `array` for itself, `mixed` for subkeys
 | `callbackQuery(?string $keys = null)`     | Returns `callback_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
-| `callbackQueryData()`                     | Returns `callback_query->data` if available, `null` otherwise.                                                                                                    | `?string`
 | `callbackQueryId()`                       | Returns `callback_query->data` if available, `null` otherwise.                                                                                                    | `?int`
+| `callbackQueryData()`                     | Returns `callback_query->data` if available, `null` otherwise.                                                                                                    | `?string`
 | `inlineQuery(?string $keys = null)`       | Returns `inline_query` if available, `null` otherwise.                                                                                                            | `array` for itself, `mixed` for subkeys
 | `inlineQueryId()`                         | Returns `inline_query` if available, `null` otherwise.                                                                                                            | `?int`
 | `inlineQueryString()`                     | Returns `inline_query->query` if available, `null` otherwise.                                                                                                     | `?string`
 | `shippingQuery(?string $keys = null)`     | Returns `shipping_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
 | `preCheckoutQuery(?string $keys = null)`  | Returns `pre_checkout_query` if available, `null` otherwise.                                                                                                      | `array` for itself, `mixed` for subkeys
-| `user(?string $keys = null)`              | Returns the current `user` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `replyMarkup(?string $keys = null)`       | Returns `message->reply_markup` if available, `null` otherwise                                                                                                    | `array` for itself, `mixed` for subkeys
+| `text(?string $keys = null)`              | Returns `message->text` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
+| `photo(?string $keys = null)`             | Returns the last item (and high quality) of `message->photo` if available, `null` otherwise                                                                       | `array` for itself, `mixed` for subkeys
+| `photos()`                                | Returns `message->photo` if available, `null` otherwise                                                                                                           | `?array`
+| `document(?string $keys = null)`          | Returns `message->document` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
+| `sticker(?string $keys = null)`           | Returns `message->sticker` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `video(?string $keys = null)`             | Returns `message->video` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
+| `videoNote(?string $keys = null)`         | Returns `message->video_note` if available, `null` otherwise                                                                                                      | `array` for itself, `mixed` for subkeys
+| `voice(?string $keys = null)`             | Returns `message->voice` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
+| `audio(?string $keys = null)`             | Returns `message->audio` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
+| `dice(?string $keys = null)`              | Returns `message->dice` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
+| `game(?string $keys = null)`              | Returns `message->game` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
+| `gamePhoto(?string $keys = null)`         | Returns the last item (and high quality) of `message->game->photo` if available, `null` otherwise                                                                 | `array` for itself, `mixed` for subkeys
+| `gamePhotos()`                            | Returns `message->game->photo` if available, `null` otherwise                                                                                                     | `?array`
+| `venue(?string $keys = null)`             | Returns `message->venue` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
+| `location(?string $keys = null)`          | Returns `message->location` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
+| `animation(?string $keys = null)`         | Returns `message->animation` if available, `null` otherwise                                                                                                       | `array` for itself, `mixed` for subkeys
+| `caption(?string $keys = null)`           | Returns `message->caption` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `entities()`                              | Returns `message->entities` or `message->caption_entities` if available, `null` otherwise                                                                         | `?array`
+| `poll(?string $keys = null)`              | Returns `message->poll` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
+| `pollOptions()`                           | Returns `message->poll->options` if available, `null` otherwise                                                                                                   | `?array`
+| `viaBot(?string $keys = null)`            | Returns `message->via_bot` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `from(?string $keys = null)`              | Returns `ANY->from` if available, `null` otherwise                                                                                                                | `array` for itself, `mixed` for subkeys
+| `user(?string $keys = null)`              | Returns the current `user` if available, `null` otherwise, alternative to `from(...)`                                                                             | `array` for itself, `mixed` for subkeys
+| `userId()`                                | Returns user id if available, `null` otherwise                                                                                                                    | `?int`
 | `chat(?string $keys = null)`              | Returns the current `chat` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `chatId()`                                | Returns `chat->id` if available, `null` otherwise                                                                                                                 | `?int`
 | `chatType()`                              | Returns the current `chat->type` if available, `null` otherwise                                                                                                   | `?string`
 | `chatTypes(array $exclude = [])`          | Returns all available chat types                                                                                                                                  | `array` of strings
-| `chatMemberStatuses(array $exclude = [])` | Returns all available member statuses                                                                                                                             | `array` of strings
-| `formattingOptions(array $exclude = [])`  | Returns all available formatting options                                                                                                                          | `array` of strings
 | `chatActions(array $exclude = [])`        | Returns all available chat actions                                                                                                                                | `array` of strings
-| `updateTypes(array $exclude = [])`        | Returns all available update types                                                                                                                                | `array` of strings
-| `messageTypes(array $exclude = [])`       | Returns all available message types                                                                                                                               | `array` of strings
+| `chatMemberStatuses(array $exclude = [])` | Returns all available chat member statuses                                                                                                                        | `array` of strings
+| `formattingOptions(array $exclude = [])`  | Returns all available formatting options                                                                                                                          | `array` of strings
 | `fileTypes(array $exclude = [])`          | Returns all available message types that are files                                                                                                                | `array` of strings
-| `mediaGroupId()`                          | Returns `message->media_group_id` if available, `null` otherwise                                                                                                  | `?int`
 | `forwardFrom(?string $keys = null)`       | Returns `message->forward_from` if available, `null` otherwise                                                                                                    | `array` for itself, `mixed` for subkeys
 | `forwardFromChat(?string $keys = null)`   | Returns `message->forward_from_chat` if available, `null` otherwise                                                                                               | `array` for itself, `mixed` for subkeys
-| `forwardFromMessageId()`                  | Returns `message->forward_from_message_id` if available, `null` otherwise                                                                                         | `?int`
 | `forwardDate()`                           | Returns `message->forward_date` if available, `null` otherwise                                                                                                    | `?int`
+| `forwardFromMessageId()`                  | Returns `message->forward_from_message_id` if available, `null` otherwise                                                                                         | `?int`
 | `isMessage()`                             | Returns `true` if the current update type was `message`, `false` otherwise                                                                                        | `bool`
 | `isCallbackQuery()`                       | Returns `true` if the current update type was `callback_query`, `false` otherwise                                                                                 | `bool`
 | `isEditedMessage()`                       | Returns `true` if the current update type was `edited_message`, `false` otherwise                                                                                 | `bool`
@@ -278,23 +327,18 @@ The list below is only a part of the library's facilities and soon this part of 
 | `isChannel()`                             | Returns `true` if the current chat type was `channel`                                                                                                             | `bool`
 | `isForwarded()`                           | Returns `true` if a message was forwarded                                                                                                                         | `bool`
 
-### And there is more! This list will be updated soon...
 
-# Installation
-You can install the package via composer:
+## Available Methods <a name="available-methods"></a>
+All methods in the Telegram bot api documentation is available with the same names in this library
 
-```bash
-composer require devdasher/ptb-php
-```
+### This list will be updated soon...
 
-Or you can include the PTB.php file on your PHP code directly
-
-# Changelog
+# Changelog <a name="available-changelog"></a>
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-# Credits
+# Credits <a name="available-credits"></a>
 - [Pooria Bashiri](https://github.com/devdahser)
 - [All Contributors](../../contributors)
 
-# License
+# License <a name="available-license"></a>
 The GNU License (GNU v3). Please see [License File](LICENSE.md) for more information.
