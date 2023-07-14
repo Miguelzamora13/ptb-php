@@ -133,24 +133,24 @@ The list below is only a part of the library's facilities and soon this part of 
 | `onMessageSticker`   | Handles `sticker` on `message` update type
 | `onMessage`          | Will be called if none of the above handlers match
 
-| EditedMessage Handlers         | Description
-|--------------------------------|-------------
-| `onEditedMessageText`          | Handles `text` on `edited_message` update type
-| `onEditedMessagePhoto`         | Handles `photo` on `edited_message` update type
-| `onEditedMessageAnimation`     | Handles `animation` on `edited_message` update type
-| `onEditedMessageVideo`         | Handles `video` on `edited_message` update type
-| `onEditedMessageVideoNote`     | Handles `video note` on `edited_message` update type
-| `onEditedMessageAudio`         | Handles `audio` on `edited_message` update type
-| `onEditedMessageVoice`         | Handles `voice` on `edited_message` update type
-| `onEditedMessageDocument`      | Handles `document` on `edited_message` update type
-| `onEditedMessageLocation`      | Handles `location` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
-| `onEditedMessageContact [!]`   | Handles `contact` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
-| `onEditedMessagePoll [!]`      | Handles `poll` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
-| `onEditedMessageVenue [!]`     | Handles `venue` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
-| `onEditedMessageGame [!]`      | Handles `game` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
-| `onEditedMessageDice [!]`      | Handles `dice` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
-| `onEditedMessageSticker [!]`   | Handles `sticker` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
-| `onEditedMessage`              | Will be called if none of the above handlers match
+| EditedMessage Handlers          | Description
+|---------------------------------|-------------
+| `onEditedMessageText`           | Handles `text` on `edited_message` update type
+| `onEditedMessagePhoto`          | Handles `photo` on `edited_message` update type
+| `onEditedMessageAnimation`      | Handles `animation` on `edited_message` update type
+| `onEditedMessageVideo`          | Handles `video` on `edited_message` update type
+| `onEditedMessageVideoNote`      | Handles `video note` on `edited_message` update type
+| `onEditedMessageAudio`          | Handles `audio` on `edited_message` update type
+| `onEditedMessageVoice`          | Handles `voice` on `edited_message` update type
+| `onEditedMessageDocument`       | Handles `document` on `edited_message` update type
+| ` [!] onEditedMessageLocation`  | Handles `location` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
+| ` [!] onEditedMessageContact`   | Handles `contact` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
+| ` [!] onEditedMessagePoll`      | Handles `poll` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
+| ` [!] onEditedMessageVenue`     | Handles `venue` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
+| ` [!] onEditedMessageGame`      | Handles `game` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
+| ` [!] onEditedMessageDice`      | Handles `dice` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
+| ` [!] onEditedMessageSticker`   | Handles `sticker` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
+| `onEditedMessage`               | Will be called if none of the above handlers match
 
 | ChannelPost Handlers     | Description
 |--------------------------|-------------
@@ -171,24 +171,24 @@ The list below is only a part of the library's facilities and soon this part of 
 | `onChannelPostSticker`   | Handles `sticker` on `channel_post` update type
 | `onChannelPost`          | Will be called if none of the above handlers match
 
-| EditedChannelPost Handlers     | Description
-|--------------------------------|-------------
-| `onEditedChannelPostText`      | Handles `text` on `edited_channel_post` update type
-| `onEditedChannelPostPhoto`     | Handles `photo` on `edited_channel_post` update type
-| `onEditedChannelPostAnimation` | Handles `animation` on `edited_channel_post` update type
-| `onEditedChannelPostVideo`     | Handles `video` on `edited_channel_post` update type
-| `onEditedChannelPostVideoNote` | Handles `video note` on `edited_channel_post` update type
-| `onEditedChannelPostAudio`     | Handles `audio` on `edited_channel_post` update type
-| `onEditedChannelPostVoice`     | Handles `voice` on `edited_channel_post` update type
-| `onEditedChannelPostDocument`  | Handles `document` on `edited_channel_post` update type
-| `onEditedChannelPostLocation`  | Handles `location` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
-| `onEditedChannelPostContact`   | Handles `contact` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
-| `onEditedChannelPostPoll`      | Handles `poll` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
-| `onEditedChannelPostVenue`     | Handles `venue` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
-| `onEditedChannelPostGame`      | Handles `game` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
-| `onEditedChannelPostDice`      | Handles `dice` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
-| `onEditedChannelPostSticker`   | Handles `sticker` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
-| `onEditedChannelPost`          | Will be called if none of the above handlers match
+| EditedChannelPost Handlers         | Description
+|------------------------------------|-------------
+| `onEditedChannelPostText`          | Handles `text` on `edited_channel_post` update type
+| `onEditedChannelPostPhoto`         | Handles `photo` on `edited_channel_post` update type
+| `onEditedChannelPostAnimation`     | Handles `animation` on `edited_channel_post` update type
+| `onEditedChannelPostVideo`         | Handles `video` on `edited_channel_post` update type
+| `onEditedChannelPostVideoNote`     | Handles `video note` on `edited_channel_post` update type
+| `onEditedChannelPostAudio`         | Handles `audio` on `edited_channel_post` update type
+| `onEditedChannelPostVoice`         | Handles `voice` on `edited_channel_post` update type
+| `onEditedChannelPostDocument`      | Handles `document` on `edited_channel_post` update type
+| `onEditedChannelPostLocation`      | Handles `location` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
+| `[!] onEditedChannelPostContact`   | Handles `contact` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
+| `[!] onEditedChannelPostPoll`      | Handles `poll` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
+| `[!] onEditedChannelPostVenue`     | Handles `venue` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
+| `[!] onEditedChannelPostGame`      | Handles `game` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
+| `[!] onEditedChannelPostDice`      | Handles `dice` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
+| `[!] onEditedChannelPostSticker`   | Handles `sticker` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
+| `onEditedChannelPost`              | Will be called if none of the above handlers match
 
 | ChatMember Handlers | Description
 |---------------------|-------------
@@ -262,7 +262,7 @@ The list below is only a part of the library's facilities and soon this part of 
 | `shippingQuery(?string $keys = null)`     | Returns `shipping_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
 | `preCheckoutQuery(?string $keys = null)`  | Returns `pre_checkout_query` if available, `null` otherwise.                                                                                                      | `array` for itself, `mixed` for subkeys
 | `replyMarkup(?string $keys = null)`       | Returns `message->reply_markup` if available, `null` otherwise                                                                                                    | `array` for itself, `mixed` for subkeys
-| `text(?string $keys = null)`              | Returns `message->text` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
+| `text()`                                  | Returns `message->text` if available, `null` otherwise                                                                                                            | `?string`
 | `photo(?string $keys = null)`             | Returns the last item (and high quality) of `message->photo` if available, `null` otherwise                                                                       | `array` for itself, `mixed` for subkeys
 | `photos()`                                | Returns `message->photo` if available, `null` otherwise                                                                                                           | `?array`
 | `document(?string $keys = null)`          | Returns `message->document` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
@@ -278,7 +278,7 @@ The list below is only a part of the library's facilities and soon this part of 
 | `venue(?string $keys = null)`             | Returns `message->venue` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
 | `location(?string $keys = null)`          | Returns `message->location` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
 | `animation(?string $keys = null)`         | Returns `message->animation` if available, `null` otherwise                                                                                                       | `array` for itself, `mixed` for subkeys
-| `caption(?string $keys = null)`           | Returns `message->caption` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `caption()`                               | Returns `message->caption` if available, `null` otherwise                                                                                                         | `?string`
 | `entities()`                              | Returns `message->entities` or `message->caption_entities` if available, `null` otherwise                                                                         | `?array`
 | `poll(?string $keys = null)`              | Returns `message->poll` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
 | `pollOptions()`                           | Returns `message->poll->options` if available, `null` otherwise                                                                                                   | `?array`
