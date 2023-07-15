@@ -209,7 +209,7 @@ The list below is only a part of the library's facilities and soon this part of 
 | InlineQuery Handlers | Description
 |----------------------|-------------
 | `onInlineQueryText`  | Handles `query` on `inline_query` update type
-| `onInlineQuery`      | Will be called on `inline_query` update type
+| `onInlineQuery`      | Will be called if none of the above handlers match
 
 | ShippingQuery Handlers | Description
 |------------------------|-------------
@@ -226,7 +226,7 @@ The list below is only a part of the library's facilities and soon this part of 
 | ChosenInlineResult Handlers | Description
 |-----------------------------|-------------
 | `onChosenInlineResultQuery` | Handles `query` on `chosen_inline_result` update type
-| `onChosenInlineResult`      | Will be called on `chosen_inline_result` update type
+| `onChosenInlineResult`      | Will be called if none of the above handlers match
 
 | Fallback Handlers | Description
 |-------------------|-------------
