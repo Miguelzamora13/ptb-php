@@ -1915,7 +1915,7 @@ function onChosenInlineResultQuery(
     array $skip_middlewares = [],
 ): void {
     _addHandler(
-        keys: "chosen_inline_result.{$pattern}",
+        keys: "chosen_inline_result.query.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -2617,6 +2617,22 @@ function inlineQuery(?string $keys = null): mixed {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function inlineQueryText(): ?string {
     return inlineQuery('query');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function chosenInlineResult(?string $keys = null): ?string {
+    return _arrayGet(update(UPDATE_TYPE_CHOSEN_INLINE_RESULT), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function chosenInlineResultId(): ?string {
+    return chosenInlineResult('result_id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function chosenInlineResultQuery(): ?string {
+    return chosenInlineResult('query');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function chosenInlineResultInlineMessageId(): ?string {
+    return chosenInlineResult('inline_message_id');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function shippingQuery(?string $keys = null): mixed {
@@ -3966,7 +3982,7 @@ function getUpdates(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _autoFillApiMethodParameters($parameters) {
     if (key_exists('chat_id', $parameters) && !$parameters['chat_id']) {
-        $parameters['chat_id'] = chatId();
+        $parameters['chat_id'] = chatId() ?? userId();
     }
     if (key_exists('user_id', $parameters) && !$parameters['user_id']) {
         $parameters['user_id'] = userId();
@@ -4287,6 +4303,16 @@ function _fireHandlers(array $handlers) {
             }
         } elseif ($updateType === UPDATE_TYPE_INLINE_QUERY) {
             $query = inlineQueryText();
+            foreach ($updateTypeHandlers['query'] as $pattern => $handler) {
+                $parameters = _getPatternParameters($pattern, $query);
+                if (is_null($parameters)) {
+                    continue;
+                }
+                _fireAllMiddlewares($handler);
+                return $handler['callable'](...$parameters);
+            }
+        } elseif ($updateType === UPDATE_TYPE_CHOSEN_INLINE_RESULT) {
+            $query = chosenInlineResultQuery();
             foreach ($updateTypeHandlers['query'] as $pattern => $handler) {
                 $parameters = _getPatternParameters($pattern, $query);
                 if (is_null($parameters)) {

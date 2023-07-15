@@ -208,6 +208,7 @@ The list below is only a part of the library's facilities and soon this part of 
 
 | InlineQuery Handlers | Description
 |----------------------|-------------
+| `onInlineQueryText`  | Handles `query` on `inline_query` update type
 | `onInlineQuery`      | Will be called on `inline_query` update type
 
 | ShippingQuery Handlers | Description
@@ -224,6 +225,7 @@ The list below is only a part of the library's facilities and soon this part of 
 
 | ChosenInlineResult Handlers | Description
 |-----------------------------|-------------
+| `onChosenInlineResultQuery` | Handles `query` on `chosen_inline_result` update type
 | `onChosenInlineResult`      | Will be called on `chosen_inline_result` update type
 
 | Fallback Handlers | Description
@@ -260,6 +262,10 @@ The list below is only a part of the library's facilities and soon this part of 
 | `inlineQueryId()`                         | Returns `inline_query` if available, `null` otherwise.                                                                                                            | `?int`
 | `inlineQueryText()`                       | Returns `inline_query->query` if available, `null` otherwise.                                                                                                     | `?string`
 | `shippingQuery(?string $keys = null)`     | Returns `shipping_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
+| `chosenInlineResult(?string $keys = null)`| Returns `chosen_inline_result` if available, `null` otherwise.                                                                                                    | `array` for itself, `mixed` for subkeys
+| `chosenInlineResultId()`                  | Returns `chosen_inline_result->result_id` if available, `null` otherwise.                                                                                         | `?string`
+| `chosenInlineResultQuery()`               | Returns `chosen_inline_result->query` if available, `null` otherwise.                                                                                             | `?string`
+| `chosenInlineResultInlineMessageId()`     | Returns `chosen_inline_result->inline_message_id` if available, `null` otherwise.                                                                                 | `?string`
 | `preCheckoutQuery(?string $keys = null)`  | Returns `pre_checkout_query` if available, `null` otherwise.                                                                                                      | `array` for itself, `mixed` for subkeys
 | `replyMarkup(?string $keys = null)`       | Returns `message->reply_markup` if available, `null` otherwise                                                                                                    | `array` for itself, `mixed` for subkeys
 | `text()`                                  | Returns `message->text` if available, `null` otherwise                                                                                                            | `?string`
