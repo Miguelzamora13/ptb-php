@@ -2981,7 +2981,7 @@ function close(?array $_options = []): array {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteMessage(
     int $message_id,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
@@ -2989,7 +2989,7 @@ function deleteMessage(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendMessage(
     string $text,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $parse_mode = null,
     ?array $entities = null,
@@ -3005,9 +3005,9 @@ function sendMessage(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function forwardMessage(
-    int $chat_id,
+    int|string $chat_id,
     ?int $message_id = null,
-    ?int $from_chat_id = null,
+    null|int|string $from_chat_id = null,
     ?int $message_thread_id = null,
     ?bool $disable_notification = null,
     ?bool $protect_content = null,
@@ -3017,9 +3017,9 @@ function forwardMessage(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function copyMessage(
-    int $chat_id,
+    int|string $chat_id,
     ?int $message_id = null,
-    ?int $from_chat_id = null,
+    null|int|string $from_chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
     ?array $caption_entities = null,
@@ -3036,7 +3036,7 @@ function copyMessage(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendPhoto(
     string $photo,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
     ?array $caption_entities = null,
@@ -3054,7 +3054,7 @@ function sendPhoto(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendAudio(
     string $audio,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
     ?array $caption_entities = null,
@@ -3075,7 +3075,7 @@ function sendAudio(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendDocument(
     string $document,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
     ?array $caption_entities = null,
@@ -3094,7 +3094,7 @@ function sendDocument(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVideo(
     string $video,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
     ?array $caption_entities = null,
@@ -3117,7 +3117,7 @@ function sendVideo(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendAnimation(
     string $animation,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
     ?array $caption_entities = null,
@@ -3141,7 +3141,7 @@ function sendAnimation(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVoice(
     string $voice,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
     ?array $caption_entities = null,
@@ -3158,7 +3158,7 @@ function sendVoice(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVideoNote(
     string $video_note,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
     ?array $caption_entities = null,
@@ -3178,7 +3178,7 @@ function sendVideoNote(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendMediaGroup(
     array $media,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?bool $disable_notification = null,
     ?bool $protect_content = null,
@@ -3192,7 +3192,7 @@ function sendMediaGroup(
 function sendLocation(
     ?float $latitude,
     ?float $longitude,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?bool $disable_notification = null,
     ?bool $protect_content = null,
@@ -3213,7 +3213,7 @@ function sendVenue(
     string $address,
     ?float $latitude,
     ?float $longitude,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?bool $disable_notification = null,
     ?bool $protect_content = null,
@@ -3234,7 +3234,7 @@ function sendContact(
     string $first_name,
     ?string $last_name = null,
     ?string $vcard = null,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?bool $disable_notification = null,
     ?bool $protect_content = null,
@@ -3249,7 +3249,7 @@ function sendContact(
 function sendPoll(
     string $question,
     array $options,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?bool $disable_notification = null,
     ?bool $protect_content = null,
@@ -3273,7 +3273,7 @@ function sendPoll(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendDice(
     string $emoji,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?bool $disable_notification = null,
     ?bool $protect_content = null,
@@ -3294,7 +3294,7 @@ function sendFile(
     ?string $voice = null,
     ?string $video_note = null,
     ?string $sticker = null,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
     ?array $caption_entities = null,
@@ -3345,7 +3345,7 @@ function sendFile(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendChatAction(
     string $action,
-    ?int $chat_id = null,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?array $_options = [],
 ): array {
@@ -3353,7 +3353,7 @@ function sendChatAction(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getUserProfilePhotos(
-    ?int $chat_id = null,
+    ?int $user_id = null,
     ?int $offset = null,
     ?int $limit = null,
     ?array $_options = [],
@@ -3369,8 +3369,8 @@ function getFile(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function banChatMember(
-    int $chat_id,
     int $user_id,
+    null|int|string $chat_id = null,
     ?int $until_date = null,
     ?bool $revoke_messages = null,
     ?array $_options = [],
@@ -3379,8 +3379,8 @@ function banChatMember(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unbanChatMember(
-    int $chat_id,
     int $user_id,
+    null|int|string $chat_id = null,
     ?bool $only_if_banned = null,
     ?array $_options = [],
 ): array {
@@ -3388,9 +3388,9 @@ function unbanChatMember(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function restrictChatMember(
-    int $chat_id,
     int $user_id,
     array $permissions,
+    null|int|string $chat_id = null,
     ?bool $only_if_banned = null,
     ?bool $use_independent_chat_permissions = null,
     ?int $until_date = null,
@@ -3400,8 +3400,8 @@ function restrictChatMember(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function promoteChatMember(
-    int $chat_id,
     int $user_id,
+    null|int|string $chat_id = null,
     ?bool $is_anonymous = null,
     ?bool $can_manage_chat = null,
     ?bool $can_post_messages = null,
@@ -3420,8 +3420,8 @@ function promoteChatMember(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatAdministratorCustomTitle(
-    int $chat_id,
     int $user_id,
+    null|int|string $chat_id = null,
     string $custom_title,
     ?array $_options = [],
 ): array {
@@ -3429,36 +3429,36 @@ function setChatAdministratorCustomTitle(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function banChatSenderChat(
-    int $chat_id,
     int $sender_chat_id,
+    null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unbanChatSenderChat(
-    int $chat_id,
     int $sender_chat_id,
+    null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatPermissions(
-    int|string $chat_id,
     array $permissions,
+    null|int|string $chat_id = null,
     ?bool $use_independent_chat_permissions = null,
     ?array $_options = [],
 ): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function exportChatInviteLink(int|string $chat_id, ?array $_options = []): array {
+function exportChatInviteLink(null|int|string $chat_id = null, ?array $_options = []): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createChatInviteLink(
-    int|string $chat_id,
+    null|int|string $chat_id = null,
     ?string $name = null,
     ?int $expire_date = null,
     ?int $member_limit = null,
@@ -3469,8 +3469,8 @@ function createChatInviteLink(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editChatInviteLink(
-    int|string $chat_id,
     string $invite_link,
+    null|int|string $chat_id = null,
     ?string $name = null,
     ?int $expire_date = null,
     ?int $member_limit = null,
@@ -3480,76 +3480,133 @@ function editChatInviteLink(
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function revokeChatInviteLink(int|string $chat_id, string $invite_link, ?array $_options = [],): array {
+function revokeChatInviteLink(
+    string $invite_link,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function approveChatJoinRequest(int|string $chat_id, int $user_id, ?array $_options = [],): array {
+function approveChatJoinRequest(
+    int $user_id,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function declineChatJoinRequest(int|string $chat_id, int $user_id, ?array $_options = [],): array {
+function declineChatJoinRequest(
+    int $user_id,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setChatPhoto(int|string $chat_id, string $photo, ?array $_options = [],): array {
+function setChatPhoto(
+    string $photo,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function deleteChatPhoto(int|string $chat_id, ?array $_options = [],): array {
+function deleteChatPhoto(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setChatTitle(int|string $chat_id, string $title, ?array $_options = [],): array {
+function setChatTitle(
+    string $title,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setChatDescription(int|string $chat_id, string $description, ?array $_options = [],): array {
+function setChatDescription(
+    string $description,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function pinChatMessage(
-    int|string $chat_id,
-    bool $message_id,
+    int $message_id,
+    null|int|string $chat_id = null,
     ?bool $disable_notification = null,
     ?array $_options = [],
 ): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function unpinChatMessage(int|string $chat_id, bool $message_id, ?array $_options = [],): array {
+function unpinChatMessage(
+    int $message_id,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function unpinAllChatMessages(int|string $chat_id, ?array $_options = [],): array {
+function unpinAllChatMessages(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function leaveChat(int|string $chat_id, ?array $_options = [],): array {
+function leaveChat(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getChat(int|string $chat_id, ?array $_options = [],): array {
+function getChat(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getChatAdministrators(int|string $chat_id, ?array $_options = [],): array {
+function getChatAdministrators(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getChatMemberCount(int|string $chat_id, ?array $_options = [],): array {
+function getChatMemberCount(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getChatMember(int|string $chat_id, int $user_id, ?array $_options = [],): array {
+function getChatMember(
+    int $user_id,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setChatStickerSet(int|string $chat_id, string $sticker_set_name, ?array $_options = [],): array {
+function setChatStickerSet(
+    string $sticker_set_name,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function deleteChatStickerSet(int|string $chat_id, ?array $_options = [],): array {
+function deleteChatStickerSet(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -3558,8 +3615,8 @@ function getForumTopicIconStickers(?array $_options = [],): array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createForumTopic(
-    int|string $chat_id,
     string $name,
+    null|int|string $chat_id = null,
     ?int $icon_color = null,
     ?string $icon_custom_emoji_id = null,
     ?array $_options = [],
@@ -3568,8 +3625,8 @@ function createForumTopic(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editForumTopic(
-    int|string $chat_id,
     int $message_thread_id,
+    null|int|string $chat_id = null,
     ?string $name,
     ?string $icon_custom_emoji_id = null,
     ?array $_options = [],
@@ -3577,39 +3634,71 @@ function editForumTopic(
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function closeForumTopic(int|string $chat_id, int $message_thread_id, ?array $_options = [],): array {
+function closeForumTopic(
+    int $message_thread_id,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function reopenForumTopic(int|string $chat_id, int $message_thread_id, ?array $_options = [],): array {
+function reopenForumTopic(
+    int $message_thread_id,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function deleteForumTopic(int|string $chat_id, int $message_thread_id, ?array $_options = [],): array {
+function deleteForumTopic(
+    int $message_thread_id,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function unpinAllForumTopicMessages(int|string $chat_id, int $message_thread_id, ?array $_options = [],): array {
+function unpinAllForumTopicMessages(
+    int $message_thread_id,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function editGeneralForumTopic(int|string $chat_id, string $name, ?array $_options = [],): array {
+function editGeneralForumTopic(
+    string $name,
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function closeGeneralForumTopic(int|string $chat_id, ?array $_options = [],): array {
+function closeGeneralForumTopic(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function reopenGeneralForumTopic(int|string $chat_id, ?array $_options = [],): array {
+function reopenGeneralForumTopic(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function hideGeneralForumTopic(int|string $chat_id, ?array $_options = [],): array {
+function hideGeneralForumTopic(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function unhideGeneralForumTopic(int|string $chat_id, ?array $_options = [],): array {
+function unhideGeneralForumTopic(
+    null|int|string $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -3633,58 +3722,101 @@ function setMyCommands(
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function deleteMyCommands(?array $scope = null, ?string $language_code = null, ?array $_options = []): array {
+function deleteMyCommands(
+    ?array $scope = null,
+    ?string $language_code = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getMyCommands(?array $scope = null, ?string $language_code = null, ?array $_options = []): array {
+function getMyCommands(
+    ?array $scope = null,
+    ?string $language_code = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setMyName(?string $name = null, ?string $language_code = null, ?array $_options = []): array {
+function setMyName(
+    ?string $name = null,
+    ?string $language_code = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getMyName(?string $language_code = null, ?array $_options = []): array {
+function getMyName(
+    ?string $language_code = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setMyDescription(?string $description = null, ?string $language_code = null, ?array $_options = []): array {
+function setMyDescription(
+    ?string $description = null,
+    ?string $language_code = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getMyDescription(?string $language_code = null, ?array $_options = []): array {
+function getMyDescription(
+    ?string $language_code = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setMyShortDescription(?string $short_description = null, ?string $language_code = null, ?array $_options = []): array {
+function setMyShortDescription(
+    ?string $short_description = null,
+    ?string $language_code = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getMyShortDescription(?string $language_code = null, ?array $_options = []): array {
+function getMyShortDescription(
+    ?string $language_code = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setChatMenuButton(int $chat_id, ?array $menu_button = null, ?array $_options = []): array {
+function setChatMenuButton(
+    ?array $menu_button = null,
+    null|int $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getChatMenuButton(int $chat_id, ?array $_options = []): array {
+function getChatMenuButton(
+    null|int $chat_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setMyDefaultAdministratorRights(?array $rights = null, ?bool $for_channels = null, ?array $_options = []): array {
+function setMyDefaultAdministratorRights(
+    ?array $rights = null,
+    ?bool $for_channels = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getMyDefaultAdministratorRights(?bool $for_channels = null, ?array $_options = []): array {
+function getMyDefaultAdministratorRights(
+    ?bool $for_channels = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageText(
     string $text,
-    null|int|string $chat_id = null,
     ?int $message_id = null,
+    null|int|string $chat_id = null,
     ?string $inline_message_id = null,
     ?string $parse_mode = null,
     ?array $entities = null,
@@ -3697,8 +3829,8 @@ function editMessageText(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageCaption(
     ?string $caption = null,
-    null|int|string $chat_id = null,
     ?int $message_id = null,
+    null|int|string $chat_id = null,
     ?string $inline_message_id = null,
     ?string $parse_mode = null,
     ?array $caption_entities = null,
@@ -3710,8 +3842,8 @@ function editMessageCaption(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageMedia(
     array $media,
-    null|int|string $chat_id = null,
     ?int $message_id = null,
+    null|int|string $chat_id = null,
     ?string $inline_message_id = null,
     ?array $reply_markup = null,
     ?array $_options = [],
@@ -3722,8 +3854,8 @@ function editMessageMedia(
 function editMessageLiveLocation(
     float $latitude,
     float $longitude,
-    null|int|string $chat_id = null,
     ?int $message_id = null,
+    null|int|string $chat_id = null,
     ?string $inline_message_id = null,
     ?array $reply_markup = null,
     ?float $horizontal_accuracy = null,
@@ -3735,9 +3867,9 @@ function editMessageLiveLocation(
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function stopMessageLiveLocation(
-    null|int|string $chat_id = null,
     ?int $message_id = null,
     ?string $inline_message_id = null,
+    null|int|string $chat_id = null,
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
@@ -3745,18 +3877,18 @@ function stopMessageLiveLocation(
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageReplyMarkup(
-    null|int|string $chat_id = null,
-    ?int $message_id = null,
-    ?string $inline_message_id = null,
     ?array $reply_markup = null,
+    ?int $message_id = null,
+    null|int|string $chat_id = null,
+    ?string $inline_message_id = null,
     ?array $_options = [],
 ): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function stopPoll(
-    null|int|string $chat_id = null,
     ?int $message_id = null,
+    null|int|string $chat_id = null,
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
@@ -3786,16 +3918,21 @@ function getCustomEmojiStickers(array $custom_emoji_ids, ?array $_options = []):
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function uploadStickerFile(int $user_id, string $sticker, string $sticker_format, ?array $_options = []): array {
+function uploadStickerFile(
+    string $sticker,
+    string $sticker_format,
+    ?int $user_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createNewStickerSet(
-    int $user_id,
     string $name,
     string $title,
     array $stickers,
     string $sticker_format,
+    ?int $user_id = null,
     ?string $sticker_type = null,
     ?bool $needs_repainting = null,
     ?array $_options = [],
@@ -3803,11 +3940,20 @@ function createNewStickerSet(
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function addStickerToSet(int $user_id, string $name, array $sticker, ?array $_options = []): array {
+function addStickerToSet(
+    string $name,
+    array $sticker,
+    ?int $user_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setStickerPositionInSet(string $sticker, int $position, ?array $_options = []): array {
+function setStickerPositionInSet(
+    string $sticker,
+    int $position,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -3815,32 +3961,52 @@ function deleteStickerFromSet(string $sticker, ?array $_options = []): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setStickerEmojiList(string $sticker, array $emoji_list, ?array $_options = []): array {
+function setStickerEmojiList(
+    string $sticker,
+    array $emoji_list,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setStickerKeywords(string $sticker, ?array $keywords = null, ?array $_options = []): array {
+function setStickerKeywords(
+    string $sticker,
+    ?array $keywords = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setStickerMaskPosition(string $sticker, ?array $mask_position = null, ?array $_options = []): array {
+function setStickerMaskPosition(
+    string $sticker,
+    ?array $mask_position = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setStickerSetTitle(string $name, string $title, ?array $_options = []): array {
+function setStickerSetTitle(
+    string $name,
+    string $title,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerSetThumbnail(
     string $name,
-    int $user_id,
+    ?int $user_id = null,
     ?string $thumbnail = null,
     ?array $_options = [],
 ): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setCustomEmojiStickerSetThumbnail(string $name, ?string $custom_emoji_id = null, ?array $_options = []): array {
+function setCustomEmojiStickerSetThumbnail(
+    string $name,
+    ?string $custom_emoji_id = null,
+    ?array $_options = [],
+): array {
     return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -3871,7 +4037,7 @@ function sendInvoice(
     string $provider_token,
     string $currency,
     array $prices,
-    null|int|string $chat_id,
+    null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?int $max_tip_amount = null,
     ?array $suggested_tip_amounts = null,
@@ -4326,24 +4492,26 @@ function _fireHandlers(array $handlers) {
                 return $handler['callable'](...$parameters);
             }
         } elseif ($updateType === UPDATE_TYPE_CHOSEN_INLINE_RESULT) {
-            $query = chosenInlineResultQuery();
-            foreach ($updateTypeHandlers['query'] as $pattern => $handler) {
-                $parameters = _getPatternParameters($pattern, $query);
-                if (is_null($parameters)) {
-                    continue;
+            if ($query = chosenInlineResultQuery()) {
+                foreach ($updateTypeHandlers['query'] as $pattern => $handler) {
+                    $parameters = _getPatternParameters($pattern, $query);
+                    if (is_null($parameters)) {
+                        continue;
+                    }
+                    _fireAllMiddlewares($handler);
+                    return $handler['callable'](...$parameters);
                 }
-                _fireAllMiddlewares($handler);
-                return $handler['callable'](...$parameters);
-            }
-            $resultId = chosenInlineResultId();
-            foreach ($updateTypeHandlers['result_id'] as $pattern => $handler) {
-                $parameters = _getPatternParameters($pattern, $resultId);
-                if (is_null($parameters)) {
-                    continue;
+            } elseif ($resultId = chosenInlineResultId()) {
+                foreach ($updateTypeHandlers['result_id'] as $pattern => $handler) {
+                    $parameters = _getPatternParameters($pattern, $resultId);
+                    if (is_null($parameters)) {
+                        continue;
+                    }
+                    _fireAllMiddlewares($handler);
+                    return $handler['callable'](...$parameters);
                 }
-                _fireAllMiddlewares($handler);
-                return $handler['callable'](...$parameters);
             }
+            
         }
         if (isset($updateTypeHandlers['callable'])) {
             _fireAllMiddlewares($updateTypeHandlers);
