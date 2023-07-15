@@ -226,6 +226,7 @@ The list below is only a part of the library's facilities and soon this part of 
 | ChosenInlineResult Handlers | Description
 |-----------------------------|-------------
 | `onChosenInlineResultQuery` | Handles `query` on `chosen_inline_result` update type
+| `onChosenInlineResultId`    | Handles `result_id` on `chosen_inline_result` update type
 | `onChosenInlineResult`      | Will be called if none of the above handlers match
 
 | Fallback Handlers | Description

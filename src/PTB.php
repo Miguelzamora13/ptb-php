@@ -1922,6 +1922,20 @@ function onChosenInlineResultQuery(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChosenInlineResultId(
+    string $pattern,
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "chosen_inline_result.result_id.{$pattern}",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function fallbackOn(
     string $updateType,
     callable $callable,
@@ -4315,6 +4329,15 @@ function _fireHandlers(array $handlers) {
             $query = chosenInlineResultQuery();
             foreach ($updateTypeHandlers['query'] as $pattern => $handler) {
                 $parameters = _getPatternParameters($pattern, $query);
+                if (is_null($parameters)) {
+                    continue;
+                }
+                _fireAllMiddlewares($handler);
+                return $handler['callable'](...$parameters);
+            }
+            $resultId = chosenInlineResultId();
+            foreach ($updateTypeHandlers['result_id'] as $pattern => $handler) {
+                $parameters = _getPatternParameters($pattern, $resultId);
                 if (is_null($parameters)) {
                     continue;
                 }
