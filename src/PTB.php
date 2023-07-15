@@ -1842,14 +1842,14 @@ function onInlineQuery(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onInlineQueryData(
+function onInlineQueryText(
     string $pattern,
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
     _addHandler(
-        keys: 'inline_query.'.$pattern,
+        keys: "inline_query.query.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -2615,7 +2615,7 @@ function inlineQuery(?string $keys = null): mixed {
     return _arrayGet(update(UPDATE_TYPE_INLINE_QUERY), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryString(): ?string {
+function inlineQueryText(): ?string {
     return inlineQuery('query');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -4279,6 +4279,16 @@ function _fireHandlers(array $handlers) {
             $callbackData = callbackQueryData();
             foreach ($updateTypeHandlers['data'] as $pattern => $handler) {
                 $parameters = _getPatternParameters($pattern, $callbackData);
+                if (is_null($parameters)) {
+                    continue;
+                }
+                _fireAllMiddlewares($handler);
+                return $handler['callable'](...$parameters);
+            }
+        } elseif ($updateType === UPDATE_TYPE_INLINE_QUERY) {
+            $query = inlineQueryText();
+            foreach ($updateTypeHandlers['query'] as $pattern => $handler) {
+                $parameters = _getPatternParameters($pattern, $query);
                 if (is_null($parameters)) {
                     continue;
                 }
