@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.1.5
+ * @version 1.1.6
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher
  * @link http://t.me/DevDasher
@@ -1842,6 +1842,20 @@ function onInlineQuery(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onInlineQueryData(
+    string $pattern,
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: 'inline_query.'.$pattern,
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onShippingQuery(
     callable $callable,
     callable|array $middlewares = [],
@@ -1888,6 +1902,20 @@ function onChosenInlineResult(
 ): void {
     _addHandler(
         keys: 'chosen_inline_result',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChosenInlineResultQuery(
+    string $pattern,
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    _addHandler(
+        keys: "chosen_inline_result.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1948,6 +1976,405 @@ function onApiError(
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
     );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function webAppInfo(string $url): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultsButton(string $text, ?array $web_app = null, ?string $start_parameter = null): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultCachedAudio(
+    string $type,
+    string|int $id,
+    string $audio_file_id,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultCachedDocument(
+    string $type,
+    string|int $id,
+    string $title,
+    string $document_file_id,
+    ?string $description = null,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultCachedGif(
+    string $type,
+    string|int $id,
+    string $gif_file_id,
+    ?string $title = null,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultCachedMpeg4Gif(
+    string $type,
+    string|int $id,
+    string $mpeg4_file_id,
+    ?string $title = null,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultCachedPhoto(
+    string $type,
+    string|int $id,
+    string $photo_file_id,
+    ?string $title = null,
+    ?string $description = null,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultCachedSticker(
+    string $type,
+    string|int $id,
+    string $sticker_file_id,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultCachedVideo(
+    string $type,
+    string|int $id,
+    string $video_file_id,
+    string $title,
+    ?string $description = null,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultCachedVoice(
+    string $type,
+    string|int $id,
+    string $voice_file_id,
+    string $title,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultArticle(
+    string $type,
+    string|int $id,
+    string $title,
+    array $input_message_content,
+    ?array $reply_markup = null,
+    ?string $url = null,
+    ?bool $hide_url = null,
+    ?string $description = null,
+    ?string $thumbnail_url = null,
+    ?int $thumbnail_width = null,
+    ?int $thumbnail_height = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultPhoto(
+    string $type,
+    string|int $id,
+    string $photo_url,
+    string $thumbnail_url,
+    ?int $photo_width = null,
+    ?int $photo_height = null,
+    ?string $title = null,
+    ?string $description = null,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultGif(
+    string $type,
+    string|int $id,
+    string $gif_url,
+    string $thumbnail_url,
+    ?int $gif_width = null,
+    ?int $gif_height = null,
+    ?int $gif_duration = null,
+    ?string $thumbnail_mime_type = null,
+    ?string $title = null,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultAudio(
+    string $type,
+    string|int $id,
+    string $audio_url,
+    string $title,
+    ?string $caption,
+    ?string $parse_mode,
+    ?array $caption_entities,
+    ?string $performer,
+    ?int $audio_duration,
+    ?array $reply_markup,
+    ?array $input_message_content,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultVoice(
+    string $type,
+    string|int $id,
+    string $voice_url,
+    string $title,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?int $voice_duration = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultDocument(
+    string $type,
+    string|int $id,
+    string $document_url,
+    string $mime_type,
+    string $title,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?string $description = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+    ?string $thumbnail_url = null,
+    ?int $thumbnail_width = null,
+    ?int $thumbnail_height = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultLocation(
+    string $type,
+    string|int $id,
+    float $latitude,
+    float $longitude,
+    string $title,
+    ?float $horizontal_accuracy = null,
+    ?int $live_period = null,
+    ?int $heading = null,
+    ?int $proximity_alert_radius = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+    ?string $thumbnail_url = null,
+    ?int $thumbnail_width = null,
+    ?int $thumbnail_height = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultVenue(
+    string $type,
+    string|int $id,
+    float $latitude,
+    float $longitude,
+    string $title,
+    string $address,
+    ?string $foursquare_id = null,
+    ?string $foursquare_type = null,
+    ?string $google_place_id = null,
+    ?string $google_place_type = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+    ?string $thumbnail_url = null,
+    ?int $thumbnail_width = null,
+    ?int $thumbnail_height = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultContact(
+    string $type,
+    string|int $id,
+    string $phone_number,
+    string $first_name,
+    ?string $last_name = null,
+    ?string $vcard = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+    ?string $thumbnail_url = null,
+    ?int $thumbnail_width = null,
+    ?int $thumbnail_height = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultGame(
+    string $type,
+    string|int $id,
+    string $game_short_name,
+    ?array $reply_markup = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultMpeg4Gif(
+    string $type,
+    string|int $id,
+    string $mpeg4_url,
+    string $thumbnail_url,
+    ?int $mpeg4_width = null,
+    ?int $mpeg4_height = null,
+    ?int $mpeg4_duration = null,
+    ?string $thumbnail_mime_type = null,
+    ?string $title = null,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities= null,
+    ?array $reply_markup = null,
+    ?array $input_message_content= null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inlineQueryResultVideo(
+    string $type,
+    string|int $id,
+    string $video_url,
+    string $mime_type,
+    string $thumbnail_url,
+    string $title,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?int $video_width = null,
+    ?int $video_height = null,
+    ?int $video_duration = null,
+    ?string $description = null,
+    ?array $reply_markup = null,
+    ?array $input_message_content = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inputTextMessageContent(
+    string $message_text,
+    ?string $parse_mode = null,
+    ?array $entities = null,
+    ?bool $disable_web_page_preview = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inputLocationMessageContent(
+    float $latitude,
+    float $longitude,
+    ?float $horizontal_accuracy = null,
+    ?int $live_period = null,
+    ?int $heading = null,
+    ?int $proximity_alert_radius = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inputVenueMessageContent(
+    float $latitude,
+    float $longitude,
+    string $title,
+    string $address,
+    string $foursquare_id = null,
+    string $foursquare_type = null,
+    string $google_place_id = null,
+    string $google_place_type = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inputContactMessageContent(
+    string $phone_number,
+    string $first_name,
+    ?string $last_name = null,
+    ?string $vcard = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function inputInvoiceMessageContent(
+    string $title,
+    string $description,
+    string $payload,
+    string $provider_token,
+    string $currency,
+    array $prices,
+    ?int $max_tip_amount = null,
+    ?array $suggested_tip_amounts = null,
+    ?string $provider_data = null,
+    ?string $photo_url = null,
+    ?int $photo_size = null,
+    ?int $photo_width = null,
+    ?int $photo_height = null,
+    ?bool $need_name = null,
+    ?bool $need_phone_number = null,
+    ?bool $need_email = null,
+    ?bool $need_shipping_address = null,
+    ?bool $send_phone_number_to_provider = null,
+    ?bool $send_email_to_provider = null,
+    ?bool $is_flexible = null,
+): array {
+    return _removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function row(array ...$buttons): array {
+    return [...$buttons];
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function rows(array ...$rows): array {
+    return [...$rows];
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function inlineKeyboard(array $inline_keyboard): array {
@@ -3570,6 +3997,9 @@ function _autoFillApiMethodParameters($parameters) {
     }
     if (key_exists('options', $parameters) && $parameters['options']) {
         $parameters['options'] = json_encode($parameters['options']);
+    }
+    if (key_exists('results', $parameters) && $parameters['results']) {
+        $parameters['results'] = json_encode($parameters['results']);
     }
     $fileType = current(array_intersect_key(array_keys($parameters), fileTypes()));
     if ($fileType && file_exists(strval($filePath = $parameters[$fileType]))) {
