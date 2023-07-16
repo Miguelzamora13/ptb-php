@@ -23,12 +23,13 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.0.0
+ * @version 1.0.1
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
 */
 
+use function DevDasher\PTB\_messageId;
 use function DevDasher\PTB\configurePTB;
 use function DevDasher\PTB\messageId;
 use function DevDasher\PTB\onMessageText;
@@ -55,7 +56,7 @@ onMessageText(
     callable: function($value) {
         sendMessage(
             text: $value,
-            reply_to_message_id: messageId(),
+            reply_to_message_id: _messageId(),
             allow_sending_without_reply: true,
         );
     }

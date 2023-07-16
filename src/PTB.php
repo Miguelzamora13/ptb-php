@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.1.7
+ * @version 1.1.8
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher
  * @link http://t.me/DevDasher
@@ -51,13 +51,13 @@ define('FIELD_MY_CHAT_MEMBER', 'my_chat_member');
 define('FIELD_CHAT_MEMBER', 'chat_member');
 define('FIELD_CHAT_JOIN_REQUEST', 'chat_join_request');
 define('FIELD_HAS_CUSTOM_CERTIFICATE', 'has_custom_certificate');
-define('FIELD_PENDING_UPDATE_COUNT', 'pending_update_count');
+define('FIELD_PENDING_UPDATE_COUNT', 'pending__update_count');
 define('FIELD_IP_ADDRESS', 'ip_address');
 define('FIELD_LAST_ERROR_DATE', 'last_error_date');
 define('FIELD_LAST_ERROR_MESSAGE', 'last_error_message');
 define('FIELD_LAST_SYNCHRONIZATION_ERROR_DATE', 'last_synchronization_error_date');
 define('FIELD_MAX_CONNECTIONS', 'max_connections');
-define('FIELD_ALLOWED_UPDATES', 'allowed_updates');
+define('FIELD_ALLOWED_UPDATES', 'allowed__updates');
 define('FIELD_IS_BOT', 'is_bot');
 define('FIELD_FIRST_NAME', 'first_name');
 define('FIELD_LAST_NAME', 'last_name');
@@ -658,7 +658,7 @@ define('PARAM_GAME_SHORT_NAME', 'game_short_name');
 define('PARAM_FORCE', 'force');
 define('PARAM_DISABLE_EDIT_MESSAGE', 'disable_edit_message');
 define('PARAM_TIMEOUT', 'timeout');
-define('PARAM_ALLOWED_UPDATES', 'allowed_updates');
+define('PARAM_ALLOWED_UPDATES', 'allowed__updates');
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('UPDATE_TYPE_MESSAGE', FIELD_MESSAGE);
 define('UPDATE_TYPE_EDITED_MESSAGE', FIELD_EDITED_MESSAGE);
@@ -770,12 +770,122 @@ define('CHAT_ADMINISTRATOR_RIGHT_CAN_EDIT_MESSAGES', 'can_edit_messages');
 define('CHAT_ADMINISTRATOR_RIGHT_CAN_PIN_MESSAGES', 'can_pin_messages');
 define('CHAT_ADMINISTRATOR_RIGHT_CAN_MANAGE_TOPICS', 'can_manage_topics');
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+define('COLOR_RGB_BLUE', 7322096);
+define('COLOR_RGB_BLUE_HEX', '0x6FB9F0');
+define('COLOR_RGB_YELLOW', 16766590);
+define('COLOR_RGB_YELLOW_HEX', '0xFFD67E');
+define('COLOR_RGB_VIOLET', 13338331);
+define('COLOR_RGB_VIOLET_HEX', '0xCB86DB');
+define('COLOR_RGB_GREEN', 9367192);
+define('COLOR_RGB_GREEN_HEX', '0x8EEE98');
+define('COLOR_RGB_ROSE', 16749490);
+define('COLOR_RGB_ROSE_HEX', '0xFF93B2');
+define('COLOR_RGB_RED', 16478047);
+define('COLOR_RGB_RED_HEX', '0xFB6F5F');
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('DICE_EMOJI_DICE', '🎲');
 define('DICE_EMOJI_DART', '🎯');
 define('DICE_EMOJI_BASKETBALL', '🏀');
 define('DICE_EMOJI_FOOTBALL', '⚽');
 define('DICE_EMOJI_SLOT_MACHINE', '🎰');
 define('DICE_EMOJI_BOWLING', '🎳');
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+define('GOOGLE_PLACE_TYPE_ACCOUNTING', 'accounting');
+define('GOOGLE_PLACE_TYPE_AIRPORT', 'airport');
+define('GOOGLE_PLACE_TYPE_AMUSEMENT_PARK', 'amusement_park');
+define('GOOGLE_PLACE_TYPE_AQUARIUM', 'aquarium');
+define('GOOGLE_PLACE_TYPE_ART_GALLERY', 'art_gallery');
+define('GOOGLE_PLACE_TYPE_ATM', 'atm');
+define('GOOGLE_PLACE_TYPE_BAKERY', 'bakery');
+define('GOOGLE_PLACE_TYPE_BANK', 'bank');
+define('GOOGLE_PLACE_TYPE_BAR', 'bar');
+define('GOOGLE_PLACE_TYPE_BEAUTY_SALON', 'beauty_salon');
+define('GOOGLE_PLACE_TYPE_BICYCLE_STORE', 'bicycle_store');
+define('GOOGLE_PLACE_TYPE_BOOK_STORE', 'book_store');
+define('GOOGLE_PLACE_TYPE_BOWLING_ALLEY', 'bowling_alley');
+define('GOOGLE_PLACE_TYPE_BUS_STATION', 'bus_station');
+define('GOOGLE_PLACE_TYPE_CAFE', 'cafe');
+define('GOOGLE_PLACE_TYPE_CAMPGROUND', 'campground');
+define('GOOGLE_PLACE_TYPE_CAR_DEALER', 'car_dealer');
+define('GOOGLE_PLACE_TYPE_CAR_RENTAL', 'car_rental');
+define('GOOGLE_PLACE_TYPE_CAR_REPAIR', 'car_repair');
+define('GOOGLE_PLACE_TYPE_CAR_WASH', 'car_wash');
+define('GOOGLE_PLACE_TYPE_CASINO', 'casino');
+define('GOOGLE_PLACE_TYPE_CEMETERY', 'cemetery');
+define('GOOGLE_PLACE_TYPE_CHURCH', 'church');
+define('GOOGLE_PLACE_TYPE_CITY_HALL', 'city_hall');
+define('GOOGLE_PLACE_TYPE_CLOTHING_STORE', 'clothing_store');
+define('GOOGLE_PLACE_TYPE_CONVENIENCE_STORE', 'convenience_store');
+define('GOOGLE_PLACE_TYPE_COURTHOUSE', 'courthouse');
+define('GOOGLE_PLACE_TYPE_DENTIST', 'dentist');
+define('GOOGLE_PLACE_TYPE_DEPARTMENT_STORE', 'department_store');
+define('GOOGLE_PLACE_TYPE_DOCTOR', 'doctor');
+define('GOOGLE_PLACE_TYPE_DRUGSTORE', 'drugstore');
+define('GOOGLE_PLACE_TYPE_ELECTRICIAN', 'electrician');
+define('GOOGLE_PLACE_TYPE_ELECTRONICS_STORE', 'electronics_store');
+define('GOOGLE_PLACE_TYPE_EMBASSY', 'embassy');
+define('GOOGLE_PLACE_TYPE_FIRE_STATION', 'fire_station');
+define('GOOGLE_PLACE_TYPE_FLORIST', 'florist');
+define('GOOGLE_PLACE_TYPE_FUNERAL_HOME', 'funeral_home');
+define('GOOGLE_PLACE_TYPE_FURNITURE_STORE', 'furniture_store');
+define('GOOGLE_PLACE_TYPE_GAS_STATION', 'gas_station');
+define('GOOGLE_PLACE_TYPE_GYM', 'gym');
+define('GOOGLE_PLACE_TYPE_HAIR_CARE', 'hair_care');
+define('GOOGLE_PLACE_TYPE_HARDWARE_STORE', 'hardware_store');
+define('GOOGLE_PLACE_TYPE_HINDU_TEMPLE', 'hindu_temple');
+define('GOOGLE_PLACE_TYPE_HOME_GOODS_STORE', 'home_goods_store');
+define('GOOGLE_PLACE_TYPE_HOSPITAL', 'hospital');
+define('GOOGLE_PLACE_TYPE_INSURANCE_AGENCY', 'insurance_agency');
+define('GOOGLE_PLACE_TYPE_JEWELRY_STORE', 'jewelry_store');
+define('GOOGLE_PLACE_TYPE_LAUNDRY', 'laundry');
+define('GOOGLE_PLACE_TYPE_LAWYER', 'lawyer');
+define('GOOGLE_PLACE_TYPE_LIBRARY', 'library');
+define('GOOGLE_PLACE_TYPE_LIGHT_RAIL_STATION', 'light_rail_station');
+define('GOOGLE_PLACE_TYPE_LIQUOR_STORE', 'liquor_store');
+define('GOOGLE_PLACE_TYPE_LOCAL_GOVERNMENT_OFFICE', 'local_government_office');
+define('GOOGLE_PLACE_TYPE_LOCKSMITH', 'locksmith');
+define('GOOGLE_PLACE_TYPE_LODGING', 'lodging');
+define('GOOGLE_PLACE_TYPE_MEAL_DELIVERY', 'meal_delivery');
+define('GOOGLE_PLACE_TYPE_MEAL_TAKEAWAY', 'meal_takeaway');
+define('GOOGLE_PLACE_TYPE_MOSQUE', 'mosque');
+define('GOOGLE_PLACE_TYPE_MOVIE_RENTAL', 'movie_rental');
+define('GOOGLE_PLACE_TYPE_MOVIE_THEATER', 'movie_theater');
+define('GOOGLE_PLACE_TYPE_MOVING_COMPANY', 'moving_company');
+define('GOOGLE_PLACE_TYPE_MUSEUM', 'museum');
+define('GOOGLE_PLACE_TYPE_NIGHT_CLUB', 'night_club');
+define('GOOGLE_PLACE_TYPE_PAINTER', 'painter');
+define('GOOGLE_PLACE_TYPE_PARK', 'park');
+define('GOOGLE_PLACE_TYPE_PARKING', 'parking');
+define('GOOGLE_PLACE_TYPE_PET_STORE', 'pet_store');
+define('GOOGLE_PLACE_TYPE_PHARMACY', 'pharmacy');
+define('GOOGLE_PLACE_TYPE_PHYSIOTHERAPIST', 'physiotherapist');
+define('GOOGLE_PLACE_TYPE_PLUMBER', 'plumber');
+define('GOOGLE_PLACE_TYPE_POLICE', 'police');
+define('GOOGLE_PLACE_TYPE_POST_OFFICE', 'post_office');
+define('GOOGLE_PLACE_TYPE_PRIMARY_SCHOOL', 'primary_school');
+define('GOOGLE_PLACE_TYPE_REAL_ESTATE_AGENCY', 'real_estate_agency');
+define('GOOGLE_PLACE_TYPE_RESTAURANT', 'restaurant');
+define('GOOGLE_PLACE_TYPE_ROOFING_CONTRACTOR', 'roofing_contractor');
+define('GOOGLE_PLACE_TYPE_RV_PARK', 'rv_park');
+define('GOOGLE_PLACE_TYPE_SCHOOL', 'school');
+define('GOOGLE_PLACE_TYPE_SECONDARY_SCHOOL', 'secondary_school');
+define('GOOGLE_PLACE_TYPE_SHOE_STORE', 'shoe_store');
+define('GOOGLE_PLACE_TYPE_SHOPPING_MALL', 'shopping_mall');
+define('GOOGLE_PLACE_TYPE_SPA', 'spa');
+define('GOOGLE_PLACE_TYPE_STADIUM', 'stadium');
+define('GOOGLE_PLACE_TYPE_STORAGE', 'storage');
+define('GOOGLE_PLACE_TYPE_STORE', 'store');
+define('GOOGLE_PLACE_TYPE_SUBWAY_STATION', 'subway_station');
+define('GOOGLE_PLACE_TYPE_SUPERMARKET', 'supermarket');
+define('GOOGLE_PLACE_TYPE_SYNAGOGUE', 'synagogue');
+define('GOOGLE_PLACE_TYPE_TAXI_STAND', 'taxi_stand');
+define('GOOGLE_PLACE_TYPE_TOURIST_ATTRACTION', 'tourist_attraction');
+define('GOOGLE_PLACE_TYPE_TRAIN_STATION', 'train_station');
+define('GOOGLE_PLACE_TYPE_TRANSIT_STATION', 'transit_station');
+define('GOOGLE_PLACE_TYPE_TRAVEL_AGENCY', 'travel_agency');
+define('GOOGLE_PLACE_TYPE_UNIVERSITY', 'university');
+define('GOOGLE_PLACE_TYPE_VETERINARY_CARE', 'veterinary_care');
+define('GOOGLE_PLACE_TYPE_ZOO', 'zoo');
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('MENU_BUTTON_TYPE_DEFAULT', 'default');
 define('MENU_BUTTON_TYPE_WEB_APP', 'web_app');
@@ -805,6 +915,26 @@ define('STICKER_TYPE_CUSTOM_EMOJI', 'custom_emoji');
 define('PARSE_MODE_HTML', 'HTML');
 define('PARSE_MODE_MARKDOWN', 'Markdown');
 define('PARSE_MODE_MARKDOWN_V2', 'MarkdownV2');
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+define('PASSPORT_ELEMENT_TYPE_PASSPORT', 'passport');
+define('PASSPORT_ELEMENT_TYPE_DRIVER_LICENSE', 'driver_license');
+define('PASSPORT_ELEMENT_TYPE_IDENTITY_CARD', 'identity_card');
+define('PASSPORT_ELEMENT_TYPE_INTERNAL_PASSPORT', 'internal_passport');
+define('PASSPORT_ELEMENT_TYPE_UTILITY_BILL', 'utility_bill');
+define('PASSPORT_ELEMENT_TYPE_BANK_STATEMENT', 'bank_statement');
+define('PASSPORT_ELEMENT_TYPE_RENTAL_AGREEMENT', 'rental_agreement');
+define('PASSPORT_ELEMENT_TYPE_PASSPORT_REGISTRATION', 'passport_registration');
+define('PASSPORT_ELEMENT_TYPE_TEMPORARY_REGISTRATION', 'temporary_registration');
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+define('PASSPORT_ELEMENT_ERROR_DATA_FIELD', 'data');
+define('PASSPORT_ELEMENT_ERROR_FRONT_SIDE', 'front_side');
+define('PASSPORT_ELEMENT_ERROR_REVERSE_SIDE', 'reverse_side');
+define('PASSPORT_ELEMENT_ERROR_SELFIE', 'selfie');
+define('PASSPORT_ELEMENT_ERROR_FILE', 'file');
+define('PASSPORT_ELEMENT_ERROR_FILES', 'files');
+define('PASSPORT_ELEMENT_ERROR_TRANSLATION_FILE', 'translation_file');
+define('PASSPORT_ELEMENT_ERROR_TRANSLATION_FILES', 'translation_files');
+define('PASSPORT_ELEMENT_ERROR_UNSPECIFIED', 'unspecified');
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('INPUT_MEDIA_TYPE_ANIMATION', 'animation');
 define('INPUT_MEDIA_TYPE_DOCUMENT', 'document');
@@ -860,7 +990,8 @@ function configurePTB(
         'middlewares' => [],
         'handlers' => [],
     ], $GLOBALS[_PACKAGE_NAME] ?? []);
-    registerNewBot(
+    
+    _registerNewBot(
         username: $username,
         token: $token,
         api_base_url: $api_base_url,
@@ -868,28 +999,8 @@ function configurePTB(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function registerNewBot(
-    string $username,
-    string $token,
-    string $api_base_url = API_BASE_URL,
-    array $curl_options = [],
-): void {
-    if (!isset($GLOBALS[_PACKAGE_NAME]['default_bot_username'])) {
-        $GLOBALS[_PACKAGE_NAME]['default_bot_username'] = $username;
-    }
-    $GLOBALS[_PACKAGE_NAME]['bots'][$username] = get_defined_vars();
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setGlobalData(int|string $key, mixed $value = null): void {
-    _setOrPushValue($GLOBALS[_PACKAGE_NAME], $value, "global_data.{$key}");
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getGlobalData(int|string $key, mixed $defaultValue = null): mixed {
-    return $GLOBALS[_PACKAGE_NAME]['global_data'][$key] ?? $defaultValue;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function middleware(callable $callable, ?string $name = null): void {
-    _addMiddleware(callable: $callable, name: $name);
+    __addMiddleware(callable: $callable, name: $name);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function middlewares(array $callables): void {
@@ -907,7 +1018,7 @@ function onMessageText(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.text.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
@@ -920,7 +1031,7 @@ function onMessagePhoto(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.photo",
         callable: $callable,
         middlewares: $middlewares,
@@ -933,7 +1044,7 @@ function onMessageAnimation(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.animation",
         callable: $callable,
         middlewares: $middlewares,
@@ -946,7 +1057,7 @@ function onMessageVideo(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.video",
         callable: $callable,
         middlewares: $middlewares,
@@ -959,7 +1070,7 @@ function onMessageVideoNote(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.video_note",
         callable: $callable,
         middlewares: $middlewares,
@@ -972,7 +1083,7 @@ function onMessageAudio(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.audio",
         callable: $callable,
         middlewares: $middlewares,
@@ -985,7 +1096,7 @@ function onMessageVoice(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.voice",
         callable: $callable,
         middlewares: $middlewares,
@@ -998,7 +1109,7 @@ function onMessageDocument(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.document",
         callable: $callable,
         middlewares: $middlewares,
@@ -1011,7 +1122,7 @@ function onMessageLocation(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.location",
         callable: $callable,
         middlewares: $middlewares,
@@ -1024,7 +1135,7 @@ function onMessageContact(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.contact",
         callable: $callable,
         middlewares: $middlewares,
@@ -1037,7 +1148,7 @@ function onMessagePoll(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'message.poll',
         callable: $callable,
         middlewares: $middlewares,
@@ -1050,7 +1161,7 @@ function onMessageVenue(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.venue",
         callable: $callable,
         middlewares: $middlewares,
@@ -1063,7 +1174,7 @@ function onMessageGame(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.game",
         callable: $callable,
         middlewares: $middlewares,
@@ -1076,7 +1187,7 @@ function onMessageDice(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.dice",
         callable: $callable,
         middlewares: $middlewares,
@@ -1089,7 +1200,7 @@ function onMessageSticker(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message.sticker",
         callable: $callable,
         middlewares: $middlewares,
@@ -1102,21 +1213,8 @@ function onMessage(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "message",
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onAny(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    _addHandler(
-        keys: "any",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1129,7 +1227,7 @@ function onEditedMessageText(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "edited_message.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
@@ -1142,7 +1240,7 @@ function onEditedMessagePhoto(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.photo',
         callable: $callable,
         middlewares: $middlewares,
@@ -1155,7 +1253,7 @@ function onEditedMessageAnimation(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.animation',
         callable: $callable,
         middlewares: $middlewares,
@@ -1168,7 +1266,7 @@ function onEditedMessageVideo(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.video',
         callable: $callable,
         middlewares: $middlewares,
@@ -1181,7 +1279,7 @@ function onEditedMessageVideoNote(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.video_note',
         callable: $callable,
         middlewares: $middlewares,
@@ -1194,7 +1292,7 @@ function onEditedMessageAudio(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.audio',
         callable: $callable,
         middlewares: $middlewares,
@@ -1207,7 +1305,7 @@ function onEditedMessageVoice(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.voice',
         callable: $callable,
         middlewares: $middlewares,
@@ -1220,7 +1318,7 @@ function onEditedMessageDocument(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.document',
         callable: $callable,
         middlewares: $middlewares,
@@ -1233,7 +1331,7 @@ function onEditedMessageLocation(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.location',
         callable: $callable,
         middlewares: $middlewares,
@@ -1246,7 +1344,7 @@ function onEditedMessageContact(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.contact',
         callable: $callable,
         middlewares: $middlewares,
@@ -1259,7 +1357,7 @@ function onEditedMessagePoll(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.poll',
         callable: $callable,
         middlewares: $middlewares,
@@ -1272,7 +1370,7 @@ function onEditedMessageVenue(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.venue',
         callable: $callable,
         middlewares: $middlewares,
@@ -1285,7 +1383,7 @@ function onEditedMessageGame(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.game',
         callable: $callable,
         middlewares: $middlewares,
@@ -1298,7 +1396,7 @@ function onEditedMessageDice(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.dice',
         callable: $callable,
         middlewares: $middlewares,
@@ -1311,7 +1409,7 @@ function onEditedMessageSticker(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message.sticker',
         callable: $callable,
         middlewares: $middlewares,
@@ -1324,7 +1422,7 @@ function onEditedMessage(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_message',
         callable: $callable,
         middlewares: $middlewares,
@@ -1337,7 +1435,7 @@ function onCallbackQuery(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'callback_query',
         callable: $callable,
         middlewares: $middlewares,
@@ -1351,7 +1449,7 @@ function onCallbackQueryData(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "callback_query.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
@@ -1365,7 +1463,7 @@ function onChannelPostText(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "channel_post.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
@@ -1378,7 +1476,7 @@ function onChannelPostPhoto(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.photo',
         callable: $callable,
         middlewares: $middlewares,
@@ -1391,7 +1489,7 @@ function onChannelPostAnimation(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.animation',
         callable: $callable,
         middlewares: $middlewares,
@@ -1404,7 +1502,7 @@ function onChannelPostVideo(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.video',
         callable: $callable,
         middlewares: $middlewares,
@@ -1417,7 +1515,7 @@ function onChannelPostVideoNote(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.video_note',
         callable: $callable,
         middlewares: $middlewares,
@@ -1430,7 +1528,7 @@ function onChannelPostAudio(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.audio',
         callable: $callable,
         middlewares: $middlewares,
@@ -1443,7 +1541,7 @@ function onChannelPostVoice(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.voice',
         callable: $callable,
         middlewares: $middlewares,
@@ -1456,7 +1554,7 @@ function onChannelPostDocument(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.document',
         callable: $callable,
         middlewares: $middlewares,
@@ -1469,7 +1567,7 @@ function onChannelPostLocation(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.location',
         callable: $callable,
         middlewares: $middlewares,
@@ -1482,7 +1580,7 @@ function onChannelPostContact(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.contact',
         callable: $callable,
         middlewares: $middlewares,
@@ -1495,7 +1593,7 @@ function onChannelPostPoll(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.poll',
         callable: $callable,
         middlewares: $middlewares,
@@ -1508,7 +1606,7 @@ function onChannelPostVenue(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.venue',
         callable: $callable,
         middlewares: $middlewares,
@@ -1521,7 +1619,7 @@ function onChannelPostGame(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.game',
         callable: $callable,
         middlewares: $middlewares,
@@ -1534,7 +1632,7 @@ function onChannelPostDice(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.dice',
         callable: $callable,
         middlewares: $middlewares,
@@ -1547,7 +1645,7 @@ function onChannelPostSticker(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post.sticker',
         callable: $callable,
         middlewares: $middlewares,
@@ -1560,7 +1658,7 @@ function onChannelPost(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'channel_post',
         callable: $callable,
         middlewares: $middlewares,
@@ -1574,7 +1672,7 @@ function onEditedChannelPostText(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "edited_channel_post.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
@@ -1587,7 +1685,7 @@ function onEditedChannelPostPhoto(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.photo',
         callable: $callable,
         middlewares: $middlewares,
@@ -1600,7 +1698,7 @@ function onEditedChannelPostAnimation(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.animation',
         callable: $callable,
         middlewares: $middlewares,
@@ -1613,7 +1711,7 @@ function onEditedChannelPostVideo(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.video',
         callable: $callable,
         middlewares: $middlewares,
@@ -1626,7 +1724,7 @@ function onEditedChannelPostVideoNote(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.video_note',
         callable: $callable,
         middlewares: $middlewares,
@@ -1639,7 +1737,7 @@ function onEditedChannelPostAudio(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.audio',
         callable: $callable,
         middlewares: $middlewares,
@@ -1652,7 +1750,7 @@ function onEditedChannelPostVoice(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.voice',
         callable: $callable,
         middlewares: $middlewares,
@@ -1665,7 +1763,7 @@ function onEditedChannelPostDocument(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.document',
         callable: $callable,
         middlewares: $middlewares,
@@ -1678,7 +1776,7 @@ function onEditedChannelPostLocation(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.location',
         callable: $callable,
         middlewares: $middlewares,
@@ -1691,7 +1789,7 @@ function onEditedChannelPostContact(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.contact',
         callable: $callable,
         middlewares: $middlewares,
@@ -1704,7 +1802,7 @@ function onEditedChannelPostPoll(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.poll',
         callable: $callable,
         middlewares: $middlewares,
@@ -1717,7 +1815,7 @@ function onEditedChannelPostVenue(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.venue',
         callable: $callable,
         middlewares: $middlewares,
@@ -1730,7 +1828,7 @@ function onEditedChannelPostGame(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.game',
         callable: $callable,
         middlewares: $middlewares,
@@ -1743,7 +1841,7 @@ function onEditedChannelPostDice(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.dice',
         callable: $callable,
         middlewares: $middlewares,
@@ -1756,7 +1854,7 @@ function onEditedChannelPostSticker(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post.sticker',
         callable: $callable,
         middlewares: $middlewares,
@@ -1769,7 +1867,7 @@ function onEditedChannelPost(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'edited_channel_post',
         callable: $callable,
         middlewares: $middlewares,
@@ -1782,7 +1880,7 @@ function onChatMember(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'chat_member',
         callable: $callable,
         middlewares: $middlewares,
@@ -1795,7 +1893,7 @@ function onMyChatMember(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'my_chat_member',
         callable: $callable,
         middlewares: $middlewares,
@@ -1808,7 +1906,7 @@ function onPoll(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'poll',
         callable: $callable,
         middlewares: $middlewares,
@@ -1821,7 +1919,7 @@ function onPollAnswer(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'poll_answer',
         callable: $callable,
         middlewares: $middlewares,
@@ -1834,7 +1932,7 @@ function onInlineQuery(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'inline_query',
         callable: $callable,
         middlewares: $middlewares,
@@ -1848,7 +1946,7 @@ function onInlineQueryText(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "inline_query.query.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
@@ -1861,7 +1959,7 @@ function onShippingQuery(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'shipping_query',
         callable: $callable,
         middlewares: $middlewares,
@@ -1874,7 +1972,7 @@ function onChatJoinRequest(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'chat_join_request',
         callable: $callable,
         middlewares: $middlewares,
@@ -1887,7 +1985,7 @@ function onPreCheckoutQuery(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'pre_checkout_query',
         callable: $callable,
         middlewares: $middlewares,
@@ -1900,7 +1998,7 @@ function onChosenInlineResult(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'chosen_inline_result',
         callable: $callable,
         middlewares: $middlewares,
@@ -1914,7 +2012,7 @@ function onChosenInlineResultQuery(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "chosen_inline_result.query.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
@@ -1928,8 +2026,21 @@ function onChosenInlineResultId(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: "chosen_inline_result.result_id.{$pattern}",
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onAnyUpdateType(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: "any",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1942,10 +2053,10 @@ function fallbackOn(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    if (!in_array($updateType, updateTypes())) {
+    if (!in_array($updateType, _updateTypes())) {
         throw new Exception("Invalid update type '{$updateType}'!");
     }
-    _addHandler(
+    __addHandler(
         keys: "fallback.{$updateType}",
         callable: $callable,
         middlewares: $middlewares,
@@ -1958,7 +2069,7 @@ function fallback(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'fallback',
         callable: $callable,
         middlewares: $middlewares,
@@ -1971,7 +2082,7 @@ function onException(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'exception',
         callable: $callable,
         middlewares: $middlewares,
@@ -1984,7 +2095,7 @@ function onApiError(
     callable|array $middlewares = [],
     array $skip_middlewares = [],
 ): void {
-    _addHandler(
+    __addHandler(
         keys: 'api_error',
         callable: $callable,
         middlewares: $middlewares,
@@ -1992,15 +2103,870 @@ function onApiError(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function webAppInfo(string $url): array {
-    return _removeNullValues(get_defined_vars());
+function Update(
+    int $update_id = null,
+    ?array $message = null,
+    ?array $edited_message = null,
+    ?array $channel_post = null,
+    ?array $edited_channel_post = null,
+    ?array $inline_query = null,
+    ?array $chosen_inline_result = null,
+    ?array $callback_query = null,
+    ?array $shipping_query = null,
+    ?array $pre_checkout_query = null,
+    ?array $poll = null,
+    ?array $poll_answer = null,
+    ?array $my_chat_member = null,
+    ?array $chat_member = null,
+    ?array $chat_join_request = null,
+): array {
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultsButton(string $text, ?array $web_app = null, ?string $start_parameter = null): array {
-    return _removeNullValues(get_defined_vars());
+function WebhookInfo(
+    string $url,
+    bool $has_custom_certificate,
+    int $pending_update_count,
+    ?string $ip_address = null,
+    ?int $last_error_date = null,
+    ?string $last_error_message = null,
+    ?int $last_synchronization_error_date = null,
+    ?int $max_connections = null,
+    ?array $allowed_updates = null,
+): array {
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultCachedAudio(
+function User(
+    int $id,
+    bool $is_bot,
+    string $first_name,
+    ?string $last_name = null,
+    ?string $username = null,
+    ?string $language_code = null,
+    ?bool $is_premium = null,
+    ?bool $added_to_attachment_menu = null,
+    ?bool $can_join_groups = null,
+    ?bool $can_read_all_group_messages = null,
+    ?bool $supports_inline_queries = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Chat(
+    int $id,
+    string $type,
+    ?string $title = null,
+    ?string $username = null,
+    ?string $first_name = null,
+    ?string $last_name = null,
+    ?bool $is_forum = null,
+    ?array $photo = null,
+    ?array $active_usernames = null,
+    ?string $emoji_status_custom_emoji_id = null,
+    ?string $bio = null,
+    ?bool $has_private_forwards = null,
+    ?bool $has_restricted_voice_and_video_messages = null,
+    ?bool $join_to_send_messages = null,
+    ?bool $join_by_request = null,
+    ?string $description = null,
+    ?string $invite_link = null,
+    ?array $pinned_message = null,
+    ?array $permissions = null,
+    ?int $slow_mode_delay = null,
+    ?int $message_auto_delete_time = null,
+    ?bool $has_aggressive_anti_spam_enabled = null,
+    ?bool $has_hidden_members = null,
+    ?bool $has_protected_content = null,
+    ?string $sticker_set_name = null,
+    ?bool $can_set_sticker_set = null,
+    ?int $linked_chat_id = null,
+    ?array $location = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Message(
+    ?int $message_id = null,
+    ?int $date = null,
+    ?array $chat = null,
+    ?int $message_thread_id = null,
+    ?array $from = null,
+    ?array $sender_chat = null,
+    ?array $forward_from = null,
+    ?array $forward_from_chat = null,
+    ?int $forward_from_message_id = null,
+    ?string $forward_signature = null,
+    ?string $forward_sender_name = null,
+    ?int $forward_date = null,
+    ?bool $is_topic_message = null,
+    ?bool $is_automatic_forward = null,
+    ?array $reply_to_message = null,
+    ?array $via_bot = null,
+    ?int $edit_date = null,
+    ?bool $has_protected_content = null,
+    ?string $media_group_id = null,
+    ?string $author_signature = null,
+    ?string $text = null,
+    ?array $entities = null,
+    ?array $animation = null,
+    ?array $audio = null,
+    ?array $document = null,
+    ?array $photo = null,
+    ?array $sticker = null,
+    ?array $video = null,
+    ?array $video_note = null,
+    ?array $voice = null,
+    ?string $caption = null,
+    ?array $caption_entities = null,
+    ?bool $has_media_spoiler = null,
+    ?array $contact = null,
+    ?array $dice = null,
+    ?array $game = null,
+    ?array $poll = null,
+    ?array $venue = null,
+    ?array $location = null,
+    ?array $new_chat_members = null,
+    ?array $left_chat_member = null,
+    ?string $new_chat_title = null,
+    ?array $new_chat_photo = null,
+    ?bool $delete_chat_photo = null,
+    ?bool $group_chat_created = null,
+    ?bool $supergroup_chat_created = null,
+    ?bool $channel_chat_created = null,
+    ?array $message_auto_delete_timer_changed = null,
+    ?int $migrate_to_chat_id = null,
+    ?int $migrate_from_chat_id = null,
+    ?array $pinned_message = null,
+    ?array $invoice = null,
+    ?array $successful_payment = null,
+    ?array $user_shared = null,
+    ?array $chat_shared = null,
+    ?string $connected_website = null,
+    ?array $write_access_allowed = null,
+    ?array $passport_data = null,
+    ?array $proximity_alert_triggered = null,
+    ?array $forum_topic_created = null,
+    ?array $forum_topic_edited = null,
+    ?array $forum_topic_closed = null,
+    ?array $forum_topic_reopened = null,
+    ?array $general_forum_topic_hidden = null,
+    ?array $general_forum_topic_unhidden = null,
+    ?array $video_chat_scheduled = null,
+    ?array $video_chat_started = null,
+    ?array $video_chat_ended = null,
+    ?array $video_chat_participants_invited = null,
+    ?array $web_app_data = null,
+    ?array $reply_markup = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function MessageId(int $messageId): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function MessageEntity(
+    string $type,
+    int $offset,
+    int $length,
+    ?string $url = null,
+    ?array $user = null,
+    ?string $language = null,
+    ?string $custom_emoji_id = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PhotoSize(
+    string $file_id,
+    string $file_unique_id,
+    int $width,
+    int $height,
+    ?int $file_size = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Animation(
+    string $file_id,
+    string $file_unique_id,
+    int $width,
+    int $height,
+    int $duration,
+    ?array $thumbnail = null,
+    ?string $file_name = null,
+    ?string $mime_type = null,
+    ?int $file_size = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Audio(
+    string $file_id,
+    string $file_unique_id,
+    int $duration,
+    ?string $performer = null,
+    ?string $title = null,
+    ?string $file_name = null,
+    ?string $mime_type = null,
+    ?int $file_size = null,
+    ?array $thumbnail = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Document(
+    string $file_id,
+    string $file_unique_id,
+    ?array $thumbnail = null,
+    ?string $file_name = null,
+    ?string $mime_type = null,
+    ?int $file_size = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Video(
+    string $file_id,
+    string $file_unique_id,
+    int $width,
+    int $height,
+    int $duration,
+    ?array $thumbnail = null,
+    ?string $file_name = null,
+    ?string $mime_type = null,
+    ?int $file_size = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function VideoNote(
+    string $file_id,
+    string $file_unique_id,
+    int $length,
+    int $duration,
+    ?array $thumbnail = null,
+    ?int $file_size = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Voice(
+    string $file_id,
+    string $file_unique_id,
+    int $duration,
+    ?string $mime_type = null,
+    ?int $file_size = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Contact(
+    string $phone_number,
+    string $first_name,
+    ?string $last_name = null,
+    ?int $user_id,
+    ?string $vcard = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Dice(string $emoji, int $value): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PollOption(string $text, int $voter_count): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PollAnswer(string $poll_id, array $user, array $option_ids): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Poll(
+    string $id,
+    string $question,
+    array $options,
+    int $total_voter_count,
+    bool $is_closed,
+    bool $is_anonymous,
+    string $type,
+    bool $allows_multiple_answers,
+    ?int $correct_option_id = null,
+    ?string $explanation = null,
+    ?array $explanation_entities = null,
+    ?int $open_period = null,
+    ?int $close_date = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Location(
+    float|string $longitude,
+    float|string $latitude,
+    null|float|string $horizontal_accuracy = null,
+    ?int $live_period = null,
+    ?int $heading = null,
+    ?int $proximity_alert_radius = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Venue(
+    array $location,
+    string $title,
+    string $address,
+    ?string $foursquare_id = null,
+    ?string $foursquare_type = null,
+    ?string $google_place_id = null,
+    ?string $google_place_type = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function WebAppData(string $data, string $button_text): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ProximityAlertTriggered(array $traveler, array $watcher, int $distance): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function MessageAutoDeleteTimerChanged(int $message_auto_delete_time): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ForumTopicCreated(string $name, int $icon_color, ?string $icon_custom_emoji_id = null): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ForumTopicClosed(): array {
+    return [];
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ForumTopicEdited(?string $name = null, ?string $icon_custom_emoji_id = null): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ForumTopicReopened(): array {
+    return [];
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function GeneralForumTopicHidden(): array {
+    return [];
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function GeneralForumTopicUnhidden(): array {
+    return [];
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function UserShared(int $request_id, int $user_id): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatShared(int $request_id, int $chat_id): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function WriteAccessAllowed(?string $web_app_name = null): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function VideoChatScheduled(int $start_date): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function VideoChatStarted(): array {
+    return [];
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function VideoChatEnded(int $duration): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function VideoChatParticipantsInvited(array $users): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function UserProfilePhotos(int $total_count, array $photos): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function File(
+    string $file_id,
+    string $file_unique_id,
+    ?int $file_size = null,
+    ?string $file_path = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function WebAppInfo(string $url): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ReplyKeyboardMarkup(
+    array $keyboard,
+    ?bool $is_persistent = null,
+    ?bool $resize_keyboard = null,
+    ?bool $one_time_keyboard = null,
+    ?bool $selective = null,
+    ?string $input_field_placeholder = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function KeyboardButton(
+    string $text,
+    ?array $request_user = null,
+    ?array $request_chat = null,
+    ?bool $request_contact = null,
+    ?bool $request_location = null,
+    ?array $request_poll = null,
+    ?array $web_app = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function KeyboardButtonRequestUser(
+    int $request_id,
+    ?bool $user_is_bot = null,
+    ?bool $user_is_premium = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function KeyboardButtonRequestChat(
+    int $request_id,
+    bool $chat_is_channel,
+    ?bool $chat_is_forum = null,
+    ?bool $chat_has_username = null,
+    ?bool $chat_is_created = null,
+    ?array $user_administrator_rights = null,
+    ?array $bot_administrator_rights = null,
+    ?bool $bot_is_member = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function KeyboardButtonPollType(?string $type = null): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ReplyKeyboardRemove(bool $remove_keyboard = true, ?bool $selective = null): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InlineKeyboardMarkup(array $inline_keyboard): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InlineKeyboardButton(
+    string $text,
+    ?string $url = null,
+    ?string $callback_data = null,
+    ?array $web_app = null,
+    ?array $login_url = null,
+    ?string $switch_inline_query = null,
+    ?array $switch_inline_query_chosen_chat = null,
+    ?array $callback_game = null,
+    ?bool $pay = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function LoginUrl(
+    string $url,
+    ?string $forward_text = null,
+    ?string $bot_username = null,
+    ?bool $request_write_access = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function SwitchInlineQueryChosenChat(
+    ?string $query = null,
+    ?bool $allow_user_chats = null,
+    ?bool $allow_bot_chats = null,
+    ?bool $allow_group_chats = null,
+    ?bool $allow_channel_chats = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function CallbackQuery(
+    string $id,
+    array $from,
+    ?array $message = null,
+    ?string $inline_message_id = null,
+    ?string $chat_instance = null,
+    ?string $data = null,
+    ?string $game_short_name = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ForceReply(
+    bool $force_reply = true,
+    ?string $input_field_placeholder = null,
+    ?bool $selective = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatPhoto(
+    string $small_file_id,
+    string $small_file_unique_id,
+    string $big_file_id,
+    string $big_file_unique_id,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatInviteLink(
+    string $invite_link,
+    array $creator,
+    bool $creates_join_request,
+    bool $is_primary,
+    bool $is_revoked,
+    ?string $name = null,
+    ?int $expire_date = null,
+    ?int $member_limit = null,
+    ?int $pending_join_request_count = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatAdministratorRights(
+    ?bool $is_anonymous = null,
+    ?bool $can_manage_chat = null,
+    ?bool $can_delete_messages = null,
+    ?bool $can_manage_video_chats = null,
+    ?bool $can_restrict_members = null,
+    ?bool $can_promote_members = null,
+    ?bool $can_change_info = null,
+    ?bool $can_invite_users = null,
+    ?bool $can_post_messages = null,
+    ?bool $can_edit_messages = null,
+    ?bool $can_pin_messages = null,
+    ?bool $can_manage_topics = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+// function ChatMember(): array {
+//     return __removeNullValues(get_defined_vars());
+// }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatMemberOwner(
+    string $status,
+    array $user,
+    bool $is_anonymous,
+    ?string $custom_title = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatMemberAdministrator(
+    string $status,
+    array $user,
+    bool $can_be_edited,
+    bool $is_anonymous,
+    bool $can_manage_chat,
+    bool $can_delete_messages,
+    bool $can_manage_video_chats,
+    bool $can_restrict_members,
+    bool $can_promote_members,
+    bool $can_change_info,
+    bool $can_invite_users,
+    ?bool $can_post_messages = null,
+    ?bool $can_edit_messages = null,
+    ?bool $can_pin_messages = null,
+    ?bool $can_manage_topics = null,
+    ?bool $custom_title = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatMemberMember(string $status, array $user): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatMemberRestricted(
+    string $status,
+    array $user,
+    bool $is_member,
+    bool $can_send_messages,
+    bool $can_send_audios,
+    bool $can_send_documents,
+    bool $can_send_photos,
+    bool $can_send_videos,
+    bool $can_send_video_notes,
+    bool $can_send_voice_notes,
+    bool $can_send_polls,
+    bool $can_send_other_messages,
+    bool $can_add_web_page_previews,
+    bool $can_change_info,
+    bool $can_invite_users,
+    bool $can_pin_messages,
+    bool $can_manage_topics,
+    int $until_date,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatMemberLeft(string $status, array $user): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatMemberBanned(string $status, array $user, int $until_date): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatMemberUpdated(
+    array $chat,
+    array $from,
+    int $date,
+    array $old_chat_member,
+    array $new_chat_member,
+    ?array $invite_link = null,
+    ?bool $via_chat_folder_invite_link = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatJoinRequest(
+    array $chat,
+    array $from,
+    int $user_chat_id,
+    int $date,
+    ?string $bio = null,
+    ?array $invite_link = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatPermissions(
+    ?bool $can_send_messages = null,
+    ?bool $can_send_audios = null,
+    ?bool $can_send_documents = null,
+    ?bool $can_send_photos = null,
+    ?bool $can_send_videos = null,
+    ?bool $can_send_video_notes = null,
+    ?bool $can_send_voice_notes = null,
+    ?bool $can_send_polls = null,
+    ?bool $can_send_other_messages = null,
+    ?bool $can_add_web_page_previews = null,
+    ?bool $can_change_info = null,
+    ?bool $can_invite_users = null,
+    ?bool $can_pin_messages = null,
+    ?bool $can_manage_topics = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ChatLocation(array $location, string $address): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ForumTopic(
+    int $message_thread_id,
+    string $name,
+    int $icon_color,
+    ?string $icon_custom_emoji_id = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function BotCommand(string $command, string $description): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function BotCommandScope(string $type, null|int|string $chat_id = null, ?int $user_id = null): array {
+    if (!in_array($type, _botCommandScopeTypes())) {
+        throw new Exception("Invalid scope type '{$type}'!");
+    }
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function BotName(string $name): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function BotDescription(string $description): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function BotShortDescription(string $short_description): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function MenuButton(string $type, ?string $text = null, ?array $web_app = null): array {
+    if (!in_array($type, _menuButtonTypes())) {
+        throw new Exception("Invalid menu button type '{$type}'!");
+    }
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function MenuButtonCommands(string $type): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function MenuButtonWebApp(string $type, string $text, array $web_app): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function MenuButtonDefault(string $type): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ResponseParameters(?int $migrate_to_chat_id = null, ?int $retry_after = null): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InputMedia(array ...$media): array {
+    return [...$media];
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InputMediaAnimation(
+    string $media,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?bool $has_spoiler = null,
+): array {
+    return __removeNullValues(array_merge(['type' => INPUT_MEDIA_TYPE_ANIMATION], get_defined_vars()));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InputMediaDocument(
+    string $media,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?bool $has_spoiler = null,
+    ?string $thumbnail = null,
+    ?bool $disable_content_type_detection = null,
+): array {
+    return __removeNullValues(array_merge(['type' => INPUT_MEDIA_TYPE_DOCUMENT], get_defined_vars()));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InputMediaAudio(
+    string $media,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?string $thumbnail = null,
+    ?int $duration = null,
+    ?int $performer = null,
+    ?string $title = null,
+): array {
+    return __removeNullValues(array_merge(['type' => INPUT_MEDIA_TYPE_AUDIO], get_defined_vars()));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InputMediaPhoto(
+    string $media,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?bool $has_spoiler = null,
+): array {
+    return __removeNullValues(array_merge(['type' => INPUT_MEDIA_TYPE_PHOTO], get_defined_vars()));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InputMediaVideo(
+    string $media,
+    ?string $thumbnail = null,
+    ?string $caption = null,
+    ?string $parse_mode = null,
+    ?array $caption_entities = null,
+    ?bool $has_spoiler = null,
+    ?int $width = null,
+    ?int $height = null,
+    ?int $duration = null,
+    ?bool $supports_streaming = null,
+): array {
+    return __removeNullValues(array_merge(['type' => 'video'], get_defined_vars()));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+/** It's not ready yet */
+// function InputFile(string $filePath): CURLFile { 
+//     if (file_exists($filePath)) {
+//         throw new Exception("file '{$filePath}' does not exist!");
+//     }
+//     return new CURLFile($filePath);
+// }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Sticker(
+    string $file_id,
+    string $file_unique_id,
+    string $type,
+    int $width,
+    int $height,
+    bool $is_animated,
+    bool $is_video,
+    ?array $thumbnail = null,
+    ?string $emoji = null,
+    ?string $set_name = null,
+    ?array $premium_animation = null,
+    ?array $mask_position = null,
+    ?string $custom_emoji_id = null,
+    ?string $needs_repainting = null,
+    ?string $file_size = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function StickerSet(
+    string $name,
+    string $title,
+    string $sticker_type,
+    bool $is_animated,
+    bool $is_video,
+    array $stickers,
+    array $thumbnail = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function MaskPosition(
+    string $point,
+    float $x_shift,
+    float $y_shift,
+    float $scale,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InputSticker(
+    string $sticker,
+    array $emoji_list,
+    ?array $mask_position = null,
+    ?array $keywords = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InlineQuery(
+    string $id,
+    array $from,
+    string $query,
+    string $offset,
+    ?string $chat_type = null,
+    ?array $location = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InlineQueryResultsButton(
+    string $text,
+    ?array $web_app = null,
+    ?string $start_parameter = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function InlineQueryResultCachedAudio(
     string $type,
     string|int $id,
     string $audio_file_id,
@@ -2010,10 +2976,10 @@ function inlineQueryResultCachedAudio(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultCachedDocument(
+function InlineQueryResultCachedDocument(
     string $type,
     string|int $id,
     string $title,
@@ -2025,10 +2991,10 @@ function inlineQueryResultCachedDocument(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultCachedGif(
+function InlineQueryResultCachedGif(
     string $type,
     string|int $id,
     string $gif_file_id,
@@ -2039,10 +3005,10 @@ function inlineQueryResultCachedGif(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultCachedMpeg4Gif(
+function InlineQueryResultCachedMpeg4Gif(
     string $type,
     string|int $id,
     string $mpeg4_file_id,
@@ -2053,10 +3019,10 @@ function inlineQueryResultCachedMpeg4Gif(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultCachedPhoto(
+function InlineQueryResultCachedPhoto(
     string $type,
     string|int $id,
     string $photo_file_id,
@@ -2068,20 +3034,20 @@ function inlineQueryResultCachedPhoto(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultCachedSticker(
+function InlineQueryResultCachedSticker(
     string $type,
     string|int $id,
     string $sticker_file_id,
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultCachedVideo(
+function InlineQueryResultCachedVideo(
     string $type,
     string|int $id,
     string $video_file_id,
@@ -2093,10 +3059,10 @@ function inlineQueryResultCachedVideo(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultCachedVoice(
+function InlineQueryResultCachedVoice(
     string $type,
     string|int $id,
     string $voice_file_id,
@@ -2107,10 +3073,10 @@ function inlineQueryResultCachedVoice(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultArticle(
+function InlineQueryResultArticle(
     string $type,
     string|int $id,
     string $title,
@@ -2123,10 +3089,10 @@ function inlineQueryResultArticle(
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultPhoto(
+function InlineQueryResultPhoto(
     string $type,
     string|int $id,
     string $photo_url,
@@ -2141,10 +3107,10 @@ function inlineQueryResultPhoto(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultGif(
+function InlineQueryResultGif(
     string $type,
     string|int $id,
     string $gif_url,
@@ -2160,10 +3126,10 @@ function inlineQueryResultGif(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultAudio(
+function InlineQueryResultAudio(
     string $type,
     string|int $id,
     string $audio_url,
@@ -2176,10 +3142,10 @@ function inlineQueryResultAudio(
     ?array $reply_markup,
     ?array $input_message_content,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultVoice(
+function InlineQueryResultVoice(
     string $type,
     string|int $id,
     string $voice_url,
@@ -2191,10 +3157,10 @@ function inlineQueryResultVoice(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultDocument(
+function InlineQueryResultDocument(
     string $type,
     string|int $id,
     string $document_url,
@@ -2210,16 +3176,16 @@ function inlineQueryResultDocument(
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultLocation(
+function InlineQueryResultLocation(
     string $type,
     string|int $id,
-    float $latitude,
-    float $longitude,
+    float|string $latitude,
+    float|string $longitude,
     string $title,
-    ?float $horizontal_accuracy = null,
+    null|float|string $horizontal_accuracy = null,
     ?int $live_period = null,
     ?int $heading = null,
     ?int $proximity_alert_radius = null,
@@ -2229,14 +3195,14 @@ function inlineQueryResultLocation(
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultVenue(
+function InlineQueryResultVenue(
     string $type,
     string|int $id,
-    float $latitude,
-    float $longitude,
+    float|string $latitude,
+    float|string $longitude,
     string $title,
     string $address,
     ?string $foursquare_id = null,
@@ -2249,10 +3215,10 @@ function inlineQueryResultVenue(
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultContact(
+function InlineQueryResultContact(
     string $type,
     string|int $id,
     string $phone_number,
@@ -2265,19 +3231,19 @@ function inlineQueryResultContact(
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultGame(
+function InlineQueryResultGame(
     string $type,
     string|int $id,
     string $game_short_name,
     ?array $reply_markup = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultMpeg4Gif(
+function InlineQueryResultMpeg4Gif(
     string $type,
     string|int $id,
     string $mpeg4_url,
@@ -2293,10 +3259,10 @@ function inlineQueryResultMpeg4Gif(
     ?array $reply_markup = null,
     ?array $input_message_content= null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryResultVideo(
+function InlineQueryResultVideo(
     string $type,
     string|int $id,
     string $video_url,
@@ -2313,32 +3279,32 @@ function inlineQueryResultVideo(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inputTextMessageContent(
+function InputTextMessageContent(
     string $message_text,
     ?string $parse_mode = null,
     ?array $entities = null,
     ?bool $disable_web_page_preview = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inputLocationMessageContent(
-    float $latitude,
-    float $longitude,
-    ?float $horizontal_accuracy = null,
+function InputLocationMessageContent(
+    float|string $latitude,
+    float|string $longitude,
+    null|float|string $horizontal_accuracy = null,
     ?int $live_period = null,
     ?int $heading = null,
     ?int $proximity_alert_radius = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inputVenueMessageContent(
-    float $latitude,
-    float $longitude,
+function InputVenueMessageContent(
+    float|string $latitude,
+    float|string $longitude,
     string $title,
     string $address,
     string $foursquare_id = null,
@@ -2346,19 +3312,19 @@ function inputVenueMessageContent(
     string $google_place_id = null,
     string $google_place_type = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inputContactMessageContent(
+function InputContactMessageContent(
     string $phone_number,
     string $first_name,
     ?string $last_name = null,
     ?string $vcard = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inputInvoiceMessageContent(
+function InputInvoiceMessageContent(
     string $title,
     string $description,
     string $payload,
@@ -2380,603 +3346,247 @@ function inputInvoiceMessageContent(
     ?bool $send_email_to_provider = null,
     ?bool $is_flexible = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function row(array ...$buttons): array {
-    return [...$buttons];
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function rows(array ...$rows): array {
-    return [...$rows];
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineKeyboard(array $inline_keyboard): array {
-    return _removeNullValues(get_defined_vars());
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineKeyboardButton(
-    string $text,
-    ?string $url = null,
-    ?string $callback_data = null,
-    ?array $web_app = null,
-    ?array $login_url = null,
-    ?string $switch_inline_query = null,
-    ?array $switch_inline_query_chosen_chat = null,
-    ?array $callback_game = null,
-    ?bool $pay = null,
+function ChosenInlineResult(
+    string $query,
+    string $result_id,
+    array $from,
+    ?array $location = null,
+    ?string $inline_message_id = null,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function keyboard(
-    array $keyboard,
-    ?bool $is_persistent = null,
-    ?bool $resize_keyboard = null,
-    ?bool $one_time_keyboard = null,
-    ?bool $selective = null,
-    ?string $input_field_placeholder = null,
+function SentWebAppMessage(string $inline_message_id): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function LabeledPrice(string $label, int $amount): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Invoice(
+    string $title,
+    string $description,
+    string $start_parameter,
+    string $currency,
+    int $total_amount,
 ): array {
-    return _removeNullValues(get_defined_vars());
+    return __removeNullValues(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function keyboardButton(
-    string $text,
-    ?array $request_user = null,
-    ?array $request_chat = null,
-    ?bool $request_contact = null,
-    ?bool $request_location = null,
-    ?array $request_poll = null,
-    ?array $web_app = null,
+function ShippingAddress(
+    string $country_code,
+    string $state,
+    array $city,
+    string $street_line1,
+    string $street_line2,
+    string $post_code,
 ): array {
-    return _removeNullValues(get_defined_vars());
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function removeKeyboard(bool $remove_keyboard = true, ?bool $selective = null): array {
-    return _removeNullValues(get_defined_vars());
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function forceReply(bool $force_reply = true, ?string $input_field_placeholder = null, ?bool $selective = null,): array {
-    return _removeNullValues(get_defined_vars());
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chat(?string $keys = null): mixed {
-    $message = message();
-    $updateType = updateType();
-    $chat = match ($updateType) {
-        UPDATE_TYPE_MESSAGE,
-        UPDATE_TYPE_CALLBACK_QUERY,
-        UPDATE_TYPE_EDITED_MESSAGE,
-        UPDATE_TYPE_CHANNEL_POST,
-        UPDATE_TYPE_MY_CHAT_MEMBER,
-        UPDATE_TYPE_CHAT_MEMBER,
-        UPDATE_TYPE_CHAT_JOIN_REQUEST,
-        UPDATE_TYPE_EDITED_CHANNEL_POST => $message['chat'],
-        default => null,
-    };
-    return _arrayGet($chat, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function file(?string $keys = null): mixed {
-    if (!isFile()) {
-        throw new Exception('The message type is not a file, you called this function in inappropriate place!');
-    }
-    $function = __NAMESPACE__.'\\'._snakeToCamelCase(messageType());
-    return $function($keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isFile(): bool {
-    return in_array(messageType(), fileTypes());
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function photo(?string $keys = null): mixed {
-    $photos = photos();
-    return _arrayGet(end($photos), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function photos(): ?array {
-    return message(MESSAGE_TYPE_PHOTO);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function gamePhoto(?string $keys = null): mixed {
-    $gamePhotos = gamePhotos();
-    return _arrayGet(end($gamePhotos), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function gamePhotos(): ?array {
-    return message(MESSAGE_TYPE_GAME);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function replyMarkup(?string $keys = null): mixed {
-    return _arrayGet(message('reply_markup'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function viaBot(?string $keys = null): mixed {
-    return _arrayGet(message('via_bot'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function poll(?string $keys = null): mixed {
-    return _arrayGet(message('poll'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function pollOptions(): mixed {
-    return _arrayGet(poll('options'));
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chatMember(?string $keys = null): mixed {
-    return _arrayGet(update(UPDATE_TYPE_CHAT_MEMBER), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function myChatMember(?string $keys = null): mixed {
-    return _arrayGet(update(UPDATE_TYPE_MY_CHAT_MEMBER), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function oldChatMember(?string $keys = null): mixed {
-    $key = 'old_chat_member';
-    $updateType = updateType();
-    $oldChatMember = $updateType === UPDATE_TYPE_CHAT_MEMBER ? chatMember($key) : myChatMember($key);
-    return _arrayGet($oldChatMember, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function newChatMember(?string $keys = null): mixed {
-    $key = 'new_chat_member';
-    $updateType = updateType();
-    $newChatMember = $updateType === UPDATE_TYPE_CHAT_MEMBER ? chatMember($key) : myChatMember($key);
-    return _arrayGet($newChatMember, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function document(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_DOCUMENT), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function sticker(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_STICKER), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function video(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_VIDEO), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function videoNote(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_VIDEO_NOTE), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function voice(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_VOICE), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function audio(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_AUDIO), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function dice(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_DICE), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function game(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_GAME), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function venue(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_VENUE), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function location(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_LOCATION), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function contact(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_CONTACT), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function animation(?string $keys = null): mixed {
-    return _arrayGet(message(MESSAGE_TYPE_ANIMATION), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function text(): ?string {
-    return message(MESSAGE_TYPE_TEXT);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function caption(): ?string {
-    return message('caption');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function entities(): ?array {
-    return message('entities') ?? message('caption_entities');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function from(?string $keys = null): mixed {
-    $updateType = updateType();
-    $update = update();
-    $user = match ($updateType) {
-        UPDATE_TYPE_POLL_ANSWER => $update[$updateType]['user'],
-        UPDATE_TYPE_MESSAGE,
-        UPDATE_TYPE_EDITED_MESSAGE,
-        UPDATE_TYPE_MY_CHAT_MEMBER,
-        UPDATE_TYPE_CHAT_MEMBER,
-        UPDATE_TYPE_CHAT_JOIN_REQUEST,
-        UPDATE_TYPE_INLINE_QUERY,
-        UPDATE_TYPE_CHOSEN_INLINE_RESULT,
-        UPDATE_TYPE_SHIPPING_QUERY,
-        UPDATE_TYPE_PRE_CHECKOUT_QUERY,
-        UPDATE_TYPE_CALLBACK_QUERY => $update[$updateType]['from'],
-        default => null,
-    };
-    return _arrayGet($user, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function user(?string $keys = null): mixed {
-    return from($keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function userId(): ?int {
-    return user('id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chatId(): ?int {
-    return chat('id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function callbackQuery(?string $keys = null): mixed {
-    return _arrayGet(update(UPDATE_TYPE_CALLBACK_QUERY), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function callbackQueryData(): ?string {
-    return callbackQuery('data');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQuery(?string $keys = null): mixed {
-    return _arrayGet(update(UPDATE_TYPE_INLINE_QUERY), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryText(): ?string {
-    return inlineQuery('query');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chosenInlineResult(?string $keys = null): ?string {
-    return _arrayGet(update(UPDATE_TYPE_CHOSEN_INLINE_RESULT), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chosenInlineResultId(): ?string {
-    return chosenInlineResult('result_id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chosenInlineResultQuery(): ?string {
-    return chosenInlineResult('query');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chosenInlineResultInlineMessageId(): ?string {
-    return chosenInlineResult('inline_message_id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function shippingQuery(?string $keys = null): mixed {
-    return _arrayGet(update(UPDATE_TYPE_SHIPPING_QUERY), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function preCheckoutQuery(?string $keys = null): mixed {
-    return _arrayGet(update(UPDATE_TYPE_PRE_CHECKOUT_QUERY), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function pollAnswer(?string $keys = null): mixed {
-    return _arrayGet(update(UPDATE_TYPE_POLL_ANSWER), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isMessage(): bool {
-    return updateType() === UPDATE_TYPE_MESSAGE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isCallbackQuery(): bool {
-    return updateType() === UPDATE_TYPE_CALLBACK_QUERY;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isEditedMessage(): bool {
-    return updateType() === UPDATE_TYPE_EDITED_MESSAGE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isChannelPost(): bool {
-    return updateType() === UPDATE_TYPE_CHANNEL_POST;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isEditedChannelPost(): bool {
-    return updateType() === UPDATE_TYPE_EDITED_CHANNEL_POST;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isShippingQuery(): bool {
-    return updateType() === UPDATE_TYPE_SHIPPING_QUERY;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isChatJoinRequest(): bool {
-    return updateType() === UPDATE_TYPE_CHAT_JOIN_REQUEST;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isInlineQuery(): bool {
-    return updateType() === UPDATE_TYPE_INLINE_QUERY;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isMyChatMember(): bool {
-    return updateType() === UPDATE_TYPE_MY_CHAT_MEMBER;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isChatMember(): bool {
-    return updateType() === UPDATE_TYPE_CHAT_MEMBER;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isChosenInlineResult(): bool {
-    return updateType() === UPDATE_TYPE_CHOSEN_INLINE_RESULT;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isPreCheckOutQuery(): bool {
-    return updateType() === UPDATE_TYPE_PRE_CHECKOUT_QUERY;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isPollAnswer(): bool {
-    return updateType() === UPDATE_TYPE_POLL;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isPoll(bool $checkMessageType = false): bool {
-    if ($checkMessageType) {
-        return messageType() === MESSAGE_TYPE_POLL;
-    }
-    return updateType() === UPDATE_TYPE_POLL;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isPhoto(): bool {
-    return messageType() === MESSAGE_TYPE_PHOTO;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isSticker(): bool {
-    return messageType() === MESSAGE_TYPE_STICKER;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isAnimation(): bool {
-    return messageType() === MESSAGE_TYPE_ANIMATION;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isVideo(): bool {
-    return messageType() === MESSAGE_TYPE_VIDEO;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isVideoNote(): bool {
-    return messageType() === MESSAGE_TYPE_VIDEO_NOTE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isDice(): bool {
-    return messageType() === MESSAGE_TYPE_DICE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isGame(): bool {
-    return messageType() === MESSAGE_TYPE_GAME;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isVenue(): bool {
-    return messageType() === MESSAGE_TYPE_VENUE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isVoice(): bool {
-    return messageType() === MESSAGE_TYPE_VOICE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isDocument(): bool {
-    return messageType() === MESSAGE_TYPE_DOCUMENT;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isLocation(): bool {
-    return messageType() === MESSAGE_TYPE_LOCATION;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isContact(): bool {
-    return messageType() === MESSAGE_TYPE_CONTACT;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isAudio(): bool {
-    return messageType() === MESSAGE_TYPE_AUDIO;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isText(): bool {
-    return messageType() === MESSAGE_TYPE_TEXT;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isSender(): bool {
-    return chatType() === CHAT_TYPE_SENDER;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isGroup(): bool {
-    return chatType() === CHAT_TYPE_GROUP;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isSupergroup(): bool {
-    return chatType() === CHAT_TYPE_SUPERGROUP;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isPrivate(): ?bool {
-    return chatType() === CHAT_TYPE_PRIVATE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isChannel(): ?bool {
-    return chatType() === CHAT_TYPE_CHANNEL;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function isForwarded(): ?bool {
-    return boolval(message('forward_date') ?? message('forward_sender_name'));
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function forwardFrom(?string $keys = null): mixed {
-    return _arrayGet(message('forward_from'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function forwardFromChat(?string $keys = null): mixed {
-    return _arrayGet(message('forward_from_chat'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function forwardFromMessageId(): ?int {
-    return message('forward_from_message_id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function forwardDate(): ?int {
-    return message('forward_date');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function message(?string $keys = null): mixed {
-    $update = update();
-    $updateType = updateType();
-    $message = match ($updateType) {
-        UPDATE_TYPE_CALLBACK_QUERY => $update[$updateType][UPDATE_TYPE_MESSAGE],
-        UPDATE_TYPE_MESSAGE,
-        UPDATE_TYPE_EDITED_MESSAGE,
-        UPDATE_TYPE_CHANNEL_POST,
-        UPDATE_TYPE_EDITED_CHANNEL_POST => $update[$updateType],
-        default => null,
-    };
-    return _arrayGet($message, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function repliedMessage(?string $keys = null): mixed {
-    return _arrayGet(message('reply_to_message'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageId(): ?int {
-    return message('message_id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function callbackQueryId(): ?int {
-    return callbackQuery('id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function inlineQueryId(): ?int {
-    return inlineQuery('id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function mediaGroupId(): ?int {
-    return message('media_group_id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateId(): ?int {
-    return update('update_id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function update(?string $keys = null): mixed {
-    return _arrayGet(_update(), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chatType(): ?string {
-    return chat('type');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chatTypes(array $exclude = []): array {
-    return array_diff([
-        CHAT_TYPE_GROUP,
-        CHAT_TYPE_SUPERGROUP,
-        CHAT_TYPE_PRIVATE,
-        CHAT_TYPE_CHANNEL,
-    ], $exclude);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chatMemberStatuses(array $exclude = []): array {
-    return array_diff([
-        CHAT_MEMBER_STATUS_ADMINISTRATOR,
-        CHAT_MEMBER_STATUS_CREATOR,
-        CHAT_MEMBER_STATUS_RESTRICTED,
-        CHAT_MEMBER_STATUS_LEFT,
-        CHAT_MEMBER_STATUS_MEMBER,
-        CHAT_MEMBER_STATUS_KICKED,
-    ], $exclude);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function formattingOptions(array $exclude = []): array {
-    return array_diff([
-        PARSE_MODE_HTML,
-        PARSE_MODE_MARKDOWN,
-        PARSE_MODE_MARKDOWN_V2,
-    ], $exclude);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function chatActions(array $exclude = []): array {
-    return array_diff([
-        CHAT_ACTION_TYPING,
-        CHAT_ACTION_UPLOAD_PHOTO,
-        CHAT_ACTION_RECORD_VIDEO,
-        CHAT_ACTION_UPLOAD_VIDEO,
-        CHAT_ACTION_RECORD_VOICE,
-        CHAT_ACTION_UPLOAD_VOICE,
-        CHAT_ACTION_UPLOAD_DOCUMENT,
-        CHAT_ACTION_CHOOSE_STICKER,
-        CHAT_ACTION_FIND_LOCATION,
-        CHAT_ACTION_RECORD_VIDEO_NOTE,
-        CHAT_ACTION_UPLOAD_VIDEO_NOTE,
-    ], $exclude);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateTypes(array $exclude = []): array {
-    return array_diff([
-        UPDATE_TYPE_MESSAGE,
-        UPDATE_TYPE_EDITED_MESSAGE,
-        UPDATE_TYPE_CHANNEL_POST,
-        UPDATE_TYPE_EDITED_CHANNEL_POST,
-        UPDATE_TYPE_INLINE_QUERY,
-        UPDATE_TYPE_CHOSEN_INLINE_RESULT,
-        UPDATE_TYPE_CALLBACK_QUERY,
-        UPDATE_TYPE_SHIPPING_QUERY,
-        UPDATE_TYPE_PRE_CHECKOUT_QUERY,
-        UPDATE_TYPE_POLL,
-        UPDATE_TYPE_POLL_ANSWER,
-        UPDATE_TYPE_MY_CHAT_MEMBER,
-        UPDATE_TYPE_CHAT_MEMBER,
-        UPDATE_TYPE_CHAT_JOIN_REQUEST,
-    ], $exclude);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function updateType(): ?string {
-    $commonKeys = array_intersect(updateTypes(), array_keys(update()));
-    return array_shift($commonKeys) ?? null;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageTypes(array $exclude = []): array {
-    return array_diff([
-        MESSAGE_TYPE_TEXT,
-        MESSAGE_TYPE_STICKER,
-        MESSAGE_TYPE_ANIMATION,
-        MESSAGE_TYPE_VIDEO,
-        MESSAGE_TYPE_VIDEO_NOTE,
-        MESSAGE_TYPE_AUDIO,
-        MESSAGE_TYPE_VOICE,
-        MESSAGE_TYPE_DOCUMENT,
-        MESSAGE_TYPE_PHOTO,
-        MESSAGE_TYPE_LOCATION,
-        MESSAGE_TYPE_CONTACT,
-        MESSAGE_TYPE_POLL,
-        MESSAGE_TYPE_GAME,
-        MESSAGE_TYPE_DICE,
-        MESSAGE_TYPE_VENUE,
-    ], $exclude);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function messageType(): ?string {
-    return current(array_intersect(messageTypes(), array_keys(message())));
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function fileTypes(array $exclude = []): ?array {
-    return array_diff([
-        MESSAGE_TYPE_STICKER,
-        MESSAGE_TYPE_ANIMATION,
-        MESSAGE_TYPE_VIDEO,
-        MESSAGE_TYPE_VIDEO_NOTE,
-        MESSAGE_TYPE_AUDIO,
-        MESSAGE_TYPE_VOICE,
-        MESSAGE_TYPE_DOCUMENT,
-        MESSAGE_TYPE_PHOTO,
-    ], $exclude);
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function OrderInfo(
+    ?string $name = null,
+    ?string $phone_number = null,
+    ?string $email = null,
+    ?array $shipping_address = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ShippingOption(string $id, string $title, array $prices): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function SuccessfulPayment(
+    string $currency,
+    int $total_amount,
+    string $invoice_payload,
+    string $telegram_payment_charge_id,
+    string $provider_payment_charge_id,
+    ?string $shipping_option_id = null,
+    ?array $order_info = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function ShippingQuery(
+    string $id,
+    array $from,
+    string $invoice_payload,
+    array $shipping_address,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PreCheckoutQuery(
+    string $id,
+    array $from,
+    string $currency,
+    int $total_amount,
+    string $invoice_payload,
+    ?string $shipping_option_id = null,
+    ?array $order_info = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportData(array $data, array $credentials): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportFile(
+    string $file_id,
+    string $file_unique_id,
+    int $file_size,
+    int $file_date,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function EncryptedPassportElement(
+    string $type,
+    string $hash,
+    ?string $data = null,
+    ?string $phone_number = null,
+    ?string $email = null,
+    ?array $files = null,
+    ?array $front_side = null,
+    ?array $reverse_side = null,
+    ?array $selfie = null,
+    ?array $translation = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function EncryptedCredentials(string $data, string $hash, string $secret): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportElementErrorDataField(
+    string $source,
+    string $type,
+    string $field_name,
+    string $data_hash,
+    string $message,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportElementErrorFrontSide(
+    string $source,
+    string $type,
+    string $file_hash,
+    string $message,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportElementErrorReverseSide(
+    string $source,
+    string $type,
+    string $file_hash,
+    string $message,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportElementErrorSelfie(
+    string $source,
+    string $type,
+    string $file_hash,
+    string $message,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportElementErrorFile(
+    string $source,
+    string $type,
+    string $file_hash,
+    string $message,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportElementErrorFiles(
+    string $source,
+    string $type,
+    array $file_hashes,
+    string $message,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportElementErrorTranslationFile(
+    string $source,
+    string $type,
+    string $file_hash,
+    string $message,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportElementErrorTranslationFiles(
+    string $source,
+    string $type,
+    array $file_hashes,
+    string $message,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function PassportElementErrorUnspecified(
+    string $source,
+    string $type,
+    array $element_hash,
+    string $message,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function Game(
+    string $title,
+    string $description,
+    array $photo,
+    ?string $text = null,
+    ?array $text_entities = null,
+    ?array $animation = null,
+): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function CallbackGame(): array {
+    return [];
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function GameHighScore(int $position, array $user, int $score): array {
+    return __removeNullValues(get_defined_vars());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function getUpdates(
+    int $limit = 100,
+    int $timeout = 0,
+    ?int $offset = null,
+    ?array $allowed__updates = null,
+    ?array $_options = [],
+): array {
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMe(?array $_options = []): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function logOut(?array $_options = []): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function close(?array $_options = []): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteMessage(
@@ -2984,7 +3594,7 @@ function deleteMessage(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendMessage(
@@ -3001,7 +3611,7 @@ function sendMessage(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function forwardMessage(
@@ -3013,7 +3623,7 @@ function forwardMessage(
     ?bool $protect_content = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function copyMessage(
@@ -3031,7 +3641,7 @@ function copyMessage(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendPhoto(
@@ -3049,7 +3659,7 @@ function sendPhoto(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendAudio(
@@ -3070,7 +3680,7 @@ function sendAudio(
     ?string $thumbnail = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendDocument(
@@ -3089,7 +3699,7 @@ function sendDocument(
     ?bool $disable_content_type_detection = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVideo(
@@ -3112,7 +3722,7 @@ function sendVideo(
     ?bool $supports_streaming = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendAnimation(
@@ -3136,7 +3746,7 @@ function sendAnimation(
     ?int $duration = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVoice(
@@ -3153,7 +3763,7 @@ function sendVoice(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVideoNote(
@@ -3173,7 +3783,7 @@ function sendVideoNote(
     ?string $thumbnail = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendMediaGroup(
@@ -3186,12 +3796,12 @@ function sendMediaGroup(
     ?bool $allow_sending_without_reply = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendLocation(
-    ?float $latitude,
-    ?float $longitude,
+    float|string $latitude,
+    float|string $longitude,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?bool $disable_notification = null,
@@ -3199,20 +3809,20 @@ function sendLocation(
     ?int $reply_to_message_id = null,
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
-    ?float $horizontal_accuracy = null,
+    null|float|string $horizontal_accuracy = null,
     ?int $live_period = null,
     ?int $heading = null,
     ?int $proximity_alert_radius = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVenue(
     string $title,
     string $address,
-    ?float $latitude,
-    ?float $longitude,
+    float|string $latitude,
+    float|string $longitude,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?bool $disable_notification = null,
@@ -3226,7 +3836,7 @@ function sendVenue(
     ?string $google_place_type = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendContact(
@@ -3243,7 +3853,7 @@ function sendContact(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendPoll(
@@ -3268,7 +3878,7 @@ function sendPoll(
     ?bool $is_closed = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendDice(
@@ -3282,7 +3892,7 @@ function sendDice(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendFile(
@@ -3316,7 +3926,7 @@ function sendFile(
     ?string $emoji = null,
     ?array $_options = [],
 ): array {
-    $parameters = _removeNullValues(get_defined_vars());
+    $parameters = __removeNullValues(get_defined_vars());
     if (isset($document)) {
         return sendDocument(...$parameters);
     }
@@ -3349,7 +3959,7 @@ function sendChatAction(
     ?int $message_thread_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getUserProfilePhotos(
@@ -3358,14 +3968,14 @@ function getUserProfilePhotos(
     ?int $limit = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getFile(
     string $file_id,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function banChatMember(
@@ -3375,7 +3985,7 @@ function banChatMember(
     ?bool $revoke_messages = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unbanChatMember(
@@ -3384,7 +3994,7 @@ function unbanChatMember(
     ?bool $only_if_banned = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function restrictChatMember(
@@ -3396,7 +4006,7 @@ function restrictChatMember(
     ?int $until_date = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function promoteChatMember(
@@ -3416,7 +4026,7 @@ function promoteChatMember(
     ?bool $can_manage_topics = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatAdministratorCustomTitle(
@@ -3425,7 +4035,7 @@ function setChatAdministratorCustomTitle(
     string $custom_title,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function banChatSenderChat(
@@ -3433,7 +4043,7 @@ function banChatSenderChat(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unbanChatSenderChat(
@@ -3441,7 +4051,7 @@ function unbanChatSenderChat(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatPermissions(
@@ -3450,11 +4060,11 @@ function setChatPermissions(
     ?bool $use_independent_chat_permissions = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function exportChatInviteLink(null|int|string $chat_id = null, ?array $_options = []): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createChatInviteLink(
@@ -3465,7 +4075,7 @@ function createChatInviteLink(
     ?bool $creates_join_request = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editChatInviteLink(
@@ -3477,7 +4087,7 @@ function editChatInviteLink(
     ?bool $creates_join_request = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function revokeChatInviteLink(
@@ -3485,7 +4095,7 @@ function revokeChatInviteLink(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function approveChatJoinRequest(
@@ -3493,7 +4103,7 @@ function approveChatJoinRequest(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function declineChatJoinRequest(
@@ -3501,7 +4111,7 @@ function declineChatJoinRequest(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatPhoto(
@@ -3509,14 +4119,14 @@ function setChatPhoto(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteChatPhoto(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatTitle(
@@ -3524,7 +4134,7 @@ function setChatTitle(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatDescription(
@@ -3532,7 +4142,7 @@ function setChatDescription(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function pinChatMessage(
@@ -3541,7 +4151,7 @@ function pinChatMessage(
     ?bool $disable_notification = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unpinChatMessage(
@@ -3549,42 +4159,42 @@ function unpinChatMessage(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unpinAllChatMessages(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function leaveChat(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChat(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatAdministrators(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatMemberCount(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatMember(
@@ -3592,7 +4202,7 @@ function getChatMember(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatStickerSet(
@@ -3600,18 +4210,18 @@ function setChatStickerSet(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteChatStickerSet(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getForumTopicIconStickers(?array $_options = [],): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createForumTopic(
@@ -3621,7 +4231,7 @@ function createForumTopic(
     ?string $icon_custom_emoji_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editForumTopic(
@@ -3631,7 +4241,7 @@ function editForumTopic(
     ?string $icon_custom_emoji_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function closeForumTopic(
@@ -3639,7 +4249,7 @@ function closeForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function reopenForumTopic(
@@ -3647,7 +4257,7 @@ function reopenForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteForumTopic(
@@ -3655,7 +4265,7 @@ function deleteForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unpinAllForumTopicMessages(
@@ -3663,7 +4273,7 @@ function unpinAllForumTopicMessages(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editGeneralForumTopic(
@@ -3671,35 +4281,35 @@ function editGeneralForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function closeGeneralForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function reopenGeneralForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function hideGeneralForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function unhideGeneralForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerCallbackQuery(
@@ -3710,7 +4320,7 @@ function answerCallbackQuery(
     ?int $callback_query_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyCommands(
@@ -3719,7 +4329,7 @@ function setMyCommands(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteMyCommands(
@@ -3727,7 +4337,7 @@ function deleteMyCommands(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyCommands(
@@ -3735,7 +4345,7 @@ function getMyCommands(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyName(
@@ -3743,14 +4353,14 @@ function setMyName(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyName(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyDescription(
@@ -3758,14 +4368,14 @@ function setMyDescription(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyDescription(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyShortDescription(
@@ -3773,14 +4383,14 @@ function setMyShortDescription(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyShortDescription(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatMenuButton(
@@ -3788,14 +4398,14 @@ function setChatMenuButton(
     null|int $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getChatMenuButton(
     null|int $chat_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setMyDefaultAdministratorRights(
@@ -3803,14 +4413,14 @@ function setMyDefaultAdministratorRights(
     ?bool $for_channels = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMyDefaultAdministratorRights(
     ?bool $for_channels = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageText(
@@ -3824,7 +4434,7 @@ function editMessageText(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageCaption(
@@ -3837,7 +4447,7 @@ function editMessageCaption(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageMedia(
@@ -3848,22 +4458,22 @@ function editMessageMedia(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageLiveLocation(
-    float $latitude,
-    float $longitude,
+    float|string $latitude,
+    float|string $longitude,
     ?int $message_id = null,
     null|int|string $chat_id = null,
     ?string $inline_message_id = null,
     ?array $reply_markup = null,
-    ?float $horizontal_accuracy = null,
+    null|float|string $horizontal_accuracy = null,
     ?int $heading = null,
     ?int $proximity_alert_radius = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function stopMessageLiveLocation(
@@ -3873,7 +4483,7 @@ function stopMessageLiveLocation(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function editMessageReplyMarkup(
@@ -3883,7 +4493,7 @@ function editMessageReplyMarkup(
     ?string $inline_message_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function stopPoll(
@@ -3892,7 +4502,7 @@ function stopPoll(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendSticker(
@@ -3907,15 +4517,15 @@ function sendSticker(
     ?string $emoji = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getStickerSet(string $name, ?array $_options = []): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getCustomEmojiStickers(array $custom_emoji_ids, ?array $_options = []): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function uploadStickerFile(
@@ -3924,7 +4534,7 @@ function uploadStickerFile(
     ?int $user_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createNewStickerSet(
@@ -3937,7 +4547,7 @@ function createNewStickerSet(
     ?bool $needs_repainting = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function addStickerToSet(
@@ -3946,7 +4556,7 @@ function addStickerToSet(
     ?int $user_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerPositionInSet(
@@ -3954,11 +4564,11 @@ function setStickerPositionInSet(
     int $position,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteStickerFromSet(string $sticker, ?array $_options = []): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerEmojiList(
@@ -3966,7 +4576,7 @@ function setStickerEmojiList(
     array $emoji_list,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerKeywords(
@@ -3974,7 +4584,7 @@ function setStickerKeywords(
     ?array $keywords = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerMaskPosition(
@@ -3982,7 +4592,7 @@ function setStickerMaskPosition(
     ?array $mask_position = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerSetTitle(
@@ -3990,7 +4600,7 @@ function setStickerSetTitle(
     string $title,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setStickerSetThumbnail(
@@ -3999,7 +4609,7 @@ function setStickerSetThumbnail(
     ?string $thumbnail = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setCustomEmojiStickerSetThumbnail(
@@ -4007,11 +4617,11 @@ function setCustomEmojiStickerSetThumbnail(
     ?string $custom_emoji_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function deleteStickerSet(string $name, ?array $_options = []): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerInlineQuery(
@@ -4023,11 +4633,11 @@ function answerInlineQuery(
     ?string $inline_query_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerWebAppQuery(array $result, ?string $web_app_query_id = null, ?array $_options = []): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendInvoice(
@@ -4061,7 +4671,7 @@ function sendInvoice(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function createInvoiceLink(
@@ -4087,7 +4697,7 @@ function createInvoiceLink(
     ?bool $is_flexible = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerShippingQuery(
@@ -4097,7 +4707,7 @@ function answerShippingQuery(
     ?string $shipping_query_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function answerPreCheckoutQuery(
@@ -4106,11 +4716,11 @@ function answerPreCheckoutQuery(
     ?string $pre_checkout_query_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setPassportDataErrors(int $user_id, array $errors, ?array $_options = []): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendGame(
@@ -4124,7 +4734,7 @@ function sendGame(
     ?array $reply_markup = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setGameScore(
@@ -4137,7 +4747,7 @@ function setGameScore(
     ?string $inline_message_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getGameHighScores(
@@ -4147,37 +4757,639 @@ function getGameHighScores(
     ?string $inline_message_id = null,
     ?array $_options = [],
 ): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getUpdates(
-    int $limit = 100,
-    int $timeout = 0,
-    ?int $offset = null,
-    ?array $allowed_updates = null,
-    ?array $_options = [],
-): array {
-    return _prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+function _row(array ...$buttons): array {
+    return [...$buttons];
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _autoFillApiMethodParameters($parameters) {
+function _chat(?string $keys = null): mixed {
+    $message = _message();
+    $updateType = _updateType();
+    $chat = match ($updateType) {
+        UPDATE_TYPE_MESSAGE,
+        UPDATE_TYPE_CALLBACK_QUERY,
+        UPDATE_TYPE_EDITED_MESSAGE,
+        UPDATE_TYPE_CHANNEL_POST,
+        UPDATE_TYPE_MY_CHAT_MEMBER,
+        UPDATE_TYPE_CHAT_MEMBER,
+        UPDATE_TYPE_CHAT_JOIN_REQUEST,
+        UPDATE_TYPE_EDITED_CHANNEL_POST => $message['chat'],
+        default => null,
+    };
+    return __arrayGet($chat, $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _file(?string $keys = null): mixed {
+    if (!_isFile()) {
+        throw new Exception('The message type is not a file, you called this function in inappropriate place!');
+    }
+    $function = __NAMESPACE__.'\\'.__snakeToCamelCase(_messageType());
+    return $function($keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isFile(): bool {
+    return in_array(_messageType(), _fileTypes());
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _photo(?string $keys = null): mixed {
+    $photos = _photos();
+    return __arrayGet(end($photos), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _photos(): ?array {
+    return _message(MESSAGE_TYPE_PHOTO);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _gamePhoto(?string $keys = null): mixed {
+    $gamePhotos = _gamePhotos();
+    return __arrayGet(end($gamePhotos), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _gamePhotos(): ?array {
+    return _message(MESSAGE_TYPE_GAME);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _replyMarkup(?string $keys = null): mixed {
+    return __arrayGet(_message('reply_markup'), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _viaBot(?string $keys = null): mixed {
+    return __arrayGet(_message('via_bot'), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _poll(?string $keys = null): mixed {
+    return __arrayGet(_message('poll'), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _pollOptions(): mixed {
+    return __arrayGet(_poll('options'));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _chatMember(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_CHAT_MEMBER), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _myChatMember(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_MY_CHAT_MEMBER), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _oldChatMember(?string $keys = null): mixed {
+    $key = 'old_chat_member';
+    $updateType = _updateType();
+    $oldChatMember = $updateType === UPDATE_TYPE_CHAT_MEMBER ? _chatMember($key) : _myChatMember($key);
+    return __arrayGet($oldChatMember, $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _newChatMember(?string $keys = null): mixed {
+    $key = 'new_chat_member';
+    $updateType = _updateType();
+    $newChatMember = $updateType === UPDATE_TYPE_CHAT_MEMBER ? _chatMember($key) : _myChatMember($key);
+    return __arrayGet($newChatMember, $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _document(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_DOCUMENT), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _sticker(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_STICKER), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _video(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_VIDEO), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _videoNote(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_VIDEO_NOTE), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _voice(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_VOICE), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _audio(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_AUDIO), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _dice(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_DICE), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _game(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_GAME), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _venue(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_VENUE), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _location(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_LOCATION), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _contact(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_CONTACT), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _animation(?string $keys = null): mixed {
+    return __arrayGet(_message(MESSAGE_TYPE_ANIMATION), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _text(): ?string {
+    return _message(MESSAGE_TYPE_TEXT);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _caption(): ?string {
+    return _message('caption');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _entities(): ?array {
+    return _message('entities') ?? _message('caption_entities');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _from(?string $keys = null): mixed {
+    $updateType = _updateType();
+    $update = _update();
+    $user = match ($updateType) {
+        UPDATE_TYPE_POLL_ANSWER => $update[$updateType]['user'],
+        UPDATE_TYPE_MESSAGE,
+        UPDATE_TYPE_EDITED_MESSAGE,
+        UPDATE_TYPE_MY_CHAT_MEMBER,
+        UPDATE_TYPE_CHAT_MEMBER,
+        UPDATE_TYPE_CHAT_JOIN_REQUEST,
+        UPDATE_TYPE_INLINE_QUERY,
+        UPDATE_TYPE_CHOSEN_INLINE_RESULT,
+        UPDATE_TYPE_SHIPPING_QUERY,
+        UPDATE_TYPE_PRE_CHECKOUT_QUERY,
+        UPDATE_TYPE_CALLBACK_QUERY => $update[$updateType]['from'],
+        default => null,
+    };
+    return __arrayGet($user, $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _user(?string $keys = null): mixed {
+    return _from($keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _userId(): ?int {
+    return _user('id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _chatId(): ?int {
+    return _chat('id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _callbackQuery(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_CALLBACK_QUERY), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _callbackQueryData(): ?string {
+    return _callbackQuery('data');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _inlineQuery(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_INLINE_QUERY), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _inlineQueryText(): ?string {
+    return _inlineQuery('query');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _chosenInlineResult(?string $keys = null): ?string {
+    return __arrayGet(_update(UPDATE_TYPE_CHOSEN_INLINE_RESULT));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _chosenInlineResultId(): ?string {
+    return _chosenInlineResult('result_id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _chosenInlineResultQuery(): ?string {
+    return _chosenInlineResult('query');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _chosenInlineResultInlineMessageId(): ?string {
+    return _chosenInlineResult('inline_message_id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _shippingQuery(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_SHIPPING_QUERY), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _preCheckoutQuery(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_PRE_CHECKOUT_QUERY), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _pollAnswer(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_POLL_ANSWER), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isMessage(): bool {
+    return _updateType() === UPDATE_TYPE_MESSAGE;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isCallbackQuery(): bool {
+    return _updateType() === UPDATE_TYPE_CALLBACK_QUERY;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isEditedMessage(): bool {
+    return _updateType() === UPDATE_TYPE_EDITED_MESSAGE;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isChannelPost(): bool {
+    return _updateType() === UPDATE_TYPE_CHANNEL_POST;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isEditedChannelPost(): bool {
+    return _updateType() === UPDATE_TYPE_EDITED_CHANNEL_POST;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isShippingQuery(): bool {
+    return _updateType() === UPDATE_TYPE_SHIPPING_QUERY;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isChatJoinRequest(): bool {
+    return _updateType() === UPDATE_TYPE_CHAT_JOIN_REQUEST;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isInlineQuery(): bool {
+    return _updateType() === UPDATE_TYPE_INLINE_QUERY;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isMyChatMember(): bool {
+    return _updateType() === UPDATE_TYPE_MY_CHAT_MEMBER;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isChatMember(): bool {
+    return _updateType() === UPDATE_TYPE_CHAT_MEMBER;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isChosenInlineResult(): bool {
+    return _updateType() === UPDATE_TYPE_CHOSEN_INLINE_RESULT;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isPreCheckOutQuery(): bool {
+    return _updateType() === UPDATE_TYPE_PRE_CHECKOUT_QUERY;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isPollAnswer(): bool {
+    return _updateType() === UPDATE_TYPE_POLL;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isPoll(bool $checkMessageType = false): bool {
+    if ($checkMessageType) {
+        return _messageType() === MESSAGE_TYPE_POLL;
+    }
+    return _updateType() === UPDATE_TYPE_POLL;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isPhoto(): bool {
+    return _messageType() === MESSAGE_TYPE_PHOTO;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isSticker(): bool {
+    return _messageType() === MESSAGE_TYPE_STICKER;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isAnimation(): bool {
+    return _messageType() === MESSAGE_TYPE_ANIMATION;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isVideo(): bool {
+    return _messageType() === MESSAGE_TYPE_VIDEO;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isVideoNote(): bool {
+    return _messageType() === MESSAGE_TYPE_VIDEO_NOTE;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isDice(): bool {
+    return _messageType() === MESSAGE_TYPE_DICE;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isGame(): bool {
+    return _messageType() === MESSAGE_TYPE_GAME;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isVenue(): bool {
+    return _messageType() === MESSAGE_TYPE_VENUE;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isVoice(): bool {
+    return _messageType() === MESSAGE_TYPE_VOICE;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isDocument(): bool {
+    return _messageType() === MESSAGE_TYPE_DOCUMENT;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isLocation(): bool {
+    return _messageType() === MESSAGE_TYPE_LOCATION;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isContact(): bool {
+    return _messageType() === MESSAGE_TYPE_CONTACT;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isAudio(): bool {
+    return _messageType() === MESSAGE_TYPE_AUDIO;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isText(): bool {
+    return _messageType() === MESSAGE_TYPE_TEXT;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isSender(): bool {
+    return _chatType() === CHAT_TYPE_SENDER;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isGroup(): bool {
+    return _chatType() === CHAT_TYPE_GROUP;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isSupergroup(): bool {
+    return _chatType() === CHAT_TYPE_SUPERGROUP;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isPrivate(): ?bool {
+    return _chatType() === CHAT_TYPE_PRIVATE;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isChannel(): ?bool {
+    return _chatType() === CHAT_TYPE_CHANNEL;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _isForwarded(): ?bool {
+    return boolval(_message('forward_date') ?? _message('forward_sender_name'));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _forwardFrom(?string $keys = null): mixed {
+    return __arrayGet(_message('forward_from'), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _forwardFromChat(?string $keys = null): mixed {
+    return __arrayGet(_message('forward_from_chat'), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _forwardFromMessageId(): ?int {
+    return _message('forward_from_message_id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _forwardDate(): ?int {
+    return _message('forward_date');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _message(?string $keys = null): mixed {
+    $update = _update();
+    $updateType = _updateType();
+    $message = match ($updateType) {
+        UPDATE_TYPE_CALLBACK_QUERY => $update[$updateType][UPDATE_TYPE_MESSAGE],
+        UPDATE_TYPE_MESSAGE,
+        UPDATE_TYPE_EDITED_MESSAGE,
+        UPDATE_TYPE_CHANNEL_POST,
+        UPDATE_TYPE_EDITED_CHANNEL_POST => $update[$updateType],
+        default => null,
+    };
+    return __arrayGet($message, $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _repliedMessage(?string $keys = null): mixed {
+    return __arrayGet(_message('reply_to_message'), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _messageId(): ?int {
+    return _message('message_id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _callbackQueryId(): ?int {
+    return _callbackQuery('id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _inlineQueryId(): ?int {
+    return _inlineQuery('id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _mediaGroupId(): ?int {
+    return _message('media_group_id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _updateId(): ?int {
+    return _update('update_id');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _update(?string $keys = null): mixed {
+    return __arrayGet(__update(), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _chatType(): ?string {
+    return _chat('type');
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _chatTypes(array $exclude = []): array {
+    return array_diff([
+        CHAT_TYPE_GROUP,
+        CHAT_TYPE_SUPERGROUP,
+        CHAT_TYPE_PRIVATE,
+        CHAT_TYPE_CHANNEL,
+    ], $exclude);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _chatMemberStatuses(array $exclude = []): array {
+    return array_diff([
+        CHAT_MEMBER_STATUS_ADMINISTRATOR,
+        CHAT_MEMBER_STATUS_CREATOR,
+        CHAT_MEMBER_STATUS_RESTRICTED,
+        CHAT_MEMBER_STATUS_LEFT,
+        CHAT_MEMBER_STATUS_MEMBER,
+        CHAT_MEMBER_STATUS_KICKED,
+    ], $exclude);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _formattingOptions(array $exclude = []): array {
+    return array_diff([
+        PARSE_MODE_HTML,
+        PARSE_MODE_MARKDOWN,
+        PARSE_MODE_MARKDOWN_V2,
+    ], $exclude);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _chatActions(array $exclude = []): array {
+    return array_diff([
+        CHAT_ACTION_TYPING,
+        CHAT_ACTION_UPLOAD_PHOTO,
+        CHAT_ACTION_RECORD_VIDEO,
+        CHAT_ACTION_UPLOAD_VIDEO,
+        CHAT_ACTION_RECORD_VOICE,
+        CHAT_ACTION_UPLOAD_VOICE,
+        CHAT_ACTION_UPLOAD_DOCUMENT,
+        CHAT_ACTION_CHOOSE_STICKER,
+        CHAT_ACTION_FIND_LOCATION,
+        CHAT_ACTION_RECORD_VIDEO_NOTE,
+        CHAT_ACTION_UPLOAD_VIDEO_NOTE,
+    ], $exclude);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _updateTypes(array $exclude = []): array {
+    return array_diff([
+        UPDATE_TYPE_MESSAGE,
+        UPDATE_TYPE_EDITED_MESSAGE,
+        UPDATE_TYPE_CHANNEL_POST,
+        UPDATE_TYPE_EDITED_CHANNEL_POST,
+        UPDATE_TYPE_INLINE_QUERY,
+        UPDATE_TYPE_CHOSEN_INLINE_RESULT,
+        UPDATE_TYPE_CALLBACK_QUERY,
+        UPDATE_TYPE_SHIPPING_QUERY,
+        UPDATE_TYPE_PRE_CHECKOUT_QUERY,
+        UPDATE_TYPE_POLL,
+        UPDATE_TYPE_POLL_ANSWER,
+        UPDATE_TYPE_MY_CHAT_MEMBER,
+        UPDATE_TYPE_CHAT_MEMBER,
+        UPDATE_TYPE_CHAT_JOIN_REQUEST,
+    ], $exclude);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _updateType(): ?string {
+    $commonKeys = array_intersect(_updateTypes(), array_keys(_update()));
+    return array_shift($commonKeys) ?? null;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _messageTypes(array $exclude = []): array {
+    return array_diff([
+        MESSAGE_TYPE_TEXT,
+        MESSAGE_TYPE_STICKER,
+        MESSAGE_TYPE_ANIMATION,
+        MESSAGE_TYPE_VIDEO,
+        MESSAGE_TYPE_VIDEO_NOTE,
+        MESSAGE_TYPE_AUDIO,
+        MESSAGE_TYPE_VOICE,
+        MESSAGE_TYPE_DOCUMENT,
+        MESSAGE_TYPE_PHOTO,
+        MESSAGE_TYPE_LOCATION,
+        MESSAGE_TYPE_CONTACT,
+        MESSAGE_TYPE_POLL,
+        MESSAGE_TYPE_GAME,
+        MESSAGE_TYPE_DICE,
+        MESSAGE_TYPE_VENUE,
+    ], $exclude);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _messageType(): ?string {
+    return current(array_intersect(_messageTypes(), array_keys(_message())));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _fileTypes(array $exclude = []): ?array {
+    return array_diff([
+        MESSAGE_TYPE_STICKER,
+        MESSAGE_TYPE_ANIMATION,
+        MESSAGE_TYPE_VIDEO,
+        MESSAGE_TYPE_VIDEO_NOTE,
+        MESSAGE_TYPE_AUDIO,
+        MESSAGE_TYPE_VOICE,
+        MESSAGE_TYPE_DOCUMENT,
+        MESSAGE_TYPE_PHOTO,
+    ], $exclude);
+}#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _setUserData(string $key, mixed $value, null|int|DateInterval $ttl = null): void {
+    $userKey = __cacheGetUserKey();
+    __cache()->set("user|{$userKey}|{$key}", $value, $ttl ?? _CACHE_USER_DATA_TTL);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _getUserData(string $key, mixed $defaultValue = null): mixed {
+    $userKey = __cacheGetUserKey();
+    return __cache()->get("user|{$userKey}|{$key}", $defaultValue);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _setGlobalData(int|string $key, mixed $value = null): void {
+    __setOrPushValue($GLOBALS[_PACKAGE_NAME], $value, "global_data.{$key}");
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _getGlobalData(int|string $key, mixed $defaultValue = null): mixed {
+    return $GLOBALS[_PACKAGE_NAME]['global_data'][$key] ?? $defaultValue;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _downloadBotFile(array|string $file,string $save_path,?array $options = []): bool {
+    if (is_string($file)) {
+        $file = getFile(file_id: $file);
+        if (!$file || !$file['ok']) {
+            throw new Exception("File not found!");
+        }
+    }
+    $filePath = $file['file_path'] ?? $file['result']['file_path'] ?? null;
+    if (!$filePath) {
+        throw new Exception("The 'file_path' is not specified!");
+    }
+    $apiBaseUrl = ($options['api_base_url'] ?? __apiBaseUrl()).'/file';
+    if (!$apiBaseUrl) {
+        throw new Exception("The api base url is not specified!");
+    }
+    $token = $options['via_token'] ?? __botToken($options['to_bot'] ?? null);
+    if (!$token) {
+        throw new Exception("The bot token is not specified!");
+    }
+    $url = "$apiBaseUrl/bot{$token}/{$filePath}";
+    return _downloadFile(url: $url, save_path: $save_path);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _downloadFile(string $url, string $save_path): bool {
+    $fp = fopen($save_path, 'w+');
+    $result = __makeCurlRequest(url: $url, options: [
+        CURLOPT_FILE => $fp,
+    ]);
+    fclose($fp);
+    return $result;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _registerNewBot(
+    string $username,
+    string $token,
+    string $api_base_url = API_BASE_URL,
+    array $curl_options = [],
+): void {
+    if (!isset($GLOBALS[_PACKAGE_NAME]['default_bot_username'])) {
+        $GLOBALS[_PACKAGE_NAME]['default_bot_username'] = $username;
+    }
+    $GLOBALS[_PACKAGE_NAME]['bots'][$username] = get_defined_vars();
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _botCommandScopeTypes(array $exclude = []): array {
+    return array_diff([
+        BOT_COMMAND_SCOPE_DEFAULT,
+        BOT_COMMAND_SCOPE_ALL_PRIVATE_CHATS,
+        BOT_COMMAND_SCOPE_ALL_GROUP_CHATS,
+        BOT_COMMAND_SCOPE_ALL_CHAT_ADMINISTRATORS,
+        BOT_COMMAND_SCOPE_CHAT,
+        BOT_COMMAND_SCOPE_CHAT_ADMINISTRATORS,
+        BOT_COMMAND_SCOPE_CHAT_MEMBER,
+    ], $exclude);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _menuButtonTypes(array $exclude = []): array {
+    return array_diff([
+        MENU_BUTTON_TYPE_DEFAULT,
+        MENU_BUTTON_TYPE_WEB_APP,
+        MENU_BUTTON_TYPE_COMMANDS,
+    ], $exclude);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function __autoFillApiMethodParameters($parameters) {
     if (key_exists('chat_id', $parameters) && !$parameters['chat_id']) {
-        $parameters['chat_id'] = chatId() ?? userId();
+        $parameters['chat_id'] = _chatId() ?? _userId();
     }
     if (key_exists('user_id', $parameters) && !$parameters['user_id']) {
-        $parameters['user_id'] = userId();
+        $parameters['user_id'] = _userId();
     }
     if (key_exists('from_chat_id', $parameters) && !$parameters['from_chat_id']) {
-        $parameters['from_chat_id'] = chatId();
+        $parameters['from_chat_id'] = _chatId();
     }
     if (key_exists('message_id', $parameters) && !$parameters['message_id']) {
-        $parameters['message_id'] = messageId();
+        $parameters['message_id'] = _messageId();
     }
     if (key_exists('callback_query_id', $parameters) && !$parameters['callback_query_id']) {
-        $parameters['callback_query_id'] = callbackQueryId();
+        $parameters['callback_query_id'] = _callbackQueryId();
     }
     if (key_exists('inline_query_id', $parameters) && !$parameters['inline_query_id']) {
-        $parameters['inline_query_id'] = inlineQueryId();
+        $parameters['inline_query_id'] = _inlineQueryId();
     }
     if (key_exists('media', $parameters) && $parameters['media']) {
         $parameters['media'] = json_encode($parameters['media']);
@@ -4197,51 +5409,19 @@ function _autoFillApiMethodParameters($parameters) {
     if (key_exists('results', $parameters) && $parameters['results']) {
         $parameters['results'] = json_encode($parameters['results']);
     }
-    $fileType = current(array_intersect_key(array_keys($parameters), fileTypes()));
+    $fileType = current(array_intersect_key(array_keys($parameters), _fileTypes()));
     if ($fileType && file_exists(strval($filePath = $parameters[$fileType]))) {
         $parameters[$fileType] = new CURLFile($filePath);
     }
     return $parameters;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function downloadBotFile(array|string $file,string $save_path,?array $options = []): bool {
-    if (is_string($file)) {
-        $file = getFile(file_id: $file);
-        if (!$file || !$file['ok']) {
-            throw new Exception("File not found!");
-        }
-    }
-    $filePath = $file['file_path'] ?? $file['result']['file_path'] ?? null;
-    if (!$filePath) {
-        throw new Exception("The 'file_path' is not specified!");
-    }
-    $apiBaseUrl = ($options['api_base_url'] ?? _apiBaseUrl()).'/file';
+function __makeApiRequest(string $method = null, array $parameters = [], array $options = []): array|bool {
+    $apiBaseUrl = $options['api_base_url'] ?? __apiBaseUrl();
     if (!$apiBaseUrl) {
         throw new Exception("The api base url is not specified!");
     }
-    $token = $options['via_token'] ?? _botToken($options['to_bot'] ?? null);
-    if (!$token) {
-        throw new Exception("The bot token is not specified!");
-    }
-    $url = "$apiBaseUrl/bot{$token}/{$filePath}";
-    return downloadFile(url: $url, save_path: $save_path);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function downloadFile(string $url, string $save_path): bool {
-    $fp = fopen($save_path, 'w+');
-    $result = _makeCurlRequest(url: $url, options: [
-        CURLOPT_FILE => $fp,
-    ]);
-    fclose($fp);
-    return $result;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _makeApiRequest(string $method = null, array $parameters = [], array $options = []): array|bool {
-    $apiBaseUrl = $options['api_base_url'] ?? _apiBaseUrl();
-    if (!$apiBaseUrl) {
-        throw new Exception("The api base url is not specified!");
-    }
-    $token = $options['via_token'] ?? _botToken($options['to_bot'] ?? null);
+    $token = $options['via_token'] ?? __botToken($options['to_bot'] ?? null);
     if (!$token) {
         throw new Exception("The bot token is not specified!");
     }
@@ -4254,19 +5434,19 @@ function _makeApiRequest(string $method = null, array $parameters = [], array $o
         CURLOPT_SSL_SESSIONID_CACHE => true,
         CURLOPT_TCP_FASTOPEN => true,
         CURLOPT_TCP_NODELAY => true,
-        CURLOPT_TIMEOUT => _isWebhook() ? 3 : 10,
-        CURLOPT_CONNECTTIMEOUT => _isWebhook() ? 2 : 10,
+        CURLOPT_TIMEOUT => __isWebhook() ? 3 : 10,
+        CURLOPT_CONNECTTIMEOUT => __isWebhook() ? 2 : 10,
         CURLOPT_FORBID_REUSE => false,
         CURLOPT_FRESH_CONNECT => false,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
-    ] + ($options['curl_options'] ?? _defaultCurlOptions());
-    $result = _makeCurlRequest(url: $url, options: $curlOptions);
+    ] + ($options['curl_options'] ?? __defaultCurlOptions());
+    $result = __makeCurlRequest(url: $url, options: $curlOptions);
     if (is_bool($result)) {
         return $result;
     }
     $response = json_decode($result, true);
     if (isset($response['ok']) && !$response['ok']) {
-        $handlers = _handlers();
+        $handlers = __handlers();
         if (isset($handlers['api_error'])) {
             return $handlers['api_error']($response);
         }
@@ -4274,7 +5454,7 @@ function _makeApiRequest(string $method = null, array $parameters = [], array $o
     return $response;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _makeCurlRequest(string $url, array $options = []): string|bool {
+function __makeCurlRequest(string $url, array $options = []): string|bool {
     if (!filter_var($url, FILTER_VALIDATE_URL)) {
         throw new Exception("Invalid URL!");
     }
@@ -4288,15 +5468,15 @@ function _makeCurlRequest(string $url, array $options = []): string|bool {
     return $result;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _getCommonKeys(array $array1, array $array2): array {
+function __getCommonKeys(array $array1, array $array2): array {
     return array_intersect($array1, array_keys($array2));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _config(?string $keys = null): mixed {
-    return _arrayGet($GLOBALS[_PACKAGE_NAME] ?? [], $keys);
+function __config(?string $keys = null): mixed {
+    return __arrayGet($GLOBALS[_PACKAGE_NAME] ?? [], $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _arrayGet(?array $data, ?string $keys = null): mixed {
+function __arrayGet(?array $data, ?string $keys = null): mixed {
     if (!$data) {
         return null;
     }
@@ -4312,7 +5492,7 @@ function _arrayGet(?array $data, ?string $keys = null): mixed {
     return $data;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _setOrPushValue(array &$array, mixed $value, ?string $keys = null, bool $push = false): void {
+function __setOrPushValue(array &$array, mixed $value, ?string $keys = null, bool $push = false): void {
     if (!$keys) {
         if ($push) {
             $array[] = $value;
@@ -4337,11 +5517,11 @@ function _setOrPushValue(array &$array, mixed $value, ?string $keys = null, bool
 }
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _setUpdate(array $update): void {
-    _setOrPushValue($GLOBALS[_PACKAGE_NAME], $update, 'update');
+function __setUpdate(array $update): void {
+    __setOrPushValue($GLOBALS[_PACKAGE_NAME], $update, 'update');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _addHandler(
+function __addHandler(
     string $keys,
     callable $callable,
     callable|array $middlewares = [],
@@ -4364,7 +5544,7 @@ function _addHandler(
     }
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _addMiddleware(callable $callable, string $name = null): void {
+function __addMiddleware(callable $callable, string $name = null): void {
     $handler = &$GLOBALS[_PACKAGE_NAME]['middlewares'];
     if ($name) {
         $handler[$name] = $callable;
@@ -4373,11 +5553,11 @@ function _addMiddleware(callable $callable, string $name = null): void {
     }
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _processCurrentUpdate() {
-    return _fireHandlers(_handlers());
+function __processCurrentUpdate() {
+    return __fireHandlers(__handlers());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _getPatternParameters(string $pattern, string $value): ?array {
+function __getPatternParameters(string $pattern, string $value): ?array {
     $pattern = preg_replace(
         pattern: _REGEX_FIND_PLACEHOLDERS,
         replacement: _REGEX_PLACEHOLDERS_REPLACEMENT,
@@ -4391,12 +5571,12 @@ function _getPatternParameters(string $pattern, string $value): ?array {
     return $parameters;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _fireAllMiddlewares(?array $handler = null): void {
-    _fireGlobalMiddlewares(_middlewares(), $handler['skip_middlewares'] ?? []);
-    _fireHandlerMiddlewares($handler['middlewares'] ?? []);
+function __fireAllMiddlewares(?array $handler = null): void {
+    __fireGlobalMiddlewares(__middlewares(), $handler['skip_middlewares'] ?? []);
+    __fireHandlerMiddlewares($handler['middlewares'] ?? []);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _fireGlobalMiddlewares(array $middlewares, array $skipMiddlewares = []): void {
+function __fireGlobalMiddlewares(array $middlewares, array $skipMiddlewares = []): void {
     foreach ($middlewares as $name => $middleware) {
         if ($name[0].$name[1] === 'l:' || in_array($name, $skipMiddlewares)) {
             continue;
@@ -4407,21 +5587,21 @@ function _fireGlobalMiddlewares(array $middlewares, array $skipMiddlewares = [])
     }
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _fireHandlerMiddlewares(array $middlewares): void {
-    $globalMiddlewares = _middlewares();
+function __fireHandlerMiddlewares(array $middlewares): void {
+    $globalMiddlewares = __middlewares();
     foreach ($middlewares as $middleware) {
         if (is_callable($middleware)) {
             $middleware();
         } elseif (isset($globalMiddlewares["l:$middleware"])) {
             $globalMiddlewares["l:$middleware"]();
         } elseif (is_array($middleware)) {
-            _fireHandlerMiddlewares($middleware);
+            __fireHandlerMiddlewares($middleware);
         }
     }
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _fireHandlers(array $handlers) {
-    $updateType = updateType();
+function __fireHandlers(array $handlers) {
+    $updateType = _updateType();
     $fallbackHandlers = $handlers['fallback'] ?? null;
     try {
         if (!isset($handlers[$updateType])) {
@@ -4444,85 +5624,85 @@ function _fireHandlers(array $handlers) {
                 UPDATE_TYPE_CHANNEL_POST,
                 UPDATE_TYPE_EDITED_CHANNEL_POST,
             ])
-            && isset($updateTypeHandlers[$messageType = messageType()])
+            && isset($updateTypeHandlers[$messageType = _messageType()])
         ) {
             if ($messageType === MESSAGE_TYPE_TEXT) {
-                $isStartedAConversation = _cache() && _isStartedAConversation();
-                $text = text();
+                $isStartedAConversation = __cache() && __isStartedAConversation();
+                $text = _text();
                 foreach ($updateTypeHandlers[$messageType] as $pattern => $handler) {
-                    $parameters = _getPatternParameters($pattern, $text);
+                    $parameters = __getPatternParameters($pattern, $text);
                     if (is_null($parameters)) {
                         continue;
                     }
                     if ($isStartedAConversation) {
                         conversationEnd();
                     }
-                    _fireAllMiddlewares($handler);
+                    __fireAllMiddlewares($handler);
                     return $handler['callable'](...$parameters);
                 }
                 if ($isStartedAConversation) {
-                    $userKey = _cacheGetUserKey();
-                    $serializedClosure = _cache()->get("conv|{$userKey}|next_step");
-                    $callable = _unserializeClosure($serializedClosure);
+                    $userKey = __cacheGetUserKey();
+                    $serializedClosure = __cache()->get("conv|{$userKey}|next_step");
+                    $callable = __unserializeClosure($serializedClosure);
                     return $callable();
                 }
 
-            } elseif (in_array($messageType, messageTypes())) {
-                _fireAllMiddlewares($updateTypeHandlers[$messageType]);
+            } elseif (in_array($messageType, _messageTypes())) {
+                __fireAllMiddlewares($updateTypeHandlers[$messageType]);
                 return $updateTypeHandlers[$messageType]['callable']();
             }
         } elseif ($updateType === UPDATE_TYPE_CALLBACK_QUERY) {
-            $callbackData = callbackQueryData();
+            $callbackData = _callbackQueryData();
             foreach ($updateTypeHandlers['data'] as $pattern => $handler) {
-                $parameters = _getPatternParameters($pattern, $callbackData);
+                $parameters = __getPatternParameters($pattern, $callbackData);
                 if (is_null($parameters)) {
                     continue;
                 }
-                _fireAllMiddlewares($handler);
+                __fireAllMiddlewares($handler);
                 return $handler['callable'](...$parameters);
             }
         } elseif ($updateType === UPDATE_TYPE_INLINE_QUERY) {
-            $query = inlineQueryText();
+            $query = _inlineQueryText();
             foreach ($updateTypeHandlers['query'] as $pattern => $handler) {
-                $parameters = _getPatternParameters($pattern, $query);
+                $parameters = __getPatternParameters($pattern, $query);
                 if (is_null($parameters)) {
                     continue;
                 }
-                _fireAllMiddlewares($handler);
+                __fireAllMiddlewares($handler);
                 return $handler['callable'](...$parameters);
             }
         } elseif ($updateType === UPDATE_TYPE_CHOSEN_INLINE_RESULT) {
-            if ($query = chosenInlineResultQuery()) {
+            if ($query = _chosenInlineResultQuery()) {
                 foreach ($updateTypeHandlers['query'] as $pattern => $handler) {
-                    $parameters = _getPatternParameters($pattern, $query);
+                    $parameters = __getPatternParameters($pattern, $query);
                     if (is_null($parameters)) {
                         continue;
                     }
-                    _fireAllMiddlewares($handler);
+                    __fireAllMiddlewares($handler);
                     return $handler['callable'](...$parameters);
                 }
-            } elseif ($resultId = chosenInlineResultId()) {
+            } elseif ($resultId = _chosenInlineResultId()) {
                 foreach ($updateTypeHandlers['result_id'] as $pattern => $handler) {
-                    $parameters = _getPatternParameters($pattern, $resultId);
+                    $parameters = __getPatternParameters($pattern, $resultId);
                     if (is_null($parameters)) {
                         continue;
                     }
-                    _fireAllMiddlewares($handler);
+                    __fireAllMiddlewares($handler);
                     return $handler['callable'](...$parameters);
                 }
             }
             
         }
         if (isset($updateTypeHandlers['callable'])) {
-            _fireAllMiddlewares($updateTypeHandlers);
+            __fireAllMiddlewares($updateTypeHandlers);
             return $updateTypeHandlers['callable']();
         }
         if (isset($fallbackHandlers[$updateType]['callable'])) {
-            _fireAllMiddlewares($fallbackHandlers[$updateType]);
+            __fireAllMiddlewares($fallbackHandlers[$updateType]);
             return $fallbackHandlers[$updateType]['callable']();
         }
         if (isset($fallbackHandlers['callable'])) {
-            _fireAllMiddlewares($fallbackHandlers);
+            __fireAllMiddlewares($fallbackHandlers);
             return $fallbackHandlers['callable']();
         }
     } catch (Throwable $e) {
@@ -4533,34 +5713,34 @@ function _fireHandlers(array $handlers) {
     }
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _prepareApiMethodParameters(array $parameters): array {
-    return _removeNullValues(_autoFillApiMethodParameters(_removeInvalidParameters($parameters)));
+function __prepareApiMethodParameters(array $parameters): array {
+    return __removeNullValues(__autoFillApiMethodParameters(__removeInvalidParameters($parameters)));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _removeNullValues(array $array): array {
+function __removeNullValues(array $array): array {
     return array_filter($array, fn($value) => $value !== null);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _removeInvalidParameters(array $parameters): array {
+function __removeInvalidParameters(array $parameters): array {
     unset($parameters['_options']);
     return $parameters;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _extractFunctionName(string $function): string {
+function __extractFunctionName(string $function): string {
     return basename(strtr($function, '\\', '/'));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _prepareAndMakeApiRequest(string $function, array $parameters = [], array $options = []): array {
-    return _makeApiRequest(_extractFunctionName($function), _prepareApiMethodParameters($parameters), $options);
+function __prepareAndMakeApiRequest(string $function, array $parameters = [], array $options = []): array {
+    return __makeApiRequest(__extractFunctionName($function), __prepareApiMethodParameters($parameters), $options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _serializeClosure(Closure $closure): string {
-    _checkConversationRequirements();
+function __serializeClosure(Closure $closure): string {
+    __checkConversationRequirements();
     $serializableClosure = new SerializableClosure($closure);
     return serialize($serializableClosure);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _unserializeClosure(string $serializedClosure): Closure {
+function __unserializeClosure(string $serializedClosure): Closure {
     /** @var SerializableClosure */
     $serializableClosure = unserialize($serializedClosure, [
         'allowed_classes' => [SerializableClosure::class],
@@ -4571,114 +5751,105 @@ function _unserializeClosure(string $serializedClosure): Closure {
     return $serializableClosure->getClosure();
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function conversationNextStep(Closure $closure): void {
-    _checkConversationRequirements();
-    $userKey = _cacheGetUserKey();
-    _cache()->set("conv|{$userKey}|next_step", _serializeClosure($closure), _CACHE_CONVERSATION_TTL);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _checkConversationRequirements(): void {
-    if (!_cache() || !class_exists(SerializableClosure::class)) {
+function __checkConversationRequirements(): void {
+    if (!__cache() || !class_exists(SerializableClosure::class)) {
         throw new Exception("To use the conversation feature, you need to install rqeuired packages via Composer!");
     }
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function conversationNextStep(Closure $closure): void {
+    __checkConversationRequirements();
+    $userKey = __cacheGetUserKey();
+    __cache()->set("conv|{$userKey}|next_step", __serializeClosure($closure), _CACHE_CONVERSATION_TTL);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function conversationEnd(?Closure $finalStep = null): void {
-    _checkConversationRequirements();
-    $userKey = _cacheGetUserKey();
+    __checkConversationRequirements();
+    $userKey = __cacheGetUserKey();
     if ($finalStep) {
-        _cache()->set(
+        __cache()->set(
             key: "conv|{$userKey}|next_step",
-            value: _serializeClosure(function() use ($finalStep, $userKey) {
+            value: __serializeClosure(function() use ($finalStep, $userKey) {
                 $finalStep();
-                _cache()->delete("conv|{$userKey}|next_step");
+                __cache()->delete("conv|{$userKey}|next_step");
             }),
             ttl: _CACHE_CONVERSATION_TTL
         );
     } else {
-        _cache()->delete("conv|{$userKey}|next_step");
+        __cache()->delete("conv|{$userKey}|next_step");
     }
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function conversationSetData(string $key, mixed $value, null|int|DateInterval $ttl = null): void {
-    _checkConversationRequirements();
-    $userKey = _cacheGetUserKey();
-    _cache()->set("conv|{$userKey}|data|{$key}", $value, $ttl ?? _CACHE_CONVERSATION_TTL);
+    __checkConversationRequirements();
+    $userKey = __cacheGetUserKey();
+    __cache()->set("conv|{$userKey}|data|{$key}", $value, $ttl ?? _CACHE_CONVERSATION_TTL);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function conversationGetData(string $key, mixed $defaultValue = null): mixed {
-    $userKey = _cacheGetUserKey();
-    return _cache()->get("conv|{$userKey}|data|{$key}", $defaultValue);
+    $userKey = __cacheGetUserKey();
+    return __cache()->get("conv|{$userKey}|data|{$key}", $defaultValue);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isStartedAConversation(?string $userKey = null): bool {
-    $userKey = $userKey ?? _cacheGetUserKey();
-    return boolval(_cache()->get("conv|{$userKey}|next_step"));
+function __isStartedAConversation(?string $userKey = null): bool {
+    $userKey = $userKey ?? __cacheGetUserKey();
+    return boolval(__cache()->get("conv|{$userKey}|next_step"));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _cacheGetUserKey(): string {
+function __cacheGetUserKey(): string {
     static $key;
     if (!$key) {
-        $key = _defaultBotUsername().'_'.chatId().'_'.userId();
+        $key = __defaultBotUsername().'_'._chatId().'_'._userId();
     }
     return $key;
 }
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function setUserData(string $key, mixed $value, null|int|DateInterval $ttl = null): void {
-    $userKey = _cacheGetUserKey();
-    _cache()->set("user|{$userKey}|{$key}", $value, $ttl ?? _CACHE_USER_DATA_TTL);
+function __botToken(?string $username = null): ?string {
+    return __config('bots.'.($username ?? __config('default_bot_username')).'.token');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function getUserData(string $key, mixed $defaultValue = null): mixed {
-    $userKey = _cacheGetUserKey();
-    return _cache()->get("user|{$userKey}|{$key}", $defaultValue);
+function __apiBaseUrl(?string $username = null): string {
+    return __config('bots.'.($username ?? __config('default_bot_username')).'.api_base_url') ?? API_BASE_URL;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _botToken(?string $username = null): ?string {
-    return _config('bots.'.($username ?? _config('default_bot_username')).'.token');
+function __defaultBotUsername(): string {
+    return __config('default_bot_username');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _apiBaseUrl(?string $username = null): string {
-    return _config('bots.'.($username ?? _config('default_bot_username')).'.api_base_url') ?? API_BASE_URL;
+function __isWebhook(): ?bool {
+    return __config('is_webhook');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _defaultBotUsername(): string {
-    return _config('default_bot_username');
+function __defaultCurlOptions(): array {
+    return __config('curl_options') ?? [];
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isWebhook(): ?bool {
-    return _config('is_webhook');
+function __handlers(): array {
+    return __config('handlers');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _defaultCurlOptions(): array {
-    return _config('curl_options') ?? [];
+function __middlewares(): array {
+    return __config('middlewares');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _handlers(): array {
-    return _config('handlers');
+function __globalData(): array {
+    return __config('global_data');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _middlewares(): array {
-    return _config('middlewares');
+function __update(): array {
+    return __config('update');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _globalData(): array {
-    return _config('global_data');
+function __cache(): ?CacheInterface {
+    return __config('cache');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _update(): array {
-    return _config('update');
+function __longPollingLoggerEnabled(): bool {
+    return __config('long_polling_logger_enabled');
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _cache(): ?CacheInterface {
-    return _config('cache');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _longPollingLoggerEnabled(): bool {
-    return _config('long_polling_logger_enabled');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _snakeToCamelCase(string $string) {
+function __snakeToCamelCase(string $string) {
     $string = preg_replace_callback('/_([a-z])/', function($matches) {
         return strtoupper($matches[1]);
     }, $string);
@@ -4686,14 +5857,14 @@ function _snakeToCamelCase(string $string) {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function run(): void {
-    if (_config('is_webhook')) {
+    if (__config('is_webhook')) {
         $input = file_get_contents('php://input');
         if (!$input) {
             return;
         }
         $update = json_decode($input, true);
-        _setUpdate($update);
-        _processCurrentUpdate();
+        __setUpdate($update);
+        __processCurrentUpdate();
     } else {
         echo 'Listening...'.PHP_EOL;
         $offset = 1;
@@ -4704,14 +5875,14 @@ function run(): void {
             }
             $updates = $response['result'];
             foreach ($updates as $update) {
-                if (_longPollingLoggerEnabled()) {
+                if (__longPollingLoggerEnabled()) {
                     print_r($update);
                 }
-                _setUpdate($update);
-                _processCurrentUpdate();
+                __setUpdate($update);
+                __processCurrentUpdate();
                 $offset = $update['update_id'] + 1;
             }
-            usleep(3000000);
+            usleep(2000000);
         }
     }
 }
