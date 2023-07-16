@@ -15,7 +15,7 @@
     - [Available Helpers](#available-helpers)
     - [Available Methods](#available-methods)
     - [Available Types](#available-types)
-- [Changelog](#bug-report)
+- [Bug Report](#bug-report)
 - [Changelog](#available-changelog)
 - [Credits](#available-credits)
 - [License](#available-license)
