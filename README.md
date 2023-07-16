@@ -429,7 +429,7 @@ We strive to provide a robust and reliable library, but bugs may still occur. If
 
 Please follow these steps to report a bug:
 
-1. Check the existing issues in the [Issue Tracker](https://github.com/username/repository/issues) to ensure that the bug hasn't already been reported.
+1. Check the existing issues in the [Issue Tracker](https://github.com/devdasher/ptb-php/issues) to ensure that the bug hasn't already been reported.
 2. If your issue is unique, create a new issue with a clear and descriptive title, including steps to reproduce the problem, expected behavior, and any relevant details.
 3. Attach any error messages, stack traces, or code snippets that can assist with troubleshooting.
 
