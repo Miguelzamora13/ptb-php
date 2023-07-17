@@ -13,8 +13,8 @@
 - 📚 [Documentation](#documentation)
     - ⚙️ [Configuraion](#configuration)
     - 🎮 [Keyboards](#keyboards)
-        - [ReplyKeyboardMarkup](#keyboards_reply-keyboard-markup)
-        - [InlineKeyboardMarkup](#keyboards_inline-keyboard-markup)
+        - [ReplyKeyboardMarkup](#reply-keyboard-markup)
+        - [InlineKeyboardMarkup](#inline-keyboard-markup)
     - 🧩 [Available Handlers](#available-handlers)
     - 🚁 [Available Helpers](#available-helpers)
     - 💎 [Available Methods](#available-methods)
@@ -181,7 +181,7 @@ configurePTB(
 
 The PTB-PHP library provides a simple way to build and send keyboards.
 
-### ReplyKeyboardMarkup <a name="keyboards-reply_keyboard_markup"></a>
+### ReplyKeyboardMarkup <a name="reply-keyboard-markup"></a>
 
 The `ReplyKeyboardMarkup(...)` function helps you to create a reply keyabord. Here is an example:
 
@@ -211,7 +211,7 @@ onMessageText(pattern: 'Say Hi!', callable: fn() => sendMessage('Hi!'));
 onMessageText(pattern: 'Say Bye!', callable: fn() => sendMessage('Bye!'));
 ```
 
-### InlineKeyboardMarkup <a name="keyboards-inline_keyboard_markup"></a>
+### InlineKeyboardMarkup <a name="inline-keyboard-markup"></a>
 
 The `InlineKeyboardMarkup(...)` function helps you to create a inline keyabord. Here is an example:
 
