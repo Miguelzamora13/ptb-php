@@ -48,7 +48,7 @@ use function DevDasher\PTB\onMessageText;
 use function DevDasher\PTB\run;
 use function DevDasher\PTB\sendMessage;
 
-require(__DIR__.'/../src/PTB.php'); // path to PTB.php
+require(__DIR__.'/../../src/PTB.php'); // path to PTB.php
 
 configurePTB(
     token: 'TOKEN', // Your bot token

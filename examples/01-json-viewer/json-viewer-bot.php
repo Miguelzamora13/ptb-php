@@ -1,9 +1,9 @@
 <?php
 
 /**
-    ECHO BOT:
-    Resends whatever the user sends to the bot with this format:
-        /echo INPUT
+    JSON VIEWER BOT:
+    Sends any incoming Telegram update as json formatted string
+        to the corresponding chat
         
     This file is part of the PTB (Procedural Telegram Bot).
 
@@ -29,14 +29,13 @@
  * @link http://t.me/DevDasher
 */
 
-use function DevDasher\PTB\_messageId;
 use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\messageId;
-use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\onAnyUpdateType;
 use function DevDasher\PTB\run;
 use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB\update;
 
-require(__DIR__.'/../src/PTB.php'); // path to PTB.php
+require(__DIR__.'/../../src/PTB.php'); // path to PTB.php
 
 configurePTB(
     token: 'TOKEN', // Your bot token
@@ -44,22 +43,8 @@ configurePTB(
     is_webhook: false, // Webhook or LongPolling?
 );
 
-onMessageText(
-    pattern: '/start',
-    callable: function() {
-        sendMessage(text: 'START');
-    }
-);
-
-onMessageText(
-    pattern: '/echo {value}',
-    callable: function($value) {
-        sendMessage(
-            text: $value,
-            reply_to_message_id: _messageId(),
-            allow_sending_without_reply: true,
-        );
-    }
-);
+onAnyUpdateType(callable: function() {
+    sendMessage(text: json_encode(update(), JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+});
 
 run();
