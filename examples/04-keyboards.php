@@ -23,32 +23,21 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.0.0
+ * @version 1.0.1
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
 */
 
-use function DevDasher\PTB\_file;
-use function DevDasher\PTB\_fileTypes;
+use function DevDasher\PTB\_isCallbackQuery;
 use function DevDasher\PTB\_messageId;
-use function DevDasher\PTB\_messageType;
-use function DevDasher\PTB\_photo;
 use function DevDasher\PTB\_row;
-use function DevDasher\PTB\_sticker;
 use function DevDasher\PTB\_user;
-use function DevDasher\PTB\configurePTB;
 use function DevDasher\PTB\editMessageText;
-use function DevDasher\PTB\getFile;
 use function DevDasher\PTB\InlineKeyboardButton;
 use function DevDasher\PTB\InlineKeyboardMarkup;
 use function DevDasher\PTB\KeyboardButton;
-use function DevDasher\PTB\middleware;
-use function DevDasher\PTB\middlewares;
 use function DevDasher\PTB\onCallbackQueryData;
-use function DevDasher\PTB\onException;
-use function DevDasher\PTB\onMessagePhoto;
-use function DevDasher\PTB\onMessageSticker;
 use function DevDasher\PTB\onMessageText;
 use function DevDasher\PTB\ReplyKeyboardMarkup;
 use function DevDasher\PTB\run;
@@ -114,3 +103,36 @@ onCallbackQueryData(
 
 
 run();
+
+// --------------------------------------------
+
+/*
+    This is for the Account section of the bot.
+    We will only pass the name of this function in the corresponding handlers.
+    You can use a class or any other Callable instead
+
+    Another point is that it is better to put these functions or classes in
+        another file so that the code is better readable.
+    In this example we put everything in one file, but you better not do that.
+*/
+function accountCommand(): mixed {
+    $user = _user();
+    $id = $user['id'];
+    $firstName = $user['first_name'];
+    $username = $user['username'] ?? null;
+    $commonParameters = [
+        'text' => "Your Info\n\nID: `{$id}`\nFirstName: `{$firstName}`\nUsername: `{$username}`",
+        'parse_mode' => PARSE_MODE_MARKDOWN,
+        'reply_markup' => InlineKeyboardMarkup([
+            _row(InlineKeyboardButton(text: 'Wallet', callback_data: 'account/wallet'))
+        ]),
+    ];
+    if (_isCallbackQuery()) { // If it was callback_query, we will update the existing message
+        return editMessageText(...$commonParameters);
+    }
+    return sendMessage(...array_merge($commonParameters, [ // If not, we will send a new message
+        'reply_to_message_id' => _messageId()
+    ])); 
+}
+
+// --------------------------------------------
