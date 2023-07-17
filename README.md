@@ -1,4 +1,4 @@
-## 🇮🇷 [توضیحات فارسی](docs/fa/README.fa.md)
+## 🇮🇷 [توضیحات فارسی](README.fa.md)
 
 # PTB = Procedural Telegram Bot (PHP Library)
 
