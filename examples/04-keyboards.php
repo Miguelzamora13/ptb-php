@@ -33,6 +33,7 @@ use function DevDasher\PTB\_isCallbackQuery;
 use function DevDasher\PTB\_messageId;
 use function DevDasher\PTB\_row;
 use function DevDasher\PTB\_user;
+use function DevDasher\PTB\configurePTB;
 use function DevDasher\PTB\editMessageText;
 use function DevDasher\PTB\InlineKeyboardButton;
 use function DevDasher\PTB\InlineKeyboardMarkup;
@@ -44,6 +45,13 @@ use function DevDasher\PTB\run;
 use function DevDasher\PTB\sendMessage;
 
 require(__DIR__.'/../src/PTB.php'); // path to PTB.php
+
+
+configurePTB(
+    token: 'TOKEN', // Your bot token
+    username: 'USERNAME', // Your bot username
+    is_webhook: false, // Webhook or LongPolling?
+);
 
 
 onMessageText(
