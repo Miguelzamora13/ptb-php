@@ -124,7 +124,7 @@ run();
 
 ```
 
-# Installation <a name="installation"></a>
+# 🛠️ Installation <a name="installation"></a>
 
 You can install the package via composer:
 
