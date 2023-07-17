@@ -492,7 +492,6 @@ All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#avai
 - `close()`
 - `sendMessage(...)`
 - `forwardMessage(...)`
-- `forwardMessage(...)`
 - `sendPhoto(...)`
 - ...
 
