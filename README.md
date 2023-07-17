@@ -19,6 +19,7 @@
     - 🚁 [Available Helpers](#available-helpers)
     - 💎 [Available Methods](#available-methods)
     - 🔮 [Available Types](#available-types)
+    - ⚓️ [Available Constants](#available-constants)
 - 🐞 [Bug Report](#bug-report)
 - 📝 [Changelog](#available-changelog)
 - 🙌 [Credits](#available-credits)
@@ -496,6 +497,7 @@ All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#avai
 - ...
 
 ## 🔮 Available Types <a name="available-types"></a>
+
 All Telegram Bot API [Available types](https://core.telegram.org/bots/api#available-types) is available in the library.
 
 - `Update(...)`
@@ -504,6 +506,39 @@ All Telegram Bot API [Available types](https://core.telegram.org/bots/api#availa
 - `Chat(...)`
 - `Message(...)`
 - ...
+
+## ⚓️ Available Constants <a name="available-constants"></a>
+
+A lot of useful constants are available in the library for fast development and convenience of most developers.
+
+Here are some of them:
+- **Types Fields**: `FIELD_*` for example: `FIELD_UPDATE_ID`, `FIELD_TITLE`, etc
+- **Method Names**: `METHOD_*` for example: `METHOD_SEND_MESSAGE`, `METHOD_DELETE_MESSAGE`, etc
+- **Methods Parameters**: `PARAM_*` for example: `PARAM_CHAT_ID`, `PARAM_TEXT`, etc
+- **Update Types**: `UPDATE_TYPE_*` for example: `UPDATE_TYPE_MESSAGE`, `UPDATE_TYPE_EDITED_MESSAGE`, etc
+- **Message Types**: `MESSAGE_TYPE_*` for example: `MESSAGE_TYPE_TEXT`, `MESSAGE_TYPE_VIDEO`, etc
+- **Message Entities**: `MESSAGE_ENTITIE_*` for example: `MESSAGE_ENTITIE_MENTION`, `MESSAGE_ENTITIE_HASHTAG`, etc
+- **Bot Cmmand Scopes**: `BOT_COMMAND_SCOPE_*` for example: `BOT_COMMAND_SCOPE_DEFAULT`, `BOT_COMMAND_SCOPE_ALL_PRIVATE_CHATS`, etc
+- **Chat Member Statuses**: `CHAT_MEMBER_STATUS_*` for example: `CHAT_MEMBER_STATUS_AMINISTRATOR`, `CHAT_MEMBER_STATUS_CREATOR`, etc
+- **Chat Types**: `CHAT_TYPE_*` for example: `CHAT_TYPE_PRIVATE`, `CHAT_TYPE_CHANNEL`, etc
+- **Chat Actions**: `CHAT_ACTION_*` for example: `CHAT_ACTION_TYPING`, `CHAT_ACTION_UPLOAD_PHOTO`, etc
+- **Chat Permissions**: `CHAT_PERMISSION_CAN_*` for example: `CHAT_PERMISSION_CAN_SEND_MESSAGES`, `CHAT_PERMISSION_CAN_SEND_AUDIOS`, etc
+- **Chat Administrator Rights**: `CHAT_ADMINISTRATOR_RIGHT_*` for example: `CHAT_ADMINISTRATOR_RIGHT_IS_ANONYMOUS`, `CHAT_ADMINISTRATOR_RIGHT_CAN_MANAGE_CHAT`, etc
+- **Colors**: `COLOR_RGB_*` | `COLOR_RGB_*_HEX` for example: `COLOR_RGB_BLUE` | `COLOR_RGB_BLUE_HEX`, `COLOR_RGB_YELLOW` | `COLOR_RGB_YELLOW_HEX`, etc
+- **Dice Emojis**: `DICE_EMOJI_*` for example: `DICE_EMOJI_DICE`, `DICE_EMOJI_DART`, etc
+- **Google Place Types**: `GOOGLE_PLACE_TYPE_*` for example: `GOOGLE_PLACE_TYPE_ACCOUNTING`, `GOOGLE_PLACE_TYPE_AIRPORT`, etc
+- **Menu Button Types**: `MENU_BUTTON_TYPE_*` for example: `MENU_BUTTON_TYPE_DEFAULT`, `MENU_BUTTON_TYPE_WEB_APP`, etc
+- **Poll Types**: `POLL_TYPE_*` for example: `POLL_TYPE_REGULAR`, etc
+- **Switch Inline Query Chosen Chats**: `SWITCH_INLINE_QUERY_CHOSEN_CHAT_*` for example: `SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALOW_USER_CHATS`, `SWITCH_INLINE_QUERY_BOT_CHATS`, etc
+- **Sticker Formats**: `STICKER_FORMAT_*` for example: `STICKER_FORMAT_STATIC`, `STICKER_FORMAT_ANIMATED`, etc
+- **Sticker Mask Position Points**: `STICKER_MASK_POSITION_POINT_*` for example: `STICKER_MASK_POSITION_POINT_FOREHEAD`, `STICKER_MASK_POSITION_POINT_MOUTH`, etc
+- **Sticker Types**: `STICKER_TYPE_*` for example: `STICKER_TYPE_REGULAR`, `STICKER_TYPE_MASK`, etc
+- **Parse Modes**: `PARSE_MODE_*` for example: `PARSE_MODE_HTML`, `PARSE_MODE_MARKDOWN`, etc
+- **Passport Element Types**: `PASSPORT_ELEMENT_TYPE_*` for example: `PASSPORT_ELEMENT_TYPE_PASSPORT`, `PASSPORT_ELEMENT_TYPE_DRIVER_LICENSE`, etc
+- **Passport Element Errors**: `PASSPORT_ELEMENT_ERROR_*` for example: `PASSPORT_ELEMENT_ERROR_DATA_FIELD`, `PASSPORT_ELEMENT_ERROR_FRONT_SIDE`, etc
+- Input Media Types: `INPUT_MEDIA_TYPE_*` for example: `INPUT_MEDIA_TYPE_ANIMATION`, `INPUT_MEDIA_TYPE_DOCUMENT`, etc
+
+And much more! ... check the source code yourself :)
 
 # 🐞 Bug Report <a name="bug-report"></a>
 We strive to provide a robust and reliable library, but bugs may still occur. If you encounter any issues or unexpected behavior while using our library, we appreciate your help in reporting them.
