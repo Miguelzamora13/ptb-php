@@ -1,31 +1,37 @@
-## 🇮🇷 [توضیحات فارسی](docs/fa/README.md)
+## 🇮🇷 [توضیحات فارسی](docs/fa/README.fa.md)
 
 # PTB = Procedural Telegram Bot (PHP Library)
 
 > The PTB Library gives your project flexibility, scalability and super speed
 
-# Quick Access
-- [Introduction](#introduction)
-- [A Basic Example](#basic-example)
-- [Installation](#installation)
-- [Why Procedural and NOT OOP?](#why-procedural)
-- [Documentation](#documentation)
-    - [Handlers](#handlers)
-        - [Available Handlers](#available-handlers)
-    - [Available Helpers](#available-helpers)
-    - [Available Methods](#available-methods)
-    - [Available Types](#available-types)
-- [Bug Report](#bug-report)
-- [Changelog](#available-changelog)
-- [Credits](#available-credits)
-- [License](#available-license)
+# 🗂️ Table of Contents
 
-# Introduction <a name="introduction"></a>
+- 🌟 [Introduction](#introduction)
+- 💡 [A Basic Example](#basic-example)
+- 🛠️ [Installation](#installation)
+- ❓ [Why Procedural and NOT OOP?](#why-procedural)
+- 📚 [Documentation](#documentation)
+    - ⚙️ [Configuraion](#configuration)
+    - 🎮 [Keyboards](#keyboards)
+        - [ReplyKeyboardMarkup](#keyboards_reply-keyboard-markup)
+        - [InlineKeyboardMarkup](#keyboards_inline-keyboard-markup)
+    - 🧩 [Available Handlers](#available-handlers)
+    - 🚁 [Available Helpers](#available-helpers)
+    - 💎 [Available Methods](#available-methods)
+    - 🔮 [Available Types](#available-types)
+- 🐞 [Bug Report](#bug-report)
+- 📝 [Changelog](#available-changelog)
+- 🙌 [Credits](#available-credits)
+- 📜 [License](#available-license)
+
+# 🌟 Introduction <a name="introduction"></a>
+
 This library takes advantage of the latest **PHP 8** features, and tries to make the **speed**, **scalability** and **flexibility** of use its strength, it will allow you to quickly make simple bots, but at the same time, it provides
 more **advanced features** to handle even the most complicated flows. Some architectural concepts on which PTB is
 based are heavily influenced by other open source project with the name [Nutgram](https://github.com/nutgram/nutgram)! check it out too!
 
-# A Basic Example <a name="basic-example"></a>
+# 💡 A Basic Example <a name="basic-example"></a>
+
 ```php
 <?php
 
@@ -119,6 +125,7 @@ run();
 ```
 
 # Installation <a name="installation"></a>
+
 You can install the package via composer:
 
 ```bash
@@ -127,7 +134,8 @@ composer require devdasher/ptb-php
 
 Or you can include the PTB.php file on your PHP code directly
 
-# Why Procedural and NOT OOP? <a name="why-procedural"></a>
+# ❓ Why Procedural and NOT OOP? <a name="why-procedural"></a>
+
 Procedural programming is often considered faster than Object-Oriented Programming (OOP) due to its lower overhead and the smaller number of operations required for execution. In procedural programming, the focus is on writing sequential instructions on a step-by-step manner to accomplish a task. This approach allows for efficient execution as the program directly operates on data using straightforward instructions.
 
 One key factor that contributes to the perceived speed advantage of procedural programming is the reduced number of OPcodes (operation codes) involved. OPcodes are fundamental instructions understood by the computer's hardware and define specific operations like arithmetic calculations or memory access. Since procedural programs typically involve fewer layers of abstraction and direct manipulation of data, they tend to require fewer OPcodes to achieve a given functionality.
@@ -137,14 +145,15 @@ In contrast, OOP introduces additional layers of complexity through concepts suc
 It is important to note that the performance difference between procedural and OOP approaches is contextual and may vary based on several factors, such as the specific programming language used, the efficiency of the compiler or interpreter, the design choices made, and the nature of the problem being solved. Therefore, while procedural programming can be perceived as faster due to its streamlined execution model and reduced OPcode usage, it is not a definitive rule, and OOP can provide significant advantages on terms of code organization, maintainability, and extensibility.
 
 
-# Documentation <a name="documentation"></a>
+# 📚 Documentation <a name="documentation"></a>
+
 This library is constantly being updated and currently has many features.  
 
 The list below is only a part of the library's facilities and soon this part of the document will be more complete. Below you can see the most important things:
 
 
 
-## Configuration <a name="configuration"></a>
+## ⚙️ Configuration <a name="configuration"></a>
 For the library to work, you need to set at least two mandatory parameters:
 
 ```php
@@ -168,10 +177,83 @@ configurePTB(
 | `bool $is_webhook = false`                     | Pass `true` if you want to use Webhook to get updates, appropriate for production. default is `false` (LongPolling)
 
 
-## Handlers <a name="handlers"></a>
+## 🎮 Keyboards <a name="keyboards"></a>
+
+The PTB-PHP library provides a simple way to build and send keyboards.
+
+### ReplyKeyboardMarkup <a name="keyboards-reply_keyboard_markup"></a>
+
+The `ReplyKeyboardMarkup(...)` function helps you to create a reply keyabord. Here is an example:
+
+```php
+use function DevDasher\PTB\_row;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB\ReplyKeyboardMarkup;
+use function DevDasher\PTB\KeyboardButton;
+
+onMessageText(pattern: '/start', callable: function() {
+    sendMessage(
+        text: 'START Message',
+        reply_markup: ReplyKeyboardMarkup(
+            keyboard: [
+                _row(KeyboardButton(text: 'Say Hi!'), KeyboardButton(text: 'Say Bye!')),
+            ],
+            is_persistent: true,
+            resize_keyboard: true,
+            //...
+        )
+    );
+});
+
+onMessageText(pattern: 'Say Hi!', callable: fn() => sendMessage('Hi!'));
+
+onMessageText(pattern: 'Say Bye!', callable: fn() => sendMessage('Bye!'));
+```
+
+### InlineKeyboardMarkup <a name="keyboards-inline_keyboard_markup"></a>
+
+The `InlineKeyboardMarkup(...)` function helps you to create a reply keyabord. Here is an example:
+
+```php
+use function DevDasher\PTB\_row;
+use function DevDasher\PTB\answerCallbackQuery;
+use function DevDasher\PTB\InlineKeyboardButton;
+use function DevDasher\PTB\InlineKeyboardMarkup;
+use function DevDasher\PTB\onCallbackQueryData;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+
+onMessageText(pattern: '/account', callable: function() {
+    sendMessage(
+        text: "Account Details\n\n...",
+        reply_markup: InlineKeyboardMarkup(
+            inline_keyboard: [
+                _row(
+                    InlineKeyboardButton(text: 'Suspend', callback_data: 'account/suspend'),
+                    InlineKeyboardButton(text: 'Delete', callback_data: 'account/delete')
+                ),
+            ],
+        )
+    );
+});
+
+onCallbackQueryData(
+    pattern: 'account/suspend',
+    callable: fn() => answerCallbackQuery(text: 'Account Suspended', show_alert: true)
+);
+
+onCallbackQueryData(
+    pattern: 'account/delete',
+    callable: fn() => answerCallbackQuery(text: 'Account Deleted', show_alert: true)
+);
+```
+
+## 🧩 Available Handlers <a name="available-handlers"></a>
+
 Handlers are essential components in building interactive and dynamic conversational experiences. They enable the customization of logic and actions based on specific triggers or conditions. For instance, handlers can be triggered by user messages, chat joins, button clicks, or any other desired action for the bot to respond appropriately. Key aspects of handlers include event binding, where they are associated with specific events; logic and actions, which define what happens when the event occurs; event types, allowing handlers to cater to different event categories; registration, ensuring appropriate handler invocation upon event occurrence; and customization, enabling the bot to respond differently based on various situations. Leveraging handlers effectively facilitates the creation of chatbots capable of interactive and adaptable user interactions, while offering a maintainable and extensible code structure.
 
-### Available Handlers <a name="available-handlers"></a>
+Here is a list of all available handlers in the library:
 
 | Message Handlers     | Description
 |----------------------|-------------
@@ -202,13 +284,13 @@ Handlers are essential components in building interactive and dynamic conversati
 | `onEditedMessageAudio`          | Handles `audio` on `edited_message` update type
 | `onEditedMessageVoice`          | Handles `voice` on `edited_message` update type
 | `onEditedMessageDocument`       | Handles `document` on `edited_message` update type
-| ` [!] onEditedMessageLocation`  | Handles `location` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
-| ` [!] onEditedMessageContact`   | Handles `contact` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
-| ` [!] onEditedMessagePoll`      | Handles `poll` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
-| ` [!] onEditedMessageVenue`     | Handles `venue` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
-| ` [!] onEditedMessageGame`      | Handles `game` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
-| ` [!] onEditedMessageDice`      | Handles `dice` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
-| ` [!] onEditedMessageSticker`   | Handles `sticker` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
+| `onEditedMessageLocation [!]`     | Handles `location` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
+| `onEditedMessageContact [!]`      | Handles `contact` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
+| `onEditedMessagePoll [!]`         | Handles `poll` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
+| `onEditedMessageVenue [!]`        | Handles `venue` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
+| `onEditedMessageGame [!]`         | Handles `game` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
+| `onEditedMessageDice [!]`         | Handles `dice` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
+| `onEditedMessageSticker [!]`      | Handles `sticker` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
 | `onEditedMessage`               | Will be called if none of the above handlers match
 
 | ChannelPost Handlers     | Description
@@ -241,12 +323,12 @@ Handlers are essential components in building interactive and dynamic conversati
 | `onEditedChannelPostVoice`         | Handles `voice` on `edited_channel_post` update type
 | `onEditedChannelPostDocument`      | Handles `document` on `edited_channel_post` update type
 | `onEditedChannelPostLocation`      | Handles `location` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
-| `[!] onEditedChannelPostContact`   | Handles `contact` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
-| `[!] onEditedChannelPostPoll`      | Handles `poll` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
-| `[!] onEditedChannelPostVenue`     | Handles `venue` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
-| `[!] onEditedChannelPostGame`      | Handles `game` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
-| `[!] onEditedChannelPostDice`      | Handles `dice` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
-| `[!] onEditedChannelPostSticker`   | Handles `sticker` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
+| `onEditedChannelPostContact [!]`   | Handles `contact` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
+| `onEditedChannelPostPoll [!]`      | Handles `poll` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
+| `onEditedChannelPostVenue [!]`     | Handles `venue` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
+| `onEditedChannelPostGame [!]`      | Handles `game` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
+| `onEditedChannelPostDice [!]`      | Handles `dice` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
+| `onEditedChannelPostSticker [!]`   | Handles `sticker` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
 | `onEditedChannelPost`              | Will be called if none of the above handlers match
 
 | ChatMember Handlers | Description
@@ -301,7 +383,7 @@ Handlers are essential components in building interactive and dynamic conversati
 |-------------------|-------------
 | `onApiError`      | Will be called if an error occurs on the Telegram side while sending the request
 
-## Available Helpers <a name="available-helpers"></a>
+## 🚁 Available Helpers <a name="available-helpers"></a>
 
 | Helper                                    | Description                                                                                                                                                       | Return Type
 |-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------
@@ -401,8 +483,8 @@ Handlers are essential components in building interactive and dynamic conversati
 | `_isChannel()`                             | Returns `true` if the current chat type was `channel`                                                                                                             | `bool`
 | `_isForwarded()`                           | Returns `true` if a message was forwarded                                                                                                                         | `bool`
 
+## 💎 Available Methods <a name="available-methods"></a>
 
-## Available Methods <a name="available-methods"></a>
 All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#available-methods) is available in the library.
 
 - `getMe()`
@@ -414,7 +496,7 @@ All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#avai
 - `sendPhoto(...)`
 - ...
 
-## Available Types <a name="available-types"></a>
+## 🔮 Available Types <a name="available-types"></a>
 All Telegram Bot API [Available types](https://core.telegram.org/bots/api#available-types) is available in the library.
 
 - `Update(...)`
@@ -424,7 +506,7 @@ All Telegram Bot API [Available types](https://core.telegram.org/bots/api#availa
 - `Message(...)`
 - ...
 
-## Bug Report <a name="bug-report"></a>
+# 🐞 Bug Report <a name="bug-report"></a>
 We strive to provide a robust and reliable library, but bugs may still occur. If you encounter any issues or unexpected behavior while using our library, we appreciate your help in reporting them.
 
 Please follow these steps to report a bug:
@@ -439,12 +521,13 @@ We would also like to take this opportunity to encourage you to use our library 
 
 Thank you for your support and happy coding!
 
-# Changelog <a name="available-changelog"></a>
+# 📝 Changelog <a name="available-changelog"></a>
+
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-# Credits <a name="available-credits"></a>
+# 🙌 Credits <a name="available-credits"></a>
 - [Pooria Bashiri](https://github.com/devdahser)
 - [All Contributors](../../contributors)
 
-# License <a name="available-license"></a>
+# 📜 License <a name="available-license"></a>
 The GNU License (GNU v3). Please see [License File](LICENSE.md) for more information.
