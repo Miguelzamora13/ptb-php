@@ -1450,7 +1450,7 @@ function onCallbackQueryData(
     array $skip_middlewares = [],
 ): void {
     __addHandler(
-        keys: "callback_query.{$pattern}",
+        keys: "callback_query.data.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
