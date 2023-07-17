@@ -39,7 +39,10 @@ based are heavily influenced by other open source project with the name [Nutgram
 <?php
 
 use function DevDasher\PTB\configurePTB;
+use function DevDasher\PTB\middleware;
+use function DevDasher\PTB\onMessage;
 use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\run;
 use function DevDasher\PTB\sendMessage;
 
 // require(__DIR__.'/vendor/autoload.php'); // You can use Composer's autolaod
