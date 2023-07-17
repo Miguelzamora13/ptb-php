@@ -12,11 +12,13 @@
 - ❓ [Why Procedural and NOT OOP?](#why-procedural)
 - 📚 [Documentation](#documentation)
     - ⚙️ [Configuraion](#configuration)
+    - 🤝 Middlewares (Soon...)
+    - 💬Conversations (Soon...)
     - 🎮 [Keyboards](#keyboards)
         - [ReplyKeyboardMarkup](#reply-keyboard-markup)
         - [InlineKeyboardMarkup](#inline-keyboard-markup)
-    - 🧩 [Available Handlers](#available-handlers)
-    - 🚁 [Available Helpers](#available-helpers)
+    - 🧩 [Handlers](#handlers)
+    - 🚁 [Helpers](#available-helpers)
     - 💎 [Available Methods](#available-methods)
     - 🔮 [Available Types](#available-types)
     - ⚓️ [Available Constants](#available-constants)
@@ -250,7 +252,7 @@ onCallbackQueryData(
 );
 ```
 
-## 🧩 Available Handlers <a name="available-handlers"></a>
+## 🧩 Handlers <a name="handlers"></a>
 
 Handlers are essential components in building interactive and dynamic conversational experiences. They enable the customization of logic and actions based on specific triggers or conditions. For instance, handlers can be triggered by user messages, chat joins, button clicks, or any other desired action for the bot to respond appropriately. Key aspects of handlers include event binding, where they are associated with specific events; logic and actions, which define what happens when the event occurs; event types, allowing handlers to cater to different event categories; registration, ensuring appropriate handler invocation upon event occurrence; and customization, enabling the bot to respond differently based on various situations. Leveraging handlers effectively facilitates the creation of chatbots capable of interactive and adaptable user interactions, while offering a maintainable and extensible code structure.
 
@@ -384,7 +386,7 @@ Here is a list of all available handlers in the library:
 |-------------------|-------------
 | `onApiError`      | Will be called if an error occurs on the Telegram side while sending the request
 
-## 🚁 Available Helpers <a name="available-helpers"></a>
+## 🚁 Helpers <a name="helpers"></a>
 
 | Helper                                    | Description                                                                                                                                                       | Return Type
 |-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------
