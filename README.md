@@ -7,18 +7,18 @@
 # 🗂️ Table of Contents
 
 - 🌟 [Introduction](#introduction)
-- 💡 [A Basic Example](#basic-example)
+- 💡 [Basic Example](#basic-example)
 - 🛠️ [Installation](#installation)
 - ❓ [Why Procedural and NOT OOP?](#why-procedural)
 - 📚 [Documentation](#documentation)
     - ⚙️ [Configuraion](#configuration)
     - 🤝 Middlewares (Soon...)
-    - 💬Conversations (Soon...)
+    - 💬 Conversations (Soon...)
     - 🎮 [Keyboards](#keyboards)
         - [ReplyKeyboardMarkup](#reply-keyboard-markup)
         - [InlineKeyboardMarkup](#inline-keyboard-markup)
     - 🧩 [Handlers](#handlers)
-    - 🚁 [Helpers](#available-helpers)
+    - 🚁 [Helpers](#helpers)
     - 💎 [Available Methods](#available-methods)
     - 🔮 [Available Types](#available-types)
     - ⚓️ [Available Constants](#available-constants)
@@ -33,7 +33,7 @@ This library takes advantage of the latest **PHP 8** features, and tries to make
 more **advanced features** to handle even the most complicated flows. Some architectural concepts on which PTB is
 based are heavily influenced by other open source project with the name [Nutgram](https://github.com/nutgram/nutgram)! check it out too!
 
-# 💡 A Basic Example <a name="basic-example"></a>
+# 💡 Basic Example <a name="basic-example"></a>
 
 ```php
 <?php
