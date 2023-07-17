@@ -213,7 +213,7 @@ onMessageText(pattern: 'Say Bye!', callable: fn() => sendMessage('Bye!'));
 
 ### InlineKeyboardMarkup <a name="keyboards-inline_keyboard_markup"></a>
 
-The `InlineKeyboardMarkup(...)` function helps you to create a reply keyabord. Here is an example:
+The `InlineKeyboardMarkup(...)` function helps you to create a inline keyabord. Here is an example:
 
 ```php
 use function DevDasher\PTB\_row;
