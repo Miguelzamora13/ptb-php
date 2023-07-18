@@ -19,9 +19,9 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.2.0
+ * @version 1.2.1
  * @author Pooria Bashiri <po.pooria@gmail.com>
- * @link http://github.com/DevDasher
+ * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
 */
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -5407,44 +5407,112 @@ function _menuButtonTypes(array $exclude = []): array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function __autoFillApiTypeFields(array $fields) {
-    $fields[FIELD_USER_ADMINISTRATOR_RIGHTS] = !isset($fields[FIELD_USER_ADMINISTRATOR_RIGHTS]) ?: json_encode($fields[FIELD_USER_ADMINISTRATOR_RIGHTS]);
-    $fields[FIELD_BOT_ADMINISTRATOR_RIGHTS] = !isset($fields[FIELD_BOT_ADMINISTRATOR_RIGHTS]) ?: json_encode($fields[FIELD_BOT_ADMINISTRATOR_RIGHTS]);
-    $fields[FIELD_PRICES] = !isset($fields[FIELD_PRICES]) ?: json_encode($fields[FIELD_PRICES]);
-    $fields[FIELD_SUGGESTED_TIP_AMOUNTS] = !isset($fields[FIELD_SUGGESTED_TIP_AMOUNTS]) ?: json_encode($fields[FIELD_SUGGESTED_TIP_AMOUNTS]);
-    $fields[FIELD_PROVIDER_DATA] = !isset($fields[FIELD_PROVIDER_DATA]) ?: json_encode($fields[FIELD_PROVIDER_DATA]);
+    if (key_exists(FIELD_USER_ADMINISTRATOR_RIGHTS, $fields) && $fields[FIELD_USER_ADMINISTRATOR_RIGHTS]) {
+        $fields[FIELD_USER_ADMINISTRATOR_RIGHTS] = json_encode($fields[FIELD_USER_ADMINISTRATOR_RIGHTS]);
+    }
+    if (key_exists(FIELD_BOT_ADMINISTRATOR_RIGHTS, $fields) && $fields[FIELD_BOT_ADMINISTRATOR_RIGHTS]) {
+        $fields[FIELD_BOT_ADMINISTRATOR_RIGHTS] = json_encode($fields[FIELD_BOT_ADMINISTRATOR_RIGHTS]);
+    }
+    if (key_exists(FIELD_PRICES, $fields) && $fields[FIELD_PRICES]) {
+        $fields[FIELD_PRICES] = json_encode($fields[FIELD_PRICES]);
+    }
+    if (key_exists(FIELD_SUGGESTED_TIP_AMOUNTS, $fields) && $fields[FIELD_SUGGESTED_TIP_AMOUNTS]) {
+        $fields[FIELD_SUGGESTED_TIP_AMOUNTS] = json_encode($fields[FIELD_SUGGESTED_TIP_AMOUNTS]);
+    }
+    if (key_exists(FIELD_PROVIDER_DATA, $fields) && $fields[FIELD_PROVIDER_DATA]) {
+        $fields[FIELD_PROVIDER_DATA] = json_encode($fields[FIELD_PROVIDER_DATA]);
+    }
     return $fields;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function __autoFillApiMethodParameters(array $parameters) {
-    $parameters[PARAM_CHAT_ID] ??= _chatId() ?? _userId();
-    $parameters[PARAM_USER_ID] ??= _userId();
-    $parameters[PARAM_FROM_CHAT_ID] ??= _chatId();
-    $parameters[PARAM_MESSAGE_ID] ??= _messageId();
-    $parameters[PARAM_CALLBACK_QUERY_ID] ??= _callbackQueryId();
-    $parameters[PARAM_CALLBACK_QUERY_ID] ??= _inlineQueryId();
-    $parameters[PARAM_MEDIA] = !isset($parameters[PARAM_MEDIA]) ?: json_encode($parameters[PARAM_MEDIA]);
-    $parameters[PARAM_REPLY_MARKUP] = !isset($parameters[PARAM_REPLY_MARKUP]) ?: json_encode($parameters[PARAM_REPLY_MARKUP]);
-    $parameters[PARAM_ENTITIES] = !isset($parameters[PARAM_ENTITIES]) ?: json_encode($parameters[PARAM_ENTITIES]);
-    $parameters[PARAM_CAPTION_ENTITIES] = !isset($parameters[PARAM_CAPTION_ENTITIES]) ?: json_encode($parameters[PARAM_CAPTION_ENTITIES]);
-    $parameters[PARAM_EXPLANATION_ENTITIES] = !isset($parameters[PARAM_EXPLANATION_ENTITIES]) ?: json_encode($parameters[PARAM_EXPLANATION_ENTITIES]);
-    $parameters[PARAM_PERMISSIONS] = !isset($parameters[PARAM_PERMISSIONS]) ?: json_encode($parameters[PARAM_PERMISSIONS]);
-    $parameters[PARAM_COMMANDS] = !isset($parameters[PARAM_COMMANDS]) ?: json_encode($parameters[PARAM_COMMANDS]);
-    $parameters[PARAM_SCOPE] = !isset($parameters[PARAM_SCOPE]) ?: json_encode($parameters[PARAM_SCOPE]);
-    $parameters[PARAM_MENU_BUTTON] = !isset($parameters[PARAM_MENU_BUTTON]) ?: json_encode($parameters[PARAM_MENU_BUTTON]);
-    $parameters[PARAM_RIGHTS] = !isset($parameters[PARAM_RIGHTS]) ?: json_encode($parameters[PARAM_RIGHTS]);
-    $parameters[PARAM_STICKERS] = !isset($parameters[PARAM_STICKERS]) ?: json_encode($parameters[PARAM_STICKERS]);
-    $parameters[PARAM_EMOJI_LIST] = !isset($parameters[PARAM_EMOJI_LIST]) ?: json_encode($parameters[PARAM_EMOJI_LIST]);
-    $parameters[PARAM_KEYWORDS] = !isset($parameters[PARAM_KEYWORDS]) ?: json_encode($parameters[PARAM_KEYWORDS]);
-    $parameters[PARAM_MASK_POSITION] = !isset($parameters[PARAM_MASK_POSITION]) ?: json_encode($parameters[PARAM_MASK_POSITION]);
-    $parameters[PARAM_BUTTON] = !isset($parameters[PARAM_BUTTON]) ?: json_encode($parameters[PARAM_BUTTON]);
-    $parameters[PARAM_PRICES] = !isset($parameters[PARAM_PRICES]) ?: json_encode($parameters[PARAM_PRICES]);
-    $parameters[PARAM_SUGGESTED_TIP_AMOUNTS] = !isset($parameters[PARAM_SUGGESTED_TIP_AMOUNTS]) ?: json_encode($parameters[PARAM_SUGGESTED_TIP_AMOUNTS]);
-    $parameters[PARAM_SHIPPING_OPTIONS] = !isset($parameters[PARAM_SHIPPING_OPTIONS]) ?: json_encode($parameters[PARAM_SHIPPING_OPTIONS]);
-    $parameters[PARAM_ERRORS] = !isset($parameters[PARAM_ERRORS]) ?: json_encode($parameters[PARAM_ERRORS]);
-    $parameters[PARAM_OPTIONS] = !isset($parameters[PARAM_OPTIONS]) ?: json_encode($parameters[PARAM_OPTIONS]);
-    $parameters[PARAM_RESULT] = !isset($parameters[PARAM_RESULT]) ?: json_encode($parameters[PARAM_RESULT]);
-    $parameters[PARAM_RESULTS] = !isset($parameters[PARAM_RESULTS]) ?: json_encode($parameters[PARAM_RESULTS]);
-    $parameters[PARAM_ALLOWED_UPDATES] = !isset($parameters[PARAM_ALLOWED_UPDATES]) ?: json_encode($parameters[PARAM_ALLOWED_UPDATES]);
+    if (key_exists(PARAM_CHAT_ID, $parameters) && !$parameters[PARAM_CHAT_ID]) {
+        $parameters[PARAM_CHAT_ID] = _chatId() ?? _userId();
+    }
+    if (key_exists(PARAM_USER_ID, $parameters) && !$parameters[PARAM_USER_ID]) {
+        $parameters[PARAM_USER_ID] = _userId();
+    }
+    if (key_exists(PARAM_FROM_CHAT_ID, $parameters) && !$parameters[PARAM_FROM_CHAT_ID]) {
+        $parameters[PARAM_FROM_CHAT_ID] = _chatId();
+    }
+    if (key_exists(PARAM_MESSAGE_ID, $parameters) && !$parameters[PARAM_MESSAGE_ID]) {
+        $parameters[PARAM_MESSAGE_ID] = _messageId();
+    }
+    if (key_exists(PARAM_CALLBACK_QUERY_ID, $parameters) && !$parameters[PARAM_CALLBACK_QUERY_ID]) {
+        $parameters[PARAM_CALLBACK_QUERY_ID] = _callbackQueryId();
+    }
+    if (key_exists(PARAM_CALLBACK_QUERY_ID, $parameters) && !$parameters[PARAM_CALLBACK_QUERY_ID]) {
+        $parameters[PARAM_CALLBACK_QUERY_ID] = _inlineQueryId();
+    }
+    if (key_exists(PARAM_MEDIA, $parameters) && $parameters[PARAM_MEDIA]) {
+        $parameters[PARAM_MEDIA] = json_encode($parameters[PARAM_MEDIA]);
+    }
+    if (key_exists(PARAM_REPLY_MARKUP, $parameters) && $parameters[PARAM_REPLY_MARKUP]) {
+        $parameters[PARAM_REPLY_MARKUP] = json_encode($parameters[PARAM_REPLY_MARKUP]);
+    }
+    if (key_exists(PARAM_ENTITIES, $parameters) && $parameters[PARAM_ENTITIES]) {
+        $parameters[PARAM_ENTITIES] = json_encode($parameters[PARAM_ENTITIES]);
+    }
+    if (key_exists(PARAM_CAPTION_ENTITIES, $parameters) && $parameters[PARAM_CAPTION_ENTITIES]) {
+        $parameters[PARAM_CAPTION_ENTITIES] = json_encode($parameters[PARAM_CAPTION_ENTITIES]);
+    }
+    if (key_exists(PARAM_EXPLANATION_ENTITIES, $parameters) && $parameters[PARAM_EXPLANATION_ENTITIES]) {
+        $parameters[PARAM_EXPLANATION_ENTITIES] = json_encode($parameters[PARAM_EXPLANATION_ENTITIES]);
+    }
+    if (key_exists(PARAM_PERMISSIONS, $parameters) && $parameters[PARAM_PERMISSIONS]) {
+        $parameters[PARAM_PERMISSIONS] = json_encode($parameters[PARAM_PERMISSIONS]);
+    }
+    if (key_exists(PARAM_COMMANDS, $parameters) && $parameters[PARAM_COMMANDS]) {
+        $parameters[PARAM_COMMANDS] = json_encode($parameters[PARAM_COMMANDS]);
+    }
+    if (key_exists(PARAM_SCOPE, $parameters) && $parameters[PARAM_SCOPE]) {
+        $parameters[PARAM_SCOPE] = json_encode($parameters[PARAM_SCOPE]);
+    }
+    if (key_exists(PARAM_MENU_BUTTON, $parameters) && $parameters[PARAM_MENU_BUTTON]) {
+        $parameters[PARAM_MENU_BUTTON] = json_encode($parameters[PARAM_MENU_BUTTON]);
+    }
+    if (key_exists(PARAM_RIGHTS, $parameters) && $parameters[PARAM_RIGHTS]) {
+        $parameters[PARAM_RIGHTS] = json_encode($parameters[PARAM_RIGHTS]);
+    }
+    if (key_exists(PARAM_STICKERS, $parameters) && $parameters[PARAM_STICKERS]) {
+        $parameters[PARAM_STICKERS] = json_encode($parameters[PARAM_STICKERS]);
+    }
+    if (key_exists(PARAM_EMOJI_LIST, $parameters) && $parameters[PARAM_EMOJI_LIST]) {
+        $parameters[PARAM_EMOJI_LIST] = json_encode($parameters[PARAM_EMOJI_LIST]);
+    }
+    if (key_exists(PARAM_KEYWORDS, $parameters) && $parameters[PARAM_KEYWORDS]) {
+        $parameters[PARAM_KEYWORDS] = json_encode($parameters[PARAM_KEYWORDS]);
+    }
+    if (key_exists(PARAM_MASK_POSITION, $parameters) && $parameters[PARAM_MASK_POSITION]) {
+        $parameters[PARAM_MASK_POSITION] = json_encode($parameters[PARAM_MASK_POSITION]);
+    }
+    if (key_exists(PARAM_BUTTON, $parameters) && $parameters[PARAM_BUTTON]) {
+        $parameters[PARAM_BUTTON] = json_encode($parameters[PARAM_BUTTON]);
+    }
+    if (key_exists(PARAM_PRICES, $parameters) && $parameters[PARAM_PRICES]) {
+        $parameters[PARAM_PRICES] = json_encode($parameters[PARAM_PRICES]);
+    }
+    if (key_exists(PARAM_SUGGESTED_TIP_AMOUNTS, $parameters) && $parameters[PARAM_SUGGESTED_TIP_AMOUNTS]) {
+        $parameters[PARAM_SUGGESTED_TIP_AMOUNTS] = json_encode($parameters[PARAM_SUGGESTED_TIP_AMOUNTS]);
+    }
+    if (key_exists(PARAM_SHIPPING_OPTIONS, $parameters) && $parameters[PARAM_SHIPPING_OPTIONS]) {
+        $parameters[PARAM_SHIPPING_OPTIONS] = json_encode($parameters[PARAM_SHIPPING_OPTIONS]);
+    }
+    if (key_exists(PARAM_ERRORS, $parameters) && $parameters[PARAM_ERRORS]) {
+        $parameters[PARAM_ERRORS] = json_encode($parameters[PARAM_ERRORS]);
+    }
+    if (key_exists(PARAM_OPTIONS, $parameters) && $parameters[PARAM_OPTIONS]) {
+        $parameters[PARAM_OPTIONS] = json_encode($parameters[PARAM_OPTIONS]);
+    }
+    if (key_exists(PARAM_RESULT, $parameters) && $parameters[PARAM_RESULT]) {
+        $parameters[PARAM_RESULT] = json_encode($parameters[PARAM_RESULT]);
+    }
+    if (key_exists(PARAM_RESULTS, $parameters) && $parameters[PARAM_RESULTS]) {
+        $parameters[PARAM_RESULTS] = json_encode($parameters[PARAM_RESULTS]);
+    }
+    if (key_exists(PARAM_ALLOWED_UPDATES, $parameters) && $parameters[PARAM_ALLOWED_UPDATES]) {
+        $parameters[PARAM_ALLOWED_UPDATES] = json_encode($parameters[PARAM_ALLOWED_UPDATES]);
+    }
     $fileType = current(array_intersect_key(array_keys($parameters), _fileTypes()));
     if ($fileType && file_exists(strval($filePath = $parameters[$fileType]))) {
         $parameters[$fileType] = new CURLFile($filePath);
