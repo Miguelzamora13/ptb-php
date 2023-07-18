@@ -1,6 +1,6 @@
 ## 🇮🇷 [توضیحات فارسی](README.fa.md)
 
-# PTB = Procedural Telegram Bot (PHP Library)
+# PTB-PHP = Procedural Telegram Bot (PHP Library)
 
 > The PTB Library gives your project flexibility, scalability and super speed
 
