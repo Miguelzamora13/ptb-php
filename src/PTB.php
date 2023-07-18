@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.2.2
+ * @version 1.2.3
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -520,6 +520,11 @@ define('METHOD_SET_GAME_SCORE', 'setGameScore');
 define('METHOD_GET_GAME_HIGH_SCORES', 'getGameHighScores');
 define('METHOD_GET_UPDATES', 'getUpdates');
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+define('PARAM_CERTIFICATE', 'certificate');
+define('PARAM_IP_ADDRESS', 'ip_address');
+define('PARAM_MAX_CONNECTIONS', 'max_connections');
+define('PARAM_DROP_PENDING_UPDATES', 'drop_pending_updates');
+define('PARAM_SECRET_TOKEN', 'secret_token');
 define('PARAM_MESSAGE_ID', 'message_id');
 define('PARAM_CHAT_ID', 'chat_id');
 define('PARAM_USER_ID', 'user_id');
@@ -610,7 +615,6 @@ define('PARAM_MEMBER_LIMIT', 'member_limit');
 define('PARAM_CREATES_JOIN_REQUEST', 'creates_join_request');
 define('PARAM_INVITE_LINK', 'invite_link');
 define('PARAM_DESCRIPTION', 'description');
-define('PARAM_STICKER_SET_NAME', 'sticker_set_name');
 define('PARAM_ICON_COLOR', 'icon_color');
 define('PARAM_ICON_CUSTOM_EMOJI_ID', 'icon_custom_emoji_id');
 define('PARAM_SHOW_ALERT', 'show_alert');
@@ -626,6 +630,8 @@ define('PARAM_RIGHTS', 'rights');
 define('PARAM_FOR_CHANNELS', 'for_channels');
 define('PARAM_INLINE_MESSAGE_ID', 'inline_message_id');
 define('PARAM_CUSTOM_EMOJI_IDS', 'custom_emoji_ids');
+define('PARAM_STICKER', 'sticker');
+define('PARAM_STICKER_SET_NAME', 'sticker_set_name');
 define('PARAM_STICKER_FORMAT', 'sticker_format');
 define('PARAM_STICKERS', 'stickers');
 define('PARAM_STICKER_TYPE', 'sticker_type');
@@ -2833,11 +2839,15 @@ function InputMedia(array ...$media): array {
 function InputMediaAnimation(
     string $media,
     ?string $caption = null,
+    null|CURLFile|string $thumbnail = null,
     ?string $parse_mode = null,
     ?array $caption_entities = null,
+    ?int $width = null,
+    ?int $height = null,
+    ?int $duration = null,
     ?bool $has_spoiler = null,
 ): array {
-    return __removeNullValues(array_merge(['type' => INPUT_MEDIA_TYPE_ANIMATION], get_defined_vars()));
+    return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_ANIMATION], get_defined_vars()));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputMediaDocument(
@@ -2846,10 +2856,10 @@ function InputMediaDocument(
     ?string $parse_mode = null,
     ?array $caption_entities = null,
     ?bool $has_spoiler = null,
-    ?string $thumbnail = null,
+    null|CURLFile|string $thumbnail = null,
     ?bool $disable_content_type_detection = null,
 ): array {
-    return __removeNullValues(array_merge(['type' => INPUT_MEDIA_TYPE_DOCUMENT], get_defined_vars()));
+    return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_DOCUMENT], get_defined_vars()));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputMediaAudio(
@@ -2857,12 +2867,12 @@ function InputMediaAudio(
     ?string $caption = null,
     ?string $parse_mode = null,
     ?array $caption_entities = null,
-    ?string $thumbnail = null,
+    null|CURLFile|string $thumbnail = null,
     ?int $duration = null,
     ?int $performer = null,
     ?string $title = null,
 ): array {
-    return __removeNullValues(array_merge(['type' => INPUT_MEDIA_TYPE_AUDIO], get_defined_vars()));
+    return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_AUDIO], get_defined_vars()));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputMediaPhoto(
@@ -2872,12 +2882,12 @@ function InputMediaPhoto(
     ?array $caption_entities = null,
     ?bool $has_spoiler = null,
 ): array {
-    return __removeNullValues(array_merge(['type' => INPUT_MEDIA_TYPE_PHOTO], get_defined_vars()));
+    return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_PHOTO], get_defined_vars()));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputMediaVideo(
     string $media,
-    ?string $thumbnail = null,
+    null|CURLFile|string $thumbnail = null,
     ?string $caption = null,
     ?string $parse_mode = null,
     ?array $caption_entities = null,
@@ -2887,7 +2897,7 @@ function InputMediaVideo(
     ?int $duration = null,
     ?bool $supports_streaming = null,
 ): array {
-    return __removeNullValues(array_merge(['type' => 'video'], get_defined_vars()));
+    return __prepareApiTypeFields(array_merge(['type' => 'video'], get_defined_vars()));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputFile(string $file_path): CURLFile { 
@@ -2939,7 +2949,7 @@ function MaskPosition(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputSticker(
-    string $sticker,
+    null|CURLFile|string $sticker,
     array $emoji_list,
     ?array $mask_position = null,
     ?array $keywords = null,
@@ -3579,7 +3589,7 @@ function getUpdates(
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setWebhook(
     string $url,
-    ?string $certificate = null,
+    null|CURLFile|string $certificate = null,
     ?string $ip_address = null,
     ?int $max_connections = null,
     ?array $allowed_updates = null,
@@ -3701,7 +3711,7 @@ function sendAudio(
     ?int $duration = null,
     ?string $performer = null,
     ?string $title = null,
-    ?string $thumbnail = null,
+    null|CURLFile|string $thumbnail = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
@@ -3719,7 +3729,7 @@ function sendDocument(
     ?int $reply_to_message_id = null,
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
-    ?string $thumbnail = null,
+    null|CURLFile|string $thumbnail = null,
     ?bool $disable_content_type_detection = null,
     ?array $_options = [],
 ): array {
@@ -3738,7 +3748,7 @@ function sendVideo(
     ?int $reply_to_message_id = null,
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
-    ?string $thumbnail = null,
+    null|CURLFile|string $thumbnail = null,
     ?bool $disable_content_type_detection = null,
     ?int $width = null,
     ?int $height = null,
@@ -3761,7 +3771,7 @@ function sendAnimation(
     ?int $reply_to_message_id = null,
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
-    ?string $thumbnail = null,
+    null|CURLFile|string $thumbnail = null,
     ?bool $disable_content_type_detection = null,
     ?int $width = null,
     ?int $height = null,
@@ -3804,7 +3814,7 @@ function sendVideoNote(
     ?array $reply_markup = null,
     ?int $duration = null,
     ?int $length = null,
-    ?string $thumbnail = null,
+    null|CURLFile|string $thumbnail = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
@@ -3938,7 +3948,7 @@ function sendFile(
     ?int $reply_to_message_id = null,
     ?bool $allow_sending_without_reply = null,
     ?array $reply_markup = null,
-    ?string $thumbnail = null,
+    null|CURLFile|string $thumbnail = null,
     ?bool $disable_content_type_detection = null,
     ?int $duration = null,
     ?string $performer = null,
@@ -4139,7 +4149,7 @@ function declineChatJoinRequest(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function setChatPhoto(
-    string $photo,
+    null|CURLFile|string $photo,
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
@@ -4553,7 +4563,7 @@ function getCustomEmojiStickers(array $custom_emoji_ids, ?array $_options = []):
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function uploadStickerFile(
-    string $sticker,
+    null|CURLFile|string $sticker,
     string $sticker_format,
     ?int $user_id = null,
     ?array $_options = [],
@@ -4630,7 +4640,7 @@ function setStickerSetTitle(
 function setStickerSetThumbnail(
     string $name,
     ?int $user_id = null,
-    ?string $thumbnail = null,
+    null|CURLFile|string $thumbnail = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
@@ -5421,6 +5431,8 @@ function __autoFillApiTypeFields(array $fields) {
     if (key_exists(FIELD_PROVIDER_DATA, $fields) && $fields[FIELD_PROVIDER_DATA]) {
         $fields[FIELD_PROVIDER_DATA] = json_encode($fields[FIELD_PROVIDER_DATA]);
     }
+    __convertToFileCURL($fields, FIELD_THUMBNAIL);
+    __convertToFileCURL($fields, FIELD_STICKER);
     return $fields;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -5512,12 +5524,23 @@ function __autoFillApiMethodParameters(array $parameters) {
     if (key_exists(PARAM_ALLOWED_UPDATES, $parameters) && $parameters[PARAM_ALLOWED_UPDATES]) {
         $parameters[PARAM_ALLOWED_UPDATES] = json_encode($parameters[PARAM_ALLOWED_UPDATES]);
     }
-    $fileType = current(array_intersect_key(array_keys($parameters), _fileTypes()));
-    if ($fileType && is_string($parameters[$fileType]) && is_file($filePath = $parameters[$fileType])) {
-        $parameters[$fileType] = new CURLFile($filePath);
+    foreach (_fileTypes() as $name) {
+        __convertToFileCURL($parameters, $name);
     }
+    __convertToFileCURL($parameters, PARAM_THUMBNAIL);
+    __convertToFileCURL($parameters, PARAM_CERTIFICATE);
     return $parameters;
 }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function __convertToFileCURL(&$array, string $key): void {
+    if (
+        key_exists($key, $array)
+        && is_string($array[$key])
+        && is_file($filePath = $array[$key])
+    ) {
+        $array[$key] = new CURLFile($filePath);
+    }
+};
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function __makeApiRequest(string $method = null, array $parameters = [], array $options = []): array|bool {
     $apiBaseUrl = $options['api_base_url'] ?? __apiBaseUrl();
