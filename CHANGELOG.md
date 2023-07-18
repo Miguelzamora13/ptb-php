@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.2] - 2023-07-18
+
+### Added
+
+- Added `InputFile(...)` function
+
+### Changed
+
+...
+
+### Fixed
+
+...
+
 ## [1.2.0] - 2023-07-18
 
 ### Added
