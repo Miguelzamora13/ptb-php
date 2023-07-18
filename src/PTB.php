@@ -5308,7 +5308,7 @@ function _getGlobalData(int|string $key, mixed $defaultValue = null): mixed {
     return $GLOBALS[_PACKAGE_NAME]['global_data'][$key] ?? $defaultValue;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _downloadBotFile(array|string $file,string $save_path,?array $options = []): bool {
+function _downloadBotFile(array|string $file, string $save_path, ?array $options = []): bool {
     if (is_string($file)) {
         $file = getFile(file_id: $file);
         if (!$file || !$file['ok']) {
@@ -5323,19 +5323,28 @@ function _downloadBotFile(array|string $file,string $save_path,?array $options =
     if (!$apiBaseUrl) {
         throw new Exception("The api base url is not specified!");
     }
-    $token = $options['via_token'] ?? __botToken($options['to_bot'] ?? null);
+    $token = $options['bot_token'] ?? __botToken($options['bot_username'] ?? null);
     if (!$token) {
         throw new Exception("The bot token is not specified!");
     }
     $url = "$apiBaseUrl/bot{$token}/{$filePath}";
-    return _downloadFile(url: $url, save_path: $save_path);
+    return _download(
+        url: $url,
+        save_path: $save_path,
+        curl_options: $options['curl_options'] ?? [],
+    );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _downloadFile(string $url, string $save_path): bool {
+function _download(string $url, string $save_path, array $curl_options = []): bool {
     $fp = fopen($save_path, 'w+');
     $result = __makeCurlRequest(url: $url, options: [
         CURLOPT_FILE => $fp,
-    ]);
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_BUFFERSIZE => 1024 * 1024,
+        CURLOPT_WRITEFUNCTION => function ($ch, $data) use ($fp) {
+            return fwrite($fp, $data);
+        }
+    ] + $curl_options);
     fclose($fp);
     return $result;
 }
@@ -5421,7 +5430,7 @@ function __makeApiRequest(string $method = null, array $parameters = [], array $
     if (!$apiBaseUrl) {
         throw new Exception("The api base url is not specified!");
     }
-    $token = $options['via_token'] ?? __botToken($options['to_bot'] ?? null);
+    $token = $options['bot_token'] ?? __botToken($options['bot_username'] ?? null);
     if (!$token) {
         throw new Exception("The bot token is not specified!");
     }
