@@ -14,7 +14,7 @@
     - ⚙️ [Configuraion](#configuration)
     - 📤 [Uploading Files](#uploading-files)
     - 📥 [Downloading Files](#downloading-files)
-    - 🤖 Multiple Bot Management (Soon...)
+    - 🤖 [Multiple Bot Management](#multiple-bot-management)
     - 🤝 Middlewares (Soon...)
     - 💬 Conversations (Soon...)
     - 🎮 [Keyboards](#keyboards)
@@ -306,6 +306,58 @@ use function DevDasher\PTB\_download;
 
 It's better to use the `_downloadBotFile(...)` function.
 
+
+## 🤖 Multiple Bot Management <a name="multiple-bot-management"></a>
+
+You can manage your bots easily. see this example:
+
+```php
+use function DevDasher\PTB\_registerNewBot;
+use function DevDasher\PTB\configurePTB;
+use function DevDasher\PTB\onMessage;
+use function DevDasher\PTB\sendMessage;
+
+# You set the first and default bot details here:
+configurePTB(
+    token: 'TOKEN',
+    username: 'USERNAME',
+    //...
+);
+
+onMessage(callable: function() {
+    # A helper function to add a new bot, do this anywhere you want:
+    _registerNewBot(
+        token: 'SECOND_BOT_TOKEN',
+        username: 'SECOND_BOT_USERNAME',
+        //...
+    );
+
+    # By default, all requests will be sent to the main (default) bot:
+    $response = sendMessage(text: 'Hey there!');
+
+    # Now, we send a message to the second bot like this:
+    $response = sendMessage(
+        text: "What's up bro?",
+
+        # This parameter is present in all functions (related to sending requests)
+        _options: [
+            # Here, you can specify the second bot username:
+            'bot_username' => 'SECOND_BOT_USERNAME',
+
+            # Or you can pass the second bot's token directly:
+            'bot_token' => 'SECOND_BOT_TOKEN',
+
+            //...
+        ],
+
+        //...
+    );
+
+    //...
+});
+
+//...
+```
 
 ## 🎮 Keyboards <a name="keyboards"></a>
 
