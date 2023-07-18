@@ -12,8 +12,8 @@
 - ❓ [Why Procedural and NOT OOP?](#why-procedural)
 - 📚 [Documentation](#documentation)
     - ⚙️ [Configuraion](#configuration)
-    - 📤 Uploading Files (Soon...)
-    - 📥 Downloading Files (Soon...)
+    - 📤 [Uploading Files](#uploading-files)
+    - 📥 [Downloading Files](#downloading-files)
     - 🤖 Multiple Bot Management (Soon...)
     - 🤝 Middlewares (Soon...)
     - 💬 Conversations (Soon...)
@@ -164,6 +164,7 @@ The list below is only a part of the library's facilities and soon this part of 
 
 
 ## ⚙️ Configuration <a name="configuration"></a>
+
 For the library to work, you need to set at least two mandatory parameters:
 
 ```php
@@ -185,6 +186,125 @@ configurePTB(
 | `string $api_base_url = API_BASE_URL`          | ...
 | `array $curl_options = []`                     | ...
 | `bool $is_webhook = false`                     | Pass `true` if you want to use Webhook to get updates, appropriate for production. default is `false` (LongPolling)
+
+## 📤 Uploading Files <a name="uploading-files"></a>
+
+Here is some examples of how you can send files to the user in different ways:
+
+```php
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendPhoto;
+use function DevDasher\PTB\sendVideo;
+use function DevDasher\PTB\InputFile;
+
+onMessageText(pattern: '/photo', callable: function() {
+    $response = sendPhoto(
+        # Pass your photo path:
+        photo: 'path/to/photo.jpg',
+
+        # Or you can use the InputFile function like this:
+        // photo: InputFile(file_path: 'path/to/photo.jpg'), 
+
+        # Or pass the file_id like this:
+        // photo: 'FILE_ID',
+
+        # Or pass a URL:
+        // photo: 'https://example.com/path/to/photo.jpg',
+
+        caption: 'Here is your photo caption!',
+
+        //...
+    );
+    //...
+});
+
+onMessageText(pattern: '/video', callable: function() {
+    $response = sendVideo(
+        # Pass your video path:
+        video: 'path/to/video.mp4',
+
+        # Or you can use the InputFile function like this:
+       // video: InputFile(file_path: 'path/to/video.mp4'), 
+
+        # Or pass the file_id like this:
+        // video: 'FILE_ID',
+
+        # Or pass a URL:
+        // photo: 'https://example.com/path/to/video.mp4',
+
+        caption: 'This is your video caption!',
+
+        //...
+    );
+    //...
+});
+
+//...
+```
+
+## 📥 Downloading Files <a name="downloading-files"></a>
+
+And here is an example of how you can download files sent to the bot:
+
+```php
+use function DevDasher\PTB\_download;
+use function DevDasher\PTB\_downloadBotFile;
+use function DevDasher\PTB\_messageId;
+use function DevDasher\PTB\_photo;
+use function DevDasher\PTB\getFile;
+use function DevDasher\PTB\onMessagePhoto;
+use function DevDasher\PTB\sendMessage;
+
+onMessagePhoto(callable: function() {
+    $photo = _photo(); // A Helper, to get the photo details sent to the bot
+    $response = sendMessage(
+        text: 'Downloading...',
+        reply_to_message_id: _messageId(),
+    );
+    $file = getFile(file_id: $photo['file_id']); // Get details about the photo (photo path on Telegram servers...) 
+    if (!$file['ok']) {
+        return sendMessage(text: 'Something went wrong!');
+    }
+    $result = _downloadBotFile(
+        # Pass the $file array here:
+        file: $file,
+
+        # Or you can pass the $photo['file_id'] here directly:
+        // file: $photo['file_id'],
+
+        # Specify the destination and the file name:
+        save_path: 'where/to/save/this/file.jpg',
+    );
+    if (!$result) {
+        return editMessageText(
+            text: 'An error occurred!',
+            message_id: $response['result']['message_id'],
+        );
+    }
+    return editMessageText(
+        text: 'Photo downloaded.',
+        message_id: $response['result']['message_id'],
+    );
+});
+
+// For the rest (video, sticker, etc), it is almost the same
+```
+
+Alternatively, you can use the `_download(...)` function to download files, but you need to pass the url to it:
+
+```php
+use function DevDasher\PTB\_download;
+
+//...
+    $url = 'https://api.telegram.org/file/botTOKEN/FILE_NAME.jpg';
+    $result = _download(
+        url: $url,
+        save_path: 'where/to/save/this/file.jpg',
+    );
+//...
+```
+
+It's better to use the `_downloadBotFile(...)` function.
 
 
 ## 🎮 Keyboards <a name="keyboards"></a>
