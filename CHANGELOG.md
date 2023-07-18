@@ -2,17 +2,37 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2023-07-18
+
+### Added
+
+- Added the `FIELD_USER_ID` constant
+- Added more common parameters to the `__autoFillApiMethodParameters(...)` function
+- Added new function named `__autoFillApiTypeFields(...)` to auto fill common fields
+- Added new function named `__prepareApiTypeFields(...)` to prepare type fields
+
+### Changed
+
+- Improved the `__autoFillApiMethodParameters(...)` function
+- Improved all the AvailableType related functions (such as `User(...)`, `Chat(...)`, etc)
+- Changed version number to 1.2.0 in the main file `PTB.php`
+
+### Fixed
+
 ## [1.1.9] - 2023-07-18
 
 ### Added
+
 - The curl option `CURLOPT_FOLLOWLOCATION => true` added to the `_download(...)` function
 - Added `$curl_options` parameter to the `_download(...)` function
 - Added forgotten webhook methods: `setWebhook(...)`, `deleteWebhook(...)`, `getWebhookInfo(...)`
 
 ### Changed
+
 - The name of the `_downloadFile(...)` function changed to `_download(...)`
 
 ### Fixed
+
 ...
 
 ## [1.1.8] - 2023-07-16

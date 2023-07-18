@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.1.9
+ * @version 1.2.0
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher
  * @link http://t.me/DevDasher
@@ -522,6 +522,7 @@ define('METHOD_GET_UPDATES', 'getUpdates');
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('PARAM_MESSAGE_ID', 'message_id');
 define('PARAM_CHAT_ID', 'chat_id');
+define('PARAM_USER_ID', 'user_id');
 define('PARAM_TEXT', 'text');
 define('PARAM_MESSAGE_THREAD_ID', 'message_thread_id');
 define('PARAM_PARSE_MODE', 'parse_mode');
@@ -2120,7 +2121,7 @@ function Update(
     ?array $chat_member = null,
     ?array $chat_join_request = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function WebhookInfo(
@@ -2134,7 +2135,7 @@ function WebhookInfo(
     ?int $max_connections = null,
     ?array $allowed_updates = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function User(
@@ -2150,7 +2151,7 @@ function User(
     ?bool $can_read_all_group_messages = null,
     ?bool $supports_inline_queries = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Chat(
@@ -2183,7 +2184,7 @@ function Chat(
     ?int $linked_chat_id = null,
     ?array $location = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Message(
@@ -2259,11 +2260,11 @@ function Message(
     ?array $web_app_data = null,
     ?array $reply_markup = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function MessageId(int $messageId): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function MessageEntity(
@@ -2275,7 +2276,7 @@ function MessageEntity(
     ?string $language = null,
     ?string $custom_emoji_id = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PhotoSize(
@@ -2285,7 +2286,7 @@ function PhotoSize(
     int $height,
     ?int $file_size = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Animation(
@@ -2299,7 +2300,7 @@ function Animation(
     ?string $mime_type = null,
     ?int $file_size = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Audio(
@@ -2313,7 +2314,7 @@ function Audio(
     ?int $file_size = null,
     ?array $thumbnail = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Document(
@@ -2324,7 +2325,7 @@ function Document(
     ?string $mime_type = null,
     ?int $file_size = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Video(
@@ -2338,7 +2339,7 @@ function Video(
     ?string $mime_type = null,
     ?int $file_size = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function VideoNote(
@@ -2349,7 +2350,7 @@ function VideoNote(
     ?array $thumbnail = null,
     ?int $file_size = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Voice(
@@ -2359,7 +2360,7 @@ function Voice(
     ?string $mime_type = null,
     ?int $file_size = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Contact(
@@ -2369,19 +2370,19 @@ function Contact(
     ?int $user_id,
     ?string $vcard = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Dice(string $emoji, int $value): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PollOption(string $text, int $voter_count): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PollAnswer(string $poll_id, array $user, array $option_ids): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Poll(
@@ -2399,7 +2400,7 @@ function Poll(
     ?int $open_period = null,
     ?int $close_date = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Location(
@@ -2410,7 +2411,7 @@ function Location(
     ?int $heading = null,
     ?int $proximity_alert_radius = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Venue(
@@ -2422,23 +2423,23 @@ function Venue(
     ?string $google_place_id = null,
     ?string $google_place_type = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function WebAppData(string $data, string $button_text): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ProximityAlertTriggered(array $traveler, array $watcher, int $distance): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function MessageAutoDeleteTimerChanged(int $message_auto_delete_time): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ForumTopicCreated(string $name, int $icon_color, ?string $icon_custom_emoji_id = null): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ForumTopicClosed(): array {
@@ -2446,7 +2447,7 @@ function ForumTopicClosed(): array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ForumTopicEdited(?string $name = null, ?string $icon_custom_emoji_id = null): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ForumTopicReopened(): array {
@@ -2462,19 +2463,19 @@ function GeneralForumTopicUnhidden(): array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function UserShared(int $request_id, int $user_id): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatShared(int $request_id, int $chat_id): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function WriteAccessAllowed(?string $web_app_name = null): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function VideoChatScheduled(int $start_date): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function VideoChatStarted(): array {
@@ -2482,15 +2483,15 @@ function VideoChatStarted(): array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function VideoChatEnded(int $duration): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function VideoChatParticipantsInvited(array $users): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function UserProfilePhotos(int $total_count, array $photos): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function File(
@@ -2499,11 +2500,11 @@ function File(
     ?int $file_size = null,
     ?string $file_path = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function WebAppInfo(string $url): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ReplyKeyboardMarkup(
@@ -2514,7 +2515,7 @@ function ReplyKeyboardMarkup(
     ?bool $selective = null,
     ?string $input_field_placeholder = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function KeyboardButton(
@@ -2526,7 +2527,7 @@ function KeyboardButton(
     ?array $request_poll = null,
     ?array $web_app = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function KeyboardButtonRequestUser(
@@ -2534,7 +2535,7 @@ function KeyboardButtonRequestUser(
     ?bool $user_is_bot = null,
     ?bool $user_is_premium = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function KeyboardButtonRequestChat(
@@ -2547,19 +2548,19 @@ function KeyboardButtonRequestChat(
     ?array $bot_administrator_rights = null,
     ?bool $bot_is_member = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function KeyboardButtonPollType(?string $type = null): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ReplyKeyboardRemove(bool $remove_keyboard = true, ?bool $selective = null): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineKeyboardMarkup(array $inline_keyboard): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineKeyboardButton(
@@ -2573,7 +2574,7 @@ function InlineKeyboardButton(
     ?array $callback_game = null,
     ?bool $pay = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function LoginUrl(
@@ -2582,7 +2583,7 @@ function LoginUrl(
     ?string $bot_username = null,
     ?bool $request_write_access = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function SwitchInlineQueryChosenChat(
@@ -2592,7 +2593,7 @@ function SwitchInlineQueryChosenChat(
     ?bool $allow_group_chats = null,
     ?bool $allow_channel_chats = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function CallbackQuery(
@@ -2604,7 +2605,7 @@ function CallbackQuery(
     ?string $data = null,
     ?string $game_short_name = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ForceReply(
@@ -2612,7 +2613,7 @@ function ForceReply(
     ?string $input_field_placeholder = null,
     ?bool $selective = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatPhoto(
@@ -2621,7 +2622,7 @@ function ChatPhoto(
     string $big_file_id,
     string $big_file_unique_id,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatInviteLink(
@@ -2635,7 +2636,7 @@ function ChatInviteLink(
     ?int $member_limit = null,
     ?int $pending_join_request_count = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatAdministratorRights(
@@ -2652,11 +2653,11 @@ function ChatAdministratorRights(
     ?bool $can_pin_messages = null,
     ?bool $can_manage_topics = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 // function ChatMember(): array {
-//     return __removeNullValues(get_defined_vars());
+//     return __prepareApiTypeFields(get_defined_vars());
 // }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatMemberOwner(
@@ -2665,7 +2666,7 @@ function ChatMemberOwner(
     bool $is_anonymous,
     ?string $custom_title = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatMemberAdministrator(
@@ -2686,11 +2687,11 @@ function ChatMemberAdministrator(
     ?bool $can_manage_topics = null,
     ?bool $custom_title = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatMemberMember(string $status, array $user): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatMemberRestricted(
@@ -2713,15 +2714,15 @@ function ChatMemberRestricted(
     bool $can_manage_topics,
     int $until_date,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatMemberLeft(string $status, array $user): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatMemberBanned(string $status, array $user, int $until_date): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatMemberUpdated(
@@ -2733,7 +2734,7 @@ function ChatMemberUpdated(
     ?array $invite_link = null,
     ?bool $via_chat_folder_invite_link = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatJoinRequest(
@@ -2744,7 +2745,7 @@ function ChatJoinRequest(
     ?string $bio = null,
     ?array $invite_link = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatPermissions(
@@ -2763,11 +2764,11 @@ function ChatPermissions(
     ?bool $can_pin_messages = null,
     ?bool $can_manage_topics = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChatLocation(array $location, string $address): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ForumTopic(
@@ -2776,53 +2777,53 @@ function ForumTopic(
     int $icon_color,
     ?string $icon_custom_emoji_id = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function BotCommand(string $command, string $description): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function BotCommandScope(string $type, null|int|string $chat_id = null, ?int $user_id = null): array {
     if (!in_array($type, _botCommandScopeTypes())) {
         throw new Exception("Invalid scope type '{$type}'!");
     }
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function BotName(string $name): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function BotDescription(string $description): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function BotShortDescription(string $short_description): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function MenuButton(string $type, ?string $text = null, ?array $web_app = null): array {
     if (!in_array($type, _menuButtonTypes())) {
         throw new Exception("Invalid menu button type '{$type}'!");
     }
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function MenuButtonCommands(string $type): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function MenuButtonWebApp(string $type, string $text, array $web_app): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function MenuButtonDefault(string $type): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ResponseParameters(?int $migrate_to_chat_id = null, ?int $retry_after = null): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputMedia(array ...$media): array {
@@ -2914,7 +2915,7 @@ function Sticker(
     ?string $needs_repainting = null,
     ?string $file_size = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function StickerSet(
@@ -2926,7 +2927,7 @@ function StickerSet(
     array $stickers,
     array $thumbnail = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function MaskPosition(
@@ -2935,7 +2936,7 @@ function MaskPosition(
     float $y_shift,
     float $scale,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputSticker(
@@ -2944,7 +2945,7 @@ function InputSticker(
     ?array $mask_position = null,
     ?array $keywords = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQuery(
@@ -2955,7 +2956,7 @@ function InlineQuery(
     ?string $chat_type = null,
     ?array $location = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultsButton(
@@ -2963,7 +2964,7 @@ function InlineQueryResultsButton(
     ?array $web_app = null,
     ?string $start_parameter = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultCachedAudio(
@@ -2976,7 +2977,7 @@ function InlineQueryResultCachedAudio(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultCachedDocument(
@@ -2991,7 +2992,7 @@ function InlineQueryResultCachedDocument(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultCachedGif(
@@ -3005,7 +3006,7 @@ function InlineQueryResultCachedGif(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultCachedMpeg4Gif(
@@ -3019,7 +3020,7 @@ function InlineQueryResultCachedMpeg4Gif(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultCachedPhoto(
@@ -3034,7 +3035,7 @@ function InlineQueryResultCachedPhoto(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultCachedSticker(
@@ -3044,7 +3045,7 @@ function InlineQueryResultCachedSticker(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultCachedVideo(
@@ -3059,7 +3060,7 @@ function InlineQueryResultCachedVideo(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultCachedVoice(
@@ -3073,7 +3074,7 @@ function InlineQueryResultCachedVoice(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultArticle(
@@ -3089,7 +3090,7 @@ function InlineQueryResultArticle(
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultPhoto(
@@ -3107,7 +3108,7 @@ function InlineQueryResultPhoto(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultGif(
@@ -3126,7 +3127,7 @@ function InlineQueryResultGif(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultAudio(
@@ -3142,7 +3143,7 @@ function InlineQueryResultAudio(
     ?array $reply_markup,
     ?array $input_message_content,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultVoice(
@@ -3157,7 +3158,7 @@ function InlineQueryResultVoice(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultDocument(
@@ -3176,7 +3177,7 @@ function InlineQueryResultDocument(
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultLocation(
@@ -3195,7 +3196,7 @@ function InlineQueryResultLocation(
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultVenue(
@@ -3215,7 +3216,7 @@ function InlineQueryResultVenue(
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultContact(
@@ -3231,7 +3232,7 @@ function InlineQueryResultContact(
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultGame(
@@ -3240,7 +3241,7 @@ function InlineQueryResultGame(
     string $game_short_name,
     ?array $reply_markup = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultMpeg4Gif(
@@ -3259,7 +3260,7 @@ function InlineQueryResultMpeg4Gif(
     ?array $reply_markup = null,
     ?array $input_message_content= null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InlineQueryResultVideo(
@@ -3279,7 +3280,7 @@ function InlineQueryResultVideo(
     ?array $reply_markup = null,
     ?array $input_message_content = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputTextMessageContent(
@@ -3288,7 +3289,7 @@ function InputTextMessageContent(
     ?array $entities = null,
     ?bool $disable_web_page_preview = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputLocationMessageContent(
@@ -3299,7 +3300,7 @@ function InputLocationMessageContent(
     ?int $heading = null,
     ?int $proximity_alert_radius = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputVenueMessageContent(
@@ -3312,7 +3313,7 @@ function InputVenueMessageContent(
     string $google_place_id = null,
     string $google_place_type = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputContactMessageContent(
@@ -3321,7 +3322,7 @@ function InputContactMessageContent(
     ?string $last_name = null,
     ?string $vcard = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function InputInvoiceMessageContent(
@@ -3346,7 +3347,7 @@ function InputInvoiceMessageContent(
     ?bool $send_email_to_provider = null,
     ?bool $is_flexible = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ChosenInlineResult(
@@ -3356,15 +3357,15 @@ function ChosenInlineResult(
     ?array $location = null,
     ?string $inline_message_id = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function SentWebAppMessage(string $inline_message_id): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function LabeledPrice(string $label, int $amount): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Invoice(
@@ -3374,7 +3375,7 @@ function Invoice(
     string $currency,
     int $total_amount,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ShippingAddress(
@@ -3385,7 +3386,7 @@ function ShippingAddress(
     string $street_line2,
     string $post_code,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function OrderInfo(
@@ -3394,11 +3395,11 @@ function OrderInfo(
     ?string $email = null,
     ?array $shipping_address = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ShippingOption(string $id, string $title, array $prices): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function SuccessfulPayment(
@@ -3410,7 +3411,7 @@ function SuccessfulPayment(
     ?string $shipping_option_id = null,
     ?array $order_info = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function ShippingQuery(
@@ -3419,7 +3420,7 @@ function ShippingQuery(
     string $invoice_payload,
     array $shipping_address,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PreCheckoutQuery(
@@ -3431,11 +3432,11 @@ function PreCheckoutQuery(
     ?string $shipping_option_id = null,
     ?array $order_info = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportData(array $data, array $credentials): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportFile(
@@ -3444,7 +3445,7 @@ function PassportFile(
     int $file_size,
     int $file_date,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function EncryptedPassportElement(
@@ -3459,11 +3460,11 @@ function EncryptedPassportElement(
     ?array $selfie = null,
     ?array $translation = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function EncryptedCredentials(string $data, string $hash, string $secret): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportElementErrorDataField(
@@ -3473,7 +3474,7 @@ function PassportElementErrorDataField(
     string $data_hash,
     string $message,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportElementErrorFrontSide(
@@ -3482,7 +3483,7 @@ function PassportElementErrorFrontSide(
     string $file_hash,
     string $message,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportElementErrorReverseSide(
@@ -3491,7 +3492,7 @@ function PassportElementErrorReverseSide(
     string $file_hash,
     string $message,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportElementErrorSelfie(
@@ -3500,7 +3501,7 @@ function PassportElementErrorSelfie(
     string $file_hash,
     string $message,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportElementErrorFile(
@@ -3509,7 +3510,7 @@ function PassportElementErrorFile(
     string $file_hash,
     string $message,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportElementErrorFiles(
@@ -3518,7 +3519,7 @@ function PassportElementErrorFiles(
     array $file_hashes,
     string $message,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportElementErrorTranslationFile(
@@ -3527,7 +3528,7 @@ function PassportElementErrorTranslationFile(
     string $file_hash,
     string $message,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportElementErrorTranslationFiles(
@@ -3536,7 +3537,7 @@ function PassportElementErrorTranslationFiles(
     array $file_hashes,
     string $message,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function PassportElementErrorUnspecified(
@@ -3545,7 +3546,7 @@ function PassportElementErrorUnspecified(
     array $element_hash,
     string $message,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Game(
@@ -3556,7 +3557,7 @@ function Game(
     ?array $text_entities = null,
     ?array $animation = null,
 ): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function CallbackGame(): array {
@@ -3564,7 +3565,7 @@ function CallbackGame(): array {
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function GameHighScore(int $position, array $user, int $score): array {
-    return __removeNullValues(get_defined_vars());
+    return __prepareApiTypeFields(get_defined_vars());
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getUpdates(
@@ -5405,43 +5406,45 @@ function _menuButtonTypes(array $exclude = []): array {
     ], $exclude);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function __autoFillApiMethodParameters($parameters) {
-    if (key_exists('chat_id', $parameters) && !$parameters['chat_id']) {
-        $parameters['chat_id'] = _chatId() ?? _userId();
-    }
-    if (key_exists('user_id', $parameters) && !$parameters['user_id']) {
-        $parameters['user_id'] = _userId();
-    }
-    if (key_exists('from_chat_id', $parameters) && !$parameters['from_chat_id']) {
-        $parameters['from_chat_id'] = _chatId();
-    }
-    if (key_exists('message_id', $parameters) && !$parameters['message_id']) {
-        $parameters['message_id'] = _messageId();
-    }
-    if (key_exists('callback_query_id', $parameters) && !$parameters['callback_query_id']) {
-        $parameters['callback_query_id'] = _callbackQueryId();
-    }
-    if (key_exists('inline_query_id', $parameters) && !$parameters['inline_query_id']) {
-        $parameters['inline_query_id'] = _inlineQueryId();
-    }
-    if (key_exists('media', $parameters) && $parameters['media']) {
-        $parameters['media'] = json_encode($parameters['media']);
-    }
-    if (key_exists('reply_markup', $parameters) && $parameters['reply_markup']) {
-        $parameters['reply_markup'] = json_encode($parameters['reply_markup']);
-    }
-    if (key_exists('entities', $parameters) && $parameters['entities']) {
-        $parameters['entities'] = json_encode($parameters['entities']);
-    }
-    if (key_exists('caption_entities', $parameters) && $parameters['caption_entities']) {
-        $parameters['caption_entities'] = json_encode($parameters['caption_entities']);
-    }
-    if (key_exists('options', $parameters) && $parameters['options']) {
-        $parameters['options'] = json_encode($parameters['options']);
-    }
-    if (key_exists('results', $parameters) && $parameters['results']) {
-        $parameters['results'] = json_encode($parameters['results']);
-    }
+function __autoFillApiTypeFields(array $fields) {
+    $fields[FIELD_USER_ADMINISTRATOR_RIGHTS] = !isset($fields[FIELD_USER_ADMINISTRATOR_RIGHTS]) ?: json_encode($fields[FIELD_USER_ADMINISTRATOR_RIGHTS]);
+    $fields[FIELD_BOT_ADMINISTRATOR_RIGHTS] = !isset($fields[FIELD_BOT_ADMINISTRATOR_RIGHTS]) ?: json_encode($fields[FIELD_BOT_ADMINISTRATOR_RIGHTS]);
+    $fields[FIELD_PRICES] = !isset($fields[FIELD_PRICES]) ?: json_encode($fields[FIELD_PRICES]);
+    $fields[FIELD_SUGGESTED_TIP_AMOUNTS] = !isset($fields[FIELD_SUGGESTED_TIP_AMOUNTS]) ?: json_encode($fields[FIELD_SUGGESTED_TIP_AMOUNTS]);
+    $fields[FIELD_PROVIDER_DATA] = !isset($fields[FIELD_PROVIDER_DATA]) ?: json_encode($fields[FIELD_PROVIDER_DATA]);
+    return $fields;
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function __autoFillApiMethodParameters(array $parameters) {
+    $parameters[PARAM_CHAT_ID] ??= _chatId() ?? _userId();
+    $parameters[PARAM_USER_ID] ??= _userId();
+    $parameters[PARAM_FROM_CHAT_ID] ??= _chatId();
+    $parameters[PARAM_MESSAGE_ID] ??= _messageId();
+    $parameters[PARAM_CALLBACK_QUERY_ID] ??= _callbackQueryId();
+    $parameters[PARAM_CALLBACK_QUERY_ID] ??= _inlineQueryId();
+    $parameters[PARAM_MEDIA] = !isset($parameters[PARAM_MEDIA]) ?: json_encode($parameters[PARAM_MEDIA]);
+    $parameters[PARAM_REPLY_MARKUP] = !isset($parameters[PARAM_REPLY_MARKUP]) ?: json_encode($parameters[PARAM_REPLY_MARKUP]);
+    $parameters[PARAM_ENTITIES] = !isset($parameters[PARAM_ENTITIES]) ?: json_encode($parameters[PARAM_ENTITIES]);
+    $parameters[PARAM_CAPTION_ENTITIES] = !isset($parameters[PARAM_CAPTION_ENTITIES]) ?: json_encode($parameters[PARAM_CAPTION_ENTITIES]);
+    $parameters[PARAM_EXPLANATION_ENTITIES] = !isset($parameters[PARAM_EXPLANATION_ENTITIES]) ?: json_encode($parameters[PARAM_EXPLANATION_ENTITIES]);
+    $parameters[PARAM_PERMISSIONS] = !isset($parameters[PARAM_PERMISSIONS]) ?: json_encode($parameters[PARAM_PERMISSIONS]);
+    $parameters[PARAM_COMMANDS] = !isset($parameters[PARAM_COMMANDS]) ?: json_encode($parameters[PARAM_COMMANDS]);
+    $parameters[PARAM_SCOPE] = !isset($parameters[PARAM_SCOPE]) ?: json_encode($parameters[PARAM_SCOPE]);
+    $parameters[PARAM_MENU_BUTTON] = !isset($parameters[PARAM_MENU_BUTTON]) ?: json_encode($parameters[PARAM_MENU_BUTTON]);
+    $parameters[PARAM_RIGHTS] = !isset($parameters[PARAM_RIGHTS]) ?: json_encode($parameters[PARAM_RIGHTS]);
+    $parameters[PARAM_STICKERS] = !isset($parameters[PARAM_STICKERS]) ?: json_encode($parameters[PARAM_STICKERS]);
+    $parameters[PARAM_EMOJI_LIST] = !isset($parameters[PARAM_EMOJI_LIST]) ?: json_encode($parameters[PARAM_EMOJI_LIST]);
+    $parameters[PARAM_KEYWORDS] = !isset($parameters[PARAM_KEYWORDS]) ?: json_encode($parameters[PARAM_KEYWORDS]);
+    $parameters[PARAM_MASK_POSITION] = !isset($parameters[PARAM_MASK_POSITION]) ?: json_encode($parameters[PARAM_MASK_POSITION]);
+    $parameters[PARAM_BUTTON] = !isset($parameters[PARAM_BUTTON]) ?: json_encode($parameters[PARAM_BUTTON]);
+    $parameters[PARAM_PRICES] = !isset($parameters[PARAM_PRICES]) ?: json_encode($parameters[PARAM_PRICES]);
+    $parameters[PARAM_SUGGESTED_TIP_AMOUNTS] = !isset($parameters[PARAM_SUGGESTED_TIP_AMOUNTS]) ?: json_encode($parameters[PARAM_SUGGESTED_TIP_AMOUNTS]);
+    $parameters[PARAM_SHIPPING_OPTIONS] = !isset($parameters[PARAM_SHIPPING_OPTIONS]) ?: json_encode($parameters[PARAM_SHIPPING_OPTIONS]);
+    $parameters[PARAM_ERRORS] = !isset($parameters[PARAM_ERRORS]) ?: json_encode($parameters[PARAM_ERRORS]);
+    $parameters[PARAM_OPTIONS] = !isset($parameters[PARAM_OPTIONS]) ?: json_encode($parameters[PARAM_OPTIONS]);
+    $parameters[PARAM_RESULT] = !isset($parameters[PARAM_RESULT]) ?: json_encode($parameters[PARAM_RESULT]);
+    $parameters[PARAM_RESULTS] = !isset($parameters[PARAM_RESULTS]) ?: json_encode($parameters[PARAM_RESULTS]);
+    $parameters[PARAM_ALLOWED_UPDATES] = !isset($parameters[PARAM_ALLOWED_UPDATES]) ?: json_encode($parameters[PARAM_ALLOWED_UPDATES]);
     $fileType = current(array_intersect_key(array_keys($parameters), _fileTypes()));
     if ($fileType && file_exists(strval($filePath = $parameters[$fileType]))) {
         $parameters[$fileType] = new CURLFile($filePath);
@@ -5748,6 +5751,10 @@ function __fireHandlers(array $handlers) {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function __prepareApiMethodParameters(array $parameters): array {
     return __removeNullValues(__autoFillApiMethodParameters(__removeInvalidParameters($parameters)));
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function __prepareApiTypeFields(array $fields): array {
+    return __removeNullValues(__autoFillApiTypeFields($fields));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function __removeNullValues(array $array): array {
