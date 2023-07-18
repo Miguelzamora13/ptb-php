@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.9] - 2023-07-18
+
+### Added
+- The curl option `CURLOPT_FOLLOWLOCATION => true` added to the `_download(...)` function
+- Added `$curl_options` parameter to the `_download(...)` function
+- Added forgotten webhook methods: `setWebhook(...)`, `deleteWebhook(...)`, `getWebhookInfo(...)`
+
+### Changed
+- The name of the `_downloadFile(...)` function changed to `_download(...)`
+
+### Fixed
+...
+
 ## [1.1.8] - 2023-07-16
 
 ### Added
