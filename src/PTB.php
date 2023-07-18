@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.2.1
+ * @version 1.2.2
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -2890,13 +2890,12 @@ function InputMediaVideo(
     return __removeNullValues(array_merge(['type' => 'video'], get_defined_vars()));
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-/** It's not ready yet */
-// function InputFile(string $filePath): CURLFile { 
-//     if (file_exists($filePath)) {
-//         throw new Exception("file '{$filePath}' does not exist!");
-//     }
-//     return new CURLFile($filePath);
-// }
+function InputFile(string $file_path): CURLFile { 
+    if (!is_file($file_path)) {
+        throw new Exception("File '{$file_path}' does not exist!");
+    }
+    return new CURLFile($file_path);
+}
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function Sticker(
     string $file_id,
@@ -3670,7 +3669,7 @@ function copyMessage(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendPhoto(
-    string $photo,
+    CURLFile|string $photo,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
@@ -3688,7 +3687,7 @@ function sendPhoto(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendAudio(
-    string $audio,
+    CURLFile|string $audio,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
@@ -3709,7 +3708,7 @@ function sendAudio(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendDocument(
-    string $document,
+    CURLFile|string $document,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
@@ -3728,7 +3727,7 @@ function sendDocument(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVideo(
-    string $video,
+    CURLFile|string $video,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
@@ -3751,7 +3750,7 @@ function sendVideo(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendAnimation(
-    string $animation,
+    CURLFile|string $animation,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
@@ -3775,7 +3774,7 @@ function sendAnimation(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVoice(
-    string $voice,
+    CURLFile|string $voice,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
@@ -3792,7 +3791,7 @@ function sendVoice(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendVideoNote(
-    string $video_note,
+    CURLFile|string $video_note,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
@@ -3921,14 +3920,14 @@ function sendDice(
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendFile(
-    ?string $document = null,
-    ?string $audio = null,
-    ?string $photo = null,
-    ?string $video = null,
-    ?string $animation = null,
-    ?string $voice = null,
-    ?string $video_note = null,
-    ?string $sticker = null,
+    null|CURLFile|string $document = null,
+    null|CURLFile|string $audio = null,
+    null|CURLFile|string $photo = null,
+    null|CURLFile|string $video = null,
+    null|CURLFile|string $animation = null,
+    null|CURLFile|string $voice = null,
+    null|CURLFile|string $video_note = null,
+    null|CURLFile|string $sticker = null,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?string $caption = null,
@@ -4531,7 +4530,7 @@ function stopPoll(
 };
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function sendSticker(
-    string $sticker,
+    CURLFile|string $sticker,
     null|int|string $chat_id = null,
     ?int $message_thread_id = null,
     ?array $reply_markup = null,
@@ -5514,7 +5513,7 @@ function __autoFillApiMethodParameters(array $parameters) {
         $parameters[PARAM_ALLOWED_UPDATES] = json_encode($parameters[PARAM_ALLOWED_UPDATES]);
     }
     $fileType = current(array_intersect_key(array_keys($parameters), _fileTypes()));
-    if ($fileType && file_exists(strval($filePath = $parameters[$fileType]))) {
+    if ($fileType && is_string($parameters[$fileType]) && is_file($filePath = $parameters[$fileType])) {
         $parameters[$fileType] = new CURLFile($filePath);
     }
     return $parameters;
