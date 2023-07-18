@@ -230,7 +230,7 @@ onMessageText(pattern: '/video', callable: function() {
         // video: 'FILE_ID',
 
         # Or pass a URL:
-        // photo: 'https://example.com/path/to/video.mp4',
+        // video: 'https://example.com/path/to/video.mp4',
 
         caption: 'This is your video caption!',
 
