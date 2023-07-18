@@ -3577,6 +3577,30 @@ function getUpdates(
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function setWebhook(
+    string $url,
+    ?string $certificate = null,
+    ?string $ip_address = null,
+    ?int $max_connections = null,
+    ?array $allowed_updates = null,
+    ?bool $drop_pending_updates = null,
+    ?string $secret_token = null,
+    ?array $_options = [],
+): array {
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function deleteWebhook(
+    ?bool $drop_pending_updates = null,
+    ?array $_options = [],
+): array {
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function getWebhookInfo(?array $_options = []): array {
+    return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function getMe(?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
 }
