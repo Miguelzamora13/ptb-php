@@ -33,7 +33,7 @@ use function DevDasher\PTB\configurePTB;
 use function DevDasher\PTB\onAnyUpdateType;
 use function DevDasher\PTB\run;
 use function DevDasher\PTB\sendMessage;
-use function DevDasher\PTB\update;
+use function DevDasher\PTB\_update;
 
 require(__DIR__.'/../../src/PTB.php'); // path to PTB.php
 
@@ -44,7 +44,7 @@ configurePTB(
 );
 
 onAnyUpdateType(callable: function() {
-    sendMessage(text: json_encode(update(), JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+    sendMessage(text: json_encode(_update(), JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 });
 
 run();
