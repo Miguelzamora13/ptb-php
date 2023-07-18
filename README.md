@@ -27,9 +27,9 @@
     - ⚓️ [Available Constants](#available-constants)
     - ♟ Usage Without Handlers (Soon...)
 - 🐞 [Bug Report](#bug-report)
-- 📝 [Changelog](#available-changelog)
-- 🙌 [Credits](#available-credits)
-- 📜 [License](#available-license)
+- 📝 [Changelog](#changelog)
+- 🙌 [Credits](#credits)
+- 📜 [License](#license)
 
 # 🌟 Introduction <a name="introduction"></a>
 
@@ -160,7 +160,6 @@ It is important to note that the performance difference between procedural and O
 This library is constantly being updated and currently has many features.  
 
 The list below is only a part of the library's facilities and soon this part of the document will be more complete. Below you can see the most important things:
-
 
 
 ## ⚙️ Configuration <a name="configuration"></a>
@@ -736,13 +735,14 @@ We would also like to take this opportunity to encourage you to use our library 
 
 Thank you for your support and happy coding!
 
-# 📝 Changelog <a name="available-changelog"></a>
+# 📝 Changelog <a name="changelog"></a>
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-# 🙌 Credits <a name="available-credits"></a>
+# 🙌 Credits <a name="credits"></a>
+
 - [Pooria Bashiri](https://github.com/devdahser)
 - [All Contributors](../../contributors)
 
-# 📜 License <a name="available-license"></a>
+# 📜 License <a name="license"></a>
 The GNU License (GNU v3). Please see [License File](LICENSE.md) for more information.
