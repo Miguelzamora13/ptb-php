@@ -1376,7 +1376,7 @@ function onMessageMigrateToChatId(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function MiMessagegrateFromChatId(
+function onMessageMigrateFromChatId(
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],
