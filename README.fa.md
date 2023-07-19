@@ -193,24 +193,55 @@ composer require devdasher/ptb-php
 
 در اینجا لیستی از تمام هندلر های موجود در کتابخانه آمده است:
 
-| هندلر های Message     | توضیحات
-|----------------------|-------------
-| `onMessageText`      | Handles `text` on `message` update type
-| `onMessagePhoto`     | Handles `photo` on `message` update type
-| `onMessageAnimation` | Handles `animation` on `message` update type
-| `onMessageVideo`     | Handles `video` on `message` update type
-| `onMessageVideoNote` | Handles `video note` on `message` update type
-| `onMessageAudio`     | Handles `audio` on `message` update type
-| `onMessageVoice`     | Handles `voice` on `message` update type
-| `onMessageDocument`  | Handles `document` on `message` update type
-| `onMessageLocation`  | Handles `location` on `message` update type
-| `onMessageContact`   | Handles `contact` on `message` update type
-| `onMessagePoll`      | Handles `poll` on `message` update type
-| `onMessageVenue`     | Handles `venue` on `message` update type
-| `onMessageGame`      | Handles `game` on `message` update type
-| `onMessageDice`      | Handles `dice` on `message` update type
-| `onMessageSticker`   | Handles `sticker` on `message` update type
-| `onMessage`          | Will be called if none of the above handlers match
+| هندلر های Message                              | Description
+|-----------------------------------------------|-------------
+| `onMessageText(...)`                          | Handles `text` on `message` update type
+| `onMessagePhoto(...)`                         | Handles `photo` on `message` update type
+| `onMessageAnimation(...)`                     | Handles `animation` on `message` update type
+| `onMessageVideo(...)`                         | Handles `video` on `message` update type
+| `onMessageVideoNote(...)`                     | Handles `video note` on `message` update type
+| `onMessageAudio(...)`                         | Handles `audio` on `message` update type
+| `onMessageVoice(...)`                         | Handles `voice` on `message` update type
+| `onMessageDocument(...)`                      | Handles `document` on `message` update type
+| `onMessageLocation(...)`                      | Handles `location` on `message` update type
+| `onMessageContact(...)`                       | Handles `contact` on `message` update type
+| `onMessagePoll(...)`                          | Handles `poll` on `message` update type
+| `onMessageVenue(...)`                         | Handles `venue` on `message` update type
+| `onMessageGame(...)`                          | Handles `game` on `message` update type
+| `onMessageDice(...)`                          | Handles `dice` on `message` update type
+| `onMessageSticker(...)`                       | Handles `sticker` on `message` update type
+| `onMessageNewChatMembers(...)`                | Handlers `new_chat_members` on `message` update type
+| `onMessageLeftChatMember(...)`                | Handlers `left_chat_member` on `message` update type
+| `onMessageNewChatTitle(...)`                  | Handlers `new_chat_title` on `message` update type
+| `onMessageNewChatPhoto(...)`                  | Handlers `new_chat_photo` on `message` update type
+| `onMessageDeleteChatPhoto(...)`               | Handlers `delete_chat_photo` on `message` update type
+| `onMessageGroupChatCreated(...)`              | Handlers `group_chat_created` on `message` update type
+| `onMessageSupergroupChatCreated(...)`         | Handlers `supergroup_chat_created` on `message` update type
+| `onMessageChannelChatCreated(...)`            | Handlers `channel_chat_created` on `message` update type
+| `onMessageMessageAutoDeleteTimerChanged(...)` | Handlers `message_auto_delete_timer_changed` on `message` update type
+| `onMessageMigrateToChatId(...)`               | Handlers `migrate_to_chat_id` on `message` update type
+| `onMessageMigrateFromChatId(...)`             | Handlers `migrate_from_chat_id` on `message` update type
+| `onMessagePinnedMessage(...)`                 | Handlers `pinned_message` on `message` update type
+| `onMessageInvoice(...)`                       | Handlers `invoice` on `message` update type
+| `onMessageSuccessfulPayment(...)`             | Handlers `successful_payment` on `message` update type
+| `onMessageUserShared(...)`                    | Handlers `user_shared` on `message` update type
+| `onMessageChatShared(...)`                    | Handlers `chat_shared` on `message` update type
+| `onMessageConnectedWebsite(...)`              | Handlers `connected_website` on `message` update type
+| `onMessageWriteAccessAllowed(...)`            | Handlers `write_access_allowed` on `message` update type
+| `onMessagePassportData(...)`                  | Handlers `passport_data` on `message` update type
+| `onMessageProximityAlertTriggered(...)`       | Handlers `proximity_alert_triggered` on `message` update type
+| `onMessageForumTopicCreated(...)`             | Handlers `forum_topic_created` on `message` update type
+| `onMessageForumTopicEdited(...)`              | Handlers `forum_topic_edited` on `message` update type
+| `onMessageForumTopicClosed(...)`              | Handlers `forum_topic_closed` on `message` update type
+| `onMessageForumTopicReopened(...)`            | Handlers `forum_topic_reopened` on `message` update type
+| `onMessageGeneralForumTopicHidden(...)`       | Handlers `general_forum_topic_hidden` on `message` update type
+| `onMessageGeneralForumTopicUnhidden(...)`     | Handlers `general_forum_topic_unhidden` on `message` update type
+| `onMessageVideoChatScheduled(...)`            | Handlers `video_chat_scheduled` on `message` update type
+| `onMessageVideoChatStarted(...)`              | Handlers `video_chat_started` on `message` update type
+| `onMessageVideoChatEnded(...)`                | Handlers `video_chat_ended` on `message` update type
+| `onMessageVideoChatParticipantsInvited(...)`  | Handlers `video_chat_participants_invited` on `message` update type
+| `onMessageWebAppData(...)`                    | Handlers `web_app_data` on `message` update type
+| `onMessage(...)`                              | Will be called if none of the above handlers match
 
 | هندلر های EditedMessage          | توضیحات
 |---------------------------------|-------------
@@ -231,24 +262,26 @@ composer require devdasher/ptb-php
 | `onEditedMessageSticker [!]`      | Handles `sticker` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
 | `onEditedMessage`               | Will be called if none of the above handlers match
 
-| هندلر های ChannelPost     | توضیحات
-|--------------------------|-------------
-| `onChannelPostText`      | Handles `text` on `channel_post` update type
-| `onChannelPostPhoto`     | Handles `photo` on `channel_post` update type
-| `onChannelPostAnimation` | Handles `animation` on `channel_post` update type
-| `onChannelPostVideo`     | Handles `video` on `channel_post` update type
-| `onChannelPostVideoNote` | Handles `video note` on `channel_post` update type
-| `onChannelPostAudio`     | Handles `audio` on `channel_post` update type
-| `onChannelPostVoice`     | Handles `voice` on `channel_post` update type
-| `onChannelPostDocument`  | Handles `document` on `channel_post` update type
-| `onChannelPostLocation`  | Handles `location` on `channel_post` update type
-| `onChannelPostContact`   | Handles `contact` on `channel_post` update type
-| `onChannelPostPoll`      | Handles `poll` on `channel_post` update type
-| `onChannelPostVenue`     | Handles `venue` on `channel_post` update type
-| `onChannelPostGame`      | Handles `game` on `channel_post` update type
-| `onChannelPostDice`      | Handles `dice` on `channel_post` update type
-| `onChannelPostSticker`   | Handles `sticker` on `channel_post` update type
-| `onChannelPost`          | Will be called if none of the above handlers match
+| هندلر های ChannelPost                                | Description
+|-----------------------------------------------------|-------------
+| `onChannelPostText(...)`                            | Handles `text` on `channel_post` update type
+| `onChannelPostPhoto(...)`                           | Handles `photo` on `channel_post` update type
+| `onChannelPostAnimation(...)`                       | Handles `animation` on `channel_post` update type
+| `onChannelPostVideo(...)`                           | Handles `video` on `channel_post` update type
+| `onChannelPostVideoNote(...)`                       | Handles `video note` on `channel_post` update type
+| `onChannelPostAudio(...)`                           | Handles `audio` on `channel_post` update type
+| `onChannelPostVoice(...)`                           | Handles `voice` on `channel_post` update type
+| `onChannelPostDocument(...)`                        | Handles `document` on `channel_post` update type
+| `onChannelPostLocation(...)`                        | Handles `location` on `channel_post` update type
+| `onChannelPostContact(...)`                         | Handles `contact` on `channel_post` update type
+| `onChannelPostPoll(...)`                            | Handles `poll` on `channel_post` update type
+| `onChannelPostVenue(...)`                           | Handles `venue` on `channel_post` update type
+| `onChannelPostGame(...)`                            | Handles `game` on `channel_post` update type
+| `onChannelPostDice(...)`                            | Handles `dice` on `channel_post` update type
+| `onChannelPostSticker(...)`                         | Handles `sticker` on `channel_post` update type
+| `onChannelPostMessageAutoDeleteTimerChanged(...)`   | Handles `message_auto_delete_timer_changed` on `channel_post` update type
+| `onChannelPostPinnedMessage(...)`                   | Handles `pinned_message` on `channel_post` update type
+| `onChannelPost(...)`                                | Will be called if none of the above handlers match
 
 | هندلر های EditedChannelPost         | توضیحات
 |------------------------------------|-------------

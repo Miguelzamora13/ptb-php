@@ -436,138 +436,158 @@ Handlers are essential components in building interactive and dynamic conversati
 
 Here is a list of all available handlers in the library:
 
-| Message Handlers     | Description
-|----------------------|-------------
-| `onMessageText`      | Handles `text` on `message` update type
-| `onMessagePhoto`     | Handles `photo` on `message` update type
-| `onMessageAnimation` | Handles `animation` on `message` update type
-| `onMessageVideo`     | Handles `video` on `message` update type
-| `onMessageVideoNote` | Handles `video note` on `message` update type
-| `onMessageAudio`     | Handles `audio` on `message` update type
-| `onMessageVoice`     | Handles `voice` on `message` update type
-| `onMessageDocument`  | Handles `document` on `message` update type
-| `onMessageLocation`  | Handles `location` on `message` update type
-| `onMessageContact`   | Handles `contact` on `message` update type
-| `onMessagePoll`      | Handles `poll` on `message` update type
-| `onMessageVenue`     | Handles `venue` on `message` update type
-| `onMessageGame`      | Handles `game` on `message` update type
-| `onMessageDice`      | Handles `dice` on `message` update type
-| `onMessageSticker`   | Handles `sticker` on `message` update type
-| `onMessage`          | Will be called if none of the above handlers match
+| Message Handlers                              | Description
+|-----------------------------------------------|-------------
+| `onMessageText(...)`                          | Handles `text` on `message` update type
+| `onMessagePhoto(...)`                         | Handles `photo` on `message` update type
+| `onMessageAnimation(...)`                     | Handles `animation` on `message` update type
+| `onMessageVideo(...)`                         | Handles `video` on `message` update type
+| `onMessageVideoNote(...)`                     | Handles `video note` on `message` update type
+| `onMessageAudio(...)`                         | Handles `audio` on `message` update type
+| `onMessageVoice(...)`                         | Handles `voice` on `message` update type
+| `onMessageDocument(...)`                      | Handles `document` on `message` update type
+| `onMessageLocation(...)`                      | Handles `location` on `message` update type
+| `onMessageContact(...)`                       | Handles `contact` on `message` update type
+| `onMessagePoll(...)`                          | Handles `poll` on `message` update type
+| `onMessageVenue(...)`                         | Handles `venue` on `message` update type
+| `onMessageGame(...)`                          | Handles `game` on `message` update type
+| `onMessageDice(...)`                          | Handles `dice` on `message` update type
+| `onMessageSticker(...)`                       | Handles `sticker` on `message` update type
+| `onMessageNewChatMembers(...)`                | Handlers `new_chat_members` on `message` update type
+| `onMessageLeftChatMember(...)`                | Handlers `left_chat_member` on `message` update type
+| `onMessageNewChatTitle(...)`                  | Handlers `new_chat_title` on `message` update type
+| `onMessageNewChatPhoto(...)`                  | Handlers `new_chat_photo` on `message` update type
+| `onMessageDeleteChatPhoto(...)`               | Handlers `delete_chat_photo` on `message` update type
+| `onMessageGroupChatCreated(...)`              | Handlers `group_chat_created` on `message` update type
+| `onMessageSupergroupChatCreated(...)`         | Handlers `supergroup_chat_created` on `message` update type
+| `onMessageChannelChatCreated(...)`            | Handlers `channel_chat_created` on `message` update type
+| `onMessageMessageAutoDeleteTimerChanged(...)` | Handlers `message_auto_delete_timer_changed` on `message` update type
+| `onMessageMigrateToChatId(...)`               | Handlers `migrate_to_chat_id` on `message` update type
+| `onMessageMigrateFromChatId(...)`             | Handlers `migrate_from_chat_id` on `message` update type
+| `onMessagePinnedMessage(...)`                 | Handlers `pinned_message` on `message` update type
+| `onMessageInvoice(...)`                       | Handlers `invoice` on `message` update type
+| `onMessageSuccessfulPayment(...)`             | Handlers `successful_payment` on `message` update type
+| `onMessageUserShared(...)`                    | Handlers `user_shared` on `message` update type
+| `onMessageChatShared(...)`                    | Handlers `chat_shared` on `message` update type
+| `onMessageConnectedWebsite(...)`              | Handlers `connected_website` on `message` update type
+| `onMessageWriteAccessAllowed(...)`            | Handlers `write_access_allowed` on `message` update type
+| `onMessagePassportData(...)`                  | Handlers `passport_data` on `message` update type
+| `onMessageProximityAlertTriggered(...)`       | Handlers `proximity_alert_triggered` on `message` update type
+| `onMessageForumTopicCreated(...)`             | Handlers `forum_topic_created` on `message` update type
+| `onMessageForumTopicEdited(...)`              | Handlers `forum_topic_edited` on `message` update type
+| `onMessageForumTopicClosed(...)`              | Handlers `forum_topic_closed` on `message` update type
+| `onMessageForumTopicReopened(...)`            | Handlers `forum_topic_reopened` on `message` update type
+| `onMessageGeneralForumTopicHidden(...)`       | Handlers `general_forum_topic_hidden` on `message` update type
+| `onMessageGeneralForumTopicUnhidden(...)`     | Handlers `general_forum_topic_unhidden` on `message` update type
+| `onMessageVideoChatScheduled(...)`            | Handlers `video_chat_scheduled` on `message` update type
+| `onMessageVideoChatStarted(...)`              | Handlers `video_chat_started` on `message` update type
+| `onMessageVideoChatEnded(...)`                | Handlers `video_chat_ended` on `message` update type
+| `onMessageVideoChatParticipantsInvited(...)`  | Handlers `video_chat_participants_invited` on `message` update type
+| `onMessageWebAppData(...)`                    | Handlers `web_app_data` on `message` update type
+| `onMessage(...)`                              | Will be called if none of the above handlers match
 
-| EditedMessage Handlers          | Description
-|---------------------------------|-------------
-| `onEditedMessageText`           | Handles `text` on `edited_message` update type
-| `onEditedMessagePhoto`          | Handles `photo` on `edited_message` update type
-| `onEditedMessageAnimation`      | Handles `animation` on `edited_message` update type
-| `onEditedMessageVideo`          | Handles `video` on `edited_message` update type
-| `onEditedMessageVideoNote`      | Handles `video note` on `edited_message` update type
-| `onEditedMessageAudio`          | Handles `audio` on `edited_message` update type
-| `onEditedMessageVoice`          | Handles `voice` on `edited_message` update type
-| `onEditedMessageDocument`       | Handles `document` on `edited_message` update type
-| `onEditedMessageLocation [!]`     | Handles `location` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
-| `onEditedMessageContact [!]`      | Handles `contact` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
-| `onEditedMessagePoll [!]`         | Handles `poll` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
-| `onEditedMessageVenue [!]`        | Handles `venue` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
-| `onEditedMessageGame [!]`         | Handles `game` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
-| `onEditedMessageDice [!]`         | Handles `dice` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
-| `onEditedMessageSticker [!]`      | Handles `sticker` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
-| `onEditedMessage`               | Will be called if none of the above handlers match
+| EditedMessage Handlers               | Description
+|--------------------------------------|-------------
+| `onEditedMessageText(...)`           | Handles `text` on `edited_message` update type
+| `onEditedMessagePhoto(...)`          | Handles `photo` on `edited_message` update type
+| `onEditedMessageAnimation(...)`      | Handles `animation` on `edited_message` update type
+| `onEditedMessageVideo(...)`          | Handles `video` on `edited_message` update type
+| `onEditedMessageVideoNote(...)`      | Handles `video note` on `edited_message` update type
+| `onEditedMessageAudio(...)`          | Handles `audio` on `edited_message` update type
+| `onEditedMessageVoice(...)`          | Handles `voice` on `edited_message` update type
+| `onEditedMessageDocument(...)`       | Handles `document` on `edited_message` update type
+| `onEditedMessage(...)`               | Will be called if none of the above handlers match
 
-| ChannelPost Handlers     | Description
+| ChannelPost Handlers                                | Description
+|-----------------------------------------------------|-------------
+| `onChannelPostText(...)`                            | Handles `text` on `channel_post` update type
+| `onChannelPostPhoto(...)`                           | Handles `photo` on `channel_post` update type
+| `onChannelPostAnimation(...)`                       | Handles `animation` on `channel_post` update type
+| `onChannelPostVideo(...)`                           | Handles `video` on `channel_post` update type
+| `onChannelPostVideoNote(...)`                       | Handles `video note` on `channel_post` update type
+| `onChannelPostAudio(...)`                           | Handles `audio` on `channel_post` update type
+| `onChannelPostVoice(...)`                           | Handles `voice` on `channel_post` update type
+| `onChannelPostDocument(...)`                        | Handles `document` on `channel_post` update type
+| `onChannelPostLocation(...)`                        | Handles `location` on `channel_post` update type
+| `onChannelPostContact(...)`                         | Handles `contact` on `channel_post` update type
+| `onChannelPostPoll(...)`                            | Handles `poll` on `channel_post` update type
+| `onChannelPostVenue(...)`                           | Handles `venue` on `channel_post` update type
+| `onChannelPostGame(...)`                            | Handles `game` on `channel_post` update type
+| `onChannelPostDice(...)`                            | Handles `dice` on `channel_post` update type
+| `onChannelPostSticker(...)`                         | Handles `sticker` on `channel_post` update type
+| `onChannelPostMessageAutoDeleteTimerChanged(...)`   | Handles `message_auto_delete_timer_changed` on `channel_post` update type
+| `onChannelPostPinnedMessage(...)`                   | Handles `pinned_message` on `channel_post` update type
+| `onChannelPost(...)`                                | Will be called if none of the above handlers match
+
+| EditedChannelPost Handlers              | Description
+|-----------------------------------------|-------------
+| `onEditedChannelPostText(...)`          | Handles `text` on `edited_channel_post` update type
+| `onEditedChannelPostPhoto(...)`         | Handles `photo` on `edited_channel_post` update type
+| `onEditedChannelPostAnimation(...)`     | Handles `animation` on `edited_channel_post` update type
+| `onEditedChannelPostVideo(...)`         | Handles `video` on `edited_channel_post` update type
+| `onEditedChannelPostVideoNote(...)`     | Handles `video note` on `edited_channel_post` update type
+| `onEditedChannelPostAudio(...)`         | Handles `audio` on `edited_channel_post` update type
+| `onEditedChannelPostVoice(...)`         | Handles `voice` on `edited_channel_post` update type
+| `onEditedChannelPostDocument(...)`      | Handles `document` on `edited_channel_post` update type
+| `onEditedChannelPostLocation(...)`      | Handles `location` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
+| `onEditedChannelPost(...)`              | Will be called if none of the above handlers match
+
+| ChatMember Handlers      | Description
 |--------------------------|-------------
-| `onChannelPostText`      | Handles `text` on `channel_post` update type
-| `onChannelPostPhoto`     | Handles `photo` on `channel_post` update type
-| `onChannelPostAnimation` | Handles `animation` on `channel_post` update type
-| `onChannelPostVideo`     | Handles `video` on `channel_post` update type
-| `onChannelPostVideoNote` | Handles `video note` on `channel_post` update type
-| `onChannelPostAudio`     | Handles `audio` on `channel_post` update type
-| `onChannelPostVoice`     | Handles `voice` on `channel_post` update type
-| `onChannelPostDocument`  | Handles `document` on `channel_post` update type
-| `onChannelPostLocation`  | Handles `location` on `channel_post` update type
-| `onChannelPostContact`   | Handles `contact` on `channel_post` update type
-| `onChannelPostPoll`      | Handles `poll` on `channel_post` update type
-| `onChannelPostVenue`     | Handles `venue` on `channel_post` update type
-| `onChannelPostGame`      | Handles `game` on `channel_post` update type
-| `onChannelPostDice`      | Handles `dice` on `channel_post` update type
-| `onChannelPostSticker`   | Handles `sticker` on `channel_post` update type
-| `onChannelPost`          | Will be called if none of the above handlers match
+| `onChatMember(...)`      | Will be called on `chat_member` update type
 
-| EditedChannelPost Handlers         | Description
-|------------------------------------|-------------
-| `onEditedChannelPostText`          | Handles `text` on `edited_channel_post` update type
-| `onEditedChannelPostPhoto`         | Handles `photo` on `edited_channel_post` update type
-| `onEditedChannelPostAnimation`     | Handles `animation` on `edited_channel_post` update type
-| `onEditedChannelPostVideo`         | Handles `video` on `edited_channel_post` update type
-| `onEditedChannelPostVideoNote`     | Handles `video note` on `edited_channel_post` update type
-| `onEditedChannelPostAudio`         | Handles `audio` on `edited_channel_post` update type
-| `onEditedChannelPostVoice`         | Handles `voice` on `edited_channel_post` update type
-| `onEditedChannelPostDocument`      | Handles `document` on `edited_channel_post` update type
-| `onEditedChannelPostLocation`      | Handles `location` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
-| `onEditedChannelPostContact [!]`   | Handles `contact` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
-| `onEditedChannelPostPoll [!]`      | Handles `poll` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
-| `onEditedChannelPostVenue [!]`     | Handles `venue` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
-| `onEditedChannelPostGame [!]`      | Handles `game` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
-| `onEditedChannelPostDice [!]`      | Handles `dice` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
-| `onEditedChannelPostSticker [!]`   | Handles `sticker` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
-| `onEditedChannelPost`              | Will be called if none of the above handlers match
+| MyChatMember Handlers      | Description
+|----------------------------|-------------
+| `onMyChatMember(...)`      | Will be called on `my_chat_member` update type
 
-| ChatMember Handlers | Description
-|---------------------|-------------
-| `onChatMember`      | Will be called on `chat_member` update type
+| Poll Handlers      | Description
+|--------------------|-------------
+| `onPoll(...)`      | Will be called on `poll` update type
 
-| MyChatMember Handlers | Description
-|-----------------------|-------------
-| `onMyChatMember`      | Will be called on `my_chat_member` update type
-
-| Poll Handlers | Description
-|---------------|-------------
-| `onPoll`      | Will be called on `poll` update type
-
-| PollAnswer Handlers | Description
-|---------------------|-------------
-| `onPollAnswer`      | Will be called on `poll_answer` update type
-
-| InlineQuery Handlers | Description
-|----------------------|-------------
-| `onInlineQueryText`  | Handles `query` on `inline_query` update type
-| `onInlineQuery`      | Will be called if none of the above handlers match
-
-| ShippingQuery Handlers | Description
-|------------------------|-------------
-| `onShippingQuery`      | Will be called on `shipping_query` update type
-
-| ChatJoinRequest Handlers | Description
+| PollAnswer Handlers      | Description
 |--------------------------|-------------
-| `onChatJoinRequest`      | Will be called on `chat_join_request` update type
+| `onPollAnswer(...)`      | Will be called on `poll_answer` update type
 
-| PreCheckoutQuery Handlers | Description
+| InlineQuery Handlers      | Description
 |---------------------------|-------------
-| `onPreCheckoutQuery`      | Will be called on `pre_checkout_query` update type
+| `onInlineQueryText(...)`  | Handles `query` on `inline_query` update type
+| `onInlineQuery(...)`      | Will be called if none of the above handlers match
 
-| ChosenInlineResult Handlers | Description
+| ShippingQuery Handlers      | Description
 |-----------------------------|-------------
-| `onChosenInlineResultQuery` | Handles `query` on `chosen_inline_result` update type
-| `onChosenInlineResultId`    | Handles `result_id` on `chosen_inline_result` update type
-| `onChosenInlineResult`      | Will be called if none of the above handlers match
+| `onShippingQuery(...)`      | Will be called on `shipping_query` update type
+
+| ChatJoinRequest Handlers      | Description
+|-------------------------------|-------------
+| `onChatJoinRequest(...)`      | Will be called on `chat_join_request` update type
+
+| PreCheckoutQuery Handlers      | Description
+|--------------------------------|-------------
+| `onPreCheckoutQuery(...)`      | Will be called on `pre_checkout_query` update type
+
+| ChosenInlineResult Handlers      | Description
+|----------------------------------|-------------
+| `onChosenInlineResultQuery(...)` | Handles `query` on `chosen_inline_result` update type
+| `onChosenInlineResultId(...)`    | Handles `result_id` on `chosen_inline_result` update type
+| `onChosenInlineResult(...)`      | Will be called if none of the above handlers match
 
 | Fallback Handlers | Description
 |-------------------|-------------
 | `fallbackOn`      | Will be called if none of the previous handlers match. Here you can determine the type of update
 | `fallback`        | Will be called if none of the previous handlers match
 
-| Exception Handlers | Description
-|-------------------|-------------
-| `onException`     | Will be called if whenever code reaches the throw statement
+| Exception Handlers     | Description
+|------------------------|-------------
+| `onException(...)`     | Will be called if whenever code reaches the throw statement
 
-| ApiError Handlers | Description
-|-------------------|-------------
-| `onApiError`      | Will be called if an error occurs on the Telegram side while sending the request
+| ApiError Handlers      | Description
+|------------------------|-------------
+| `onApiError(...)`      | Will be called if an error occurs on the Telegram side while sending the request
 
 ## 🚁 Helpers <a name="helpers"></a>
 
-| Helper                                    | Description                                                                                                                                                       | Return Type
-|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------
+| Helper                                     | Description                                                                                                                                                       | Return Type
+|--------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------
 | `_update(?string $keys = null)`            | Returns the update                                                                                                                                                | `array` for itself, `mixed` for subkeys
 | `_updateId()`                              | Returns the `update_id`                                                                                                                                           | `?int`
 | `_updateType()`                            | Returns the current update type                                                                                                                                   | `?string`

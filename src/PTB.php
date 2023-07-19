@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.2.3
+ * @version 1.2.4
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -697,6 +697,37 @@ define('MESSAGE_TYPE_POLL', FIELD_POLL);
 define('MESSAGE_TYPE_GAME', FIELD_GAME);
 define('MESSAGE_TYPE_DICE', FIELD_DICE);
 define('MESSAGE_TYPE_VENUE', FIELD_VENUE);
+define('MESSAGE_TYPE_NEW_CHAT_MEMBERS', FIELD_NEW_CHAT_MEMBERS);
+define('MESSAGE_TYPE_LEFT_CHAT_MEMBER', FIELD_LEFT_CHAT_MEMBER);
+define('MESSAGE_TYPE_NEW_CHAT_TITLE', FIELD_NEW_CHAT_TITLE);
+define('MESSAGE_TYPE_NEW_CHAT_PHOTO', FIELD_NEW_CHAT_PHOTO);
+define('MESSAGE_TYPE_DELETE_CHAT_PHOTO', FIELD_DELETE_CHAT_PHOTO);
+define('MESSAGE_TYPE_GROUP_CHAT_CREATED', FIELD_GROUP_CHAT_CREATED);
+define('MESSAGE_TYPE_SUPERGROUP_CHAT_CREATED', FIELD_SUPERGROUP_CHAT_CREATED);
+define('MESSAGE_TYPE_CHANNEL_CHAT_CREATED', FIELD_CHANNEL_CHAT_CREATED);
+define('MESSAGE_TYPE_MESSAGE_AUTO_DELETE_TIMER_CHANGED', FIELD_MESSAGE_AUTO_DELETE_TIMER_CHANGED);
+define('MESSAGE_TYPE_MIGRATE_TO_CHAT_ID', FIELD_MIGRATE_TO_CHAT_ID);
+define('MESSAGE_TYPE_MIGRATE_FROM_CHAT_ID', FIELD_MIGRATE_FROM_CHAT_ID);
+define('MESSAGE_TYPE_PINNED_MESSAGE', FIELD_PINNED_MESSAGE);
+define('MESSAGE_TYPE_INVOICE', FIELD_INVOICE);
+define('MESSAGE_TYPE_SUCCESSFUL_PAYMENT', FIELD_SUCCESSFUL_PAYMENT);
+define('MESSAGE_TYPE_USER_SHARED', FIELD_USER_SHARED);
+define('MESSAGE_TYPE_CHAT_SHARED', FIELD_CHAT_SHARED);
+define('MESSAGE_TYPE_CONNECTED_WEBSITE', FIELD_CONNECTED_WEBSITE);
+define('MESSAGE_TYPE_WRITE_ACCESS_ALLOWED', FIELD_WRITE_ACCESS_ALLOWED);
+define('MESSAGE_TYPE_PASSPORT_DATA', FIELD_PASSPORT_DATA);
+define('MESSAGE_TYPE_PROXIMITY_ALERT_TRIGGERED', FIELD_PROXIMITY_ALERT_TRIGGERED);
+define('MESSAGE_TYPE_FORUM_TOPIC_CREATED', FIELD_FORUM_TOPIC_CREATED);
+define('MESSAGE_TYPE_FORUM_TOPIC_EDITED', FIELD_FORUM_TOPIC_EDITED);
+define('MESSAGE_TYPE_FORUM_TOPIC_CLOSED', FIELD_FORUM_TOPIC_CLOSED);
+define('MESSAGE_TYPE_FORUM_TOPIC_REOPENED', FIELD_FORUM_TOPIC_REOPENED);
+define('MESSAGE_TYPE_GENERAL_FORUM_TOPIC_HIDDEN', FIELD_GENERAL_FORUM_TOPIC_HIDDEN);
+define('MESSAGE_TYPE_GENERAL_FORUM_TOPIC_UNHIDDEN', FIELD_GENERAL_FORUM_TOPIC_UNHIDDEN);
+define('MESSAGE_TYPE_VIDEO_CHAT_SCHEDULED', FIELD_VIDEO_CHAT_SCHEDULED);
+define('MESSAGE_TYPE_VIDEO_CHAT_STARTED', FIELD_VIDEO_CHAT_STARTED);
+define('MESSAGE_TYPE_VIDEO_CHAT_ENDED', FIELD_VIDEO_CHAT_ENDED);
+define('MESSAGE_TYPE_VIDEO_CHAT_PARTICIPANTS_INVITED', FIELD_VIDEO_CHAT_PARTICIPANTS_INVITED);
+define('MESSAGE_TYPE_WEB_APP_DATA', FIELD_WEB_APP_DATA);
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 define('MESSAGE_ENTITY_MENTION', 'mention');
 define('MESSAGE_ENTITY_HASHTAG', 'hashtag');
@@ -1215,6 +1246,409 @@ function onMessageSticker(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageNewChatMembers(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.new_chat_members',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageLeftChatMember(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.left_chat_member',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageNewChatTitle(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.new_chat_title',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageNewChatPhoto(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.new_chat_photo',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageDeleteChatPhoto(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.delete_chat_photo',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageGroupChatCreated(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.group_chat_created',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageSupergroupChatCreated(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.supergroup_chat_created',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageChannelChatCreated(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.channel_chat_created',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageMessageAutoDeleteTimerChanged(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.message_auto_delete_timer_changed',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageMigrateToChatId(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.migrate_to_chat_id',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function MiMessagegrateFromChatId(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.migrate_from_chat_id',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessagePinnedMessage(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.pinned_message',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageInvoice(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.invoice',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageSuccessfulPayment(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.successful_payment',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageUserShared(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.user_shared',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageChatShared(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.chat_shared',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageConnectedWebsite(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.connected_website',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageWriteAccessAllowed(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.write_access_allowed',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessagePassportData(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.passport_data',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageProximityAlertTriggered(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.proximity_alert_triggered',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageForumTopicCreated(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.forum_topic_created',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageForumTopicEdited(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.forum_topic_edited',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageForumTopicClosed(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.forum_topic_closed',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageForumTopicReopened(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.forum_topic_reopened',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageGeneralForumTopicHidden(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.general_forum_topic_hidden',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageGeneralForumTopicUnhidden(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.general_forum_topic_unhidden',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageVideoChatScheduled(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.video_chat_scheduled',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageVideoChatStarted(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.video_chat_started',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageVideoChatEnded(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.video_chat_ended',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageVideoChatParticipantsInvited(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.video_chat_participants_invited',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onMessageWebAppData(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'message.web_app_data',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function onMessage(
     callable $callable,
     callable|array $middlewares = [],
@@ -1654,6 +2088,32 @@ function onChannelPostSticker(
 ): void {
     __addHandler(
         keys: 'channel_post.sticker',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostMessageAutoDeleteTimerChanged(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'channel_post.message_auto_delete_timer_changed',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function onChannelPostPinnedMessage(
+    callable $callable,
+    callable|array $middlewares = [],
+    array $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'channel_post.pinned_message',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -5192,6 +5652,10 @@ function _repliedMessage(?string $keys = null): mixed {
     return __arrayGet(_message('reply_to_message'), $keys);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+function _pinnedMessage(?string $keys = null): mixed {
+    return __arrayGet(_message('pinned_message'), $keys);
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 function _messageId(): ?int {
     return _message('message_id');
 }
@@ -5305,6 +5769,37 @@ function _messageTypes(array $exclude = []): array {
         MESSAGE_TYPE_GAME,
         MESSAGE_TYPE_DICE,
         MESSAGE_TYPE_VENUE,
+        MESSAGE_TYPE_NEW_CHAT_MEMBERS,
+        MESSAGE_TYPE_LEFT_CHAT_MEMBER,
+        MESSAGE_TYPE_NEW_CHAT_TITLE,
+        MESSAGE_TYPE_NEW_CHAT_PHOTO,
+        MESSAGE_TYPE_DELETE_CHAT_PHOTO,
+        MESSAGE_TYPE_GROUP_CHAT_CREATED,
+        MESSAGE_TYPE_SUPERGROUP_CHAT_CREATED,
+        MESSAGE_TYPE_CHANNEL_CHAT_CREATED,
+        MESSAGE_TYPE_MESSAGE_AUTO_DELETE_TIMER_CHANGED,
+        MESSAGE_TYPE_MIGRATE_TO_CHAT_ID,
+        MESSAGE_TYPE_MIGRATE_FROM_CHAT_ID,
+        MESSAGE_TYPE_PINNED_MESSAGE,
+        MESSAGE_TYPE_INVOICE,
+        MESSAGE_TYPE_SUCCESSFUL_PAYMENT,
+        MESSAGE_TYPE_USER_SHARED,
+        MESSAGE_TYPE_CHAT_SHARED,
+        MESSAGE_TYPE_CONNECTED_WEBSITE,
+        MESSAGE_TYPE_WRITE_ACCESS_ALLOWED,
+        MESSAGE_TYPE_PASSPORT_DATA,
+        MESSAGE_TYPE_PROXIMITY_ALERT_TRIGGERED,
+        MESSAGE_TYPE_FORUM_TOPIC_CREATED,
+        MESSAGE_TYPE_FORUM_TOPIC_EDITED,
+        MESSAGE_TYPE_FORUM_TOPIC_CLOSED,
+        MESSAGE_TYPE_FORUM_TOPIC_REOPENED,
+        MESSAGE_TYPE_GENERAL_FORUM_TOPIC_HIDDEN,
+        MESSAGE_TYPE_GENERAL_FORUM_TOPIC_UNHIDDEN,
+        MESSAGE_TYPE_VIDEO_CHAT_SCHEDULED,
+        MESSAGE_TYPE_VIDEO_CHAT_STARTED,
+        MESSAGE_TYPE_VIDEO_CHAT_ENDED,
+        MESSAGE_TYPE_VIDEO_CHAT_PARTICIPANTS_INVITED,
+        MESSAGE_TYPE_WEB_APP_DATA,
     ], $exclude);
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -5689,7 +6184,6 @@ function __fireHandlers(array $handlers) {
                     $callable = __unserializeClosure($serializedClosure);
                     return $callable();
                 }
-
             } elseif (in_array($messageType, _messageTypes())) {
                 __fireAllMiddlewares($updateTypeHandlers[$messageType]);
                 return $updateTypeHandlers[$messageType]['callable']();
