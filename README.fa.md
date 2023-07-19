@@ -286,7 +286,6 @@ composer require devdasher/ptb-php
 | `onEditedChannelPostAudio`         | Handles `audio` on `edited_channel_post` update type
 | `onEditedChannelPostVoice`         | Handles `voice` on `edited_channel_post` update type
 | `onEditedChannelPostDocument`      | Handles `document` on `edited_channel_post` update type
-| `onEditedChannelPostLocation`      | Handles `location` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
 | `onEditedChannelPost`              | Will be called if none of the above handlers match
 
 | هندلر های ChatMember | توضیحات
