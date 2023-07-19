@@ -210,37 +210,37 @@ composer require devdasher/ptb-php
 | `onMessageGame(...)`                          | Handles `game` on `message` update type
 | `onMessageDice(...)`                          | Handles `dice` on `message` update type
 | `onMessageSticker(...)`                       | Handles `sticker` on `message` update type
-| `onMessageNewChatMembers(...)`                | Handlers `new_chat_members` on `message` update type
-| `onMessageLeftChatMember(...)`                | Handlers `left_chat_member` on `message` update type
-| `onMessageNewChatTitle(...)`                  | Handlers `new_chat_title` on `message` update type
-| `onMessageNewChatPhoto(...)`                  | Handlers `new_chat_photo` on `message` update type
-| `onMessageDeleteChatPhoto(...)`               | Handlers `delete_chat_photo` on `message` update type
-| `onMessageGroupChatCreated(...)`              | Handlers `group_chat_created` on `message` update type
-| `onMessageSupergroupChatCreated(...)`         | Handlers `supergroup_chat_created` on `message` update type
-| `onMessageChannelChatCreated(...)`            | Handlers `channel_chat_created` on `message` update type
-| `onMessageMessageAutoDeleteTimerChanged(...)` | Handlers `message_auto_delete_timer_changed` on `message` update type
-| `onMessageMigrateToChatId(...)`               | Handlers `migrate_to_chat_id` on `message` update type
-| `onMessageMigrateFromChatId(...)`             | Handlers `migrate_from_chat_id` on `message` update type
-| `onMessagePinnedMessage(...)`                 | Handlers `pinned_message` on `message` update type
-| `onMessageInvoice(...)`                       | Handlers `invoice` on `message` update type
-| `onMessageSuccessfulPayment(...)`             | Handlers `successful_payment` on `message` update type
-| `onMessageUserShared(...)`                    | Handlers `user_shared` on `message` update type
-| `onMessageChatShared(...)`                    | Handlers `chat_shared` on `message` update type
-| `onMessageConnectedWebsite(...)`              | Handlers `connected_website` on `message` update type
-| `onMessageWriteAccessAllowed(...)`            | Handlers `write_access_allowed` on `message` update type
-| `onMessagePassportData(...)`                  | Handlers `passport_data` on `message` update type
-| `onMessageProximityAlertTriggered(...)`       | Handlers `proximity_alert_triggered` on `message` update type
-| `onMessageForumTopicCreated(...)`             | Handlers `forum_topic_created` on `message` update type
-| `onMessageForumTopicEdited(...)`              | Handlers `forum_topic_edited` on `message` update type
-| `onMessageForumTopicClosed(...)`              | Handlers `forum_topic_closed` on `message` update type
-| `onMessageForumTopicReopened(...)`            | Handlers `forum_topic_reopened` on `message` update type
-| `onMessageGeneralForumTopicHidden(...)`       | Handlers `general_forum_topic_hidden` on `message` update type
-| `onMessageGeneralForumTopicUnhidden(...)`     | Handlers `general_forum_topic_unhidden` on `message` update type
-| `onMessageVideoChatScheduled(...)`            | Handlers `video_chat_scheduled` on `message` update type
-| `onMessageVideoChatStarted(...)`              | Handlers `video_chat_started` on `message` update type
-| `onMessageVideoChatEnded(...)`                | Handlers `video_chat_ended` on `message` update type
-| `onMessageVideoChatParticipantsInvited(...)`  | Handlers `video_chat_participants_invited` on `message` update type
-| `onMessageWebAppData(...)`                    | Handlers `web_app_data` on `message` update type
+| `onMessageNewChatMembers(...)`                | Handles `new_chat_members` on `message` update type
+| `onMessageLeftChatMember(...)`                | Handles `left_chat_member` on `message` update type
+| `onMessageNewChatTitle(...)`                  | Handles `new_chat_title` on `message` update type
+| `onMessageNewChatPhoto(...)`                  | Handles `new_chat_photo` on `message` update type
+| `onMessageDeleteChatPhoto(...)`               | Handles `delete_chat_photo` on `message` update type
+| `onMessageGroupChatCreated(...)`              | Handles `group_chat_created` on `message` update type
+| `onMessageSupergroupChatCreated(...)`         | Handles `supergroup_chat_created` on `message` update type
+| `onMessageChannelChatCreated(...)`            | Handles `channel_chat_created` on `message` update type
+| `onMessageAutoDeleteTimerChanged(...)`        | Handles `message_auto_delete_timer_changed` on `message` update type
+| `onMessageMigrateToChatId(...)`               | Handles `migrate_to_chat_id` on `message` update type
+| `onMessageMigrateFromChatId(...)`             | Handles `migrate_from_chat_id` on `message` update type
+| `onMessagePinnedMessage(...)`                 | Handles `pinned_message` on `message` update type
+| `onMessageInvoice(...)`                       | Handles `invoice` on `message` update type
+| `onMessageSuccessfulPayment(...)`             | Handles `successful_payment` on `message` update type
+| `onMessageUserShared(...)`                    | Handles `user_shared` on `message` update type
+| `onMessageChatShared(...)`                    | Handles `chat_shared` on `message` update type
+| `onMessageConnectedWebsite(...)`              | Handles `connected_website` on `message` update type
+| `onMessageWriteAccessAllowed(...)`            | Handles `write_access_allowed` on `message` update type
+| `onMessagePassportData(...)`                  | Handles `passport_data` on `message` update type
+| `onMessageProximityAlertTriggered(...)`       | Handles `proximity_alert_triggered` on `message` update type
+| `onMessageForumTopicCreated(...)`             | Handles `forum_topic_created` on `message` update type
+| `onMessageForumTopicEdited(...)`              | Handles `forum_topic_edited` on `message` update type
+| `onMessageForumTopicClosed(...)`              | Handles `forum_topic_closed` on `message` update type
+| `onMessageForumTopicReopened(...)`            | Handles `forum_topic_reopened` on `message` update type
+| `onMessageGeneralForumTopicHidden(...)`       | Handles `general_forum_topic_hidden` on `message` update type
+| `onMessageGeneralForumTopicUnhidden(...)`     | Handles `general_forum_topic_unhidden` on `message` update type
+| `onMessageVideoChatScheduled(...)`            | Handles `video_chat_scheduled` on `message` update type
+| `onMessageVideoChatStarted(...)`              | Handles `video_chat_started` on `message` update type
+| `onMessageVideoChatEnded(...)`                | Handles `video_chat_ended` on `message` update type
+| `onMessageVideoChatParticipantsInvited(...)`  | Handles `video_chat_participants_invited` on `message` update type
+| `onMessageWebAppData(...)`                    | Handles `web_app_data` on `message` update type
 | `onMessage(...)`                              | Will be called if none of the above handlers match
 
 | هندلر های EditedMessage          | توضیحات
@@ -253,13 +253,6 @@ composer require devdasher/ptb-php
 | `onEditedMessageAudio`          | Handles `audio` on `edited_message` update type
 | `onEditedMessageVoice`          | Handles `voice` on `edited_message` update type
 | `onEditedMessageDocument`       | Handles `document` on `edited_message` update type
-| `onEditedMessageLocation [!]`     | Handles `location` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
-| `onEditedMessageContact [!]`      | Handles `contact` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
-| `onEditedMessagePoll [!]`         | Handles `poll` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
-| `onEditedMessageVenue [!]`        | Handles `venue` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
-| `onEditedMessageGame [!]`         | Handles `game` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
-| `onEditedMessageDice [!]`         | Handles `dice` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
-| `onEditedMessageSticker [!]`      | Handles `sticker` on `edited_message` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
 | `onEditedMessage`               | Will be called if none of the above handlers match
 
 | هندلر های ChannelPost                                | Description
@@ -294,12 +287,6 @@ composer require devdasher/ptb-php
 | `onEditedChannelPostVoice`         | Handles `voice` on `edited_channel_post` update type
 | `onEditedChannelPostDocument`      | Handles `document` on `edited_channel_post` update type
 | `onEditedChannelPostLocation`      | Handles `location` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Location Messages)
-| `onEditedChannelPostContact [!]`   | Handles `contact` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Contact Messages)
-| `onEditedChannelPostPoll [!]`      | Handles `poll` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Poll Messages)
-| `onEditedChannelPostVenue [!]`     | Handles `venue` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Venue Messages)
-| `onEditedChannelPostGame [!]`      | Handles `game` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Game Messages)
-| `onEditedChannelPostDice [!]`      | Handles `dice` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this feature yet (Editing Dice Messages)
-| `onEditedChannelPostSticker [!]`   | Handles `sticker` on `edited_channel_post` update type, __CURRENTLY NOT WORKING:__ Telegram still does not support this (Editing Sticker Messages)
 | `onEditedChannelPost`              | Will be called if none of the above handlers match
 
 | هندلر های ChatMember | توضیحات

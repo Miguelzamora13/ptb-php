@@ -1350,7 +1350,7 @@ function onMessageChannelChatCreated(
     );
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function onMessageMessageAutoDeleteTimerChanged(
+function onMessageAutoDeleteTimerChanged(
     callable $callable,
     callable|array $middlewares = [],
     array $skip_middlewares = [],

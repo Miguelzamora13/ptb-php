@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file.
         - `onMessageGroupChatCreated(...)`
         - `onMessageSupergroupChatCreated(...)`
         - `onMessageChannelChatCreated(...)`
-        - `onMessageMessageAutoDeleteTimerChanged(...)`
+        - `onMessageAutoDeleteTimerChanged(...)`
         - `onMessageMigrateToChatId(...)`
         - `onMessageMigrateFromChatId(...)`
         - `onMessagePinnedMessage(...)`
