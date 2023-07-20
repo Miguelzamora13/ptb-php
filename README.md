@@ -909,7 +909,7 @@ configurePTB(
 $input = file_get_contents('php://input');
 $update = json_decode($input, true);
 
-$updateId = $update['updateId'];
+$updateId = $update['update_id'];
 
 if (isset($update['message'])) {
     $message = $update['message'];
