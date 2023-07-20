@@ -26,7 +26,7 @@
     - 💎 [Available Methods](#available-methods)
     - 🔮 [Available Types](#available-types)
     - ⚓️ [Available Constants](#available-constants)
-    - ♟ Usage Without Handlers (Soon...)
+    - ♟ [Usage Without Handlers](#usage-without-handlers)
 - 🐞 [Bug Report](#bug-report)
 - 📝 [Changelog](#changelog)
 - 🙌 [Credits](#credits)
@@ -885,6 +885,75 @@ Here are some of them:
 - Input Media Types: `INPUT_MEDIA_TYPE_*` for example: `INPUT_MEDIA_TYPE_ANIMATION`, `INPUT_MEDIA_TYPE_DOCUMENT`, etc
 
 And much more! ... check the source code yourself :)
+
+# ♟ Usage Without Handlers <a name="usage-without-handlers"></a>
+
+If you are not comfortable with existing handlers and this type of coding, there is no problem. You can choose your own code style.
+
+You just need to pass your bot token and username to the `configurePTB(...)` function and continue the rest of the code as you like.
+
+Here is an example:
+
+## Webhook implementation:
+
+```php
+use function DevDasher\PTB\configurePTB;
+use function DevDasher\PTB\sendMessage;
+
+configurePTB(
+    token: 'TOKEN',
+    username: 'USERNAME',
+    //...
+);
+
+$input = file_get_contents('php://input');
+$update = json_decode($input, true);
+
+$updateId = $update['updateId'];
+
+if (isset($update['message'])) {
+    $message = $update['message'];
+
+    $from = $message['from'];
+    $chat = $message['chat'];
+
+    $chatId = $chat['id'];
+    $text = $message['text'] ?? null;
+
+    //...
+}
+
+if ($text === '/start') {
+    return sendMessage(text: 'START MESSAGE', chat_id: $chatId);
+}
+
+//...
+//...
+//...
+```
+
+## LongPolling implementation:
+
+```php
+use function DevDasher\PTB\configurePTB;
+use function DevDasher\PTB\getUpdates;
+
+configurePTB(
+    token: 'TOKEN',
+    username: 'USERNAME',
+    //...
+);
+
+$updates = getUpdates(/* ... */);
+
+foreach ($updates as $update) {
+    //...
+}
+
+//...
+//...
+//...
+```
 
 # 🐞 Bug Report <a name="bug-report"></a>
 We strive to provide a robust and reliable library, but bugs may still occur. If you encounter any issues or unexpected behavior while using our library, we appreciate your help in reporting them.
