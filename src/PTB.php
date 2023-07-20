@@ -1,5 +1,5 @@
 <?php 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 /**
     This file is part of the PTB (Procedural Telegram Bot).
 
@@ -24,9 +24,9 @@
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
 */
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 namespace DevDasher\PTB;
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 use Closure;
 use CURLFile;
 use DateInterval;
@@ -34,7 +34,7 @@ use Exception;
 use Opis\Closure\SerializableClosure;
 use Psr\SimpleCache\CacheInterface;
 use Throwable;
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('FIELD_UPDATE_ID', 'update_id');
 define('FIELD_MESSAGE', 'message');
 define('FIELD_EDITED_MESSAGE', 'edited_message');
@@ -171,6 +171,7 @@ define('FIELD_WIDTH', 'width');
 define('FIELD_HEIGHT', 'height');
 define('FIELD_DURATION', 'duration');
 define('FIELD_THUMBNAIL', 'thumbnail');
+define('FIELD_THUMB', 'thumb');
 define('FIELD_FILE_NAME', 'file_name');
 define('FIELD_MIME_TYPE', 'mime_type');
 define('FIELD_PERFORMER', 'performer');
@@ -407,7 +408,7 @@ define('FIELD_ELEMENT_HASH', 'element_hash');
 define('FIELD_TEXT_ENTITIES', 'text_entities');
 define('FIELD_POSITION', 'position');
 define('FIELD_SCORE', 'score');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('METHOD_GET_ME', 'getMe');
 define('METHOD_LOG_OUT', 'logOut');
 define('METHOD_CLOSE', 'close');
@@ -519,7 +520,7 @@ define('METHOD_SEND_GAME', 'sendGame');
 define('METHOD_SET_GAME_SCORE', 'setGameScore');
 define('METHOD_GET_GAME_HIGH_SCORES', 'getGameHighScores');
 define('METHOD_GET_UPDATES', 'getUpdates');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('PARAM_CERTIFICATE', 'certificate');
 define('PARAM_IP_ADDRESS', 'ip_address');
 define('PARAM_MAX_CONNECTIONS', 'max_connections');
@@ -666,7 +667,7 @@ define('PARAM_FORCE', 'force');
 define('PARAM_DISABLE_EDIT_MESSAGE', 'disable_edit_message');
 define('PARAM_TIMEOUT', 'timeout');
 define('PARAM_ALLOWED_UPDATES', 'allowed_updates');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('UPDATE_TYPE_MESSAGE', FIELD_MESSAGE);
 define('UPDATE_TYPE_EDITED_MESSAGE', FIELD_EDITED_MESSAGE);
 define('UPDATE_TYPE_CHANNEL_POST', FIELD_CHANNEL_POST);
@@ -681,7 +682,7 @@ define('UPDATE_TYPE_POLL_ANSWER', FIELD_POLL_ANSWER);
 define('UPDATE_TYPE_MY_CHAT_MEMBER', FIELD_MY_CHAT_MEMBER);
 define('UPDATE_TYPE_CHAT_MEMBER', FIELD_CHAT_MEMBER);
 define('UPDATE_TYPE_CHAT_JOIN_REQUEST', FIELD_CHAT_JOIN_REQUEST);
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('MESSAGE_TYPE_TEXT', FIELD_TEXT);
 define('MESSAGE_TYPE_STICKER', FIELD_STICKER);
 define('MESSAGE_TYPE_ANIMATION', FIELD_ANIMATION);
@@ -728,7 +729,7 @@ define('MESSAGE_TYPE_VIDEO_CHAT_STARTED', FIELD_VIDEO_CHAT_STARTED);
 define('MESSAGE_TYPE_VIDEO_CHAT_ENDED', FIELD_VIDEO_CHAT_ENDED);
 define('MESSAGE_TYPE_VIDEO_CHAT_PARTICIPANTS_INVITED', FIELD_VIDEO_CHAT_PARTICIPANTS_INVITED);
 define('MESSAGE_TYPE_WEB_APP_DATA', FIELD_WEB_APP_DATA);
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('MESSAGE_ENTITY_MENTION', 'mention');
 define('MESSAGE_ENTITY_HASHTAG', 'hashtag');
 define('MESSAGE_ENTITY_CASHTAG', 'cashtag');
@@ -746,7 +747,7 @@ define('MESSAGE_ENTITY_PRE', 'pre');
 define('MESSAGE_ENTITY_TEXT_LINK', 'text_link');
 define('MESSAGE_ENTITY_TEXT_MENTION', 'text_mention');
 define('MESSAGE_ENTITY_CUSTOM_EMOJI', 'custom_emoji');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('BOT_COMMAND_SCOPE_DEFAULT', 'default');
 define('BOT_COMMAND_SCOPE_ALL_PRIVATE_CHATS', 'all_private_chats');
 define('BOT_COMMAND_SCOPE_ALL_GROUP_CHATS', 'group_chats');
@@ -754,20 +755,20 @@ define('BOT_COMMAND_SCOPE_ALL_CHAT_ADMINISTRATORS', 'chat_administrators');
 define('BOT_COMMAND_SCOPE_CHAT', 'chat');
 define('BOT_COMMAND_SCOPE_CHAT_ADMINISTRATORS', 'chat_administrators');
 define('BOT_COMMAND_SCOPE_CHAT_MEMBER', 'chat_member');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('CHAT_MEMBER_STATUS_ADMINISTRATOR', 'administrator');
 define('CHAT_MEMBER_STATUS_CREATOR', 'creator');
 define('CHAT_MEMBER_STATUS_RESTRICTED', 'restricted');
 define('CHAT_MEMBER_STATUS_LEFT', 'left');
 define('CHAT_MEMBER_STATUS_MEMBER', 'member');
 define('CHAT_MEMBER_STATUS_KICKED', 'kicked');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('CHAT_TYPE_SENDER', 'sender');
 define('CHAT_TYPE_GROUP', 'group');
 define('CHAT_TYPE_SUPERGROUP', 'supergroup');
 define('CHAT_TYPE_PRIVATE', 'private');
 define('CHAT_TYPE_CHANNEL', 'channel');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('CHAT_ACTION_TYPING', 'typing');
 define('CHAT_ACTION_UPLOAD_PHOTO', 'upload_photo');
 define('CHAT_ACTION_RECORD_VIDEO', 'record_video');
@@ -779,7 +780,7 @@ define('CHAT_ACTION_CHOOSE_STICKER', 'choose_sticker');
 define('CHAT_ACTION_FIND_LOCATION', 'find_location');
 define('CHAT_ACTION_RECORD_VIDEO_NOTE', 'record_video_note');
 define('CHAT_ACTION_UPLOAD_VIDEO_NOTE', 'upload_video_note');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('CHAT_PERMISSION_CAN_SEND_MESSAGES', 'can_send_messages');
 define('CHAT_PERMISSION_CAN_SEND_AUDIOS', 'can_send_audios');
 define('CHAT_PERMISSION_CAN_SEND_DOCUMENTS', 'can_send_documents');
@@ -794,7 +795,7 @@ define('CHAT_PERMISSION_CAN_CHANGE_INFO', 'can_change_info');
 define('CHAT_PERMISSION_CAN_INVITE_USERS', 'can_invite_users');
 define('CHAT_PERMISSION_CAN_PIN_MESSAGES', 'can_pin_messages');
 define('CHAT_PERMISSION_CAN_MANAGE_TOPICS', 'can_manage_topics');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('CHAT_ADMINISTRATOR_RIGHT_IS_ANONYMOUS', 'is_anonymous');
 define('CHAT_ADMINISTRATOR_RIGHT_CAN_MANAGE_CHAT', 'can_manage_chat');
 define('CHAT_ADMINISTRATOR_RIGHT_CAN_DELETE_MESSAGES', 'can_delete_messages');
@@ -807,7 +808,7 @@ define('CHAT_ADMINISTRATOR_RIGHT_CAN_POST_MESSAGES', 'can_post_messages');
 define('CHAT_ADMINISTRATOR_RIGHT_CAN_EDIT_MESSAGES', 'can_edit_messages');
 define('CHAT_ADMINISTRATOR_RIGHT_CAN_PIN_MESSAGES', 'can_pin_messages');
 define('CHAT_ADMINISTRATOR_RIGHT_CAN_MANAGE_TOPICS', 'can_manage_topics');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('COLOR_RGB_BLUE', 7322096);
 define('COLOR_RGB_BLUE_HEX', '0x6FB9F0');
 define('COLOR_RGB_YELLOW', 16766590);
@@ -820,14 +821,14 @@ define('COLOR_RGB_ROSE', 16749490);
 define('COLOR_RGB_ROSE_HEX', '0xFF93B2');
 define('COLOR_RGB_RED', 16478047);
 define('COLOR_RGB_RED_HEX', '0xFB6F5F');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('DICE_EMOJI_DICE', '🎲');
 define('DICE_EMOJI_DART', '🎯');
 define('DICE_EMOJI_BASKETBALL', '🏀');
 define('DICE_EMOJI_FOOTBALL', '⚽');
 define('DICE_EMOJI_SLOT_MACHINE', '🎰');
 define('DICE_EMOJI_BOWLING', '🎳');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('GOOGLE_PLACE_TYPE_ACCOUNTING', 'accounting');
 define('GOOGLE_PLACE_TYPE_AIRPORT', 'airport');
 define('GOOGLE_PLACE_TYPE_AMUSEMENT_PARK', 'amusement_park');
@@ -924,36 +925,36 @@ define('GOOGLE_PLACE_TYPE_TRAVEL_AGENCY', 'travel_agency');
 define('GOOGLE_PLACE_TYPE_UNIVERSITY', 'university');
 define('GOOGLE_PLACE_TYPE_VETERINARY_CARE', 'veterinary_care');
 define('GOOGLE_PLACE_TYPE_ZOO', 'zoo');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('MENU_BUTTON_TYPE_DEFAULT', 'default');
 define('MENU_BUTTON_TYPE_WEB_APP', 'web_app');
 define('MENU_BUTTON_TYPE_COMMANDS', 'commands');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('POLL_TYPE_REGULAR', 'regular');
 define('POLL_TYPE_QUIZ', 'quiz');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALLOW_USER_CHATS', 'allow_user_chats');
 define('SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALLOW_BOT_CHATS', 'allow_bot_chats');
 define('SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALLOW_GROUP_CHATS', 'allow_group_chats');
 define('SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALLOW_CHANNEL_CHATS', 'allow_channel_chats');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('STICKER_FORMAT_STATIC', 'static');
 define('STICKER_FORMAT_ANIMATED', 'animated');
 define('STICKER_FORMAT_VIDEO', 'video');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('STICKER_MASK_POSITION_POINT_FOREHEAD', 'forehead');
 define('STICKER_MASK_POSITION_POINT_EYES', 'eyes');
 define('STICKER_MASK_POSITION_POINT_MOUTH', 'mouth');
 define('STICKER_MASK_POSITION_POINT_CHIN', 'chin');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('STICKER_TYPE_REGULAR', 'regular');
 define('STICKER_TYPE_MASK', 'mask');
 define('STICKER_TYPE_CUSTOM_EMOJI', 'custom_emoji');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('PARSE_MODE_HTML', 'HTML');
 define('PARSE_MODE_MARKDOWN', 'Markdown');
 define('PARSE_MODE_MARKDOWN_V2', 'MarkdownV2');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('PASSPORT_ELEMENT_TYPE_PASSPORT', 'passport');
 define('PASSPORT_ELEMENT_TYPE_DRIVER_LICENSE', 'driver_license');
 define('PASSPORT_ELEMENT_TYPE_IDENTITY_CARD', 'identity_card');
@@ -963,7 +964,7 @@ define('PASSPORT_ELEMENT_TYPE_BANK_STATEMENT', 'bank_statement');
 define('PASSPORT_ELEMENT_TYPE_RENTAL_AGREEMENT', 'rental_agreement');
 define('PASSPORT_ELEMENT_TYPE_PASSPORT_REGISTRATION', 'passport_registration');
 define('PASSPORT_ELEMENT_TYPE_TEMPORARY_REGISTRATION', 'temporary_registration');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('PASSPORT_ELEMENT_ERROR_DATA_FIELD', 'data');
 define('PASSPORT_ELEMENT_ERROR_FRONT_SIDE', 'front_side');
 define('PASSPORT_ELEMENT_ERROR_REVERSE_SIDE', 'reverse_side');
@@ -973,13 +974,13 @@ define('PASSPORT_ELEMENT_ERROR_FILES', 'files');
 define('PASSPORT_ELEMENT_ERROR_TRANSLATION_FILE', 'translation_file');
 define('PASSPORT_ELEMENT_ERROR_TRANSLATION_FILES', 'translation_files');
 define('PASSPORT_ELEMENT_ERROR_UNSPECIFIED', 'unspecified');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('INPUT_MEDIA_TYPE_ANIMATION', 'animation');
 define('INPUT_MEDIA_TYPE_DOCUMENT', 'document');
 define('INPUT_MEDIA_TYPE_AUDIO', 'audio');
 define('INPUT_MEDIA_TYPE_PHOTO', 'photo');
 define('INPUT_MEDIA_TYPE_VIDEO', 'video');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('API_LIMIT_CHAT_FIRST_NAME_MIN', 1);
 define('API_LIMIT_CHAT_FIRST_NAME_MAX', 64);
 define('API_LIMIT_CHAT_LAST_NAME_MIN', 0);
@@ -995,21 +996,21 @@ define('API_LIMIT_MESSAGE_TEXT_MAX', 4096);
 define('API_LIMIT_MESSAGE_CAPTION_MIN', 1);
 define('API_LIMIT_MESSAGE_CAPTION_MAX', 1096);
 define('API_LIMIT_DOWNLOAD_FILE_SIZE_MAX', 20971520);
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('API_BASE_URL', 'https://api.telegram.org');
 define('API_BASE_URL_BOT', 'https://api.telegram.org/bot');
 define('API_BASE_URL_FILE', 'https://api.telegram.org/file/bot');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('REGEX_BOT_TOKEN', '/(?<token>(?<bot_id>\d{8,10})\:(?<hash>[\w-]{35}))/');
 define('REGEX_INVITE_LINK', '/(?<invite_link>(?:http[s]://)?(?:t|telegram)\.(?:me|dog)\/(?:joinchat\/|\+)(?<hash>[\w\-]+))/i');
 define('REGEX_USERNAME', '/@(?<username>\w{5,32})/');
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 define('_REGEX_FIND_PLACEHOLDERS', '/\{([^}]+)\}/');
 define('_REGEX_PLACEHOLDERS_REPLACEMENT', '(?P<$1>\w+)');
 define('_PACKAGE_NAME', 'devdasher/ptb-php');
 define('_CACHE_CONVERSATION_TTL', 10800);
 define('_CACHE_USER_DATA_TTL', 120);
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function configurePTB(
     string $username,
     string $token,
@@ -1036,11 +1037,11 @@ function configurePTB(
         curl_options: $curl_options,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function middleware(callable $callable, ?string $name = null): void {
     __addMiddleware(callable: $callable, name: $name);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function middlewares(array $callables): void {
     foreach ($callables as $name => $callable) {
         if (!is_callable($callable)) {
@@ -1049,7 +1050,7 @@ function middlewares(array $callables): void {
         middleware($callable, $name);
     }
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageText(
     string $pattern,
     callable $callable,
@@ -1063,7 +1064,7 @@ function onMessageText(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessagePhoto(
     callable $callable,
     callable|array $middlewares = [],
@@ -1076,7 +1077,7 @@ function onMessagePhoto(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageAnimation(
     callable $callable,
     callable|array $middlewares = [],
@@ -1089,7 +1090,7 @@ function onMessageAnimation(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageVideo(
     callable $callable,
     callable|array $middlewares = [],
@@ -1102,7 +1103,7 @@ function onMessageVideo(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageVideoNote(
     callable $callable,
     callable|array $middlewares = [],
@@ -1115,7 +1116,7 @@ function onMessageVideoNote(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageAudio(
     callable $callable,
     callable|array $middlewares = [],
@@ -1128,7 +1129,7 @@ function onMessageAudio(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageVoice(
     callable $callable,
     callable|array $middlewares = [],
@@ -1141,7 +1142,7 @@ function onMessageVoice(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageDocument(
     callable $callable,
     callable|array $middlewares = [],
@@ -1154,7 +1155,7 @@ function onMessageDocument(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageLocation(
     callable $callable,
     callable|array $middlewares = [],
@@ -1167,7 +1168,7 @@ function onMessageLocation(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageContact(
     callable $callable,
     callable|array $middlewares = [],
@@ -1180,7 +1181,7 @@ function onMessageContact(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessagePoll(
     callable $callable,
     callable|array $middlewares = [],
@@ -1193,7 +1194,7 @@ function onMessagePoll(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageVenue(
     callable $callable,
     callable|array $middlewares = [],
@@ -1206,7 +1207,7 @@ function onMessageVenue(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageGame(
     callable $callable,
     callable|array $middlewares = [],
@@ -1219,7 +1220,7 @@ function onMessageGame(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageDice(
     callable $callable,
     callable|array $middlewares = [],
@@ -1232,7 +1233,7 @@ function onMessageDice(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageSticker(
     callable $callable,
     callable|array $middlewares = [],
@@ -1245,7 +1246,7 @@ function onMessageSticker(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageNewChatMembers(
     callable $callable,
     callable|array $middlewares = [],
@@ -1258,7 +1259,7 @@ function onMessageNewChatMembers(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageLeftChatMember(
     callable $callable,
     callable|array $middlewares = [],
@@ -1271,7 +1272,7 @@ function onMessageLeftChatMember(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageNewChatTitle(
     callable $callable,
     callable|array $middlewares = [],
@@ -1284,7 +1285,7 @@ function onMessageNewChatTitle(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageNewChatPhoto(
     callable $callable,
     callable|array $middlewares = [],
@@ -1297,7 +1298,7 @@ function onMessageNewChatPhoto(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageDeleteChatPhoto(
     callable $callable,
     callable|array $middlewares = [],
@@ -1310,7 +1311,7 @@ function onMessageDeleteChatPhoto(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageGroupChatCreated(
     callable $callable,
     callable|array $middlewares = [],
@@ -1323,7 +1324,7 @@ function onMessageGroupChatCreated(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageSupergroupChatCreated(
     callable $callable,
     callable|array $middlewares = [],
@@ -1336,7 +1337,7 @@ function onMessageSupergroupChatCreated(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageChannelChatCreated(
     callable $callable,
     callable|array $middlewares = [],
@@ -1349,7 +1350,7 @@ function onMessageChannelChatCreated(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageAutoDeleteTimerChanged(
     callable $callable,
     callable|array $middlewares = [],
@@ -1362,7 +1363,7 @@ function onMessageAutoDeleteTimerChanged(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageMigrateToChatId(
     callable $callable,
     callable|array $middlewares = [],
@@ -1375,7 +1376,7 @@ function onMessageMigrateToChatId(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageMigrateFromChatId(
     callable $callable,
     callable|array $middlewares = [],
@@ -1388,7 +1389,7 @@ function onMessageMigrateFromChatId(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessagePinnedMessage(
     callable $callable,
     callable|array $middlewares = [],
@@ -1401,7 +1402,7 @@ function onMessagePinnedMessage(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageInvoice(
     callable $callable,
     callable|array $middlewares = [],
@@ -1414,7 +1415,7 @@ function onMessageInvoice(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageSuccessfulPayment(
     callable $callable,
     callable|array $middlewares = [],
@@ -1427,7 +1428,7 @@ function onMessageSuccessfulPayment(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageUserShared(
     callable $callable,
     callable|array $middlewares = [],
@@ -1440,7 +1441,7 @@ function onMessageUserShared(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageChatShared(
     callable $callable,
     callable|array $middlewares = [],
@@ -1453,7 +1454,7 @@ function onMessageChatShared(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageConnectedWebsite(
     callable $callable,
     callable|array $middlewares = [],
@@ -1466,7 +1467,7 @@ function onMessageConnectedWebsite(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageWriteAccessAllowed(
     callable $callable,
     callable|array $middlewares = [],
@@ -1479,7 +1480,7 @@ function onMessageWriteAccessAllowed(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessagePassportData(
     callable $callable,
     callable|array $middlewares = [],
@@ -1492,7 +1493,7 @@ function onMessagePassportData(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageProximityAlertTriggered(
     callable $callable,
     callable|array $middlewares = [],
@@ -1505,7 +1506,7 @@ function onMessageProximityAlertTriggered(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageForumTopicCreated(
     callable $callable,
     callable|array $middlewares = [],
@@ -1518,7 +1519,7 @@ function onMessageForumTopicCreated(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageForumTopicEdited(
     callable $callable,
     callable|array $middlewares = [],
@@ -1531,7 +1532,7 @@ function onMessageForumTopicEdited(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageForumTopicClosed(
     callable $callable,
     callable|array $middlewares = [],
@@ -1544,7 +1545,7 @@ function onMessageForumTopicClosed(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageForumTopicReopened(
     callable $callable,
     callable|array $middlewares = [],
@@ -1557,7 +1558,7 @@ function onMessageForumTopicReopened(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageGeneralForumTopicHidden(
     callable $callable,
     callable|array $middlewares = [],
@@ -1570,7 +1571,7 @@ function onMessageGeneralForumTopicHidden(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageGeneralForumTopicUnhidden(
     callable $callable,
     callable|array $middlewares = [],
@@ -1583,7 +1584,7 @@ function onMessageGeneralForumTopicUnhidden(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageVideoChatScheduled(
     callable $callable,
     callable|array $middlewares = [],
@@ -1596,7 +1597,7 @@ function onMessageVideoChatScheduled(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageVideoChatStarted(
     callable $callable,
     callable|array $middlewares = [],
@@ -1609,7 +1610,7 @@ function onMessageVideoChatStarted(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageVideoChatEnded(
     callable $callable,
     callable|array $middlewares = [],
@@ -1622,7 +1623,7 @@ function onMessageVideoChatEnded(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageVideoChatParticipantsInvited(
     callable $callable,
     callable|array $middlewares = [],
@@ -1635,7 +1636,7 @@ function onMessageVideoChatParticipantsInvited(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessageWebAppData(
     callable $callable,
     callable|array $middlewares = [],
@@ -1648,7 +1649,7 @@ function onMessageWebAppData(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMessage(
     callable $callable,
     callable|array $middlewares = [],
@@ -1661,7 +1662,7 @@ function onMessage(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageText(
     string $pattern,
     callable $callable,
@@ -1675,7 +1676,7 @@ function onEditedMessageText(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessagePhoto(
     callable $callable,
     callable|array $middlewares = [],
@@ -1688,7 +1689,7 @@ function onEditedMessagePhoto(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageAnimation(
     callable $callable,
     callable|array $middlewares = [],
@@ -1701,7 +1702,7 @@ function onEditedMessageAnimation(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageVideo(
     callable $callable,
     callable|array $middlewares = [],
@@ -1714,7 +1715,7 @@ function onEditedMessageVideo(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageVideoNote(
     callable $callable,
     callable|array $middlewares = [],
@@ -1727,7 +1728,7 @@ function onEditedMessageVideoNote(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageAudio(
     callable $callable,
     callable|array $middlewares = [],
@@ -1740,7 +1741,7 @@ function onEditedMessageAudio(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageVoice(
     callable $callable,
     callable|array $middlewares = [],
@@ -1753,7 +1754,7 @@ function onEditedMessageVoice(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageDocument(
     callable $callable,
     callable|array $middlewares = [],
@@ -1766,7 +1767,7 @@ function onEditedMessageDocument(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageLocation(
     callable $callable,
     callable|array $middlewares = [],
@@ -1779,7 +1780,7 @@ function onEditedMessageLocation(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageContact(
     callable $callable,
     callable|array $middlewares = [],
@@ -1792,7 +1793,7 @@ function onEditedMessageContact(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessagePoll(
     callable $callable,
     callable|array $middlewares = [],
@@ -1805,7 +1806,7 @@ function onEditedMessagePoll(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageVenue(
     callable $callable,
     callable|array $middlewares = [],
@@ -1818,7 +1819,7 @@ function onEditedMessageVenue(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageGame(
     callable $callable,
     callable|array $middlewares = [],
@@ -1831,7 +1832,7 @@ function onEditedMessageGame(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageDice(
     callable $callable,
     callable|array $middlewares = [],
@@ -1844,7 +1845,7 @@ function onEditedMessageDice(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessageSticker(
     callable $callable,
     callable|array $middlewares = [],
@@ -1857,7 +1858,7 @@ function onEditedMessageSticker(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedMessage(
     callable $callable,
     callable|array $middlewares = [],
@@ -1870,7 +1871,7 @@ function onEditedMessage(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onCallbackQuery(
     callable $callable,
     callable|array $middlewares = [],
@@ -1883,7 +1884,7 @@ function onCallbackQuery(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onCallbackQueryData(
     string $pattern,
     callable $callable,
@@ -1897,7 +1898,7 @@ function onCallbackQueryData(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostText(
     string $pattern,
     callable $callable,
@@ -1911,7 +1912,7 @@ function onChannelPostText(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostPhoto(
     callable $callable,
     callable|array $middlewares = [],
@@ -1924,7 +1925,7 @@ function onChannelPostPhoto(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostAnimation(
     callable $callable,
     callable|array $middlewares = [],
@@ -1937,7 +1938,7 @@ function onChannelPostAnimation(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostVideo(
     callable $callable,
     callable|array $middlewares = [],
@@ -1950,7 +1951,7 @@ function onChannelPostVideo(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostVideoNote(
     callable $callable,
     callable|array $middlewares = [],
@@ -1963,7 +1964,7 @@ function onChannelPostVideoNote(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostAudio(
     callable $callable,
     callable|array $middlewares = [],
@@ -1976,7 +1977,7 @@ function onChannelPostAudio(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostVoice(
     callable $callable,
     callable|array $middlewares = [],
@@ -1989,7 +1990,7 @@ function onChannelPostVoice(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostDocument(
     callable $callable,
     callable|array $middlewares = [],
@@ -2002,7 +2003,7 @@ function onChannelPostDocument(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostLocation(
     callable $callable,
     callable|array $middlewares = [],
@@ -2015,7 +2016,7 @@ function onChannelPostLocation(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostContact(
     callable $callable,
     callable|array $middlewares = [],
@@ -2028,7 +2029,7 @@ function onChannelPostContact(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostPoll(
     callable $callable,
     callable|array $middlewares = [],
@@ -2041,7 +2042,7 @@ function onChannelPostPoll(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostVenue(
     callable $callable,
     callable|array $middlewares = [],
@@ -2054,7 +2055,7 @@ function onChannelPostVenue(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostGame(
     callable $callable,
     callable|array $middlewares = [],
@@ -2067,7 +2068,7 @@ function onChannelPostGame(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostDice(
     callable $callable,
     callable|array $middlewares = [],
@@ -2080,7 +2081,7 @@ function onChannelPostDice(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostSticker(
     callable $callable,
     callable|array $middlewares = [],
@@ -2093,7 +2094,7 @@ function onChannelPostSticker(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostMessageAutoDeleteTimerChanged(
     callable $callable,
     callable|array $middlewares = [],
@@ -2106,7 +2107,7 @@ function onChannelPostMessageAutoDeleteTimerChanged(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPostPinnedMessage(
     callable $callable,
     callable|array $middlewares = [],
@@ -2119,7 +2120,7 @@ function onChannelPostPinnedMessage(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChannelPost(
     callable $callable,
     callable|array $middlewares = [],
@@ -2132,7 +2133,7 @@ function onChannelPost(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostText(
     string $pattern,
     callable $callable,
@@ -2146,7 +2147,7 @@ function onEditedChannelPostText(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostPhoto(
     callable $callable,
     callable|array $middlewares = [],
@@ -2159,7 +2160,7 @@ function onEditedChannelPostPhoto(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostAnimation(
     callable $callable,
     callable|array $middlewares = [],
@@ -2172,7 +2173,7 @@ function onEditedChannelPostAnimation(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostVideo(
     callable $callable,
     callable|array $middlewares = [],
@@ -2185,7 +2186,7 @@ function onEditedChannelPostVideo(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostVideoNote(
     callable $callable,
     callable|array $middlewares = [],
@@ -2198,7 +2199,7 @@ function onEditedChannelPostVideoNote(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostAudio(
     callable $callable,
     callable|array $middlewares = [],
@@ -2211,7 +2212,7 @@ function onEditedChannelPostAudio(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostVoice(
     callable $callable,
     callable|array $middlewares = [],
@@ -2224,7 +2225,7 @@ function onEditedChannelPostVoice(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostDocument(
     callable $callable,
     callable|array $middlewares = [],
@@ -2237,7 +2238,7 @@ function onEditedChannelPostDocument(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostLocation(
     callable $callable,
     callable|array $middlewares = [],
@@ -2250,7 +2251,7 @@ function onEditedChannelPostLocation(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostContact(
     callable $callable,
     callable|array $middlewares = [],
@@ -2263,7 +2264,7 @@ function onEditedChannelPostContact(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostPoll(
     callable $callable,
     callable|array $middlewares = [],
@@ -2276,7 +2277,7 @@ function onEditedChannelPostPoll(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostVenue(
     callable $callable,
     callable|array $middlewares = [],
@@ -2289,7 +2290,7 @@ function onEditedChannelPostVenue(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostGame(
     callable $callable,
     callable|array $middlewares = [],
@@ -2302,7 +2303,7 @@ function onEditedChannelPostGame(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostDice(
     callable $callable,
     callable|array $middlewares = [],
@@ -2315,7 +2316,7 @@ function onEditedChannelPostDice(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPostSticker(
     callable $callable,
     callable|array $middlewares = [],
@@ -2328,7 +2329,7 @@ function onEditedChannelPostSticker(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onEditedChannelPost(
     callable $callable,
     callable|array $middlewares = [],
@@ -2341,7 +2342,7 @@ function onEditedChannelPost(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChatMember(
     callable $callable,
     callable|array $middlewares = [],
@@ -2354,7 +2355,7 @@ function onChatMember(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onMyChatMember(
     callable $callable,
     callable|array $middlewares = [],
@@ -2367,7 +2368,7 @@ function onMyChatMember(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onPoll(
     callable $callable,
     callable|array $middlewares = [],
@@ -2380,7 +2381,7 @@ function onPoll(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onPollAnswer(
     callable $callable,
     callable|array $middlewares = [],
@@ -2393,7 +2394,7 @@ function onPollAnswer(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onInlineQuery(
     callable $callable,
     callable|array $middlewares = [],
@@ -2406,7 +2407,7 @@ function onInlineQuery(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onInlineQueryText(
     string $pattern,
     callable $callable,
@@ -2420,7 +2421,7 @@ function onInlineQueryText(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onShippingQuery(
     callable $callable,
     callable|array $middlewares = [],
@@ -2433,7 +2434,7 @@ function onShippingQuery(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChatJoinRequest(
     callable $callable,
     callable|array $middlewares = [],
@@ -2446,7 +2447,7 @@ function onChatJoinRequest(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onPreCheckoutQuery(
     callable $callable,
     callable|array $middlewares = [],
@@ -2459,7 +2460,7 @@ function onPreCheckoutQuery(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChosenInlineResult(
     callable $callable,
     callable|array $middlewares = [],
@@ -2472,7 +2473,7 @@ function onChosenInlineResult(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChosenInlineResultQuery(
     string $pattern,
     callable $callable,
@@ -2486,7 +2487,7 @@ function onChosenInlineResultQuery(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onChosenInlineResultId(
     string $pattern,
     callable $callable,
@@ -2500,7 +2501,7 @@ function onChosenInlineResultId(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onAnyUpdateType(
     callable $callable,
     callable|array $middlewares = [],
@@ -2513,7 +2514,7 @@ function onAnyUpdateType(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function fallbackOn(
     string $updateType,
     callable $callable,
@@ -2530,7 +2531,7 @@ function fallbackOn(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function fallback(
     callable $callable,
     callable|array $middlewares = [],
@@ -2543,7 +2544,7 @@ function fallback(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onException(
     callable $callable,
     callable|array $middlewares = [],
@@ -2556,7 +2557,7 @@ function onException(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function onApiError(
     callable $callable,
     callable|array $middlewares = [],
@@ -2569,7 +2570,7 @@ function onApiError(
         skip_middlewares: $skip_middlewares,
     );
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Update(
     int $update_id = null,
     ?array $message = null,
@@ -2589,7 +2590,7 @@ function Update(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function WebhookInfo(
     string $url,
     bool $has_custom_certificate,
@@ -2603,7 +2604,7 @@ function WebhookInfo(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function User(
     int $id,
     bool $is_bot,
@@ -2619,7 +2620,7 @@ function User(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Chat(
     int $id,
     string $type,
@@ -2652,7 +2653,7 @@ function Chat(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Message(
     ?int $message_id = null,
     ?int $date = null,
@@ -2728,11 +2729,11 @@ function Message(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function MessageId(int $messageId): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function MessageEntity(
     string $type,
     int $offset,
@@ -2744,7 +2745,7 @@ function MessageEntity(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PhotoSize(
     string $file_id,
     string $file_unique_id,
@@ -2754,7 +2755,7 @@ function PhotoSize(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Animation(
     string $file_id,
     string $file_unique_id,
@@ -2768,7 +2769,7 @@ function Animation(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Audio(
     string $file_id,
     string $file_unique_id,
@@ -2782,7 +2783,7 @@ function Audio(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Document(
     string $file_id,
     string $file_unique_id,
@@ -2793,7 +2794,7 @@ function Document(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Video(
     string $file_id,
     string $file_unique_id,
@@ -2807,7 +2808,7 @@ function Video(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function VideoNote(
     string $file_id,
     string $file_unique_id,
@@ -2818,7 +2819,7 @@ function VideoNote(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Voice(
     string $file_id,
     string $file_unique_id,
@@ -2828,7 +2829,7 @@ function Voice(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Contact(
     string $phone_number,
     string $first_name,
@@ -2838,19 +2839,19 @@ function Contact(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Dice(string $emoji, int $value): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PollOption(string $text, int $voter_count): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PollAnswer(string $poll_id, array $user, array $option_ids): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Poll(
     string $id,
     string $question,
@@ -2868,7 +2869,7 @@ function Poll(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Location(
     float|string $longitude,
     float|string $latitude,
@@ -2879,7 +2880,7 @@ function Location(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Venue(
     array $location,
     string $title,
@@ -2891,75 +2892,75 @@ function Venue(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function WebAppData(string $data, string $button_text): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ProximityAlertTriggered(array $traveler, array $watcher, int $distance): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function MessageAutoDeleteTimerChanged(int $message_auto_delete_time): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ForumTopicCreated(string $name, int $icon_color, ?string $icon_custom_emoji_id = null): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ForumTopicClosed(): array {
     return [];
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ForumTopicEdited(?string $name = null, ?string $icon_custom_emoji_id = null): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ForumTopicReopened(): array {
     return [];
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function GeneralForumTopicHidden(): array {
     return [];
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function GeneralForumTopicUnhidden(): array {
     return [];
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function UserShared(int $request_id, int $user_id): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatShared(int $request_id, int $chat_id): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function WriteAccessAllowed(?string $web_app_name = null): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function VideoChatScheduled(int $start_date): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function VideoChatStarted(): array {
     return [];
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function VideoChatEnded(int $duration): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function VideoChatParticipantsInvited(array $users): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function UserProfilePhotos(int $total_count, array $photos): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function File(
     string $file_id,
     string $file_unique_id,
@@ -2968,11 +2969,11 @@ function File(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function WebAppInfo(string $url): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ReplyKeyboardMarkup(
     array $keyboard,
     ?bool $is_persistent = null,
@@ -2983,7 +2984,7 @@ function ReplyKeyboardMarkup(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function KeyboardButton(
     string $text,
     ?array $request_user = null,
@@ -2995,7 +2996,7 @@ function KeyboardButton(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function KeyboardButtonRequestUser(
     int $request_id,
     ?bool $user_is_bot = null,
@@ -3003,7 +3004,7 @@ function KeyboardButtonRequestUser(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function KeyboardButtonRequestChat(
     int $request_id,
     bool $chat_is_channel,
@@ -3016,19 +3017,19 @@ function KeyboardButtonRequestChat(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function KeyboardButtonPollType(?string $type = null): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ReplyKeyboardRemove(bool $remove_keyboard = true, ?bool $selective = null): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineKeyboardMarkup(array $inline_keyboard): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineKeyboardButton(
     string $text,
     ?string $url = null,
@@ -3042,7 +3043,7 @@ function InlineKeyboardButton(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function LoginUrl(
     string $url,
     ?string $forward_text = null,
@@ -3051,7 +3052,7 @@ function LoginUrl(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function SwitchInlineQueryChosenChat(
     ?string $query = null,
     ?bool $allow_user_chats = null,
@@ -3061,7 +3062,7 @@ function SwitchInlineQueryChosenChat(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function CallbackQuery(
     string $id,
     array $from,
@@ -3073,7 +3074,7 @@ function CallbackQuery(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ForceReply(
     bool $force_reply = true,
     ?string $input_field_placeholder = null,
@@ -3081,7 +3082,7 @@ function ForceReply(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatPhoto(
     string $small_file_id,
     string $small_file_unique_id,
@@ -3090,7 +3091,7 @@ function ChatPhoto(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatInviteLink(
     string $invite_link,
     array $creator,
@@ -3104,7 +3105,7 @@ function ChatInviteLink(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatAdministratorRights(
     ?bool $is_anonymous = null,
     ?bool $can_manage_chat = null,
@@ -3121,11 +3122,11 @@ function ChatAdministratorRights(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 // function ChatMember(): array {
 //     return __prepareApiTypeFields(get_defined_vars());
 // }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatMemberOwner(
     string $status,
     array $user,
@@ -3134,7 +3135,7 @@ function ChatMemberOwner(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatMemberAdministrator(
     string $status,
     array $user,
@@ -3155,11 +3156,11 @@ function ChatMemberAdministrator(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatMemberMember(string $status, array $user): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatMemberRestricted(
     string $status,
     array $user,
@@ -3182,15 +3183,15 @@ function ChatMemberRestricted(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatMemberLeft(string $status, array $user): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatMemberBanned(string $status, array $user, int $until_date): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatMemberUpdated(
     array $chat,
     array $from,
@@ -3202,7 +3203,7 @@ function ChatMemberUpdated(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatJoinRequest(
     array $chat,
     array $from,
@@ -3213,7 +3214,7 @@ function ChatJoinRequest(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatPermissions(
     ?bool $can_send_messages = null,
     ?bool $can_send_audios = null,
@@ -3232,11 +3233,11 @@ function ChatPermissions(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChatLocation(array $location, string $address): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ForumTopic(
     int $message_thread_id,
     string $name,
@@ -3245,57 +3246,57 @@ function ForumTopic(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function BotCommand(string $command, string $description): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function BotCommandScope(string $type, null|int|string $chat_id = null, ?int $user_id = null): array {
     if (!in_array($type, _botCommandScopeTypes())) {
         throw new Exception("Invalid scope type '{$type}'!");
     }
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function BotName(string $name): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function BotDescription(string $description): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function BotShortDescription(string $short_description): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function MenuButton(string $type, ?string $text = null, ?array $web_app = null): array {
     if (!in_array($type, _menuButtonTypes())) {
         throw new Exception("Invalid menu button type '{$type}'!");
     }
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function MenuButtonCommands(string $type): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function MenuButtonWebApp(string $type, string $text, array $web_app): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function MenuButtonDefault(string $type): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ResponseParameters(?int $migrate_to_chat_id = null, ?int $retry_after = null): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputMedia(array ...$media): array {
     return [...$media];
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputMediaAnimation(
     string $media,
     ?string $caption = null,
@@ -3309,7 +3310,7 @@ function InputMediaAnimation(
 ): array {
     return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_ANIMATION], get_defined_vars()));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputMediaDocument(
     string $media,
     ?string $caption = null,
@@ -3321,7 +3322,7 @@ function InputMediaDocument(
 ): array {
     return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_DOCUMENT], get_defined_vars()));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputMediaAudio(
     string $media,
     ?string $caption = null,
@@ -3334,7 +3335,7 @@ function InputMediaAudio(
 ): array {
     return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_AUDIO], get_defined_vars()));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputMediaPhoto(
     string $media,
     ?string $caption = null,
@@ -3344,7 +3345,7 @@ function InputMediaPhoto(
 ): array {
     return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_PHOTO], get_defined_vars()));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputMediaVideo(
     string $media,
     null|CURLFile|string $thumbnail = null,
@@ -3359,14 +3360,14 @@ function InputMediaVideo(
 ): array {
     return __prepareApiTypeFields(array_merge(['type' => 'video'], get_defined_vars()));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputFile(string $file_path): CURLFile { 
     if (!is_file($file_path)) {
         throw new Exception("File '{$file_path}' does not exist!");
     }
     return new CURLFile($file_path);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Sticker(
     string $file_id,
     string $file_unique_id,
@@ -3386,7 +3387,7 @@ function Sticker(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function StickerSet(
     string $name,
     string $title,
@@ -3398,7 +3399,7 @@ function StickerSet(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function MaskPosition(
     string $point,
     float $x_shift,
@@ -3407,7 +3408,7 @@ function MaskPosition(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputSticker(
     null|CURLFile|string $sticker,
     array $emoji_list,
@@ -3416,7 +3417,7 @@ function InputSticker(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQuery(
     string $id,
     array $from,
@@ -3427,7 +3428,7 @@ function InlineQuery(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultsButton(
     string $text,
     ?array $web_app = null,
@@ -3435,7 +3436,7 @@ function InlineQueryResultsButton(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultCachedAudio(
     string $type,
     string|int $id,
@@ -3448,7 +3449,7 @@ function InlineQueryResultCachedAudio(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultCachedDocument(
     string $type,
     string|int $id,
@@ -3463,7 +3464,7 @@ function InlineQueryResultCachedDocument(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultCachedGif(
     string $type,
     string|int $id,
@@ -3477,7 +3478,7 @@ function InlineQueryResultCachedGif(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultCachedMpeg4Gif(
     string $type,
     string|int $id,
@@ -3491,7 +3492,7 @@ function InlineQueryResultCachedMpeg4Gif(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultCachedPhoto(
     string $type,
     string|int $id,
@@ -3506,7 +3507,7 @@ function InlineQueryResultCachedPhoto(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultCachedSticker(
     string $type,
     string|int $id,
@@ -3516,7 +3517,7 @@ function InlineQueryResultCachedSticker(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultCachedVideo(
     string $type,
     string|int $id,
@@ -3531,7 +3532,7 @@ function InlineQueryResultCachedVideo(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultCachedVoice(
     string $type,
     string|int $id,
@@ -3545,7 +3546,7 @@ function InlineQueryResultCachedVoice(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultArticle(
     string $type,
     string|int $id,
@@ -3561,7 +3562,7 @@ function InlineQueryResultArticle(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultPhoto(
     string $type,
     string|int $id,
@@ -3579,7 +3580,7 @@ function InlineQueryResultPhoto(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultGif(
     string $type,
     string|int $id,
@@ -3598,7 +3599,7 @@ function InlineQueryResultGif(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultAudio(
     string $type,
     string|int $id,
@@ -3614,7 +3615,7 @@ function InlineQueryResultAudio(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultVoice(
     string $type,
     string|int $id,
@@ -3629,7 +3630,7 @@ function InlineQueryResultVoice(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultDocument(
     string $type,
     string|int $id,
@@ -3648,7 +3649,7 @@ function InlineQueryResultDocument(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultLocation(
     string $type,
     string|int $id,
@@ -3667,7 +3668,7 @@ function InlineQueryResultLocation(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultVenue(
     string $type,
     string|int $id,
@@ -3687,7 +3688,7 @@ function InlineQueryResultVenue(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultContact(
     string $type,
     string|int $id,
@@ -3703,7 +3704,7 @@ function InlineQueryResultContact(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultGame(
     string $type,
     string|int $id,
@@ -3712,7 +3713,7 @@ function InlineQueryResultGame(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultMpeg4Gif(
     string $type,
     string|int $id,
@@ -3731,7 +3732,7 @@ function InlineQueryResultMpeg4Gif(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InlineQueryResultVideo(
     string $type,
     string|int $id,
@@ -3751,7 +3752,7 @@ function InlineQueryResultVideo(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputTextMessageContent(
     string $message_text,
     ?string $parse_mode = null,
@@ -3760,7 +3761,7 @@ function InputTextMessageContent(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputLocationMessageContent(
     float|string $latitude,
     float|string $longitude,
@@ -3771,7 +3772,7 @@ function InputLocationMessageContent(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputVenueMessageContent(
     float|string $latitude,
     float|string $longitude,
@@ -3784,7 +3785,7 @@ function InputVenueMessageContent(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputContactMessageContent(
     string $phone_number,
     string $first_name,
@@ -3793,7 +3794,7 @@ function InputContactMessageContent(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function InputInvoiceMessageContent(
     string $title,
     string $description,
@@ -3818,7 +3819,7 @@ function InputInvoiceMessageContent(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ChosenInlineResult(
     string $query,
     string $result_id,
@@ -3828,15 +3829,15 @@ function ChosenInlineResult(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function SentWebAppMessage(string $inline_message_id): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function LabeledPrice(string $label, int $amount): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Invoice(
     string $title,
     string $description,
@@ -3846,7 +3847,7 @@ function Invoice(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ShippingAddress(
     string $country_code,
     string $state,
@@ -3857,7 +3858,7 @@ function ShippingAddress(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function OrderInfo(
     ?string $name = null,
     ?string $phone_number = null,
@@ -3866,11 +3867,11 @@ function OrderInfo(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ShippingOption(string $id, string $title, array $prices): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function SuccessfulPayment(
     string $currency,
     int $total_amount,
@@ -3882,7 +3883,7 @@ function SuccessfulPayment(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function ShippingQuery(
     string $id,
     array $from,
@@ -3891,7 +3892,7 @@ function ShippingQuery(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PreCheckoutQuery(
     string $id,
     array $from,
@@ -3903,11 +3904,11 @@ function PreCheckoutQuery(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportData(array $data, array $credentials): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportFile(
     string $file_id,
     string $file_unique_id,
@@ -3916,7 +3917,7 @@ function PassportFile(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function EncryptedPassportElement(
     string $type,
     string $hash,
@@ -3931,11 +3932,11 @@ function EncryptedPassportElement(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function EncryptedCredentials(string $data, string $hash, string $secret): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportElementErrorDataField(
     string $source,
     string $type,
@@ -3945,7 +3946,7 @@ function PassportElementErrorDataField(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportElementErrorFrontSide(
     string $source,
     string $type,
@@ -3954,7 +3955,7 @@ function PassportElementErrorFrontSide(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportElementErrorReverseSide(
     string $source,
     string $type,
@@ -3963,7 +3964,7 @@ function PassportElementErrorReverseSide(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportElementErrorSelfie(
     string $source,
     string $type,
@@ -3972,7 +3973,7 @@ function PassportElementErrorSelfie(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportElementErrorFile(
     string $source,
     string $type,
@@ -3981,7 +3982,7 @@ function PassportElementErrorFile(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportElementErrorFiles(
     string $source,
     string $type,
@@ -3990,7 +3991,7 @@ function PassportElementErrorFiles(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportElementErrorTranslationFile(
     string $source,
     string $type,
@@ -3999,7 +4000,7 @@ function PassportElementErrorTranslationFile(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportElementErrorTranslationFiles(
     string $source,
     string $type,
@@ -4008,7 +4009,7 @@ function PassportElementErrorTranslationFiles(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function PassportElementErrorUnspecified(
     string $source,
     string $type,
@@ -4017,7 +4018,7 @@ function PassportElementErrorUnspecified(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function Game(
     string $title,
     string $description,
@@ -4028,15 +4029,15 @@ function Game(
 ): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function CallbackGame(): array {
     return [];
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function GameHighScore(int $position, array $user, int $score): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getUpdates(
     int $limit = 100,
     int $timeout = 0,
@@ -4046,7 +4047,7 @@ function getUpdates(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setWebhook(
     string $url,
     null|CURLFile|string $certificate = null,
@@ -4059,30 +4060,30 @@ function setWebhook(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function deleteWebhook(
     ?bool $drop_pending_updates = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getWebhookInfo(?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getMe(?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function logOut(?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function close(?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, options: $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function deleteMessage(
     int $message_id,
     null|int|string $chat_id = null,
@@ -4090,7 +4091,7 @@ function deleteMessage(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendMessage(
     string $text,
     null|int|string $chat_id = null,
@@ -4107,7 +4108,7 @@ function sendMessage(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function forwardMessage(
     int|string $chat_id,
     ?int $message_id = null,
@@ -4119,7 +4120,7 @@ function forwardMessage(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function copyMessage(
     int|string $chat_id,
     ?int $message_id = null,
@@ -4137,7 +4138,7 @@ function copyMessage(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendPhoto(
     CURLFile|string $photo,
     null|int|string $chat_id = null,
@@ -4155,7 +4156,7 @@ function sendPhoto(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendAudio(
     CURLFile|string $audio,
     null|int|string $chat_id = null,
@@ -4176,7 +4177,7 @@ function sendAudio(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendDocument(
     CURLFile|string $document,
     null|int|string $chat_id = null,
@@ -4195,7 +4196,7 @@ function sendDocument(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendVideo(
     CURLFile|string $video,
     null|int|string $chat_id = null,
@@ -4218,7 +4219,7 @@ function sendVideo(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendAnimation(
     CURLFile|string $animation,
     null|int|string $chat_id = null,
@@ -4242,7 +4243,7 @@ function sendAnimation(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendVoice(
     CURLFile|string $voice,
     null|int|string $chat_id = null,
@@ -4259,7 +4260,7 @@ function sendVoice(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendVideoNote(
     CURLFile|string $video_note,
     null|int|string $chat_id = null,
@@ -4279,7 +4280,7 @@ function sendVideoNote(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendMediaGroup(
     array $media,
     null|int|string $chat_id = null,
@@ -4292,7 +4293,7 @@ function sendMediaGroup(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendLocation(
     float|string $latitude,
     float|string $longitude,
@@ -4311,7 +4312,7 @@ function sendLocation(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendVenue(
     string $title,
     string $address,
@@ -4332,7 +4333,7 @@ function sendVenue(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendContact(
     string $phone_number,
     string $first_name,
@@ -4349,7 +4350,7 @@ function sendContact(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendPoll(
     string $question,
     array $options,
@@ -4374,7 +4375,7 @@ function sendPoll(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendDice(
     string $emoji,
     null|int|string $chat_id = null,
@@ -4388,7 +4389,7 @@ function sendDice(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendFile(
     null|CURLFile|string $document = null,
     null|CURLFile|string $audio = null,
@@ -4446,7 +4447,7 @@ function sendFile(
         return sendSticker(...$parameters);
     }
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendChatAction(
     string $action,
     null|int|string $chat_id = null,
@@ -4455,7 +4456,7 @@ function sendChatAction(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getUserProfilePhotos(
     ?int $user_id = null,
     ?int $offset = null,
@@ -4464,14 +4465,14 @@ function getUserProfilePhotos(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getFile(
     string $file_id,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function banChatMember(
     int $user_id,
     null|int|string $chat_id = null,
@@ -4481,7 +4482,7 @@ function banChatMember(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function unbanChatMember(
     int $user_id,
     null|int|string $chat_id = null,
@@ -4490,7 +4491,7 @@ function unbanChatMember(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function restrictChatMember(
     int $user_id,
     array $permissions,
@@ -4502,7 +4503,7 @@ function restrictChatMember(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function promoteChatMember(
     int $user_id,
     null|int|string $chat_id = null,
@@ -4522,7 +4523,7 @@ function promoteChatMember(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setChatAdministratorCustomTitle(
     int $user_id,
     null|int|string $chat_id = null,
@@ -4531,7 +4532,7 @@ function setChatAdministratorCustomTitle(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function banChatSenderChat(
     int $sender_chat_id,
     null|int|string $chat_id = null,
@@ -4539,7 +4540,7 @@ function banChatSenderChat(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function unbanChatSenderChat(
     int $sender_chat_id,
     null|int|string $chat_id = null,
@@ -4547,7 +4548,7 @@ function unbanChatSenderChat(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setChatPermissions(
     array $permissions,
     null|int|string $chat_id = null,
@@ -4556,11 +4557,11 @@ function setChatPermissions(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function exportChatInviteLink(null|int|string $chat_id = null, ?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function createChatInviteLink(
     null|int|string $chat_id = null,
     ?string $name = null,
@@ -4571,7 +4572,7 @@ function createChatInviteLink(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function editChatInviteLink(
     string $invite_link,
     null|int|string $chat_id = null,
@@ -4583,7 +4584,7 @@ function editChatInviteLink(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function revokeChatInviteLink(
     string $invite_link,
     null|int|string $chat_id = null,
@@ -4591,7 +4592,7 @@ function revokeChatInviteLink(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function approveChatJoinRequest(
     int $user_id,
     null|int|string $chat_id = null,
@@ -4599,7 +4600,7 @@ function approveChatJoinRequest(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function declineChatJoinRequest(
     int $user_id,
     null|int|string $chat_id = null,
@@ -4607,7 +4608,7 @@ function declineChatJoinRequest(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setChatPhoto(
     null|CURLFile|string $photo,
     null|int|string $chat_id = null,
@@ -4615,14 +4616,14 @@ function setChatPhoto(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function deleteChatPhoto(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setChatTitle(
     string $title,
     null|int|string $chat_id = null,
@@ -4630,7 +4631,7 @@ function setChatTitle(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setChatDescription(
     string $description,
     null|int|string $chat_id = null,
@@ -4638,7 +4639,7 @@ function setChatDescription(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function pinChatMessage(
     int $message_id,
     null|int|string $chat_id = null,
@@ -4647,7 +4648,7 @@ function pinChatMessage(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function unpinChatMessage(
     int $message_id,
     null|int|string $chat_id = null,
@@ -4655,42 +4656,42 @@ function unpinChatMessage(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function unpinAllChatMessages(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function leaveChat(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getChat(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getChatAdministrators(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getChatMemberCount(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getChatMember(
     int $user_id,
     null|int|string $chat_id = null,
@@ -4698,7 +4699,7 @@ function getChatMember(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setChatStickerSet(
     string $sticker_set_name,
     null|int|string $chat_id = null,
@@ -4706,18 +4707,18 @@ function setChatStickerSet(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function deleteChatStickerSet(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getForumTopicIconStickers(?array $_options = [],): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function createForumTopic(
     string $name,
     null|int|string $chat_id = null,
@@ -4727,7 +4728,7 @@ function createForumTopic(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function editForumTopic(
     int $message_thread_id,
     null|int|string $chat_id = null,
@@ -4737,7 +4738,7 @@ function editForumTopic(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function closeForumTopic(
     int $message_thread_id,
     null|int|string $chat_id = null,
@@ -4745,7 +4746,7 @@ function closeForumTopic(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function reopenForumTopic(
     int $message_thread_id,
     null|int|string $chat_id = null,
@@ -4753,7 +4754,7 @@ function reopenForumTopic(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function deleteForumTopic(
     int $message_thread_id,
     null|int|string $chat_id = null,
@@ -4761,7 +4762,7 @@ function deleteForumTopic(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function unpinAllForumTopicMessages(
     int $message_thread_id,
     null|int|string $chat_id = null,
@@ -4769,7 +4770,7 @@ function unpinAllForumTopicMessages(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function editGeneralForumTopic(
     string $name,
     null|int|string $chat_id = null,
@@ -4777,35 +4778,35 @@ function editGeneralForumTopic(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function closeGeneralForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function reopenGeneralForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function hideGeneralForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function unhideGeneralForumTopic(
     null|int|string $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function answerCallbackQuery(
     string $text,
     ?bool $show_alert = null,
@@ -4816,7 +4817,7 @@ function answerCallbackQuery(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setMyCommands(
     array $commands,
     ?array $scope = null,
@@ -4825,7 +4826,7 @@ function setMyCommands(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function deleteMyCommands(
     ?array $scope = null,
     ?string $language_code = null,
@@ -4833,7 +4834,7 @@ function deleteMyCommands(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getMyCommands(
     ?array $scope = null,
     ?string $language_code = null,
@@ -4841,7 +4842,7 @@ function getMyCommands(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setMyName(
     ?string $name = null,
     ?string $language_code = null,
@@ -4849,14 +4850,14 @@ function setMyName(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getMyName(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setMyDescription(
     ?string $description = null,
     ?string $language_code = null,
@@ -4864,14 +4865,14 @@ function setMyDescription(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getMyDescription(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setMyShortDescription(
     ?string $short_description = null,
     ?string $language_code = null,
@@ -4879,14 +4880,14 @@ function setMyShortDescription(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getMyShortDescription(
     ?string $language_code = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setChatMenuButton(
     ?array $menu_button = null,
     null|int $chat_id = null,
@@ -4894,14 +4895,14 @@ function setChatMenuButton(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getChatMenuButton(
     null|int $chat_id = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setMyDefaultAdministratorRights(
     ?array $rights = null,
     ?bool $for_channels = null,
@@ -4909,14 +4910,14 @@ function setMyDefaultAdministratorRights(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getMyDefaultAdministratorRights(
     ?bool $for_channels = null,
     ?array $_options = [],
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function editMessageText(
     string $text,
     ?int $message_id = null,
@@ -4930,7 +4931,7 @@ function editMessageText(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function editMessageCaption(
     ?string $caption = null,
     ?int $message_id = null,
@@ -4943,7 +4944,7 @@ function editMessageCaption(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function editMessageMedia(
     array $media,
     ?int $message_id = null,
@@ -4954,7 +4955,7 @@ function editMessageMedia(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function editMessageLiveLocation(
     float|string $latitude,
     float|string $longitude,
@@ -4969,7 +4970,7 @@ function editMessageLiveLocation(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function stopMessageLiveLocation(
     ?int $message_id = null,
     ?string $inline_message_id = null,
@@ -4979,7 +4980,7 @@ function stopMessageLiveLocation(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function editMessageReplyMarkup(
     ?array $reply_markup = null,
     ?int $message_id = null,
@@ -4989,7 +4990,7 @@ function editMessageReplyMarkup(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function stopPoll(
     ?int $message_id = null,
     null|int|string $chat_id = null,
@@ -4998,7 +4999,7 @@ function stopPoll(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendSticker(
     CURLFile|string $sticker,
     null|int|string $chat_id = null,
@@ -5013,15 +5014,15 @@ function sendSticker(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getStickerSet(string $name, ?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getCustomEmojiStickers(array $custom_emoji_ids, ?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function uploadStickerFile(
     null|CURLFile|string $sticker,
     string $sticker_format,
@@ -5030,7 +5031,7 @@ function uploadStickerFile(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function createNewStickerSet(
     string $name,
     string $title,
@@ -5043,7 +5044,7 @@ function createNewStickerSet(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function addStickerToSet(
     string $name,
     array $sticker,
@@ -5052,7 +5053,7 @@ function addStickerToSet(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setStickerPositionInSet(
     string $sticker,
     int $position,
@@ -5060,11 +5061,11 @@ function setStickerPositionInSet(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function deleteStickerFromSet(string $sticker, ?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setStickerEmojiList(
     string $sticker,
     array $emoji_list,
@@ -5072,7 +5073,7 @@ function setStickerEmojiList(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setStickerKeywords(
     string $sticker,
     ?array $keywords = null,
@@ -5080,7 +5081,7 @@ function setStickerKeywords(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setStickerMaskPosition(
     string $sticker,
     ?array $mask_position = null,
@@ -5088,7 +5089,7 @@ function setStickerMaskPosition(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setStickerSetTitle(
     string $name,
     string $title,
@@ -5096,7 +5097,7 @@ function setStickerSetTitle(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setStickerSetThumbnail(
     string $name,
     ?int $user_id = null,
@@ -5105,7 +5106,7 @@ function setStickerSetThumbnail(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setCustomEmojiStickerSetThumbnail(
     string $name,
     ?string $custom_emoji_id = null,
@@ -5113,11 +5114,11 @@ function setCustomEmojiStickerSetThumbnail(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function deleteStickerSet(string $name, ?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function answerInlineQuery(
     array $results,
     ?int $cache_time = null,
@@ -5129,11 +5130,11 @@ function answerInlineQuery(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function answerWebAppQuery(array $result, ?string $web_app_query_id = null, ?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendInvoice(
     string $title,
     string $description,
@@ -5167,7 +5168,7 @@ function sendInvoice(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function createInvoiceLink(
     string $title,
     string $description,
@@ -5193,7 +5194,7 @@ function createInvoiceLink(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function answerShippingQuery(
     bool $ok,
     ?array $shipping_options = null,
@@ -5203,7 +5204,7 @@ function answerShippingQuery(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function answerPreCheckoutQuery(
     bool $ok,
     ?string $error_message = null,
@@ -5212,11 +5213,11 @@ function answerPreCheckoutQuery(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setPassportDataErrors(int $user_id, array $errors, ?array $_options = []): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function sendGame(
     string $game_short_name,
     ?int $chat_id = null,
@@ -5230,7 +5231,7 @@ function sendGame(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function setGameScore(
     int $user_id,
     string $score,
@@ -5243,7 +5244,7 @@ function setGameScore(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function getGameHighScores(
     int $user_id,
     ?int $chat_id = null,
@@ -5253,387 +5254,20 @@ function getGameHighScores(
 ): array {
     return __prepareAndMakeApiRequest(__FUNCTION__, get_defined_vars(), $_options);
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _row(array ...$buttons): array {
-    return [...$buttons];
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _chat(?string $keys = null): mixed {
-    $message = _message();
-    $updateType = _updateType();
-    $chat = match ($updateType) {
-        UPDATE_TYPE_MESSAGE,
-        UPDATE_TYPE_CALLBACK_QUERY,
-        UPDATE_TYPE_EDITED_MESSAGE,
-        UPDATE_TYPE_CHANNEL_POST,
-        UPDATE_TYPE_MY_CHAT_MEMBER,
-        UPDATE_TYPE_CHAT_MEMBER,
-        UPDATE_TYPE_CHAT_JOIN_REQUEST,
-        UPDATE_TYPE_EDITED_CHANNEL_POST => $message['chat'],
-        default => null,
-    };
-    return __arrayGet($chat, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _file(?string $keys = null): mixed {
-    if (!_isFile()) {
-        throw new Exception('The message type is not a file, you called this function in inappropriate place!');
-    }
-    $function = __NAMESPACE__.'\\'.__snakeToCamelCase(_messageType());
-    return $function($keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isFile(): bool {
-    return in_array(_messageType(), _fileTypes());
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _photo(?string $keys = null): mixed {
-    $photos = _photos();
-    return __arrayGet(end($photos), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _photos(): ?array {
-    return _message(MESSAGE_TYPE_PHOTO);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _gamePhoto(?string $keys = null): mixed {
-    $gamePhotos = _gamePhotos();
-    return __arrayGet(end($gamePhotos), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _gamePhotos(): ?array {
-    return _message(MESSAGE_TYPE_GAME);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _replyMarkup(?string $keys = null): mixed {
-    return __arrayGet(_message('reply_markup'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _viaBot(?string $keys = null): mixed {
-    return __arrayGet(_message('via_bot'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _poll(?string $keys = null): mixed {
-    return __arrayGet(_message('poll'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _pollOptions(): mixed {
-    return __arrayGet(_poll('options'));
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _chatMember(?string $keys = null): mixed {
-    return __arrayGet(_update(UPDATE_TYPE_CHAT_MEMBER), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _myChatMember(?string $keys = null): mixed {
-    return __arrayGet(_update(UPDATE_TYPE_MY_CHAT_MEMBER), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _oldChatMember(?string $keys = null): mixed {
-    $key = 'old_chat_member';
-    $updateType = _updateType();
-    $oldChatMember = $updateType === UPDATE_TYPE_CHAT_MEMBER ? _chatMember($key) : _myChatMember($key);
-    return __arrayGet($oldChatMember, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _newChatMember(?string $keys = null): mixed {
-    $key = 'new_chat_member';
-    $updateType = _updateType();
-    $newChatMember = $updateType === UPDATE_TYPE_CHAT_MEMBER ? _chatMember($key) : _myChatMember($key);
-    return __arrayGet($newChatMember, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _document(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_DOCUMENT), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _sticker(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_STICKER), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _video(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_VIDEO), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _videoNote(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_VIDEO_NOTE), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _voice(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_VOICE), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _audio(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_AUDIO), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _dice(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_DICE), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _game(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_GAME), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _venue(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_VENUE), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _location(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_LOCATION), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _contact(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_CONTACT), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _animation(?string $keys = null): mixed {
-    return __arrayGet(_message(MESSAGE_TYPE_ANIMATION), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _text(): ?string {
-    return _message(MESSAGE_TYPE_TEXT);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _caption(): ?string {
-    return _message('caption');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _entities(): ?array {
-    return _message('entities') ?? _message('caption_entities');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _from(?string $keys = null): mixed {
-    $updateType = _updateType();
-    $update = _update();
-    $user = match ($updateType) {
-        UPDATE_TYPE_POLL_ANSWER => $update[$updateType]['user'],
-        UPDATE_TYPE_MESSAGE,
-        UPDATE_TYPE_EDITED_MESSAGE,
-        UPDATE_TYPE_MY_CHAT_MEMBER,
-        UPDATE_TYPE_CHAT_MEMBER,
-        UPDATE_TYPE_CHAT_JOIN_REQUEST,
-        UPDATE_TYPE_INLINE_QUERY,
-        UPDATE_TYPE_CHOSEN_INLINE_RESULT,
-        UPDATE_TYPE_SHIPPING_QUERY,
-        UPDATE_TYPE_PRE_CHECKOUT_QUERY,
-        UPDATE_TYPE_CALLBACK_QUERY => $update[$updateType]['from'],
-        default => null,
-    };
-    return __arrayGet($user, $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _user(?string $keys = null): mixed {
-    return _from($keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _userId(): ?int {
-    return _user('id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _chatId(): ?int {
-    return _chat('id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _callbackQuery(?string $keys = null): mixed {
-    return __arrayGet(_update(UPDATE_TYPE_CALLBACK_QUERY), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _callbackQueryData(): ?string {
-    return _callbackQuery('data');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _inlineQuery(?string $keys = null): mixed {
-    return __arrayGet(_update(UPDATE_TYPE_INLINE_QUERY), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _inlineQueryText(): ?string {
-    return _inlineQuery('query');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _chosenInlineResult(?string $keys = null): ?string {
-    return __arrayGet(_update(UPDATE_TYPE_CHOSEN_INLINE_RESULT));
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _chosenInlineResultId(): ?string {
-    return _chosenInlineResult('result_id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _chosenInlineResultQuery(): ?string {
-    return _chosenInlineResult('query');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _chosenInlineResultInlineMessageId(): ?string {
-    return _chosenInlineResult('inline_message_id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _shippingQuery(?string $keys = null): mixed {
-    return __arrayGet(_update(UPDATE_TYPE_SHIPPING_QUERY), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _preCheckoutQuery(?string $keys = null): mixed {
-    return __arrayGet(_update(UPDATE_TYPE_PRE_CHECKOUT_QUERY), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _pollAnswer(?string $keys = null): mixed {
-    return __arrayGet(_update(UPDATE_TYPE_POLL_ANSWER), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isMessage(): bool {
-    return _updateType() === UPDATE_TYPE_MESSAGE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isCallbackQuery(): bool {
-    return _updateType() === UPDATE_TYPE_CALLBACK_QUERY;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isEditedMessage(): bool {
-    return _updateType() === UPDATE_TYPE_EDITED_MESSAGE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isChannelPost(): bool {
-    return _updateType() === UPDATE_TYPE_CHANNEL_POST;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isEditedChannelPost(): bool {
-    return _updateType() === UPDATE_TYPE_EDITED_CHANNEL_POST;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isShippingQuery(): bool {
-    return _updateType() === UPDATE_TYPE_SHIPPING_QUERY;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isChatJoinRequest(): bool {
-    return _updateType() === UPDATE_TYPE_CHAT_JOIN_REQUEST;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isInlineQuery(): bool {
-    return _updateType() === UPDATE_TYPE_INLINE_QUERY;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isMyChatMember(): bool {
-    return _updateType() === UPDATE_TYPE_MY_CHAT_MEMBER;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isChatMember(): bool {
-    return _updateType() === UPDATE_TYPE_CHAT_MEMBER;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isChosenInlineResult(): bool {
-    return _updateType() === UPDATE_TYPE_CHOSEN_INLINE_RESULT;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isPreCheckOutQuery(): bool {
-    return _updateType() === UPDATE_TYPE_PRE_CHECKOUT_QUERY;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isPollAnswer(): bool {
-    return _updateType() === UPDATE_TYPE_POLL;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isPoll(bool $checkMessageType = false): bool {
-    if ($checkMessageType) {
-        return _messageType() === MESSAGE_TYPE_POLL;
-    }
-    return _updateType() === UPDATE_TYPE_POLL;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isPhoto(): bool {
-    return _messageType() === MESSAGE_TYPE_PHOTO;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isSticker(): bool {
-    return _messageType() === MESSAGE_TYPE_STICKER;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isAnimation(): bool {
-    return _messageType() === MESSAGE_TYPE_ANIMATION;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isVideo(): bool {
-    return _messageType() === MESSAGE_TYPE_VIDEO;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isVideoNote(): bool {
-    return _messageType() === MESSAGE_TYPE_VIDEO_NOTE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isDice(): bool {
-    return _messageType() === MESSAGE_TYPE_DICE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isGame(): bool {
-    return _messageType() === MESSAGE_TYPE_GAME;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isVenue(): bool {
-    return _messageType() === MESSAGE_TYPE_VENUE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isVoice(): bool {
-    return _messageType() === MESSAGE_TYPE_VOICE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isDocument(): bool {
-    return _messageType() === MESSAGE_TYPE_DOCUMENT;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isLocation(): bool {
-    return _messageType() === MESSAGE_TYPE_LOCATION;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isContact(): bool {
-    return _messageType() === MESSAGE_TYPE_CONTACT;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isAudio(): bool {
-    return _messageType() === MESSAGE_TYPE_AUDIO;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isText(): bool {
-    return _messageType() === MESSAGE_TYPE_TEXT;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isSender(): bool {
-    return _chatType() === CHAT_TYPE_SENDER;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isGroup(): bool {
-    return _chatType() === CHAT_TYPE_GROUP;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isSupergroup(): bool {
-    return _chatType() === CHAT_TYPE_SUPERGROUP;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isPrivate(): ?bool {
-    return _chatType() === CHAT_TYPE_PRIVATE;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isChannel(): ?bool {
-    return _chatType() === CHAT_TYPE_CHANNEL;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _isForwarded(): ?bool {
-    return boolval(_message('forward_date') ?? _message('forward_sender_name'));
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _forwardFrom(?string $keys = null): mixed {
-    return __arrayGet(_message('forward_from'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _forwardFromChat(?string $keys = null): mixed {
-    return __arrayGet(_message('forward_from_chat'), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _forwardFromMessageId(): ?int {
-    return _message('forward_from_message_id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _forwardDate(): ?int {
-    return _message('forward_date');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+function _updateId(): ?int {
+    return _update(FIELD_UPDATE_ID);
+}
+
+function _update(?string $keys = null): mixed {
+    return __arrayGet(__update(), $keys);
+}
+
+function _updateType(): ?string {
+    $commonKeys = array_intersect(_updateTypes(), array_keys(_update()));
+    return array_shift($commonKeys) ?? null;
+}
+
 function _message(?string $keys = null): mixed {
     $update = _update();
     $updateType = _updateType();
@@ -5647,43 +5281,787 @@ function _message(?string $keys = null): mixed {
     };
     return __arrayGet($message, $keys);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _repliedMessage(?string $keys = null): mixed {
-    return __arrayGet(_message('reply_to_message'), $keys);
+
+function _messageType(): ?string {
+    return current(array_intersect(_messageTypes(), array_keys(_message())));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+function _inlineQuery(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_INLINE_QUERY), $keys);
+}
+
+function _chosenInlineResult(?string $keys = null): ?string {
+    return __arrayGet(_update(UPDATE_TYPE_CHOSEN_INLINE_RESULT), $keys);
+}
+
+function _callbackQuery(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_CALLBACK_QUERY), $keys);
+}
+
+function _shippingQuery(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_SHIPPING_QUERY), $keys);
+}
+
+function _preCheckoutQuery(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_PRE_CHECKOUT_QUERY), $keys);
+}
+
+function _poll(?string $keys = null, bool $from_message = false): mixed {
+    if ($from_message) {
+        return __arrayGet(_message(UPDATE_TYPE_POLL), $keys);
+    }
+    return __arrayGet(_update(UPDATE_TYPE_POLL), $keys);
+}
+
+function _pollAnswer(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_POLL_ANSWER), $keys);
+}
+
+function _myChatMember(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_MY_CHAT_MEMBER), $keys);
+}
+
+function _chatMember(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_CHAT_MEMBER), $keys);
+}
+
+function _chatJoinRequest(?string $keys = null): mixed {
+    return __arrayGet(_update(UPDATE_TYPE_CHAT_JOIN_REQUEST), $keys);
+}
+
+function _from(?string $keys = null): mixed {
+    $updateType = _updateType();
+    $update = _update();
+    $user = match ($updateType) {
+        UPDATE_TYPE_POLL_ANSWER => $update[$updateType][FIELD_USER],
+        UPDATE_TYPE_MESSAGE,
+        UPDATE_TYPE_EDITED_MESSAGE,
+        UPDATE_TYPE_MY_CHAT_MEMBER,
+        UPDATE_TYPE_CHAT_MEMBER,
+        UPDATE_TYPE_CHAT_JOIN_REQUEST,
+        UPDATE_TYPE_INLINE_QUERY,
+        UPDATE_TYPE_CHOSEN_INLINE_RESULT,
+        UPDATE_TYPE_SHIPPING_QUERY,
+        UPDATE_TYPE_PRE_CHECKOUT_QUERY,
+        UPDATE_TYPE_CALLBACK_QUERY => $update[$updateType][FIELD_FROM],
+        default => null,
+    };
+    return __arrayGet($user, $keys);
+}
+
+function _user(?string $keys = null): mixed {
+    return _from($keys);
+}
+
+function _userId(): ?int {
+    return _user(FIELD_ID);
+}
+
+function _chat(?string $keys = null): mixed {
+    $message = _message();
+    $updateType = _updateType();
+    $chat = match ($updateType) {
+        UPDATE_TYPE_MESSAGE,
+        UPDATE_TYPE_CALLBACK_QUERY,
+        UPDATE_TYPE_EDITED_MESSAGE,
+        UPDATE_TYPE_CHANNEL_POST,
+        UPDATE_TYPE_MY_CHAT_MEMBER,
+        UPDATE_TYPE_CHAT_MEMBER,
+        UPDATE_TYPE_CHAT_JOIN_REQUEST,
+        UPDATE_TYPE_EDITED_CHANNEL_POST => $message[FIELD_CHAT],
+        default => null,
+    };
+    return __arrayGet($chat, $keys);
+}
+
+function _chatId(): ?int {
+    return _chat(FIELD_ID);
+}
+
+function _file(?string $keys = null): mixed {
+    if (!_isFile()) {
+        throw new Exception('The message type is not a file, you called this function in inappropriate place!');
+    }
+    $function = __NAMESPACE__.'\\'.__snakeToCamelCase(_messageType());
+    return $function($keys);
+}
+
+function _photo(?string $keys = null): mixed {
+    $photos = _photos();
+    return __arrayGet(end($photos), $keys);
+}
+
+function _photos(): ?array {
+    return _message(FIELD_PHOTO);
+}
+
+function _gamePhoto(?string $keys = null): mixed {
+    $gamePhotos = _gamePhotos();
+    return __arrayGet(end($gamePhotos), $keys);
+}
+
+function _gamePhotos(): ?array {
+    return _message(FIELD_GAME);
+}
+
+function _replyMarkup(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_REPLY_MARKUP), $keys);
+}
+
+function _viaBot(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_VIA_BOT), $keys);
+}
+
+function _pollOptions(): mixed {
+    return __arrayGet(_poll(FIELD_OPTIONS));
+}
+
+function _oldChatMember(?string $keys = null): mixed {
+    $key = 'old_chat_member';
+    $updateType = _updateType();
+    $oldChatMember = $updateType === UPDATE_TYPE_CHAT_MEMBER ? _chatMember($key) : _myChatMember($key);
+    return __arrayGet($oldChatMember, $keys);
+}
+
+function _newChatMember(?string $keys = null): mixed {
+    $key = 'new_chat_member';
+    $updateType = _updateType();
+    $newChatMember = $updateType === UPDATE_TYPE_CHAT_MEMBER ? _chatMember($key) : _myChatMember($key);
+    return __arrayGet($newChatMember, $keys);
+}
+
+function _document(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_DOCUMENT), $keys);
+}
+
+function _sticker(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_STICKER), $keys);
+}
+
+function _video(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_VIDEO), $keys);
+}
+
+function _videoNote(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_VIDEO_NOTE), $keys);
+}
+
+function _voice(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_VOICE), $keys);
+}
+
+function _audio(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_AUDIO), $keys);
+}
+
+function _dice(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_DICE), $keys);
+}
+
+function _game(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_GAME), $keys);
+}
+
+function _venue(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_VENUE), $keys);
+}
+
+function _location(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_LOCATION), $keys);
+}
+
+function _contact(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_CONTACT), $keys);
+}
+
+function _animation(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_ANIMATION), $keys);
+}
+
+function _text(): ?string {
+    return _message(FIELD_TEXT);
+}
+
+function _caption(): ?string {
+    return _message(FIELD_CAPTION);
+}
+
+function _entities(): ?array {
+    return _message(FIELD_ENTITIES) ?? _message(FIELD_CAPTION_ENTITIES);
+}
+
+function _inlineQueryText(): ?string {
+    return _inlineQuery(FIELD_QUERY);
+}
+
+function _callbackQueryData(): ?string {
+    return _callbackQuery(FIELD_DATA);
+}
+
+function _chosenInlineResultId(): ?string {
+    return _chosenInlineResult(FIELD_RESULT_ID);
+}
+
+function _chosenInlineResultQuery(): ?string {
+    return _chosenInlineResult(FIELD_QUERY);
+}
+
+function _chosenInlineResultInlineMessageId(): ?string {
+    return _chosenInlineResult(FIELD_INLINE_MESSAGE_ID);
+}
+
+function _forwardFrom(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_FORWARD_FROM), $keys);
+}
+
+function _forwardFromChat(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_FORWARD_FROM_CHAT), $keys);
+}
+
+function _forwardFromMessageId(): ?int {
+    return _message(FIELD_FORWARD_FROM_MESSAGE_ID);
+}
+
+function _forwardDate(): ?int {
+    return _message(FIELD_FORWARD_DATE);
+}
+
+function _replyToMessage(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_REPLY_TO_MESSAGE), $keys);
+}
+
 function _pinnedMessage(?string $keys = null): mixed {
-    return __arrayGet(_message('pinned_message'), $keys);
+    return __arrayGet(_message(FIELD_PINNED_MESSAGE), $keys);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+function _senderChat(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_SENDER_CHAT), $keys);
+}
+
+function _authorSignature(): ?string {
+    return _message(FIELD_AUTHOR_SIGNATURE);
+}
+
+function _date(): ?int {
+    return _message(FIELD_DATE);
+}
+
+function _chatTitle(): ?string {
+    return _chat(FIELD_TITLE);
+}
+
+function _pollQuestion(bool $from_message = false): ?string {
+    return _poll(FIELD_QUESTION, $from_message);
+}
+
+function _pollType(bool $from_message = false): ?string {
+    return _poll(FIELD_TYPE, $from_message);
+}
+
+function _pollId(bool $from_message = false): ?string {
+    return _poll(FIELD_ID, $from_message);
+}
+
+function _animationFileName(): ?string {
+    return _animation(FIELD_FILE_NAME);
+}
+
+function _animationMimeType(): ?string {
+    return _animation(FIELD_MIME_TYPE);
+}
+
+function _animationDuration(): ?int {
+    return _animation(FIELD_DURATION);
+}
+
+function _animationWidth(): ?int {
+    return _animation(FIELD_WIDTH);
+}
+
+function _animationHeight(): ?int {
+    return _animation(FIELD_HEIGHT);
+}
+
+function _animationThumb(?string $keys = null): mixed {
+    return __arrayGet(_animation(FIELD_THUMB), $keys);
+}
+
+function _gameTitle(): ?string {
+    return _game(FIELD_TITLE);
+}
+
+function _gameDescription(): ?string {
+    return _game(FIELD_DESCRIPTION);
+}
+
+function _forumTopicCreated(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_FORUM_TOPIC_CREATED), $keys);
+}
+
+function _forumTopicEdited(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_FORUM_TOPIC_EDITED), $keys);
+}
+
+function _forumTopicClosed(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_FORUM_TOPIC_CLOSED), $keys);
+}
+
+function _forumTopicReopened(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_FORUM_TOPIC_REOPENED), $keys);
+}
+
+function _messageThreadId(): ?int {
+    return _message(FIELD_MESSAGE_THREAD_ID);
+}
+
+function _userFirstName(): ?string {
+    return _user(FIELD_FIRST_NAME);
+}
+
+function _userUsername(): ?string {
+    return _user(FIELD_USERNAME);
+}
+
+function _chatShared(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_CHAT_SHARED), $keys);
+}
+
+function _userShared(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_USER_SHARED), $keys);
+}
+
+function _connectedWebsite(): ?string {
+    return _message(FIELD_CONNECTED_WEBSITE);
+}
+
+function _writeAccessAllowed(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_WRITE_ACCESS_ALLOWED), $keys);
+}
+
+function _passportData(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_PASSPORT_DATA), $keys);
+}
+
+function _proximityAlertTriggered(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_PROXIMITY_ALERT_TRIGGERED), $keys);
+}
+
+function _generalForumTopicHidden(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_GENERAL_FORUM_TOPIC_HIDDEN), $keys);
+}
+
+function _generalForumTopicUnhidden(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_GENERAL_FORUM_TOPIC_UNHIDDEN), $keys);
+}
+
+function _videoChatScheduled(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_VIDEO_CHAT_SCHEDULED), $keys);
+}
+
+function _videoChatStarted(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_VIDEO_CHAT_STARTED), $keys);
+}
+
+function _videoChatEnded(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_VIDEO_CHAT_ENDED), $keys);
+}
+
+function _videoChatParticipantsInvited(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_VIDEO_CHAT_PARTICIPANTS_INVITED), $keys);
+}
+
+function _webAppData(?string $keys = null): mixed {
+    return __arrayGet(_message(FIELD_WEB_APP_DATA), $keys);
+}
+
+function _replyMarkupInlineKeyboard(): mixed {
+    return _replyMarkup(FIELD_INLINE_KEYBOARD);
+}
+
 function _messageId(): ?int {
-    return _message('message_id');
+    return _message(FIELD_MESSAGE_ID);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _callbackQueryId(): ?int {
-    return _callbackQuery('id');
+    return _callbackQuery(FIELD_ID);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _inlineQueryId(): ?int {
-    return _inlineQuery('id');
+    return _inlineQuery(FIELD_ID);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _mediaGroupId(): ?int {
-    return _message('media_group_id');
+    return _message(FIELD_MEDIA_GROUP_ID);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _updateId(): ?int {
-    return _update('update_id');
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _update(?string $keys = null): mixed {
-    return __arrayGet(__update(), $keys);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _chatType(): ?string {
-    return _chat('type');
+    return _chat(FIELD_TYPE);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+function _isMessage(): bool {
+    return _updateType() === UPDATE_TYPE_MESSAGE;
+}
+
+function _isCallbackQuery(): bool {
+    return _updateType() === UPDATE_TYPE_CALLBACK_QUERY;
+}
+
+function _isEditedMessage(): bool {
+    return _updateType() === UPDATE_TYPE_EDITED_MESSAGE;
+}
+
+function _isChannelPost(): bool {
+    return _updateType() === UPDATE_TYPE_CHANNEL_POST;
+}
+
+function _isEditedChannelPost(): bool {
+    return _updateType() === UPDATE_TYPE_EDITED_CHANNEL_POST;
+}
+
+function _isShippingQuery(): bool {
+    return _updateType() === UPDATE_TYPE_SHIPPING_QUERY;
+}
+
+function _isChatJoinRequest(): bool {
+    return _updateType() === UPDATE_TYPE_CHAT_JOIN_REQUEST;
+}
+
+function _isInlineQuery(): bool {
+    return _updateType() === UPDATE_TYPE_INLINE_QUERY;
+}
+
+function _isMyChatMember(): bool {
+    return _updateType() === UPDATE_TYPE_MY_CHAT_MEMBER;
+}
+
+function _isChatMember(): bool {
+    return _updateType() === UPDATE_TYPE_CHAT_MEMBER;
+}
+
+function _isChosenInlineResult(): bool {
+    return _updateType() === UPDATE_TYPE_CHOSEN_INLINE_RESULT;
+}
+
+function _isPreCheckOutQuery(): bool {
+    return _updateType() === UPDATE_TYPE_PRE_CHECKOUT_QUERY;
+}
+
+function _isPollAnswer(): bool {
+    return _updateType() === UPDATE_TYPE_POLL;
+}
+
+function _isPoll(bool $from_message = false): bool {
+    if ($from_message) {
+        return _messageType() === MESSAGE_TYPE_POLL;
+    }
+    return _updateType() === UPDATE_TYPE_POLL;
+}
+
+function _isPhoto(): bool {
+    return _messageType() === MESSAGE_TYPE_PHOTO;
+}
+
+function _isSticker(): bool {
+    return _messageType() === MESSAGE_TYPE_STICKER;
+}
+
+function _isAnimation(): bool {
+    return _messageType() === MESSAGE_TYPE_ANIMATION;
+}
+
+function _isVideo(): bool {
+    return _messageType() === MESSAGE_TYPE_VIDEO;
+}
+
+function _isVideoNote(): bool {
+    return _messageType() === MESSAGE_TYPE_VIDEO_NOTE;
+}
+
+function _isDice(): bool {
+    return _messageType() === MESSAGE_TYPE_DICE;
+}
+
+function _isGame(): bool {
+    return _messageType() === MESSAGE_TYPE_GAME;
+}
+
+function _isVenue(): bool {
+    return _messageType() === MESSAGE_TYPE_VENUE;
+}
+
+function _isVoice(): bool {
+    return _messageType() === MESSAGE_TYPE_VOICE;
+}
+
+function _isDocument(): bool {
+    return _messageType() === MESSAGE_TYPE_DOCUMENT;
+}
+
+function _isLocation(): bool {
+    return _messageType() === MESSAGE_TYPE_LOCATION;
+}
+
+function _isContact(): bool {
+    return _messageType() === MESSAGE_TYPE_CONTACT;
+}
+
+function _isAudio(): bool {
+    return _messageType() === MESSAGE_TYPE_AUDIO;
+}
+
+function _isText(): bool {
+    return _messageType() === MESSAGE_TYPE_TEXT;
+}
+
+function isMessageNewChatMembers(): bool {
+    return _messageType() === MESSAGE_TYPE_NEW_CHAT_MEMBERS;
+}
+
+function isMessageLeftChatMember(): bool {
+    return _messageType() === MESSAGE_TYPE_LEFT_CHAT_MEMBER;
+}
+
+function isMessageNewChatTitle(): bool {
+    return _messageType() === MESSAGE_TYPE_NEW_CHAT_TITLE;
+}
+
+function isMessageNewChatPhoto(): bool {
+    return _messageType() === MESSAGE_TYPE_NEW_CHAT_PHOTO;
+}
+
+function isMessageDeleteChatPhoto(): bool {
+    return _messageType() === MESSAGE_TYPE_DELETE_CHAT_PHOTO;
+}
+
+function isMessageGroupChatCreated(): bool {
+    return _messageType() === MESSAGE_TYPE_GROUP_CHAT_CREATED;
+}
+
+function isMessageSupergroupChatCreated(): bool {
+    return _messageType() === MESSAGE_TYPE_SUPERGROUP_CHAT_CREATED;
+}
+
+function isMessageChannelChatCreated(): bool {
+    return _messageType() === MESSAGE_TYPE_CHANNEL_CHAT_CREATED;
+}
+
+function isMessageAutoDeleteTimerChanged(): bool {
+    return _messageType() === MESSAGE_TYPE_MESSAGE_AUTO_DELETE_TIMER_CHANGED;
+}
+
+function isMessageMigrateToChatId(): bool {
+    return _messageType() === MESSAGE_TYPE_MIGRATE_TO_CHAT_ID;
+}
+
+function isMessageMigrateFromChatId(): bool {
+    return _messageType() === MESSAGE_TYPE_MIGRATE_FROM_CHAT_ID;
+}
+
+function isMessagePinnedMessage(): bool {
+    return _messageType() === MESSAGE_TYPE_PINNED_MESSAGE;
+}
+
+function isMessageInvoice(): bool {
+    return _messageType() === MESSAGE_TYPE_INVOICE;
+}
+
+function isMessageSuccessfulPayment(): bool {
+    return _messageType() === MESSAGE_TYPE_SUCCESSFUL_PAYMENT;
+}
+
+function isMessageUserShared(): bool {
+    return _messageType() === MESSAGE_TYPE_USER_SHARED;
+}
+
+function isMessageChatShared(): bool {
+    return _messageType() === MESSAGE_TYPE_CHAT_SHARED;
+}
+
+function isMessageConnectedWebsite(): bool {
+    return _messageType() === MESSAGE_TYPE_CONNECTED_WEBSITE;
+}
+
+function isMessageWriteAccessAllowed(): bool {
+    return _messageType() === MESSAGE_TYPE_WRITE_ACCESS_ALLOWED;
+}
+
+function isMessagePassportData(): bool {
+    return _messageType() === MESSAGE_TYPE_PASSPORT_DATA;
+}
+
+function isMessageProximityAlertTriggered(): bool {
+    return _messageType() === MESSAGE_TYPE_PROXIMITY_ALERT_TRIGGERED;
+}
+
+function isMessageForumTopicCreated(): bool {
+    return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_CREATED;
+}
+
+function isMessageForumTopicEdited(): bool {
+    return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_EDITED;
+}
+
+function isMessageForumTopicClosed(): bool {
+    return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_CLOSED;
+}
+
+function isMessageForumTopicReopened(): bool {
+    return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_REOPENED;
+}
+
+function isMessageGeneralForumTopicHidden(): bool {
+    return _messageType() === MESSAGE_TYPE_GENERAL_FORUM_TOPIC_HIDDEN;
+}
+
+function isMessageGeneralForumTopicUnhidden(): bool {
+    return _messageType() === MESSAGE_TYPE_GENERAL_FORUM_TOPIC_UNHIDDEN;
+}
+
+function isMessageVideoChatScheduled(): bool {
+    return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_SCHEDULED;
+}
+
+function isMessageVideoChatStarted(): bool {
+    return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_STARTED;
+}
+
+function isMessageVideoChatEnded(): bool {
+    return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_ENDED;
+}
+
+function isMessageVideoChatParticipantsInvited(): bool {
+    return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_PARTICIPANTS_INVITED;
+}
+
+function isMessageWebAppData(): bool {
+    return _messageType() === MESSAGE_TYPE_WEB_APP_DATA;
+}
+
+function _isSender(): bool {
+    return _chatType() === CHAT_TYPE_SENDER;
+}
+
+function _isGroup(): bool {
+    return _chatType() === CHAT_TYPE_GROUP;
+}
+
+function _isSupergroup(): bool {
+    return _chatType() === CHAT_TYPE_SUPERGROUP;
+}
+
+function _isPrivate(): ?bool {
+    return _chatType() === CHAT_TYPE_PRIVATE;
+}
+
+function _isChannel(): ?bool {
+    return _chatType() === CHAT_TYPE_CHANNEL;
+}
+
+function _isForwarded(): ?bool {
+    return boolval(_message(FIELD_FORWARD_DATE) ?? _message(FIELD_FORWARD_SENDER_NAME));
+}
+
+function _isPollAnonymous(bool $from_message = false): bool {
+    return boolval(_poll(FIELD_IS_ANONYMOUS, $from_message));
+}
+
+function _isPollClosed(bool $from_message = false): bool {
+    return boolval(_poll(FIELD_IS_CLOSED, $from_message));
+}
+
+function _isTopicMessage(): bool {
+    return boolval(_message(FIELD_IS_TOPIC_MESSAGE));
+}
+
+function _isBot(): bool {
+    return boolval(_user(FIELD_IS_BOT));
+}
+
+function _isForum(): bool {
+    return boolval(_chat(FIELD_IS_FORUM));
+}
+
+function _isFile(): bool {
+    return in_array(_messageType(), _fileTypes());
+}
+
+function _row(array ...$buttons): array {
+    return [...$buttons];
+}
+
+function _downloadBotFile(array|string $file, string $save_path, ?array $options = []): bool {
+    if (is_string($file)) {
+        $file = getFile(file_id: $file);
+        if (!$file || !$file['ok']) {
+            throw new Exception("File not found!");
+        }
+    }
+    $filePath = $file['file_path'] ?? $file['result']['file_path'] ?? null;
+    if (!$filePath) {
+        throw new Exception("The 'file_path' is not specified!");
+    }
+    $apiBaseUrl = ($options['api_base_url'] ?? __apiBaseUrl()).'/file';
+    if (!$apiBaseUrl) {
+        throw new Exception("The api base url is not specified!");
+    }
+    $token = $options['bot_token'] ?? __botToken($options['bot_username'] ?? null);
+    if (!$token) {
+        throw new Exception("The bot token is not specified!");
+    }
+    $url = "$apiBaseUrl/bot{$token}/{$filePath}";
+    return _download(
+        url: $url,
+        save_path: $save_path,
+        curl_options: $options['curl_options'] ?? [],
+    );
+}
+
+function _download(string $url, string $save_path, array $curl_options = []): bool {
+    $fp = fopen($save_path, 'w+');
+    $result = __makeCurlRequest(url: $url, options: [
+        CURLOPT_FILE => $fp,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_BUFFERSIZE => 1024 * 1024,
+        CURLOPT_WRITEFUNCTION => function ($ch, $data) use ($fp) {
+            return fwrite($fp, $data);
+        }
+    ] + $curl_options);
+    fclose($fp);
+    return $result;
+}
+
+function _registerNewBot(
+    string $username,
+    string $token,
+    string $api_base_url = API_BASE_URL,
+    array $curl_options = [],
+): void {
+    if (!isset($GLOBALS[_PACKAGE_NAME]['default_bot_username'])) {
+        $GLOBALS[_PACKAGE_NAME]['default_bot_username'] = $username;
+    }
+    $GLOBALS[_PACKAGE_NAME]['bots'][$username] = get_defined_vars();
+}
+
+function _botCommandScopeTypes(array $exclude = []): array {
+    return array_diff([
+        BOT_COMMAND_SCOPE_DEFAULT,
+        BOT_COMMAND_SCOPE_ALL_PRIVATE_CHATS,
+        BOT_COMMAND_SCOPE_ALL_GROUP_CHATS,
+        BOT_COMMAND_SCOPE_ALL_CHAT_ADMINISTRATORS,
+        BOT_COMMAND_SCOPE_CHAT,
+        BOT_COMMAND_SCOPE_CHAT_ADMINISTRATORS,
+        BOT_COMMAND_SCOPE_CHAT_MEMBER,
+    ], $exclude);
+}
+
+function _menuButtonTypes(array $exclude = []): array {
+    return array_diff([
+        MENU_BUTTON_TYPE_DEFAULT,
+        MENU_BUTTON_TYPE_WEB_APP,
+        MENU_BUTTON_TYPE_COMMANDS,
+    ], $exclude);
+}
+
 function _chatTypes(array $exclude = []): array {
     return array_diff([
         CHAT_TYPE_GROUP,
@@ -5692,7 +6070,7 @@ function _chatTypes(array $exclude = []): array {
         CHAT_TYPE_CHANNEL,
     ], $exclude);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _chatMemberStatuses(array $exclude = []): array {
     return array_diff([
         CHAT_MEMBER_STATUS_ADMINISTRATOR,
@@ -5703,7 +6081,7 @@ function _chatMemberStatuses(array $exclude = []): array {
         CHAT_MEMBER_STATUS_KICKED,
     ], $exclude);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _formattingOptions(array $exclude = []): array {
     return array_diff([
         PARSE_MODE_HTML,
@@ -5711,7 +6089,7 @@ function _formattingOptions(array $exclude = []): array {
         PARSE_MODE_MARKDOWN_V2,
     ], $exclude);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _chatActions(array $exclude = []): array {
     return array_diff([
         CHAT_ACTION_TYPING,
@@ -5727,7 +6105,7 @@ function _chatActions(array $exclude = []): array {
         CHAT_ACTION_UPLOAD_VIDEO_NOTE,
     ], $exclude);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _updateTypes(array $exclude = []): array {
     return array_diff([
         UPDATE_TYPE_MESSAGE,
@@ -5746,12 +6124,7 @@ function _updateTypes(array $exclude = []): array {
         UPDATE_TYPE_CHAT_JOIN_REQUEST,
     ], $exclude);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _updateType(): ?string {
-    $commonKeys = array_intersect(_updateTypes(), array_keys(_update()));
-    return array_shift($commonKeys) ?? null;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _messageTypes(array $exclude = []): array {
     return array_diff([
         MESSAGE_TYPE_TEXT,
@@ -5802,11 +6175,7 @@ function _messageTypes(array $exclude = []): array {
         MESSAGE_TYPE_WEB_APP_DATA,
     ], $exclude);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _messageType(): ?string {
-    return current(array_intersect(_messageTypes(), array_keys(_message())));
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _fileTypes(array $exclude = []): ?array {
     return array_diff([
         MESSAGE_TYPE_STICKER,
@@ -5818,104 +6187,32 @@ function _fileTypes(array $exclude = []): ?array {
         MESSAGE_TYPE_DOCUMENT,
         MESSAGE_TYPE_PHOTO,
     ], $exclude);
-}#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+}
+
 function _setUserData(string $key, mixed $value, null|int|DateInterval $ttl = null): void {
     $userKey = __cacheGetUserKey();
     __cache()->set("user|{$userKey}|{$key}", $value, $ttl ?? _CACHE_USER_DATA_TTL);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _getUserData(string $key, mixed $defaultValue = null): mixed {
     $userKey = __cacheGetUserKey();
     return __cache()->get("user|{$userKey}|{$key}", $defaultValue);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _setGlobalData(int|string $key, mixed $value = null): void {
     __setOrPushValue($GLOBALS[_PACKAGE_NAME], $value, "global_data.{$key}");
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function _getGlobalData(int|string $key, mixed $defaultValue = null): mixed {
     return $GLOBALS[_PACKAGE_NAME]['global_data'][$key] ?? $defaultValue;
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _downloadBotFile(array|string $file, string $save_path, ?array $options = []): bool {
-    if (is_string($file)) {
-        $file = getFile(file_id: $file);
-        if (!$file || !$file['ok']) {
-            throw new Exception("File not found!");
-        }
-    }
-    $filePath = $file['file_path'] ?? $file['result']['file_path'] ?? null;
-    if (!$filePath) {
-        throw new Exception("The 'file_path' is not specified!");
-    }
-    $apiBaseUrl = ($options['api_base_url'] ?? __apiBaseUrl()).'/file';
-    if (!$apiBaseUrl) {
-        throw new Exception("The api base url is not specified!");
-    }
-    $token = $options['bot_token'] ?? __botToken($options['bot_username'] ?? null);
-    if (!$token) {
-        throw new Exception("The bot token is not specified!");
-    }
-    $url = "$apiBaseUrl/bot{$token}/{$filePath}";
-    return _download(
-        url: $url,
-        save_path: $save_path,
-        curl_options: $options['curl_options'] ?? [],
-    );
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _download(string $url, string $save_path, array $curl_options = []): bool {
-    $fp = fopen($save_path, 'w+');
-    $result = __makeCurlRequest(url: $url, options: [
-        CURLOPT_FILE => $fp,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_BUFFERSIZE => 1024 * 1024,
-        CURLOPT_WRITEFUNCTION => function ($ch, $data) use ($fp) {
-            return fwrite($fp, $data);
-        }
-    ] + $curl_options);
-    fclose($fp);
-    return $result;
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _registerNewBot(
-    string $username,
-    string $token,
-    string $api_base_url = API_BASE_URL,
-    array $curl_options = [],
-): void {
-    if (!isset($GLOBALS[_PACKAGE_NAME]['default_bot_username'])) {
-        $GLOBALS[_PACKAGE_NAME]['default_bot_username'] = $username;
-    }
-    $GLOBALS[_PACKAGE_NAME]['bots'][$username] = get_defined_vars();
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _botCommandScopeTypes(array $exclude = []): array {
-    return array_diff([
-        BOT_COMMAND_SCOPE_DEFAULT,
-        BOT_COMMAND_SCOPE_ALL_PRIVATE_CHATS,
-        BOT_COMMAND_SCOPE_ALL_GROUP_CHATS,
-        BOT_COMMAND_SCOPE_ALL_CHAT_ADMINISTRATORS,
-        BOT_COMMAND_SCOPE_CHAT,
-        BOT_COMMAND_SCOPE_CHAT_ADMINISTRATORS,
-        BOT_COMMAND_SCOPE_CHAT_MEMBER,
-    ], $exclude);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-function _menuButtonTypes(array $exclude = []): array {
-    return array_diff([
-        MENU_BUTTON_TYPE_DEFAULT,
-        MENU_BUTTON_TYPE_WEB_APP,
-        MENU_BUTTON_TYPE_COMMANDS,
-    ], $exclude);
-}
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __autoFillApiTypeFields(array $fields) {
     __convertToFileCURL($fields, FIELD_THUMBNAIL);
     __convertToFileCURL($fields, FIELD_STICKER);
     return $fields;
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __autoFillApiMethodParameters(array $parameters) {
     if (key_exists(PARAM_CHAT_ID, $parameters) && !$parameters[PARAM_CHAT_ID]) {
         $parameters[PARAM_CHAT_ID] = _chatId() ?? _userId();
@@ -5942,7 +6239,7 @@ function __autoFillApiMethodParameters(array $parameters) {
     __convertToFileCURL($parameters, PARAM_CERTIFICATE);
     return $parameters;
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __convertToFileCURL(&$array, string $key): void {
     if (
         key_exists($key, $array)
@@ -5952,7 +6249,7 @@ function __convertToFileCURL(&$array, string $key): void {
         $array[$key] = new CURLFile($filePath);
     }
 };
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __makeApiRequest(string $method = null, array $parameters = [], array $options = []): array|bool {
     $apiBaseUrl = $options['api_base_url'] ?? __apiBaseUrl();
     if (!$apiBaseUrl) {
@@ -5991,7 +6288,7 @@ function __makeApiRequest(string $method = null, array $parameters = [], array $
     }
     return $response;
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __makeCurlRequest(string $url, array $options = []): string|bool {
     if (!filter_var($url, FILTER_VALIDATE_URL)) {
         throw new Exception("Invalid URL!");
@@ -6005,15 +6302,15 @@ function __makeCurlRequest(string $url, array $options = []): string|bool {
     }
     return $result;
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __getCommonKeys(array $array1, array $array2): array {
     return array_intersect($array1, array_keys($array2));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __config(?string $keys = null): mixed {
     return __arrayGet($GLOBALS[_PACKAGE_NAME] ?? [], $keys);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __arrayGet(?array $data, ?string $keys = null): mixed {
     if (!$data) {
         return null;
@@ -6029,7 +6326,7 @@ function __arrayGet(?array $data, ?string $keys = null): mixed {
     }
     return $data;
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __setOrPushValue(array &$array, mixed $value, ?string $keys = null, bool $push = false): void {
     if (!$keys) {
         if ($push) {
@@ -6054,11 +6351,11 @@ function __setOrPushValue(array &$array, mixed $value, ?string $keys = null, boo
     }
 }
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __setUpdate(array $update): void {
     __setOrPushValue($GLOBALS[_PACKAGE_NAME], $update, 'update');
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __addHandler(
     string $keys,
     callable $callable,
@@ -6081,7 +6378,7 @@ function __addHandler(
         $handler['skip_middlewares'] = $skip_middlewares;
     }
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __addMiddleware(callable $callable, string $name = null): void {
     $handler = &$GLOBALS[_PACKAGE_NAME]['middlewares'];
     if ($name) {
@@ -6090,11 +6387,11 @@ function __addMiddleware(callable $callable, string $name = null): void {
         $handler[] = $callable;
     }
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __processCurrentUpdate() {
     return __fireHandlers(__handlers());
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __getPatternParameters(string $pattern, string $value): ?array {
     $pattern = preg_replace(
         pattern: _REGEX_FIND_PLACEHOLDERS,
@@ -6108,12 +6405,12 @@ function __getPatternParameters(string $pattern, string $value): ?array {
     $parameters = array_unique($matches);
     return $parameters;
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __fireAllMiddlewares(?array $handler = null): void {
     __fireGlobalMiddlewares(__middlewares(), $handler['skip_middlewares'] ?? []);
     __fireHandlerMiddlewares($handler['middlewares'] ?? []);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __fireGlobalMiddlewares(array $middlewares, array $skipMiddlewares = []): void {
     foreach ($middlewares as $name => $middleware) {
         if ($name[0].$name[1] === 'l:' || in_array($name, $skipMiddlewares)) {
@@ -6124,7 +6421,7 @@ function __fireGlobalMiddlewares(array $middlewares, array $skipMiddlewares = []
         }
     }
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __fireHandlerMiddlewares(array $middlewares): void {
     $globalMiddlewares = __middlewares();
     foreach ($middlewares as $middleware) {
@@ -6137,7 +6434,7 @@ function __fireHandlerMiddlewares(array $middlewares): void {
         }
     }
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __fireHandlers(array $handlers) {
     $updateType = _updateType();
     $fallbackHandlers = $handlers['fallback'] ?? null;
@@ -6249,38 +6546,38 @@ function __fireHandlers(array $handlers) {
         throw $e;
     }
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __prepareApiMethodParameters(array $parameters): array {
     return __removeNullValues(__autoFillApiMethodParameters(__removeInvalidParameters($parameters)));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __prepareApiTypeFields(array $fields): array {
     return __removeNullValues(__autoFillApiTypeFields($fields));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __removeNullValues(array $array): array {
     return array_filter($array, fn($value) => $value !== null);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __removeInvalidParameters(array $parameters): array {
     unset($parameters['_options']);
     return $parameters;
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __extractFunctionName(string $function): string {
     return basename(strtr($function, '\\', '/'));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __prepareAndMakeApiRequest(string $function, array $parameters = [], array $options = []): array {
     return __makeApiRequest(__extractFunctionName($function), __prepareApiMethodParameters($parameters), $options);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __serializeClosure(Closure $closure): string {
     __checkConversationRequirements();
     $serializableClosure = new SerializableClosure($closure);
     return serialize($serializableClosure);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __unserializeClosure(string $serializedClosure): Closure {
     /** @var SerializableClosure */
     $serializableClosure = unserialize($serializedClosure, [
@@ -6291,19 +6588,19 @@ function __unserializeClosure(string $serializedClosure): Closure {
     }
     return $serializableClosure->getClosure();
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __checkConversationRequirements(): void {
     if (!__cache() || !class_exists(SerializableClosure::class)) {
         throw new Exception("To use the conversation feature, you need to install rqeuired packages via Composer!");
     }
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function conversationNextStep(Closure $closure): void {
     __checkConversationRequirements();
     $userKey = __cacheGetUserKey();
     __cache()->set("conv|{$userKey}|next_step", __serializeClosure($closure), _CACHE_CONVERSATION_TTL);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function conversationEnd(?Closure $finalStep = null): void {
     __checkConversationRequirements();
     $userKey = __cacheGetUserKey();
@@ -6320,23 +6617,23 @@ function conversationEnd(?Closure $finalStep = null): void {
         __cache()->delete("conv|{$userKey}|next_step");
     }
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function conversationSetData(string $key, mixed $value, null|int|DateInterval $ttl = null): void {
     __checkConversationRequirements();
     $userKey = __cacheGetUserKey();
     __cache()->set("conv|{$userKey}|data|{$key}", $value, $ttl ?? _CACHE_CONVERSATION_TTL);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function conversationGetData(string $key, mixed $defaultValue = null): mixed {
     $userKey = __cacheGetUserKey();
     return __cache()->get("conv|{$userKey}|data|{$key}", $defaultValue);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __isStartedAConversation(?string $userKey = null): bool {
     $userKey = $userKey ?? __cacheGetUserKey();
     return boolval(__cache()->get("conv|{$userKey}|next_step"));
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __cacheGetUserKey(): string {
     static $key;
     if (!$key) {
@@ -6345,58 +6642,58 @@ function __cacheGetUserKey(): string {
     return $key;
 }
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __botToken(?string $username = null): ?string {
     return __config('bots.'.($username ?? __config('default_bot_username')).'.token');
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __apiBaseUrl(?string $username = null): string {
     return __config('bots.'.($username ?? __config('default_bot_username')).'.api_base_url') ?? API_BASE_URL;
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __defaultBotUsername(): string {
     return __config('default_bot_username');
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __isWebhook(): ?bool {
     return __config('is_webhook');
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __defaultCurlOptions(): array {
     return __config('curl_options') ?? [];
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __handlers(): array {
     return __config('handlers');
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __middlewares(): array {
     return __config('middlewares');
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __globalData(): array {
     return __config('global_data');
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __update(): array {
     return __config('update');
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __cache(): ?CacheInterface {
     return __config('cache');
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __longPollingLoggerEnabled(): bool {
     return __config('long_polling_logger_enabled');
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function __snakeToCamelCase(string $string) {
     $string = preg_replace_callback('/_([a-z])/', function($matches) {
         return strtoupper($matches[1]);
     }, $string);
     return lcfirst($string);
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 function run(): void {
     if (__config('is_webhook')) {
         $input = file_get_contents('php://input');

@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.5] - 2023-07-20
+
+### Added
+- Added mroe helpers (Check out the diff from commits)
+- Added one parameter named `$from_message` to the `_isPoll(...)` helper (and other related helpers) to separate the result (get poll from `UPDATE->poll` OR get the poll from `UPDATE->message->poll`)
+
+### Changed
+- Changed the name of the function `_repliedMessage(...)` to `_replyToMessage()`
+- Removed unnecessary separators`#~~~ ... ~~~#` to reduce the source size
+
+
+### Fixed
+
+- Code improvements
+
+
 ## [1.2.4] - 2023-07-19
 
 ### Added
