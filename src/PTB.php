@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.2.5
+ * @version 1.2.6
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -5307,10 +5307,7 @@ function _preCheckoutQuery(?string $keys = null): mixed {
 }
 
 function _poll(?string $keys = null): mixed {
-    if (_isPoll(from_message: true)) {
-        return __arrayGet(_message(MESSAGE_TYPE_POLL), $keys);
-    }
-    return __arrayGet(_update(UPDATE_TYPE_POLL), $keys);
+    return __arrayGet(_update(UPDATE_TYPE_POLL) ?? _message(MESSAGE_TYPE_POLL), $keys);
 }
 
 function _pollAnswer(?string $keys = null): mixed {
