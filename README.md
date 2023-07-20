@@ -22,6 +22,7 @@
         - [InlineKeyboardMarkup](#inline-keyboard-markup)
     - 🧩 [Handlers](#handlers)
     - 🚁 [Helpers](#helpers)
+        - [How to use Helpers in action?](#how-to-use-helpers)
     - 💎 [Available Methods](#available-methods)
     - 🔮 [Available Types](#available-types)
     - ⚓️ [Available Constants](#available-constants)
@@ -758,6 +759,75 @@ Here is a list of all available helpers in the library:
 | `_isTopicMessage()`                                   | Returns `true` if `message->is_topic_message` was true, `false` otherwise                                                                                         | `bool`
 | `_isBot()`                                            | Returns `true` if the `from->is_bot` was true, `false` otherwise                                                                                         | `bool`
 | `_isForum()`                                          | Returns `true` if the `chat->is_forum` was true, `false` otherwise                                                                                       | `bool`
+
+### How to use Helpers in action? <a name="how-to-use-helpers"></a>
+
+Here is an example:
+
+```php
+use function DevDasher\PTB\_update;
+use function DevDasher\PTB\_updateId;
+use function DevDasher\PTB\_message;
+use function DevDasher\PTB\_from;
+use function DevDasher\PTB\_user;
+use function DevDasher\PTB\_userId;
+use function DevDasher\PTB\_isPhoto;
+use function DevDasher\PTB\_photos;
+use function DevDasher\PTB\_photo;
+use function DevDasher\PTB\onMessage;
+use function DevDasher\PTB\sendMessage;
+
+onMessage(function() {
+
+    # Get the update in different ways:
+    $update = _update(); // Array
+
+
+    # Get the update_id in different ways:
+    $updateId = _updateId();
+    $updateId = _update('update_id'); // Another way
+
+
+    # Get the message in different ways:
+    $message = $update['message'];
+    $message = _update('message'); // Another way
+    $message = _message();
+
+
+    # Get current user info in different ways:
+    $from = _from();
+    //...
+    $user = _user(); // Alternative to _from();
+
+    $userId = $update['message']['from']['id'];
+    $userId = _update('message.from.id');
+    $userId = $message['from']['id'];
+    $userId = _message('from.id');
+    $userId = $user['id'];
+    $userId = _userId();
+    $userId = _user('id');
+    //...
+
+    # SEE THE AVAILABLE HELPERS AND TEST OTHES THINGS YOURSELF #
+
+    if (_isPhoto()) {
+        # Get the photos in different ways:
+        $photos = _update('message.photo');
+        $photos = _message('photo');
+        $photos = _photos();
+
+        $photo = end($photos); // Get the last photo that has high quality
+        $photo = _photo(); // Another and better way
+
+        $photoFileId = $photo['file_id'];
+        $photoFileId = _photo('file_id');
+        //...
+
+        return sendMessage('You sent a photo!');
+    }
+    //....
+});
+```
 
 
 ## 💎 Available Methods <a name="available-methods"></a>
