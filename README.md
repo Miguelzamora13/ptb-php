@@ -76,14 +76,14 @@ middleware(callable: function() {
 # This handler is used to check text inputs on the 'message' update type
 onMessageText(
     # Enter your text pattern here
-    pattern: '/start', 
+    pattern: '/start|/begin', // Here, we specified two commands
 
     # The function that is executed after checking the pattern on response to the user
     callable: function() { 
         sendMessage(text: 'Hello World'); // A function to send a message to the user
 
         /*
-            In short, if the user sends the /start command to the bot,
+            In short, if the user sends the /start OR /begin commands to the bot,
             the response "Hello World" will be sent to the user
         */
     },
