@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.6] - 2023-07-20
+
+### Added
+
+...
+
+### Changed
+- Remove unnecessary parameter `$from_message` from the poll related helper functions `_poll(...)`, `_isPoll(...)`, etc
+- Code Improvements (in the `_poll(...)` function)
+
+### Fixed
+
+...
+
+
+
 ## [1.2.5] - 2023-07-20
 
 ### Added
