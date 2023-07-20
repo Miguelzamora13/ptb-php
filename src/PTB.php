@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.2.6
+ * @version 1.2.7
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -5810,127 +5810,127 @@ function _isText(): bool {
     return _messageType() === MESSAGE_TYPE_TEXT;
 }
 
-function _isMessageNewChatMembers(): bool {
+function _isNewChatMembers(): bool {
     return _messageType() === MESSAGE_TYPE_NEW_CHAT_MEMBERS;
 }
 
-function _isMessageLeftChatMember(): bool {
+function _isLeftChatMember(): bool {
     return _messageType() === MESSAGE_TYPE_LEFT_CHAT_MEMBER;
 }
 
-function _isMessageNewChatTitle(): bool {
+function _isNewChatTitle(): bool {
     return _messageType() === MESSAGE_TYPE_NEW_CHAT_TITLE;
 }
 
-function _isMessageNewChatPhoto(): bool {
+function _isNewChatPhoto(): bool {
     return _messageType() === MESSAGE_TYPE_NEW_CHAT_PHOTO;
 }
 
-function _isMessageDeleteChatPhoto(): bool {
+function _isDeleteChatPhoto(): bool {
     return _messageType() === MESSAGE_TYPE_DELETE_CHAT_PHOTO;
 }
 
-function _isMessageGroupChatCreated(): bool {
+function _isGroupChatCreated(): bool {
     return _messageType() === MESSAGE_TYPE_GROUP_CHAT_CREATED;
 }
 
-function _isMessageSupergroupChatCreated(): bool {
+function _isSupergroupChatCreated(): bool {
     return _messageType() === MESSAGE_TYPE_SUPERGROUP_CHAT_CREATED;
 }
 
-function _isMessageChannelChatCreated(): bool {
+function _isChannelChatCreated(): bool {
     return _messageType() === MESSAGE_TYPE_CHANNEL_CHAT_CREATED;
 }
 
-function _isMessageAutoDeleteTimerChanged(): bool {
+function _isAutoDeleteTimerChanged(): bool {
     return _messageType() === MESSAGE_TYPE_MESSAGE_AUTO_DELETE_TIMER_CHANGED;
 }
 
-function _isMessageMigrateToChatId(): bool {
+function _isMigrateToChatId(): bool {
     return _messageType() === MESSAGE_TYPE_MIGRATE_TO_CHAT_ID;
 }
 
-function _isMessageMigrateFromChatId(): bool {
+function _isMigrateFromChatId(): bool {
     return _messageType() === MESSAGE_TYPE_MIGRATE_FROM_CHAT_ID;
 }
 
-function _isMessagePinnedMessage(): bool {
+function _isPinnedMessage(): bool {
     return _messageType() === MESSAGE_TYPE_PINNED_MESSAGE;
 }
 
-function _isMessageInvoice(): bool {
+function _isInvoice(): bool {
     return _messageType() === MESSAGE_TYPE_INVOICE;
 }
 
-function _isMessageSuccessfulPayment(): bool {
+function _isSuccessfulPayment(): bool {
     return _messageType() === MESSAGE_TYPE_SUCCESSFUL_PAYMENT;
 }
 
-function _isMessageUserShared(): bool {
+function _isUserShared(): bool {
     return _messageType() === MESSAGE_TYPE_USER_SHARED;
 }
 
-function _isMessageChatShared(): bool {
+function _isChatShared(): bool {
     return _messageType() === MESSAGE_TYPE_CHAT_SHARED;
 }
 
-function _isMessageConnectedWebsite(): bool {
+function _isConnectedWebsite(): bool {
     return _messageType() === MESSAGE_TYPE_CONNECTED_WEBSITE;
 }
 
-function _isMessageWriteAccessAllowed(): bool {
+function _isWriteAccessAllowed(): bool {
     return _messageType() === MESSAGE_TYPE_WRITE_ACCESS_ALLOWED;
 }
 
-function _isMessagePassportData(): bool {
+function _isPassportData(): bool {
     return _messageType() === MESSAGE_TYPE_PASSPORT_DATA;
 }
 
-function _isMessageProximityAlertTriggered(): bool {
+function _isProximityAlertTriggered(): bool {
     return _messageType() === MESSAGE_TYPE_PROXIMITY_ALERT_TRIGGERED;
 }
 
-function _isMessageForumTopicCreated(): bool {
+function _isForumTopicCreated(): bool {
     return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_CREATED;
 }
 
-function _isMessageForumTopicEdited(): bool {
+function _isForumTopicEdited(): bool {
     return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_EDITED;
 }
 
-function _isMessageForumTopicClosed(): bool {
+function _isForumTopicClosed(): bool {
     return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_CLOSED;
 }
 
-function _isMessageForumTopicReopened(): bool {
+function _isForumTopicReopened(): bool {
     return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_REOPENED;
 }
 
-function _isMessageGeneralForumTopicHidden(): bool {
+function _isGeneralForumTopicHidden(): bool {
     return _messageType() === MESSAGE_TYPE_GENERAL_FORUM_TOPIC_HIDDEN;
 }
 
-function _isMessageGeneralForumTopicUnhidden(): bool {
+function _isGeneralForumTopicUnhidden(): bool {
     return _messageType() === MESSAGE_TYPE_GENERAL_FORUM_TOPIC_UNHIDDEN;
 }
 
-function _isMessageVideoChatScheduled(): bool {
+function _isVideoChatScheduled(): bool {
     return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_SCHEDULED;
 }
 
-function _isMessageVideoChatStarted(): bool {
+function _isVideoChatStarted(): bool {
     return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_STARTED;
 }
 
-function _isMessageVideoChatEnded(): bool {
+function _isVideoChatEnded(): bool {
     return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_ENDED;
 }
 
-function _isMessageVideoChatParticipantsInvited(): bool {
+function _isVideoChatParticipantsInvited(): bool {
     return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_PARTICIPANTS_INVITED;
 }
 
-function _isMessageWebAppData(): bool {
+function _isWebAppData(): bool {
     return _messageType() === MESSAGE_TYPE_WEB_APP_DATA;
 }
 
