@@ -5813,152 +5813,128 @@ function _isText(): bool {
     return _messageType() === MESSAGE_TYPE_TEXT;
 }
 
-function isMessageNewChatMembers(): bool {
+function _isMessageNewChatMembers(): bool {
     return _messageType() === MESSAGE_TYPE_NEW_CHAT_MEMBERS;
 }
 
-function isMessageLeftChatMember(): bool {
+function _isMessageLeftChatMember(): bool {
     return _messageType() === MESSAGE_TYPE_LEFT_CHAT_MEMBER;
 }
 
-function isMessageNewChatTitle(): bool {
+function _isMessageNewChatTitle(): bool {
     return _messageType() === MESSAGE_TYPE_NEW_CHAT_TITLE;
 }
 
-function isMessageNewChatPhoto(): bool {
+function _isMessageNewChatPhoto(): bool {
     return _messageType() === MESSAGE_TYPE_NEW_CHAT_PHOTO;
 }
 
-function isMessageDeleteChatPhoto(): bool {
+function _isMessageDeleteChatPhoto(): bool {
     return _messageType() === MESSAGE_TYPE_DELETE_CHAT_PHOTO;
 }
 
-function isMessageGroupChatCreated(): bool {
+function _isMessageGroupChatCreated(): bool {
     return _messageType() === MESSAGE_TYPE_GROUP_CHAT_CREATED;
 }
 
-function isMessageSupergroupChatCreated(): bool {
+function _isMessageSupergroupChatCreated(): bool {
     return _messageType() === MESSAGE_TYPE_SUPERGROUP_CHAT_CREATED;
 }
 
-function isMessageChannelChatCreated(): bool {
+function _isMessageChannelChatCreated(): bool {
     return _messageType() === MESSAGE_TYPE_CHANNEL_CHAT_CREATED;
 }
 
-function isMessageAutoDeleteTimerChanged(): bool {
+function _isMessageAutoDeleteTimerChanged(): bool {
     return _messageType() === MESSAGE_TYPE_MESSAGE_AUTO_DELETE_TIMER_CHANGED;
 }
 
-function isMessageMigrateToChatId(): bool {
+function _isMessageMigrateToChatId(): bool {
     return _messageType() === MESSAGE_TYPE_MIGRATE_TO_CHAT_ID;
 }
 
-function isMessageMigrateFromChatId(): bool {
+function _isMessageMigrateFromChatId(): bool {
     return _messageType() === MESSAGE_TYPE_MIGRATE_FROM_CHAT_ID;
 }
 
-function isMessagePinnedMessage(): bool {
+function _isMessagePinnedMessage(): bool {
     return _messageType() === MESSAGE_TYPE_PINNED_MESSAGE;
 }
 
-function isMessageInvoice(): bool {
+function _isMessageInvoice(): bool {
     return _messageType() === MESSAGE_TYPE_INVOICE;
 }
 
-function isMessageSuccessfulPayment(): bool {
+function _isMessageSuccessfulPayment(): bool {
     return _messageType() === MESSAGE_TYPE_SUCCESSFUL_PAYMENT;
 }
 
-function isMessageUserShared(): bool {
+function _isMessageUserShared(): bool {
     return _messageType() === MESSAGE_TYPE_USER_SHARED;
 }
 
-function isMessageChatShared(): bool {
+function _isMessageChatShared(): bool {
     return _messageType() === MESSAGE_TYPE_CHAT_SHARED;
 }
 
-function isMessageConnectedWebsite(): bool {
+function _isMessageConnectedWebsite(): bool {
     return _messageType() === MESSAGE_TYPE_CONNECTED_WEBSITE;
 }
 
-function isMessageWriteAccessAllowed(): bool {
+function _isMessageWriteAccessAllowed(): bool {
     return _messageType() === MESSAGE_TYPE_WRITE_ACCESS_ALLOWED;
 }
 
-function isMessagePassportData(): bool {
+function _isMessagePassportData(): bool {
     return _messageType() === MESSAGE_TYPE_PASSPORT_DATA;
 }
 
-function isMessageProximityAlertTriggered(): bool {
+function _isMessageProximityAlertTriggered(): bool {
     return _messageType() === MESSAGE_TYPE_PROXIMITY_ALERT_TRIGGERED;
 }
 
-function isMessageForumTopicCreated(): bool {
+function _isMessageForumTopicCreated(): bool {
     return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_CREATED;
 }
 
-function isMessageForumTopicEdited(): bool {
+function _isMessageForumTopicEdited(): bool {
     return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_EDITED;
 }
 
-function isMessageForumTopicClosed(): bool {
+function _isMessageForumTopicClosed(): bool {
     return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_CLOSED;
 }
 
-function isMessageForumTopicReopened(): bool {
+function _isMessageForumTopicReopened(): bool {
     return _messageType() === MESSAGE_TYPE_FORUM_TOPIC_REOPENED;
 }
 
-function isMessageGeneralForumTopicHidden(): bool {
+function _isMessageGeneralForumTopicHidden(): bool {
     return _messageType() === MESSAGE_TYPE_GENERAL_FORUM_TOPIC_HIDDEN;
 }
 
-function isMessageGeneralForumTopicUnhidden(): bool {
+function _isMessageGeneralForumTopicUnhidden(): bool {
     return _messageType() === MESSAGE_TYPE_GENERAL_FORUM_TOPIC_UNHIDDEN;
 }
 
-function isMessageVideoChatScheduled(): bool {
+function _isMessageVideoChatScheduled(): bool {
     return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_SCHEDULED;
 }
 
-function isMessageVideoChatStarted(): bool {
+function _isMessageVideoChatStarted(): bool {
     return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_STARTED;
 }
 
-function isMessageVideoChatEnded(): bool {
+function _isMessageVideoChatEnded(): bool {
     return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_ENDED;
 }
 
-function isMessageVideoChatParticipantsInvited(): bool {
+function _isMessageVideoChatParticipantsInvited(): bool {
     return _messageType() === MESSAGE_TYPE_VIDEO_CHAT_PARTICIPANTS_INVITED;
 }
 
-function isMessageWebAppData(): bool {
+function _isMessageWebAppData(): bool {
     return _messageType() === MESSAGE_TYPE_WEB_APP_DATA;
-}
-
-function _isSender(): bool {
-    return _chatType() === CHAT_TYPE_SENDER;
-}
-
-function _isGroup(): bool {
-    return _chatType() === CHAT_TYPE_GROUP;
-}
-
-function _isSupergroup(): bool {
-    return _chatType() === CHAT_TYPE_SUPERGROUP;
-}
-
-function _isPrivate(): ?bool {
-    return _chatType() === CHAT_TYPE_PRIVATE;
-}
-
-function _isChannel(): ?bool {
-    return _chatType() === CHAT_TYPE_CHANNEL;
-}
-
-function _isForwarded(): ?bool {
-    return boolval(_message(FIELD_FORWARD_DATE) ?? _message(FIELD_FORWARD_SENDER_NAME));
 }
 
 function _isPollAnonymous(bool $from_message = false): bool {
@@ -5983,6 +5959,30 @@ function _isForum(): bool {
 
 function _isFile(): bool {
     return in_array(_messageType(), _fileTypes());
+}
+
+function _isSender(): bool {
+    return _chatType() === CHAT_TYPE_SENDER;
+}
+
+function _isGroup(): bool {
+    return _chatType() === CHAT_TYPE_GROUP;
+}
+
+function _isSupergroup(): bool {
+    return _chatType() === CHAT_TYPE_SUPERGROUP;
+}
+
+function _isPrivate(): ?bool {
+    return _chatType() === CHAT_TYPE_PRIVATE;
+}
+
+function _isChannel(): ?bool {
+    return _chatType() === CHAT_TYPE_CHANNEL;
+}
+
+function _isForwarded(): ?bool {
+    return boolval(_message(FIELD_FORWARD_DATE) ?? _message(FIELD_FORWARD_SENDER_NAME));
 }
 
 function _row(array ...$buttons): array {
