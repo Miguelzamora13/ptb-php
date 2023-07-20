@@ -913,7 +913,7 @@ $update = json_decode($input, true);
 // Here, you can use the __setUpdate($update) for work with all the available helper functions
 // See the next example
 
-$updateId = $update['updateId'];
+$updateId = $update['update_id'];
 
 if (isset($update['message'])) {
     $message = $update['message'];
