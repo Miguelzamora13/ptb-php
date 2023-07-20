@@ -30,6 +30,7 @@
         - [Webhook Implementation](#without-handlers-webhook-implementation)
         - [LongPolling Implementation](#without-handlers-longpolling-implementation)
 - 🐞 [Bug Report](#bug-report)
+- ❤️ [Support Us!](#support-us)
 - 📝 [Changelog](#changelog)
 - 🙌 [Credits](#credits)
 - 📜 [License](#license)
@@ -1010,6 +1011,10 @@ Your bug reports are invaluable in helping us identify and address any shortcomi
 We would also like to take this opportunity to encourage you to use our library and leverage its features to enhance your projects. We value your feedback and contributions, as they play a pivotal role in shaping the library's future development.
 
 Thank you for your support and happy coding!
+
+# ❤️ Support Us! <a name="support-us"></a>
+
+Thank you for using our library! We greatly appreciate your support. If you find our library helpful, please consider giving us a 🌟 star on GitHub. Your positive feedback and engagement help us improve and continue providing valuable resources to the community. Don't forget to share this library with your friends and colleagues who might benefit from it. Together, we can make a difference in the development community. Thank you for being a part of our journey!
 
 # 📝 Changelog <a name="changelog"></a>
 
