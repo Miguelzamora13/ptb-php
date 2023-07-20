@@ -6,6 +6,81 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Added mroe helpers (Check out the diff from commits)
+    - `_chatJoinRequest()`
+    - `_pinnedMessage()`
+    - `_senderChat()`
+    - `_authorSignature()`
+    - `_date()`
+    - `_chatTitle()`
+    - `_pollQuestion()`
+    - `_pollType()`
+    - `_pollId()`
+    - `_animationFileName()`
+    - `_animationMimeType()`
+    - `_animationDuration()`
+    - `_animationWidth()`
+    - `_animationHeight()`
+    - `_animationThumb()`
+    - `_gameTitle()`
+    - `_gameDescription()`
+    - `_forumTopicCreated()`
+    - `_forumTopicEdited()`
+    - `_forumTopicClosed()`
+    - `_forumTopicReopened()`
+    - `_messageThreadId()`
+    - `_userFirstName()`
+    - `_userUsername()`
+    - `_chatShared()`
+    - `_userShared()`
+    - `_connectedWebsite()`
+    - `_writeAccessAllowed()`
+    - `_passportData()`
+    - `_proximityAlertTriggered()`
+    - `_generalForumTopicHidden()`
+    - `_generalForumTopicUnhidden()`
+    - `_videoChatScheduled()`
+    - `_videoChatStarted()`
+    - `_videoChatEnded()`
+    - `_videoChatParticipantsInvited()`
+    - `_webAppData()`
+    - `_replyMarkupInlineKeyboard()`
+    - `_isMessageNewChatMembers()`
+    - `_isMessageLeftChatMember()`
+    - `_isMessageNewChatTitle()`
+    - `_isMessageNewChatPhoto()`
+    - `_isMessageDeleteChatPhoto()`
+    - `_isMessageGroupChatCreated()`
+    - `_isMessageSupergroupChatCreated()`
+    - `_isMessageChannelChatCreated()`
+    - `_isMessageAutoDeleteTimerChanged()`
+    - `_isMessageMigrateToChatId()`
+    - `_isMessageMigrateFromChatId()`
+    - `_isMessagePinnedMessage()`
+    - `_isMessageInvoice()`
+    - `_isMessageSuccessfulPayment()`
+    - `_isMessageUserShared()`
+    - `_isMessageChatShared()`
+    - `_isMessageConnectedWebsite()`
+    - `_isMessageWriteAccessAllowed()`
+    - `_isMessagePassportData()`
+    - `_isMessageProximityAlertTriggered()`
+    - `_isMessageForumTopicCreated()`
+    - `_isMessageForumTopicEdited()`
+    - `_isMessageForumTopicClosed()`
+    - `_isMessageForumTopicReopened()`
+    - `_isMessageGeneralForumTopicHidden()`
+    - `_isMessageGeneralForumTopicUnhidden()`
+    - `_isMessageVideoChatScheduled()`
+    - `_isMessageVideoChatStarted()`
+    - `_isMessageVideoChatEnded()`
+    - `_isMessageVideoChatParticipantsInvited()`
+    - `_isMessageWebAppData()`
+    - `_isPollAnonymous()`
+    - `_isPollClosed()`
+    - `_isTopicMessage()`
+    - `_isBot()`
+    - `_isForum()`
+- Added new constant named `FIELD_THUMB`
 - Added one parameter named `$from_message` to the `_isPoll(...)` helper (and other related helpers) to separate the result (get poll from `UPDATE->poll` OR get the poll from `UPDATE->message->poll`)
 
 ### Changed
