@@ -5306,9 +5306,9 @@ function _preCheckoutQuery(?string $keys = null): mixed {
     return __arrayGet(_update(UPDATE_TYPE_PRE_CHECKOUT_QUERY), $keys);
 }
 
-function _poll(?string $keys = null, bool $from_message = false): mixed {
-    if ($from_message) {
-        return __arrayGet(_message(UPDATE_TYPE_POLL), $keys);
+function _poll(?string $keys = null): mixed {
+    if (_isPoll(from_message: true)) {
+        return __arrayGet(_message(MESSAGE_TYPE_POLL), $keys);
     }
     return __arrayGet(_update(UPDATE_TYPE_POLL), $keys);
 }
@@ -5550,16 +5550,16 @@ function _chatTitle(): ?string {
     return _chat(FIELD_TITLE);
 }
 
-function _pollQuestion(bool $from_message = false): ?string {
-    return _poll(FIELD_QUESTION, $from_message);
+function _pollQuestion(): ?string {
+    return _poll(FIELD_QUESTION);
 }
 
-function _pollType(bool $from_message = false): ?string {
-    return _poll(FIELD_TYPE, $from_message);
+function _pollType(): ?string {
+    return _poll(FIELD_TYPE);
 }
 
-function _pollId(bool $from_message = false): ?string {
-    return _poll(FIELD_ID, $from_message);
+function _pollId(): ?string {
+    return _poll(FIELD_ID);
 }
 
 function _animationFileName(): ?string {
@@ -5937,12 +5937,12 @@ function _isMessageWebAppData(): bool {
     return _messageType() === MESSAGE_TYPE_WEB_APP_DATA;
 }
 
-function _isPollAnonymous(bool $from_message = false): bool {
-    return boolval(_poll(FIELD_IS_ANONYMOUS, $from_message));
+function _isPollAnonymous(): bool {
+    return boolval(_poll(FIELD_IS_ANONYMOUS));
 }
 
-function _isPollClosed(bool $from_message = false): bool {
-    return boolval(_poll(FIELD_IS_CLOSED, $from_message));
+function _isPollClosed(): bool {
+    return boolval(_poll(FIELD_IS_CLOSED));
 }
 
 function _isTopicMessage(): bool {
