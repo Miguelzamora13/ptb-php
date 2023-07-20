@@ -61,6 +61,7 @@ require(__DIR__.'/path/to/PTB.php'); // Or require the PTB.php file directly
 configurePTB(
     token: 'TOKEN', // Your bot token
     username: 'USERNAME', // Your bot username
+    is_webhook: false, # Webhook OR LongPolling?
     // ...
 );
 
