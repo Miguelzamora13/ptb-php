@@ -27,6 +27,8 @@
     - 🔮 [Available Types](#available-types)
     - ⚓️ [Available Constants](#available-constants)
     - ♟ [Usage Without Handlers](#usage-without-handlers)
+        - [Webhook Implementation](#without-handlers-webhook-implementation)
+        - [LongPolling Implementation](#without-handlers-longpolling-implementation)
 - 🐞 [Bug Report](#bug-report)
 - 📝 [Changelog](#changelog)
 - 🙌 [Credits](#credits)
@@ -894,7 +896,7 @@ You just need to pass your bot token and username to the `configurePTB(...)` fun
 
 Here is an example:
 
-## Webhook implementation:
+## Webhook implementation: <a name="without-handlers-webhook-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
@@ -908,6 +910,8 @@ configurePTB(
 
 $input = file_get_contents('php://input');
 $update = json_decode($input, true);
+// Here, you can use the __setUpdate($update) for work with all the available helper functions
+// See the next example
 
 $updateId = $update['updateId'];
 
@@ -932,7 +936,44 @@ if ($text === '/start') {
 //...
 ```
 
-## LongPolling implementation:
+### Another example:
+
+```php
+use function DevDasher\PTB\_text;
+use function DevDasher\PTB\_chatId;
+use function DevDasher\PTB\__setUpdate;
+use function DevDasher\PTB\configurePTB;
+use function DevDasher\PTB\sendMessage;
+
+configurePTB(
+    token: 'TOKEN',
+    username: 'USERNAME',
+    //...
+);
+
+$input = file_get_contents('php://input');
+$update = json_decode($input, true);
+
+__setUpdate($update); // Setting the update 
+
+$text = _text(); // Now, we can use all available helper functions. like this one here.
+$chatId = _chatId();
+//...
+
+if ($text === '/start') {
+    return sendMessage(
+        text: 'START MESSAGE',
+        // chat_id: $chatId, // And here, we don't need to pass the $chatId anymore
+    );
+}
+
+//...
+//...
+//...
+
+```
+
+## LongPolling implementation: <a name="without-handlers-longpolling-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
