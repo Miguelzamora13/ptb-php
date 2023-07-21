@@ -15,11 +15,13 @@
     - 📤 [Uploading Files](#uploading-files)
     - 📥 [Downloading Files](#downloading-files)
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
-    - 🤝 Middlewares (Soon...)
+    - 🤝 [Middlewares](#middlewares) (Soon...)
     - 💬 [Conversations](#conversations) (Soon...)
     - 🎮 [Keyboards](#keyboards)
         - [ReplyKeyboardMarkup](#reply-keyboard-markup)
+        - [ReplyKeyboardRemove](#reply-keyboard-remove) (Soon...)
         - [InlineKeyboardMarkup](#inline-keyboard-markup)
+        - [ForceReply](#force-reply) (Soon...)
     - 🧩 [Handlers](#handlers)
     - 🚁 [Helpers](#helpers)
         - [How to use Helpers in action?](#how-to-use-helpers)
@@ -361,6 +363,10 @@ onMessage(callable: function() {
 //...
 ```
 
+## 🤝 Middlewares  <a name="middlewares"></a>
+
+Soon...
+
 ## 💬 Conversations <a name="conversations"></a>
 
 Soon...
@@ -400,6 +406,10 @@ onMessageText(pattern: 'Say Hi!', callable: fn() => sendMessage('Hi!'));
 onMessageText(pattern: 'Say Bye!', callable: fn() => sendMessage('Bye!'));
 ```
 
+### ReplyKeyboardRemove <a name="reply-keyboard-remove"></a>
+
+Soon...
+
 ### InlineKeyboardMarkup <a name="inline-keyboard-markup"></a>
 
 The `InlineKeyboardMarkup(...)` function helps you to create a inline keyabord. Here is an example:
@@ -437,6 +447,10 @@ onCallbackQueryData(
     callable: fn() => answerCallbackQuery(text: 'Account Deleted', show_alert: true)
 );
 ```
+
+### ForceReply <a name="force-reply"></a>
+
+Soon...
 
 ## 🧩 Handlers <a name="handlers"></a>
 
