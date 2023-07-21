@@ -31,8 +31,10 @@ use Closure;
 use CURLFile;
 use DateInterval;
 use Exception;
-use Opis\Closure\SerializableClosure;
+use Laravel\SerializableClosure\SerializableClosure;
 use Psr\SimpleCache\CacheInterface;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Psr16Cache;
 use Throwable;
 
 define('FIELD_UPDATE_ID', 'update_id');
@@ -1017,19 +1019,18 @@ function configurePTB(
     string $api_base_url = API_BASE_URL,
     array $curl_options = [],
     bool $is_webhook = false,
-    bool $long_polling_logger_enabled = false,
+    bool $long_polling_logger = false,
     ?CacheInterface $cache = null,
 ): void {
     $GLOBALS[_PACKAGE_NAME] = array_merge([
-        'long_polling_logger_enabled' => $long_polling_logger_enabled,
+        'long_polling_logger' => $long_polling_logger,
         'is_webhook' => $is_webhook,
-        'cache' => $cache,
+        'cache' => $cache ?? (!__isComposerUsed() ?: new Psr16Cache(new ArrayAdapter())),
         'update' => [],
         'global_data' => [],
         'middlewares' => [],
         'handlers' => [],
     ], $GLOBALS[_PACKAGE_NAME] ?? []);
-    
     _registerNewBot(
         username: $username,
         token: $token,
@@ -6186,22 +6187,86 @@ function _fileTypes(array $exclude = []): ?array {
     ], $exclude);
 }
 
-function _setUserData(string $key, mixed $value, null|int|DateInterval $ttl = null): void {
-    $userKey = __cacheGetUserKey();
-    __cache()->set("user|{$userKey}|{$key}", $value, $ttl ?? _CACHE_USER_DATA_TTL);
-}
-
-function _getUserData(string $key, mixed $defaultValue = null): mixed {
-    $userKey = __cacheGetUserKey();
-    return __cache()->get("user|{$userKey}|{$key}", $defaultValue);
-}
-
 function _setGlobalData(int|string $key, mixed $value = null): void {
     __setOrPushValue($GLOBALS[_PACKAGE_NAME], $value, "global_data.{$key}");
 }
 
 function _getGlobalData(int|string $key, mixed $defaultValue = null): mixed {
     return $GLOBALS[_PACKAGE_NAME]['global_data'][$key] ?? $defaultValue;
+}
+
+function _input(string|callable $prompt,Closure $next_step, array $conversation_data = []): void {
+    is_string($prompt) ? sendMessage(text: $prompt) : $prompt();
+    _setMultipleConverstaionData($conversation_data);
+    _nextStepOfConversation($next_step);
+}
+
+function _nextStepOfConversation(Closure $closure): void {
+    __updateConversationData('next_step', __serializeClosure($closure));
+}
+
+function _endConversation(): void {
+    __deleteConversation();
+}
+
+function _setConversationData(string|array $key, mixed $value, null|int|DateInterval $ttl = null): void {
+    if (is_array($key)) {
+        _setMultipleConverstaionData($key, $ttl);
+    } else {
+        __updateConversationData("data.{$key}", $value);
+    }
+}
+
+function _getConversationData(string $keys, mixed $defaultValue = null): mixed {
+    return __arrayGet(__getConversation(), $keys) ?? $defaultValue;
+}
+
+function _setMultipleConverstaionData(array $data, null|int|DateInterval $ttl = null): void {
+    foreach ($data as $key => $value) {
+        _setConversationData($key, $value, $ttl);
+    }
+}
+
+function __getUserCacheKey(): string {
+    static $key;
+    if (!$key) {
+        $key = __defaultBotUsername().'_'._chatId().'_'._userId();
+    }
+    return $key;
+}
+
+function __getConversationKey(): string {
+    return 'conversations|'.__getUserCacheKey();
+}
+
+function __getConversation(?string $keys = null): array {
+    return __arrayGet(__cache()->get(__getConversationKey()), $keys) ?? [];
+}
+
+function __updateConversationData(string $keys, mixed $value): void {
+    $conversation = __getConversation();
+    __setOrPushValue(array: $conversation, keys: $keys, value: $value);
+    __cache()->set(
+        key: __getConversationKey(),
+        value: $conversation,
+        ttl: _CACHE_CONVERSATION_TTL,
+    );
+}
+
+function __deleteConversation(): bool {
+    return __cache()->delete(__getConversationKey());
+}
+
+function __isStartedAConversation(): bool {
+    return boolval(__getConversation());
+}
+
+function __serializeClosure(Closure $closure): string {
+    return serialize(new SerializableClosure($closure));
+}
+
+function __unserializeClosure(string $serialized): Closure {
+    return unserialize($serialized)->getClosure();
 }
 
 function __autoFillApiTypeFields(array $fields) {
@@ -6467,16 +6532,16 @@ function __fireHandlers(array $handlers) {
                         continue;
                     }
                     if ($isStartedAConversation) {
-                        conversationEnd();
+                        _endConversation();
                     }
                     __fireAllMiddlewares($handler);
                     return $handler['callable'](...$parameters);
                 }
                 if ($isStartedAConversation) {
-                    $userKey = __cacheGetUserKey();
-                    $serializedClosure = __cache()->get("conv|{$userKey}|next_step");
-                    $callable = __unserializeClosure($serializedClosure);
-                    return $callable();
+                    $conversation = __getConversation();
+                    $serializedClosure = $conversation['next_step'];
+                    $closure = __unserializeClosure($serializedClosure);
+                    return $closure(...($conversation['data'] ?? []));
                 }
             } elseif (in_array($messageType, _messageTypes())) {
                 __fireAllMiddlewares($updateTypeHandlers[$messageType]);
@@ -6569,77 +6634,6 @@ function __prepareAndMakeApiRequest(string $function, array $parameters = [], ar
     return __makeApiRequest(__extractFunctionName($function), __prepareApiMethodParameters($parameters), $options);
 }
 
-function __serializeClosure(Closure $closure): string {
-    __checkConversationRequirements();
-    $serializableClosure = new SerializableClosure($closure);
-    return serialize($serializableClosure);
-}
-
-function __unserializeClosure(string $serializedClosure): Closure {
-    /** @var SerializableClosure */
-    $serializableClosure = unserialize($serializedClosure, [
-        'allowed_classes' => [SerializableClosure::class],
-    ]);
-    if (!$serializableClosure) {
-        throw new Exception("Can not unserialize the string '{$serializedClosure}'!");
-    }
-    return $serializableClosure->getClosure();
-}
-
-function __checkConversationRequirements(): void {
-    if (!__cache() || !class_exists(SerializableClosure::class)) {
-        throw new Exception("To use the conversation feature, you need to install rqeuired packages via Composer!");
-    }
-}
-
-function conversationNextStep(Closure $closure): void {
-    __checkConversationRequirements();
-    $userKey = __cacheGetUserKey();
-    __cache()->set("conv|{$userKey}|next_step", __serializeClosure($closure), _CACHE_CONVERSATION_TTL);
-}
-
-function conversationEnd(?Closure $finalStep = null): void {
-    __checkConversationRequirements();
-    $userKey = __cacheGetUserKey();
-    if ($finalStep) {
-        __cache()->set(
-            key: "conv|{$userKey}|next_step",
-            value: __serializeClosure(function() use ($finalStep, $userKey) {
-                $finalStep();
-                __cache()->delete("conv|{$userKey}|next_step");
-            }),
-            ttl: _CACHE_CONVERSATION_TTL
-        );
-    } else {
-        __cache()->delete("conv|{$userKey}|next_step");
-    }
-}
-
-function conversationSetData(string $key, mixed $value, null|int|DateInterval $ttl = null): void {
-    __checkConversationRequirements();
-    $userKey = __cacheGetUserKey();
-    __cache()->set("conv|{$userKey}|data|{$key}", $value, $ttl ?? _CACHE_CONVERSATION_TTL);
-}
-
-function conversationGetData(string $key, mixed $defaultValue = null): mixed {
-    $userKey = __cacheGetUserKey();
-    return __cache()->get("conv|{$userKey}|data|{$key}", $defaultValue);
-}
-
-function __isStartedAConversation(?string $userKey = null): bool {
-    $userKey = $userKey ?? __cacheGetUserKey();
-    return boolval(__cache()->get("conv|{$userKey}|next_step"));
-}
-
-function __cacheGetUserKey(): string {
-    static $key;
-    if (!$key) {
-        $key = __defaultBotUsername().'_'._chatId().'_'._userId();
-    }
-    return $key;
-}
-
-
 function __botToken(?string $username = null): ?string {
     return __config('bots.'.($username ?? __config('default_bot_username')).'.token');
 }
@@ -6681,7 +6675,7 @@ function __cache(): ?CacheInterface {
 }
 
 function __longPollingLoggerEnabled(): bool {
-    return __config('long_polling_logger_enabled');
+    return __config('long_polling_logger');
 }
 
 function __snakeToCamelCase(string $string) {
@@ -6689,6 +6683,15 @@ function __snakeToCamelCase(string $string) {
         return strtoupper($matches[1]);
     }, $string);
     return lcfirst($string);
+}
+
+function __isComposerUsed(): bool {
+    foreach (get_included_files() as $path) {
+        if (str_ends_with($path, 'vendor'.DIRECTORY_SEPARATOR.'autoload.php')) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function run(): void {
