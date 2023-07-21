@@ -16,7 +16,7 @@
     - 📥 [Downloading Files](#downloading-files)
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
     - 🤝 Middlewares (Soon...)
-    - 💬 Conversations (Soon...)
+    - 💬 [Conversations](#conversations) (Soon...)
     - 🎮 [Keyboards](#keyboards)
         - [ReplyKeyboardMarkup](#reply-keyboard-markup)
         - [InlineKeyboardMarkup](#inline-keyboard-markup)
@@ -37,9 +37,7 @@
 
 # 🌟 Introduction <a name="introduction"></a>
 
-This library takes advantage of the latest **PHP 8** features, and tries to make the **speed**, **scalability** and **flexibility** of use its strength, it will allow you to quickly make simple bots, but at the same time, it provides
-more **advanced features** to handle even the most complicated flows. Some architectural concepts on which PTB is
-based are heavily influenced by other open source project with the name [Nutgram](https://github.com/nutgram/nutgram)! check it out too!
+This library utilizes the latest features of **PHP 8** and aims to excel in terms of **speed**, **scalability**, and **usability**. It enables you to swiftly create basic bots while also offering advanced capabilities to handle even the most intricate workflows. Some fundamental principles underlying **PTB-PHP** draw inspiration from another open-source project called [Nutgram](https://github.com/nutgram/nutgram)! Be sure to check it out as well!
 
 # 💡 Basic Example <a name="basic-example"></a>
 
@@ -361,6 +359,11 @@ onMessage(callable: function() {
 
 //...
 ```
+
+## 💬 Conversations <a name="conversations"></a>
+
+Soon...
+
 
 ## 🎮 Keyboards <a name="keyboards"></a>
 
@@ -835,7 +838,7 @@ onMessage(function() {
 
 ## 💎 Available Methods <a name="available-methods"></a>
 
-All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#available-methods) is available in the library.
+All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#available-methods) are available in the library.
 
 - `getMe()`
 - `logOut()`
@@ -847,7 +850,7 @@ All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#avai
 
 ## 🔮 Available Types <a name="available-types"></a>
 
-All Telegram Bot API [Available types](https://core.telegram.org/bots/api#available-types) is available in the library.
+All Telegram Bot API [Available types](https://core.telegram.org/bots/api#available-types) are available in the library.
 
 - `Update(...)`
 - `WebhookInfo(...)`
