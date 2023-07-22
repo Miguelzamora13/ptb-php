@@ -166,7 +166,7 @@ If you are using Composer:
 - **[psr/simplecache](https://github.com/php-fig/simple-cache)**: ^3.0
 - **[laravel/serializableclosure](https://github.com/laravel/serializable-closure)**: ^1.3
 
-# 💪 Features <a name="featrures"></a>
+# 💪 Features <a name="features"></a>
 
 - **Middlewares:** Easily implement middleware functions to intercept and modify incoming requests or outgoing responses.
 - **Handlers:** Define handlers to process different types of events or commands in your Telegram bot.
