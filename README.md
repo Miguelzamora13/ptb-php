@@ -833,18 +833,20 @@ Helpers refer to a set of utility functions (or constants...) that are designed 
 
 Here is a list of all available helpers in the library:
 
+✍️ **Note:** In the table below, in the `Description` column, the term `ANY` (with capital letters) refers to any update, like `message`, `edited_message`, `channel_post`, `edited_channel_post`, `callback_query`, etc.
+
 | Helper                                                | Description                                                                                                                                                       | Return Type
 |-------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------
 | `_update(?string $keys = null)`                       | Returns the update as an array                                                                                                                                    | `array` for itself, `mixed` for subkeys
 | `_updateId()`                                         | Returns the `update_id`                                                                                                                                           | `?int`
 | `_updateType()`                                       | Returns the current update type                                                                                                                                   | `?string`
 | `_updateTypes(array $exclude = [])`                   | Returns all available update types                                                                                                                                | `array` of strings
-| `_message(?string $keys = null)`                      | Returns `message` if available, `null` otherwise.                                                                                                                 | `array` for itself, `mixed` for subkeys
-| `_messageId()`                                        | Returns `message->message_id` if available, `null` otherwise.                                                                                                     | `?int`
+| `_message(?string $keys = null)`                      | Returns `ANY` if available, `null` otherwise.                                                                                                                 | `array` for itself, `mixed` for subkeys
+| `_messageId()`                                        | Returns `ANY->message_id` if available, `null` otherwise.                                                                                                     | `?int`
 | `_messageType()`                                      | Returns the current message type if available, `null` otherwise.                                                                                                  | `?string`
 | `_messageTypes(array $exclude = [])`                  | Returns all available message types                                                                                                                               | `array` of strings
-| `_mediaGroupId()`                                     | Returns `message->media_group_id` if available, `null` otherwise                                                                                                  | `?int`
-| `_replyToMessage(?string $keys = null)`               | Returns `message->reply_to_message` if available, `null` otherwise.                                                                                               | `array` for itself, `mixed` for subkeys
+| `_mediaGroupId()`                                     | Returns `ANY->media_group_id` if available, `null` otherwise                                                                                                  | `?int`
+| `_replyToMessage(?string $keys = null)`               | Returns `ANY->reply_to_message` if available, `null` otherwise.                                                                                               | `array` for itself, `mixed` for subkeys
 | `_callbackQuery(?string $keys = null)`                | Returns `callback_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
 | `_callbackQueryId()`                                  | Returns `callback_query->id` if available, `null` otherwise.                                                                                                    | `?int`
 | `_callbackQueryData()`                                | Returns `callback_query->data` if available, `null` otherwise.                                                                                                    | `?string`
@@ -857,29 +859,29 @@ Here is a list of all available helpers in the library:
 | `_chosenInlineResultQuery()`                          | Returns `chosen_inline_result->query` if available, `null` otherwise.                                                                                             | `?string`
 | `_chosenInlineResultInlineMessageId()`                | Returns `chosen_inline_result->inline_message_id` if available, `null` otherwise.                                                                                 | `?string`
 | `_preCheckoutQuery(?string $keys = null)`             | Returns `pre_checkout_query` if available, `null` otherwise.                                                                                                      | `array` for itself, `mixed` for subkeys
-| `_replyMarkup(?string $keys = null)`                  | Returns `message->reply_markup` if available, `null` otherwise                                                                                                    | `array` for itself, `mixed` for subkeys
-| `_text()`                                             | Returns `message->text` if available, `null` otherwise                                                                                                            | `?string`
-| `_photo(?string $keys = null)`                        | Returns the last item (and high quality) of `message->photo` if available, `null` otherwise                                                                       | `array` for itself, `mixed` for subkeys
-| `_photos()`                                           | Returns `message->photo` if available, `null` otherwise                                                                                                           | `?array`
-| `_document(?string $keys = null)`                     | Returns `message->document` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
-| `_sticker(?string $keys = null)`                      | Returns `message->sticker` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
-| `_video(?string $keys = null)`                        | Returns `message->video` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
-| `_videoNote(?string $keys = null)`                    | Returns `message->video_note` if available, `null` otherwise                                                                                                      | `array` for itself, `mixed` for subkeys
-| `_voice(?string $keys = null)`                        | Returns `message->voice` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
-| `_audio(?string $keys = null)`                        | Returns `message->audio` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
-| `_dice(?string $keys = null)`                         | Returns `message->dice` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
-| `_game(?string $keys = null)`                         | Returns `message->game` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
-| `_gamePhoto(?string $keys = null)`                    | Returns the last item (and high quality) of `message->game->photo` if available, `null` otherwise                                                                 | `array` for itself, `mixed` for subkeys
-| `_gamePhotos()`                                       | Returns `message->game->photo` if available, `null` otherwise                                                                                                     | `?array`
-| `_venue(?string $keys = null)`                        | Returns `message->venue` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
-| `_location(?string $keys = null)`                     | Returns `message->location` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
-| `_animation(?string $keys = null)`                    | Returns `message->animation` if available, `null` otherwise                                                                                                       | `array` for itself, `mixed` for subkeys
-| `_caption()`                                          | Returns `message->caption` if available, `null` otherwise                                                                                                         | `?string`
-| `_entities()`                                         | Returns `message->entities` OR `message->caption_entities` if available, `null` otherwise                                                                         | `?array`
-| `_poll(?string $keys = null)`                         | Returns `poll` OR `message->poll` if available, `null` otherwise                                                                                                                     | `array` for itself, `mixed` for subkeys
+| `_replyMarkup(?string $keys = null)`                  | Returns `ANY->reply_markup` if available, `null` otherwise                                                                                                    | `array` for itself, `mixed` for subkeys
+| `_text()`                                             | Returns `ANY->text` if available, `null` otherwise                                                                                                            | `?string`
+| `_photo(?string $keys = null)`                        | Returns the last item (and high quality) of `ANY->photo` if available, `null` otherwise                                                                       | `array` for itself, `mixed` for subkeys
+| `_photos()`                                           | Returns `ANY->photo` if available, `null` otherwise                                                                                                           | `?array`
+| `_document(?string $keys = null)`                     | Returns `ANY->document` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
+| `_sticker(?string $keys = null)`                      | Returns `ANY->sticker` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `_video(?string $keys = null)`                        | Returns `ANY->video` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
+| `_videoNote(?string $keys = null)`                    | Returns `ANY->video_note` if available, `null` otherwise                                                                                                      | `array` for itself, `mixed` for subkeys
+| `_voice(?string $keys = null)`                        | Returns `ANY->voice` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
+| `_audio(?string $keys = null)`                        | Returns `ANY->audio` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
+| `_dice(?string $keys = null)`                         | Returns `ANY->dice` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
+| `_game(?string $keys = null)`                         | Returns `ANY->game` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
+| `_gamePhoto(?string $keys = null)`                    | Returns the last item (and high quality) of `ANY->game->photo` if available, `null` otherwise                                                                 | `array` for itself, `mixed` for subkeys
+| `_gamePhotos()`                                       | Returns `ANY->game->photo` if available, `null` otherwise                                                                                                     | `?array`
+| `_venue(?string $keys = null)`                        | Returns `ANY->venue` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
+| `_location(?string $keys = null)`                     | Returns `ANY->location` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
+| `_animation(?string $keys = null)`                    | Returns `ANY->animation` if available, `null` otherwise                                                                                                       | `array` for itself, `mixed` for subkeys
+| `_caption()`                                          | Returns `ANY->caption` if available, `null` otherwise                                                                                                         | `?string`
+| `_entities()`                                         | Returns `ANY->entities` OR `ANY->caption_entities` if available, `null` otherwise                                                                         | `?array`
+| `_poll(?string $keys = null)`                         | Returns `poll` OR `ANY->poll` if available, `null` otherwise                                                                                                                     | `array` for itself, `mixed` for subkeys
 | `_pollOptions()`                                      | Returns `poll->options` if available, `null` otherwise                                                                                                            | `?array`
 | `_pollAnswer(?string $keys = null)`                   | Returns `poll_answer` if available, `null` otherwise                                                                                                              | `array` for itself, `mixed` for subkeys
-| `_viaBot(?string $keys = null)`                       | Returns `message->via_bot` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `_viaBot(?string $keys = null)`                       | Returns `ANY->via_bot` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
 | `_from(?string $keys = null)`                         | Returns `ANY->from` if available, `null` otherwise                                                                                                                | `array` for itself, `mixed` for subkeys
 | `_user(?string $keys = null)`                         | Returns the current `user` if available, `null` otherwise, alternative to `_from(...)`                                                                             | `array` for itself, `mixed` for subkeys
 | `_userId()`                                           | Returns the current user id (`ANY->from->id`) if available, `null` otherwise                                                                                                                    | `?int`
@@ -893,13 +895,13 @@ Here is a list of all available helpers in the library:
 | `_myChatMember(?string $keys = null)`                 | Returns `my_chat_member` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
 | `_formattingOptions(array $exclude = [])`             | Returns all available formatting options                                                                                                                          | `array` of strings
 | `_fileTypes(array $exclude = [])`                     | Returns all available message types that are files                                                                                                                | `array` of strings
-| `_forwardFrom(?string $keys = null)`                  | Returns `message->forward_from` if available, `null` otherwise                                                                                                    | `array` for itself, `mixed` for subkeys
-| `_forwardFromChat(?string $keys = null)`              | Returns `message->forward_from_chat` if available, `null` otherwise                                                                                               | `array` for itself, `mixed` for subkeys
-| `_forwardDate()`                                      | Returns `message->forward_date` if available, `null` otherwise                                                                                                    | `?int`
-| `_forwardFromMessageId()`                             | Returns `message->forward_from_message_id` if available, `null` otherwise                                                                                         | `?int`
-| `_senderChat(?string $keys = null)`                   | Returns `message->sender_chat` if available, `null` otherwise                                                                                                     | `?array` for itself, `mixed` for subkeys
-| `_authorSignature()`                                  | Returns `MESSAGE->author_signature` if available, `null` otherwise                                                                                                | `?string`
-| `_date()`                                             | Returns `message->date` if available, `null` otherwise                                                                                                            | `?int`
+| `_forwardFrom(?string $keys = null)`                  | Returns `ANY->forward_from` if available, `null` otherwise                                                                                                    | `array` for itself, `mixed` for subkeys
+| `_forwardFromChat(?string $keys = null)`              | Returns `ANY->forward_from_chat` if available, `null` otherwise                                                                                               | `array` for itself, `mixed` for subkeys
+| `_forwardDate()`                                      | Returns `ANY->forward_date` if available, `null` otherwise                                                                                                    | `?int`
+| `_forwardFromMessageId()`                             | Returns `ANY->forward_from_message_id` if available, `null` otherwise                                                                                         | `?int`
+| `_senderChat(?string $keys = null)`                   | Returns `ANY->sender_chat` if available, `null` otherwise                                                                                                     | `?array` for itself, `mixed` for subkeys
+| `_authorSignature()`                                  | Returns `ANY->author_signature` if available, `null` otherwise                                                                                                | `?string`
+| `_date()`                                             | Returns `ANY->date` if available, `null` otherwise                                                                                                            | `?int`
 | `_chatTitle()`                                        | Returns `chat->title`  if available, `null` otherwise                                                                                                             | `?string`
 | `_pollQuestion()`                                     | Returns `poll->question` if available, `null` otherwise                                                                                                           | `?string`
 | `_pollType()`                                         | Returns `poll->type` if available, `null` otherwise                                                                                                               | `?string`
@@ -910,8 +912,8 @@ Here is a list of all available helpers in the library:
 | `_animationWidth()`                                   | Returns `animation->width` if available, `null` otherwise                                                                                                         | `?int`
 | `_animationHeight()`                                  | Returns `animation->height` if available, `null` otherwise                                                                                                        | `?int`
 | `_animationThumb(?string $keys = null)`               | Returns `animation->thumb` if available, `null` otherwise                                                                                                         | `?array` for itself, `mixed` for subkeys
-| `_gameTitle()`                                        | Returns `message->game->title` if available, `null` otherwise                                                                                                     | `?string`
-| `_gameDescription()`                                  | Returns `message->game->description` if available, `null` otherwise                                                                                               | `?string`
+| `_gameTitle()`                                        | Returns `ANY->game->title` if available, `null` otherwise                                                                                                     | `?string`
+| `_gameDescription()`                                  | Returns `ANY->game->description` if available, `null` otherwise                                                                                               | `?string`
 | `_forumTopicCreated(?string $keys = null)`            | Returns `message->forum_topic_created` if available, `null` otherwise                                                                                             | `?array` for itself, `mixed` for subkeys
 | `_forumTopicEdited(?string $keys = null)`             | Returns `message->forum_topic_edited` if available, `null` otherwise                                                                                             | `?array` for itself, `mixed` for subkeys
 | `_forumTopicClosed(?string $keys = null)`             | Returns `message->forum_topic_closed` if available, `null` otherwise                                                                                             | `?array` for itself, `mixed` for subkeys
@@ -932,7 +934,7 @@ Here is a list of all available helpers in the library:
 | `_videoChatEnded(?string $keys = null)`               | Returns `message->video_chat_ended` if available, `null` otherwise                                                                                                | `?array` for itself, `mixed for subkeys`
 | `_videoChatParticipantsInvited(?string $keys = null)` | Returns `message->video_chat_participants_invited` if available, `null` otherwise                                                                                 | `?array` for itself, `mixed for subkeys`
 | `_webAppData(?string $keys = null)`                   | Returns `message->web_app_data` if available, `null` otherwise                                                                                                    | `?array` for itself, `mixed for subkeys`
-| `_replyMarkupInlineKeyboard()`                        | Returns `message->reply_markup->inline_keyboard` if available, `null` otherwise                                                                                   | `?array`
+| `_replyMarkupInlineKeyboard()`                        | Returns `ANY->reply_markup->inline_keyboard` if available, `null` otherwise                                                                                   | `?array`
 | `_isMessage()`                                        | Returns `true` if the current update type was `message`, `false` otherwise                                                                                        | `bool`
 | `_isCallbackQuery()`                                  | Returns `true` if the current update type was `callback_query`, `false` otherwise                                                                                 | `bool`
 | `_isEditedMessage()`                                  | Returns `true` if the current update type was `edited_message`, `false` otherwise                                                                                 | `bool`
@@ -1102,23 +1104,23 @@ A lot of useful constants are available in the library for fast development and 
 
 Here are some of them:
 - **Types Fields**: `FIELD_*` for example: `FIELD_UPDATE_ID`, `FIELD_TITLE`, etc
-- **Method Names**: `METHOD_*` for example: `METHOD_SEND_MESSAGE`, `METHOD_DELETE_MESSAGE`, etc
+- **Method Names**: `METHOD_*` for example: `METHOD_SEND_ANY`, `METHOD_DELETE_ANY`, etc
 - **Methods Parameters**: `PARAM_*` for example: `PARAM_CHAT_ID`, `PARAM_TEXT`, etc
-- **Update Types**: `UPDATE_TYPE_*` for example: `UPDATE_TYPE_MESSAGE`, `UPDATE_TYPE_EDITED_MESSAGE`, etc
-- **Message Types**: `MESSAGE_TYPE_*` for example: `MESSAGE_TYPE_TEXT`, `MESSAGE_TYPE_VIDEO`, etc
-- **Message Entities**: `MESSAGE_ENTITIE_*` for example: `MESSAGE_ENTITIE_MENTION`, `MESSAGE_ENTITIE_HASHTAG`, etc
+- **Update Types**: `UPDATE_TYPE_*` for example: `UPDATE_TYPE_ANY`, `UPDATE_TYPE_EDITED_ANY`, etc
+- **Message Types**: `ANY_TYPE_*` for example: `ANY_TYPE_TEXT`, `ANY_TYPE_VIDEO`, etc
+- **Message Entities**: `ANY_ENTITIE_*` for example: `ANY_ENTITIE_MENTION`, `ANY_ENTITIE_HASHTAG`, etc
 - **Bot Cmmand Scopes**: `BOT_COMMAND_SCOPE_*` for example: `BOT_COMMAND_SCOPE_DEFAULT`, `BOT_COMMAND_SCOPE_ALL_PRIVATE_CHATS`, etc
 - **Chat Member Statuses**: `CHAT_MEMBER_STATUS_*` for example: `CHAT_MEMBER_STATUS_AMINISTRATOR`, `CHAT_MEMBER_STATUS_CREATOR`, etc
 - **Chat Types**: `CHAT_TYPE_*` for example: `CHAT_TYPE_PRIVATE`, `CHAT_TYPE_CHANNEL`, etc
 - **Chat Actions**: `CHAT_ACTION_*` for example: `CHAT_ACTION_TYPING`, `CHAT_ACTION_UPLOAD_PHOTO`, etc
-- **Chat Permissions**: `CHAT_PERMISSION_CAN_*` for example: `CHAT_PERMISSION_CAN_SEND_MESSAGES`, `CHAT_PERMISSION_CAN_SEND_AUDIOS`, etc
+- **Chat Permissions**: `CHAT_PERMISSION_CAN_*` for example: `CHAT_PERMISSION_CAN_SEND_ANYS`, `CHAT_PERMISSION_CAN_SEND_AUDIOS`, etc
 - **Chat Administrator Rights**: `CHAT_ADMINISTRATOR_RIGHT_*` for example: `CHAT_ADMINISTRATOR_RIGHT_IS_ANONYMOUS`, `CHAT_ADMINISTRATOR_RIGHT_CAN_MANAGE_CHAT`, etc
 - **Colors**: `COLOR_RGB_*` | `COLOR_RGB_*_HEX` for example: `COLOR_RGB_BLUE` | `COLOR_RGB_BLUE_HEX`, `COLOR_RGB_YELLOW` | `COLOR_RGB_YELLOW_HEX`, etc
 - **Dice Emojis**: `DICE_EMOJI_*` for example: `DICE_EMOJI_DICE`, `DICE_EMOJI_DART`, etc
 - **Google Place Types**: `GOOGLE_PLACE_TYPE_*` for example: `GOOGLE_PLACE_TYPE_ACCOUNTING`, `GOOGLE_PLACE_TYPE_AIRPORT`, etc
 - **Menu Button Types**: `MENU_BUTTON_TYPE_*` for example: `MENU_BUTTON_TYPE_DEFAULT`, `MENU_BUTTON_TYPE_WEB_APP`, etc
 - **Poll Types**: `POLL_TYPE_*` for example: `POLL_TYPE_REGULAR`, etc
-- **Switch Inline Query Chosen Chats**: `SWITCH_INLINE_QUERY_CHOSEN_CHAT_*` for example: `SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALOW_USER_CHATS`, `SWITCH_INLINE_QUERY_BOT_CHATS`, etc
+- **Switch Inline Query Chosen Chats**: `SWITCH_INLINE_QUERY_CHOSEN_CHAT_*` for example: `SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALLOW_USER_CHATS`, `SWITCH_INLINE_QUERY_CHOSEN_CHAT_ALLOW_BOT_CHATS`, etc
 - **Sticker Formats**: `STICKER_FORMAT_*` for example: `STICKER_FORMAT_STATIC`, `STICKER_FORMAT_ANIMATED`, etc
 - **Sticker Mask Position Points**: `STICKER_MASK_POSITION_POINT_*` for example: `STICKER_MASK_POSITION_POINT_FOREHEAD`, `STICKER_MASK_POSITION_POINT_MOUTH`, etc
 - **Sticker Types**: `STICKER_TYPE_*` for example: `STICKER_TYPE_REGULAR`, `STICKER_TYPE_MASK`, etc
@@ -1143,16 +1145,22 @@ Here is an example:
 use function DevDasher\PTB\configurePTB;
 use function DevDasher\PTB\sendMessage;
 
-configurePTB(
-    token: 'TOKEN',
-    username: 'USERNAME',
-    //...
-);
-
 $input = file_get_contents('php://input');
 $update = json_decode($input, true);
 // Here, you can use the __setUpdate($update) for work with all the available helper functions
-// See the next example
+// See the next example.
+
+configurePTB(
+    token: 'TOKEN',
+    username: 'USERNAME',
+
+    # Here you can pass the $update directly
+    # But in this example we do not do this
+    // update: $udpate,
+
+
+    //...
+);
 
 $updateId = $update['update_id'];
 
@@ -1169,7 +1177,7 @@ if (isset($update['message'])) {
 }
 
 if ($text === '/start') {
-    return sendMessage(text: 'START MESSAGE', chat_id: $chatId);
+    return sendMessage(text: 'START ANY', chat_id: $chatId);
 }
 
 //...
@@ -1186,16 +1194,20 @@ use function DevDasher\PTB\__setUpdate;
 use function DevDasher\PTB\configurePTB;
 use function DevDasher\PTB\sendMessage;
 
-configurePTB(
-    token: 'TOKEN',
-    username: 'USERNAME',
-    //...
-);
-
 $input = file_get_contents('php://input');
 $update = json_decode($input, true);
 
-__setUpdate($update); // Setting the update 
+configurePTB(
+    token: 'TOKEN',
+    username: 'USERNAME',
+
+    # Pass the $update directly
+    update: $udpate,
+
+    //...
+);
+// __setUpdate($update); // Or pass the $update in this way.
+
 
 $text = _text(); // Now, we can use all available helper functions. like this one here.
 $chatId = _chatId();
@@ -1203,7 +1215,7 @@ $chatId = _chatId();
 
 if ($text === '/start') {
     return sendMessage(
-        text: 'START MESSAGE',
+        text: 'START ANY',
         // chat_id: $chatId, // And here, we don't need to pass the $chatId anymore
     );
 }
