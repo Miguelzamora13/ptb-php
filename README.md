@@ -459,6 +459,11 @@ onMessageText('/register', function() { // FIRST 1
 });
 ```
 
+### Preview of the above code:
+
+![conversation-feature-example-01-preview](https://github.com/devdasher/ptb-php/assets/78247242/dd5b3dc2-5379-429e-a02c-f7bfd6458ffb)
+
+
 ### Another And Better Example:
 
 ```php
