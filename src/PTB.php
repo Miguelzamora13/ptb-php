@@ -6747,6 +6747,9 @@ function run(): void {
         __setUpdate($update);
         __processCurrentUpdate();
     } else {
+        if (php_sapi_name() !== 'cli') {
+            die("This script can only be executed from the command line.");
+        }
         echo 'Listening...'.PHP_EOL;
         $offset = 1;
         while (true) {
