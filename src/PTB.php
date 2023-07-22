@@ -5577,6 +5577,10 @@ function _date(): ?int {
     return _message(FIELD_DATE);
 }
 
+function _editDate(): ?int {
+    return _message(FIELD_EDIT_DATE);
+}
+
 function _chatTitle(): ?string {
     return _chat(FIELD_TITLE);
 }
