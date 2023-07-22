@@ -170,7 +170,7 @@ If you are using Composer:
 
 - **Middlewares:** Easily implement middleware functions to intercept and modify incoming requests or outgoing responses.
 - **Handlers:** Define handlers to process different types of events or commands in your Telegram bot.
-- **Conversatons:** Conversations is a feature that allows you to easily receive inputs from users in your Telegram bot. It provides a convenient way to manage and track ongoing conversations with users, making it simpler to implement interactive and dynamic bot interactions. With the Conversations feature, you can create multi-step dialogs, handle user responses, and maintain context throughout the conversation flow.
+- **Conversations:** Conversations is a feature that allows you to easily receive inputs from users in your Telegram bot. It provides a convenient way to manage and track ongoing conversations with users, making it simpler to implement interactive and dynamic bot interactions. With the Conversations feature, you can create multi-step dialogs, handle user responses, and maintain context throughout the conversation flow.
 - **Function Helpers:** Convenient helper functions to simplify common tasks and operations in your bot's logic.
 - **Constant Helpers:** Access predefined constants that represent commonly used values or configurations.
 - **Available all Telegram Bot API Methods:** Utilize the full range of methods provided by the Telegram Bot API to interact with users, send messages, manage chats, and more.
