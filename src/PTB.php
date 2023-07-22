@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.2.8
+ * @version 1.2.9
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -1022,13 +1022,14 @@ function configurePTB(
     bool $long_polling_logger = false,
     ?CacheInterface $cache = null,
     array $update = [],
+    array $global_data = [],
 ): void {
     $GLOBALS[_PACKAGE_NAME] = array_merge([
         'long_polling_logger' => $long_polling_logger,
         'is_webhook' => $is_webhook,
         'cache' => $cache ?? (!__isComposerUsed() ?: new Psr16Cache(new ArrayAdapter())),
         'update' => $update,
-        'global_data' => [],
+        'global_data' => $global_data,
         'middlewares' => [],
         'handlers' => [],
     ], $GLOBALS[_PACKAGE_NAME] ?? []);
@@ -3253,11 +3254,38 @@ function BotCommand(string $command, string $description): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
 
-function BotCommandScope(string $type, null|int|string $chat_id = null, ?int $user_id = null): array {
-    if (!in_array($type, _botCommandScopeTypes())) {
-        throw new Exception("Invalid scope type '{$type}'!");
-    }
-    return __prepareApiTypeFields(get_defined_vars());
+function BotCommandScopeDefault(): array {
+    return __prepareApiTypeFields([FIELD_TYPE => BOT_COMMAND_SCOPE_DEFAULT]);
+}
+
+function BotCommandScopeAllPrivateChats(): array {
+    return __prepareApiTypeFields([FIELD_TYPE => BOT_COMMAND_SCOPE_ALL_PRIVATE_CHATS]);
+}
+
+function BotCommandScopeAllGroupChats(): array {
+    return __prepareApiTypeFields([FIELD_TYPE => BOT_COMMAND_SCOPE_ALL_GROUP_CHATS]);
+}
+
+function BotCommandScopeAllChatAdministrators(): array {
+    return __prepareApiTypeFields([FIELD_TYPE => BOT_COMMAND_SCOPE_ALL_CHAT_ADMINISTRATORS]);
+}
+
+function BotCommandScopeChat(null|int|string $chat_id = null): array {
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_TYPE => BOT_COMMAND_SCOPE_CHAT,
+    ]));
+}
+
+function BotCommandScopeChatAdministrators(null|int|string $chat_id = null): array {
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_TYPE => BOT_COMMAND_SCOPE_CHAT_ADMINISTRATORS,
+    ]));
+}
+
+function BotCommandScopeChatMember(null|int|string $chat_id = null, ?int $user_id = null): array {
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_TYPE => BOT_COMMAND_SCOPE_CHAT_MEMBER,
+    ]));
 }
 
 function BotName(string $name): array {
@@ -3272,31 +3300,26 @@ function BotShortDescription(string $short_description): array {
     return __prepareApiTypeFields(get_defined_vars());
 }
 
-function MenuButton(string $type, ?string $text = null, ?array $web_app = null): array {
-    if (!in_array($type, _menuButtonTypes())) {
-        throw new Exception("Invalid menu button type '{$type}'!");
-    }
-    return __prepareApiTypeFields(get_defined_vars());
+function MenuButtonCommands(): array {
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_TYPE => MENU_BUTTON_TYPE_COMMANDS,
+    ]));
 }
 
-function MenuButtonCommands(string $type): array {
-    return __prepareApiTypeFields(get_defined_vars());
+function MenuButtonWebApp(string $text, array $web_app): array {
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_TYPE => MENU_BUTTON_TYPE_WEB_APP,
+    ]));
 }
 
-function MenuButtonWebApp(string $type, string $text, array $web_app): array {
-    return __prepareApiTypeFields(get_defined_vars());
-}
-
-function MenuButtonDefault(string $type): array {
-    return __prepareApiTypeFields(get_defined_vars());
+function MenuButtonDefault(): array {
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_TYPE => MENU_BUTTON_TYPE_DEFAULT,
+    ]));
 }
 
 function ResponseParameters(?int $migrate_to_chat_id = null, ?int $retry_after = null): array {
     return __prepareApiTypeFields(get_defined_vars());
-}
-
-function InputMedia(array ...$media): array {
-    return [...$media];
 }
 
 function InputMediaAnimation(
@@ -3940,85 +3963,94 @@ function EncryptedCredentials(string $data, string $hash, string $secret): array
 }
 
 function PassportElementErrorDataField(
-    string $source,
     string $type,
     string $field_name,
     string $data_hash,
     string $message,
 ): array {
-    return __prepareApiTypeFields(get_defined_vars());
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_SOURCE => PASSPORT_ELEMENT_ERROR_DATA_FIELD,
+    ]));
 }
 
 function PassportElementErrorFrontSide(
-    string $source,
     string $type,
     string $file_hash,
     string $message,
 ): array {
-    return __prepareApiTypeFields(get_defined_vars());
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_SOURCE => PASSPORT_ELEMENT_ERROR_FRONT_SIDE,
+    ]));
 }
 
 function PassportElementErrorReverseSide(
-    string $source,
     string $type,
     string $file_hash,
     string $message,
 ): array {
-    return __prepareApiTypeFields(get_defined_vars());
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_SOURCE => PASSPORT_ELEMENT_ERROR_REVERSE_SIDE,
+    ]));
 }
 
 function PassportElementErrorSelfie(
-    string $source,
     string $type,
     string $file_hash,
     string $message,
 ): array {
-    return __prepareApiTypeFields(get_defined_vars());
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_SOURCE => PASSPORT_ELEMENT_ERROR_SELFIE,
+    ]));
 }
 
 function PassportElementErrorFile(
-    string $source,
     string $type,
     string $file_hash,
     string $message,
 ): array {
-    return __prepareApiTypeFields(get_defined_vars());
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_SOURCE => PASSPORT_ELEMENT_ERROR_FILE,
+    ]));
 }
 
 function PassportElementErrorFiles(
-    string $source,
     string $type,
     array $file_hashes,
     string $message,
 ): array {
-    return __prepareApiTypeFields(get_defined_vars());
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_SOURCE => PASSPORT_ELEMENT_ERROR_FILES,
+    ]));
 }
 
 function PassportElementErrorTranslationFile(
-    string $source,
     string $type,
     string $file_hash,
     string $message,
 ): array {
-    return __prepareApiTypeFields(get_defined_vars());
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_SOURCE => PASSPORT_ELEMENT_ERROR_TRANSLATION_FILE,
+    ]));
 }
 
 function PassportElementErrorTranslationFiles(
-    string $source,
     string $type,
     array $file_hashes,
     string $message,
 ): array {
-    return __prepareApiTypeFields(get_defined_vars());
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_SOURCE => PASSPORT_ELEMENT_ERROR_TRANSLATION_FILES,
+    ]));
 }
 
 function PassportElementErrorUnspecified(
-    string $source,
     string $type,
     array $element_hash,
     string $message,
 ): array {
-    return __prepareApiTypeFields(get_defined_vars());
+    return __prepareApiTypeFields(array_merge(get_defined_vars(), [
+        FIELD_SOURCE => PASSPORT_ELEMENT_ERROR_UNSPECIFIED,
+    ]));
 }
 
 function Game(
@@ -6271,6 +6303,12 @@ function __unserializeClosure(string $serialized): Closure {
 }
 
 function __autoFillApiTypeFields(array $fields) {
+    if (key_exists(PARAM_CHAT_ID, $fields) && !$fields[PARAM_CHAT_ID]) {
+        $fields[PARAM_CHAT_ID] = _chatId() ?? _userId();
+    }
+    if (key_exists(PARAM_USER_ID, $fields) && !$fields[PARAM_USER_ID]) {
+        $fields[PARAM_USER_ID] = _userId();
+    }
     __convertToFileCURL($fields, FIELD_THUMBNAIL);
     __convertToFileCURL($fields, FIELD_STICKER);
     return $fields;

@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.9] - 2023-07-22
+
+- Added new parameters to the `configurePTB(...)` function:
+    - `array $update = []`
+    - `array $global_data = []`
+- Added new function `BotCommandScopeDefault()`
+- Added new function `BotCommandScopeAllPrivateChats()`
+- Added new function `BotCommandScopeAllGroupChats()`
+- Added new function `BotCommandScopeAllChatAdministrators()`
+- Added new function `BotCommandScopeChat(...)`
+- Added new function `BotCommandScopeChatAdministrators(...)`
+- Added new function `BotCommandScopeChatMember(...)`
+- Removed function `BotCommandScope(...)`
+- Removed function `MenuButton(...)`
+- Removed function `InputMedia(...)`
+- Removed parameter `string $type` from below functions for more convenience:
+    - `MenuButtonCommands()`
+    - `MenuButtonWebApp(...)`
+    - `MenuButtonDefault()`
+- Removed parameter `string $source` from below functions for more convenience:
+    - `PassportElementErrorDataField(...)`
+    - `PassportElementErrorFrontSide(...)`
+    - `PassportElementErrorReverseSide(...)`
+    - `PassportElementErrorSelfie(...)`
+    - `PassportElementErrorFile(...)`
+    - `PassportElementErrorFiles(...)`
+    - `PassportElementErrorTranslationFile(...)`
+    - `PassportElementErrorTranslationFiles(...)`
+    - `PassportElementErrorUnspecified(...)`
+
 ## [1.2.8] - 2023-07-22
 
 - Added new `_input(...)` helper to get inputs from users
