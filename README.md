@@ -16,7 +16,7 @@
     - 📥 [Downloading Files](#downloading-files)
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
     - 🤝 [Middlewares](#middlewares) (Soon...)
-    - 💬 [Conversations](#conversations) (Soon...)
+    - 💬 [Conversations](#conversations)
     - 🎮 [Keyboards](#keyboards)
         - [ReplyKeyboardMarkup](#reply-keyboard-markup)
         - [ReplyKeyboardRemove](#reply-keyboard-remove) (Soon...)
@@ -369,7 +369,166 @@ Soon...
 
 ## 💬 Conversations <a name="conversations"></a>
 
-Soon...
+The Conversations feature enables seamless interaction between users and the bot by facilitating the retrieval of input values. It allows the bot to engage in dynamic and context-aware conversations with users, capturing their responses and providing personalized and tailored experiences. By utilizing Conversations, developers can effortlessly gather user input, process it, and deliver relevant and meaningful responses, enhancing the overall user experience and enabling more interactive and engaging interactions within the Telegram bot ecosystem.
+
+To use this feature, you need to use Composer and it requires a `Symfony/Cache` adapter, such as `FilesystemAdapter`, `ApcuAdapter`, or others. By default, the library utilizes the `ArrayAdapter`, which is non-persistent and suitable for `LongPolling` mode and testing purposes.
+
+For more information about adapters, check out [available cache adapters](https://symfony.com/doc/current/components/cache.html#available-cache-adapters) in the main documentation.
+
+If you wish to use other adapters like `ApcuAdapter`, `RedisAdapter`, `MemcachedAdapter` or others, you will need to install the necessary tools or extensions. Also these adapters are more suitable for Production.
+
+We can't explain much about it and leave it up to you how to install related tools and extensions.
+
+Here we examine an example:
+
+```php
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Psr16Cache;
+
+use function DevDasher\PTB\_text;
+use function DevDasher\PTB\_nextStepOfConversation;
+use function DevDasher\PTB\_setConversationData;
+use function DevDasher\PTB\_endConversation;
+use function DevDasher\PTB\configurePTB;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+
+configurePTB(
+    token: 'TOKEN',
+    username: 'USERNAME',
+
+    # As mentioned, you need to use Composer and install requried packages for this.
+    # Here we use the FilesystemAdapter:
+    cache: new Psr16Cache(new FilesystemAdapter()),
+
+    //...
+);
+
+# Here we examine a scenario of receiving input from the user in three steps
+onMessageText('/register', function() { // FIRST STEP
+
+    # When user send the /register command...
+    # We ask the user's name (This is the first step)
+    sendMessage(text: 'Send your name:');
+
+
+    # This helper is to determine the next (second) step.
+    # This will be executed later, when the user submits the second input
+    _nextStepOfConversation(closure: function() { // SECOND STEP
+
+        # This will be the user's answer to the first question that we asked him for his name
+        $text = _text();
+
+        // Here you can put a validation for the $text variable to make sure that the user has sent a text to the bot.
+
+        # Store user's name into a varaiable
+        $name = $text;
+
+        # With this helper, we store the user's input in the cache (as conversation data)
+        _setConversationData('name', $name);
+        # Note that this value will be passed as a parameter to the function you define for the next steps (third step...)
+
+        # Now, This time we ask the user's age (We are still in the second step)
+        sendMessage('Send your age:');
+
+        # Again, since we need to get another value from the user,
+        # We define the next step (third step) here:
+        _nextStepOfConversation(
+            // Here, we get the name we saved in the cache automatically
+            //       in the function parameter. The _setConversationData(...) helper.
+            closure: function($name) { // THIRD AND FINAL STEP
+
+                # Storing the text value in a variable:
+                $text = _text();
+
+                // Some input validation for the $text variable goes here...
+
+                # If the input value is correct, we store the user's age in another variable
+                $age = $text;
+
+                # And we thank the user for his cooperation :)
+                sendMessage(text: "Thank you! Your registration was successful!\n\nYour Name: {$name}\nYour Age: {$age}");
+
+                # And with this helper, we end the conversation.
+                # Remember to call this function to end the conversation!
+                # Otherwise, this step will be executed again with every user request!
+                _endConversation();
+            }
+        );
+    });
+});
+```
+
+### Another And Better Example:
+
+```php
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Psr16Cache;
+
+use function DevDasher\PTB\_text;
+use function DevDasher\PTB\_messageId;
+use function DevDasher\PTB\_input;
+use function DevDasher\PTB\_setConversationData;
+use function DevDasher\PTB\_endConversation;
+use function DevDasher\PTB\configurePTB;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+
+configurePTB(
+    token: 'TOKEN',
+    username: 'USERNAME',
+
+    cache: new Psr16Cache(new FilesystemAdapter()),
+
+    //...
+);
+
+onMessageText('/register', function() { // FIRST STEP
+
+    # Alternative to the _nextStepOfConversation(...)
+    _input(
+
+        # This text will send to the user with sendMessage method
+        prompt: 'Send your name:',
+
+        # Or you can pass a closure and send a message in your own way:
+        // prompt: fn() => sendMessage(
+        //     text: 'Send your name:',
+        //     reply_to_message_id: _messageId(),
+        // ),
+
+        next_step: function() {  // SECOND STEP
+            $text = _text();
+            // ...
+            // ...
+            $name = $text;
+            
+            _setConversationData('name', $name);
+        
+            _input(
+                prompt: 'Send your age:',
+
+                next_step: function($name) { // THIRD AND FINAL STEP
+                    $text = _text();
+                    // ...
+                    // ...
+                    $age = $text;
+
+                    sendMessage(text: "Thank you!\n\nName: {$name}\nAge: {$age}");
+
+                    _endConversation();
+                },
+            );
+
+        }
+        
+    );
+
+});
+```
+```
+
+
 
 
 ## 🎮 Keyboards <a name="keyboards"></a>
