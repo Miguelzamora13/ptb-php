@@ -405,7 +405,7 @@ configurePTB(
 );
 
 # Here we examine a scenario of receiving input from the user in three steps
-onMessageText('/register', function() { // FIRST STEP
+onMessageText('/register', function() { // FIRST 1
 
     # When user send the /register command...
     # We ask the user's name (This is the first step)
@@ -435,7 +435,7 @@ onMessageText('/register', function() { // FIRST STEP
         # We define the next step (third step) here:
         _nextStepOfConversation(
             // Here, we get the name we saved in the cache automatically
-            //       in the function parameter. The _setConversationData(...) helper.
+            //       in the function parameter. Related to the _setConversationData(...) helper.
             closure: function($name) { // THIRD AND FINAL STEP
 
                 # Storing the text value in a variable:
@@ -488,7 +488,7 @@ onMessageText('/register', function() { // FIRST STEP
     # Alternative to the _nextStepOfConversation(...)
     _input(
 
-        # This text will send to the user with sendMessage method
+        # This text will be send to the user with sendMessage method
         prompt: 'Send your name:',
 
         # Or you can pass a closure and send a message in your own way:
@@ -514,7 +514,7 @@ onMessageText('/register', function() { // FIRST STEP
                     // ...
                     $age = $text;
 
-                    sendMessage(text: "Thank you!\n\nName: {$name}\nAge: {$age}");
+                    sendMessage(text: "Thank you! Your registration was successful!\n\nYour Name: {$name}\nYour Age: {$age}");
 
                     _endConversation();
                 },
