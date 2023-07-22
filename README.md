@@ -531,10 +531,6 @@ onMessageText('/register', function() { // FIRST STEP
 
 });
 ```
-```
-
-
-
 
 ## 🎮 Keyboards <a name="keyboards"></a>
 
