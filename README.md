@@ -163,9 +163,9 @@ It is important to note that the performance difference between procedural and O
 
 # 📚 Documentation <a name="documentation"></a>
 
-This library is constantly being updated and currently has many features.  
+This library is continuously updated and offers a wide range of features.
 
-The list below is only a part of the library's facilities and soon this part of the document will be more complete. Below you can see the most important things:
+The following list represents just a fraction of the library's capabilities, and we are actively working expand this documentation. Here are some of the key highlights:
 
 
 ## ⚙️ Configuration <a name="configuration"></a>
