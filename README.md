@@ -833,7 +833,7 @@ Helpers refer to a set of utility functions (or constants...) that are designed 
 
 Here is a list of all available helpers in the library:
 
-✍️ **Note:** In the table below, in the `Description` column, the term `ANY` (with capital letters) refers to any update, like `message`, `edited_message`, `channel_post`, `edited_channel_post`, `callback_query`, etc.
+✍️ **Note:** In the table below, in the `Description` column, the term `ANY` (with capital letters) refers to any update, like `message`, `edited_message`, `channel_post`, `edited_channel_post` and in some cases `callback_query`. etc.
 
 | Helper                                                | Description                                                                                                                                                       | Return Type
 |-------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------
