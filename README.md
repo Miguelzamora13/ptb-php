@@ -155,25 +155,25 @@ Or you can include the PTB.php file on your PHP code directly
 
 # 📐 Requirements <a name="requirements"></a>
 
-- PHP Version: 8.* or higher
-- PHP Extension: [cURL](https://www.php.net/manual/en/book.curl.php)
+- **PHP Version:** 8.* or higher
+- **PHP Extension:** [cURL](https://www.php.net/manual/en/book.curl.php)
 
 # 🕸️ Dependencies <a name="dependencies"></a>
 
 If you are using Composer:
 
-- [symfont/cache](https://github.com/symfony/cache): ^6.3
-- [psr/simplecache](https://github.com/php-fig/simple-cache): ^3.0
-- [laravel/serializableclosure](https://github.com/laravel/serializable-closure): ^1.3
+- **[symfont/cache](https://github.com/symfony/cache)**: ^6.3
+- **[psr/simplecache](https://github.com/php-fig/simple-cache)**: ^3.0
+- **[laravel/serializableclosure](https://github.com/laravel/serializable-closure)**: ^1.3
 
 # 💪 Features <a name="featrures"></a>
 
-- **Middlewares**: Easily implement middleware functions to intercept and modify incoming requests or outgoing responses.
-- **Handlers**: Define handlers to process different types of events or commands in your Telegram bot.
-- **Function Helpers**: Convenient helper functions to simplify common tasks and operations in your bot's logic.
-- **Constant Helpers**: Access predefined constants that represent commonly used values or configurations.
-- **Available all Telegram Bot API Methods**: Utilize the full range of methods provided by the Telegram Bot API to interact with users, send messages, manage chats, and more.
-- **Available all Telegram Bot API Types**: Access the complete set of data types defined by the Telegram Bot API for parsing and working with incoming updates and outgoing requests.
+- **Middlewares:** Easily implement middleware functions to intercept and modify incoming requests or outgoing responses.
+- **Handlers:** Define handlers to process different types of events or commands in your Telegram bot.
+- **Function Helpers:** Convenient helper functions to simplify common tasks and operations in your bot's logic.
+- **Constant Helpers:** Access predefined constants that represent commonly used values or configurations.
+- **Available all Telegram Bot API Methods:** Utilize the full range of methods provided by the Telegram Bot API to interact with users, send messages, manage chats, and more.
+- **Available all Telegram Bot API Types:** Access the complete set of data types defined by the Telegram Bot API for parsing and working with incoming updates and outgoing requests.
 
 These features provide a comprehensive toolkit for building powerful and flexible Telegram bots.
 
