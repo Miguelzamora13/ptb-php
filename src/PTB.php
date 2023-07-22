@@ -1021,12 +1021,13 @@ function configurePTB(
     bool $is_webhook = false,
     bool $long_polling_logger = false,
     ?CacheInterface $cache = null,
+    array $update = [],
 ): void {
     $GLOBALS[_PACKAGE_NAME] = array_merge([
         'long_polling_logger' => $long_polling_logger,
         'is_webhook' => $is_webhook,
         'cache' => $cache ?? (!__isComposerUsed() ?: new Psr16Cache(new ArrayAdapter())),
-        'update' => [],
+        'update' => $update,
         'global_data' => [],
         'middlewares' => [],
         'handlers' => [],
