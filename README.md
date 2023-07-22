@@ -31,6 +31,7 @@
     - ♟ [Usage Without Handlers](#usage-without-handlers)
         - [Webhook Implementation](#without-handlers-webhook-implementation)
         - [LongPolling Implementation](#without-handlers-longpolling-implementation)
+    - 🚀 [Performance](#performance) (Not complete yet...)
 - 🐞 [Bug Report](#bug-report)
 - ❤️ [Support Us!](#support-us)
 - 📝 [Changelog](#changelog)
@@ -1207,6 +1208,14 @@ foreach ($updates as $update) {
 //...
 //...
 ```
+
+# 🚀 Performance <a name="performance"></a>
+
+The performance of a Telegram bot is crucial for providing a seamless user experience. Response speed plays a vital role in ensuring timely interactions and satisfying user expectations. To improve the performance of a Telegram bot built with PHP, several methods can be employed. Firstly, optimizing code efficiency by minimizing unnecessary computations and database queries can significantly enhance response speed. Caching frequently accessed data or utilizing in-memory caching systems like Redis can also boost performance. Additionally, employing asynchronous processing techniques, such using queues or event-driven architectures, can help handle concurrent requests more efficiently. Utilizing a scalable infrastructure with load balancing and horizontal scaling can further improve performance by distributing the workload across multiple servers. Regular monitoring and profiling of the bot's performance can identify bottlenecks and areas for optimization, allowing for continuous improvement.
+
+In the future, we will provide you with additional explanations and training in this particular field to ensure that you can achieve optimal performance with our library, PTB-PHP.
+
+More details soon...
 
 # 🐞 Bug Report <a name="bug-report"></a>
 We strive to provide a robust and reliable library, but bugs may still occur. If you encounter any issues or unexpected behavior while using our library, we appreciate your help in reporting them.
