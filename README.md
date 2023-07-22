@@ -19,7 +19,7 @@
     - 💬 [Conversations](#conversations)
     - 🎮 [Keyboards](#keyboards)
         - [ReplyKeyboardMarkup](#reply-keyboard-markup)
-        - [ReplyKeyboardRemove](#reply-keyboard-remove) (Soon...)
+        - [ReplyKeyboardRemove](#reply-keyboard-remove)
         - [InlineKeyboardMarkup](#inline-keyboard-markup)
         - [ForceReply](#force-reply) (Soon...)
     - 🧩 [Handlers](#handlers)
@@ -568,7 +568,40 @@ onMessageText(pattern: 'Say Bye!', callable: fn() => sendMessage('Bye!'));
 
 ### ReplyKeyboardRemove <a name="reply-keyboard-remove"></a>
 
-Soon...
+Use `ReplyKeyboardRemove(...)` to remove an existing `ReplyMarkupKeyboard`:
+
+```php
+use function DevDasher\PTB\_row;
+use function DevDasher\PTB\ReplyKeyboardMarkup;
+use function DevDasher\PTB\KeyboardButton;
+use function DevDasher\PTB\ReplyKeyboardRemove;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+
+onMessageText('/keyboard', function() {
+    sendMessage(
+        text: 'START',
+        reply_markup: ReplyKeyboardMarkup(
+            keyboard: [
+                _row(KeyboardButton(text: 'Button 1'), KeyboardButton(text: 'Button 2'))
+            ],
+            resize_keyboard: true,
+        ),
+    );
+});
+
+onMessageText('/remove_keyboard', function() {
+    sendMessage(
+        text: 'Keyboard Removed!',
+        reply_markup: ReplyKeyboardRemove(/* ... */),
+    );
+});
+```
+
+#### Preview of the above code:
+
+https://github.com/devdasher/ptb-php/assets/78247242/efca3898-4c71-409a-a216-9500ef5be7f6
+
 
 ### InlineKeyboardMarkup <a name="inline-keyboard-markup"></a>
 
