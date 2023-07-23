@@ -57,7 +57,7 @@ use function DevDasher\PTB\onMessageText;
 use function DevDasher\PTB\run;
 use function DevDasher\PTB\sendMessage;
 
-// require(__DIR__.'/vendor/autoload.php'); // You can use Composer's autolaod
+// require(__DIR__.'/vendor/autoload.php'); // You can use Composer's autolaoder
 require(__DIR__.'/path/to/PTB.php'); // Or require the PTB.php file directly
 
 /*
@@ -244,7 +244,7 @@ onMessageText(pattern: '/photo', callable: function() {
         # Or pass a URL:
         // photo: 'https://example.com/path/to/photo.jpg',
 
-        caption: 'Here is your photo caption!',
+        caption: 'This is your photo caption!',
 
         //...
     );
