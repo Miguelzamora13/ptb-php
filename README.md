@@ -1132,7 +1132,7 @@ Here are some of them:
 
 And much more! ... check the source code yourself :)
 
-# ♟ Usage Without Handlers <a name="usage-without-handlers"></a>
+## ♟ Usage Without Handlers <a name="usage-without-handlers"></a>
 
 If you are not comfortable with existing handlers and this type of coding, there is no problem. You can choose your own code style.
 
@@ -1140,7 +1140,7 @@ You just need to pass your bot token and username to the `configurePTB(...)` fun
 
 Here is an example:
 
-## Webhook implementation: <a name="without-handlers-webhook-implementation"></a>
+### Webhook implementation: <a name="without-handlers-webhook-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
@@ -1186,7 +1186,7 @@ if ($text === '/start') {
 //...
 ```
 
-### Another example:
+#### Another example:
 
 ```php
 use function DevDasher\PTB\_text;
@@ -1227,7 +1227,7 @@ if ($text === '/start') {
 
 ```
 
-## LongPolling implementation: <a name="without-handlers-longpolling-implementation"></a>
+### LongPolling implementation: <a name="without-handlers-longpolling-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
@@ -1250,7 +1250,7 @@ foreach ($updates as $update) {
 //...
 ```
 
-# 🚀 Performance <a name="performance"></a>
+## 🚀 Performance <a name="performance"></a>
 
 The performance of a Telegram bot is crucial for providing a seamless user experience. Response speed plays a vital role in ensuring timely interactions and satisfying user expectations. To improve the performance of a Telegram bot built with PHP, several methods can be employed. Firstly, optimizing code efficiency by minimizing unnecessary computations and database queries can significantly enhance response speed. Caching frequently accessed data or utilizing in-memory caching systems like Redis can also boost performance. Additionally, employing asynchronous processing techniques, such using queues or event-driven architectures, can help handle concurrent requests more efficiently. Utilizing a scalable infrastructure with load balancing and horizontal scaling can further improve performance by distributing the workload across multiple servers. Regular monitoring and profiling of the bot's performance can identify bottlenecks and areas for optimization, allowing for continuous improvement.
 
