@@ -18,7 +18,9 @@
     - 📤 [Uploading Files](#uploading-files)
     - 📥 [Downloading Files](#downloading-files)
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
-    - 🤝 [Middlewares](#middlewares) (Soon...)
+    - 🤝 [Middlewares](#middlewares)
+        - Global Middlewares
+        - Local Middlewares
     - 💬 [Conversations](#conversations)
     - 🎮 [Keyboards](#keyboards)
         - [ReplyKeyboardMarkup](#reply-keyboard-markup)
@@ -392,7 +394,7 @@ onMessage(callable: function() {
 //...
 ```
 
-## 🤝 Middlewares  <a name="middlewares"></a>
+## 🤝 Middlewares <a name="middlewares"></a>
 
 Middleware is a layer of code that intercepts and processes requests and responses in web applications. It provides a modular and reusable way to handle common tasks such as authentication, logging, error handling, and data validation. Each middleware component inspects and modifies the request and response objects and can either terminate the cycle or pass control to the next middleware. By promoting separation of concerns and modularity, middleware allows for easy customization and maintenance of web applications. It is widely used enhance functionality, security, and maintainability.
 
@@ -401,7 +403,7 @@ In PTB-PHP there are two types of middlewares:
 - Global Middlewares
 - Local Middlewares
 
-### Global Middlewares
+### Global Middlewares <a name="global-middlewares"></a>
 
 These middlewares always executes before handlers automatically
 
@@ -505,7 +507,7 @@ onMessageText(
 );
 ```
 
-### Local Middlewares
+### Local Middlewares <a name="local-middlewares"></a>
 
 It is possible to define a separate middleware for each handler:
 
@@ -543,7 +545,111 @@ onMessageText(
 ### Real World Example
 
 ```php
-//...
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Psr16Cache;
+
+use function DevDasher\PTB\_getGlobalData;
+use function DevDasher\PTB\_messageId;
+use function DevDasher\PTB\_row;
+use function DevDasher\PTB\_setGlobalData;
+use function DevDasher\PTB\_user;
+use function DevDasher\PTB\answerCallbackQuery;
+use function DevDasher\PTB\configurePTB;
+use function DevDasher\PTB\fallback;
+use function DevDasher\PTB\InlineKeyboardButton;
+use function DevDasher\PTB\InlineKeyboardMarkup;
+use function DevDasher\PTB\middlewares;
+use function DevDasher\PTB\onCallbackQueryData;
+use function DevDasher\PTB\onException;
+use function DevDasher\PTB\onMessage;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\run;
+use function DevDasher\PTB\sendMessage;
+
+require(__DIR__.'/../vendor/autoload.php');
+
+configurePTB(
+    token: 'TOKEN',
+    username: 'USERNAME',
+
+    cache: new Psr16Cache(new FilesystemAdapter()),
+    //...
+);
+
+middlewares([
+    'CollectUserMiddleware' => function() {
+        # Some code here to save user info in the database
+        // $user = save_user_info_in_database(/*...*/);
+        //...
+        //...
+        //...
+
+        # Here we assume that we have saved the user information in the previous codes
+        #   and here we define only an array of it:
+        $user = [
+            'id' => 1, // ID in the database
+            'user_id' => _user('id'),
+            'first_name' => _user('first_name'),
+            'username' => _user('username'),
+            'is_banned' => false,
+            'is_admin' => true,
+            //...
+        ];
+        _setGlobalData('user', $user); // A helper, to save some data in global state
+        // Means that we can access to this user info with the _getGlobalData(...) in all handlers
+    },
+
+    'CheckUserStatus' => function() {
+        $user = _getGlobalData('user'); # Get user data from global state
+        if (isset($user['is_banned']) && $user['is_banned']) {
+            throw new Exception('You are banned from bot!');
+        }
+    }
+]);
+
+onMessageText(pattern: '/start', callable: function() {
+    $user = _getGlobalData('user'); 
+    sendMessage(text: "Welcome {$user['first_name']}");
+});
+
+onMessageText(
+    pattern: '/admin',
+    callable: function() {
+        sendMessage(
+            text: "Welcome to the admins panel:",
+            reply_markup: InlineKeyboardMarkup(inline_keyboard: [
+                _row(InlineKeyboardButton(text: 'Users', callback_data: 'panel/users')),
+                _row(InlineKeyboardButton(text: 'Stats', callback_data: 'panel/stats')),
+            ]),
+        );
+    },
+    middlewares: [
+        function() { // Check if user is admin
+            $user = _getGlobalData('user'); 
+            if (!isset($user['is_admin']) || !$user['is_admin']) {
+                throw new Exception('You are not the admin of the bot!');
+            }
+        }
+    ]
+);
+
+onCallbackQueryData(pattern: 'panel/users', callable: function() {
+    answerCallbackQuery(text: 'Users!', show_alert: true);
+});
+
+onCallbackQueryData(pattern: 'panel/stats', callable: function() {
+    answerCallbackQuery(text: 'Stats!', show_alert: true);
+});
+
+fallback(callable: function() {
+    sendMessage(text: 'Unknown command!', reply_to_message_id: _messageId());
+});
+
+onException(callable: function(Throwable $e) {
+    sendMessage(text: $e->getMessage());
+});
+
+run();
 ```
 
 
