@@ -20,8 +20,8 @@
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
     - 🤝 [Middlewares](#middlewares)
         - 🔹 [Global Middlewares](#global-middlewares)
-            - 🔸 [Define Multiple Middlewares](#define-multiple-middlewares)
-            - 🔸 [Skip Global Middlewares](#skip-multiple-middlewares)
+            - 🔸 [Define Multiple Middlewares](#defining-multiple-middlewares)
+            - 🔸 [Skip Global Middlewares](#skipping-multiple-middlewares)
         - 🔹 [Local Middlewares](#local-middlewares)
         - 🔹 [Real World Example](#middlewares-real-world-example)
     - 💬 [Conversations](#conversations)
@@ -602,12 +602,14 @@ middlewares([
         // Means that we can access to this user info with the _getGlobalData(...) in all handlers
     },
 
-    'CheckUserStatus' => function() {
+    'CheckUserStatusMiddleware' => function() {
         $user = _getGlobalData('user'); # Get user data from global state
         if (isset($user['is_banned']) && $user['is_banned']) {
             throw new Exception('You are banned from bot!');
         }
-    }
+    },
+
+    //...
 ]);
 
 onMessageText(pattern: '/start', callable: function() {
