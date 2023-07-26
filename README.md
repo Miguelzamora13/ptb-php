@@ -19,8 +19,8 @@
     - 📥 [Downloading Files](#downloading-files)
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
     - 🤝 [Middlewares](#middlewares)
-        - Global Middlewares
-        - Local Middlewares
+        - [Global Middlewares](#global-middlewares)
+        - [Local Middlewares](#local-middlewares)
     - 💬 [Conversations](#conversations)
     - 🎮 [Keyboards](#keyboards)
         - [ReplyKeyboardMarkup](#reply-keyboard-markup)
