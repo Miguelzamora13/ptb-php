@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.3.1
+ * @version 1.3.2
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -6562,7 +6562,8 @@ function __fireHandlers(array $handlers) {
         if (isset($result) && $result === false) {
             if (isset($updateHandlers[_FIELD_CALLABLE])) {
                 return __fireHandler($updateHandlers);
-            } else {
+            }
+            if (isset($updateHandlers[_FIELD_FALLBACK])) {
                 return __fireHandler($updateHandlers[_FIELD_FALLBACK]);
             }
         }
@@ -6571,10 +6572,12 @@ function __fireHandlers(array $handlers) {
         }
         
     } catch (Throwable $e) {
-        $result = __fireHandler($handlers[_FIELD_EXCEPTION], [$e], [
-            'skip_global_middlewares' => true,
-        ]);
-        if ($result === false) {
+        if (isset($handlers[_FIELD_EXCEPTION])) {
+            $result = __fireHandler($handlers[_FIELD_EXCEPTION], [$e], [
+                'skip_global_middlewares' => true,
+            ]);
+        }
+        if (!isset($result) || $result === false) {
             throw $e;
         }
     }
