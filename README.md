@@ -57,7 +57,7 @@ use function DevDasher\PTB\onMessageText;
 use function DevDasher\PTB\run;
 use function DevDasher\PTB\sendMessage;
 
-// require(__DIR__.'/vendor/autoload.php'); // You can use Composer's autolaod
+// require(__DIR__.'/vendor/autoload.php'); // You can use Composer's autolaoder
 require(__DIR__.'/path/to/PTB.php'); // Or require the PTB.php file directly
 
 /*
@@ -244,7 +244,7 @@ onMessageText(pattern: '/photo', callable: function() {
         # Or pass a URL:
         // photo: 'https://example.com/path/to/photo.jpg',
 
-        caption: 'Here is your photo caption!',
+        caption: 'This is your photo caption!',
 
         //...
     );
@@ -1291,7 +1291,7 @@ You just need to pass your bot token and username to the `configurePTB(...)` fun
 
 Here is an example:
 
-## Webhook implementation: <a name="without-handlers-webhook-implementation"></a>
+### Webhook implementation: <a name="without-handlers-webhook-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
@@ -1337,7 +1337,7 @@ if ($text === '/start') {
 //...
 ```
 
-### Another example:
+#### Another example:
 
 ```php
 use function DevDasher\PTB\_text;
@@ -1378,7 +1378,7 @@ if ($text === '/start') {
 
 ```
 
-## LongPolling implementation: <a name="without-handlers-longpolling-implementation"></a>
+### LongPolling implementation: <a name="without-handlers-longpolling-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
