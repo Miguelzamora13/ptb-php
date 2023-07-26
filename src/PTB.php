@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.3.0
+ * @version 1.3.1
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -6394,7 +6394,7 @@ function __makeApiRequest(string $method = null, array $parameters = [], array $
     if (isset($response['ok']) && !$response['ok']) {
         $handlers = __handlers();
         if (isset($handlers[_FIELD_API_ERROR])) {
-            return $handlers[_FIELD_API_ERROR]($response);
+            return __fireHandler($handlers[_FIELD_API_ERROR], [$response]);
         }
     }
     return $response;
@@ -6529,7 +6529,6 @@ function __fireHandlers(array $handlers) {
     $updateType = _updateType();
     try {
         if (isset($handlers[$updateType]) && $updateHandlers = $handlers[$updateType]) {
-            echo '1'.PHP_EOL;
             if (
                 in_array($updateType, [
                     UPDATE_TYPE_MESSAGE,
@@ -6539,11 +6538,7 @@ function __fireHandlers(array $handlers) {
                 ])
                 && isset($updateHandlers[$messageType = _messageType()])
             ) {
-                echo '2'.PHP_EOL;
-
                 if (_isText()) {
-                    echo '3'.PHP_EOL;
-
                     $result = __fireTextHandlers($updateHandlers[FIELD_TEXT], _text());
                     
                 } elseif (in_array($messageType, _messageTypes())) {
@@ -6565,21 +6560,32 @@ function __fireHandlers(array $handlers) {
             }
         }
         if (isset($result) && $result === false) {
-            return __fireHandler($updateHandlers);
+            if (isset($updateHandlers[_FIELD_CALLABLE])) {
+                return __fireHandler($updateHandlers);
+            } else {
+                return __fireHandler($updateHandlers[_FIELD_FALLBACK]);
+            }
+        }
+        if (isset($handlers[_FIELD_FALLBACK])) {
+            return __fireHandler($handlers[_FIELD_FALLBACK]);
         }
         
     } catch (Throwable $e) {
-        if (isset($handlers[_FIELD_EXCEPTION][_FIELD_CALLABLE])) {
-            return call_user_func($handlers[_FIELD_EXCEPTION][_FIELD_CALLABLE], $e);
+        $result = __fireHandler($handlers[_FIELD_EXCEPTION], [$e], [
+            'skip_global_middlewares' => true,
+        ]);
+        if ($result === false) {
+            throw $e;
         }
-        throw $e;
     }
 }
 
-function __fireHandler(array $handler, array $parameters = []): bool {
-    __fireMiddlewares(__middlewares(), $handler[_FIELD_SKIP_MIDDLEWARES] ?? []);
+function __fireHandler(array $handler, array $parameters = [], array $options = []): bool {
+    if (!isset($options['skip_global_middlewares']) || !$options['skip_global_middlewares']) {
+        __fireMiddlewares(__middlewares(), $handler[_FIELD_SKIP_MIDDLEWARES] ?? []);
+    }
     __fireMiddlewares($handler[_FIELD_MIDDLEWARES] ?? []);
-    call_user_func($handler[_FIELD_CALLABLE], $parameters);
+    call_user_func($handler[_FIELD_CALLABLE], ...$parameters);
     return true;
 }
 
