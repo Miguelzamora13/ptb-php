@@ -29,7 +29,7 @@
         - 🔹 [ReplyKeyboardMarkup](#reply-keyboard-markup)
         - 🔹 [ReplyKeyboardRemove](#reply-keyboard-remove)
         - 🔹 [InlineKeyboardMarkup](#inline-keyboard-markup)
-        - 🔹 [ForceReply](#force-reply) (Soon...)
+        - 🔹 [ForceReply](#force-reply)
     - 🧩 [Handlers](#handlers)
     - 🚁 [Helpers](#helpers)
         - [How to use Helpers in action?](#how-to-use-helpers)
@@ -435,7 +435,7 @@ onMessageText(pattern: '/start', callable: function() {
 });
 ```
 
-#### 🔸 Defining Multiple Middlewares: <a name="defining-multiple-middlewares"></a>
+#### 🔸 Defining Multiple Middlewares <a name="defining-multiple-middlewares"></a>
 
 ```php
 use function DevDasher\PTB\middlewares;
@@ -471,7 +471,7 @@ onMessageText(pattern: '/help', callable: function() {
 });
 ```
 
-#### 🔸 Skipping Global Middlewares: <a name="skipping-multiple-middlewares"></a>
+#### 🔸 Skipping Global Middlewares <a name="skipping-multiple-middlewares"></a>
 
 You can skip one or more global middlewares from being running for special handlers:
 
@@ -545,7 +545,7 @@ onMessageText(
 );
 ```
 
-### 🔹 Real World Example: <a name="middlewares-real-world-example"></a>
+### 🔹 Real World Example <a name="middlewares-real-world-example"></a>
 
 ```php
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
@@ -934,7 +934,20 @@ onCallbackQueryData(
 
 ### 🔹 ForceReply <a name="force-reply"></a>
 
-Soon...
+```php
+use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB\ForceReply;
+
+//...
+    sendMessage(
+        text: 'Send your picture:',
+
+        # We force the user to reply on the bot's message
+        #   It is only related to the UI and it is an apparent compulsion
+        reply_markup: ForceReply(input_field_placeholder: 'Send A Photo'),
+    ),
+//...
+```
 
 ## 🧩 Handlers <a name="handlers"></a>
 
@@ -1448,7 +1461,7 @@ if ($text === '/start') {
 //...
 ```
 
-#### Another example:
+#### Another Example:
 
 ```php
 use function DevDasher\PTB\_text;
@@ -1489,7 +1502,7 @@ if ($text === '/start') {
 
 ```
 
-### 🔹 LongPolling implementation: <a name="without-handlers-longpolling-implementation"></a>
+### 🔹 LongPolling Implementation <a name="without-handlers-longpolling-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
