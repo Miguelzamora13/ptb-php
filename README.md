@@ -19,14 +19,17 @@
     - 📥 [Downloading Files](#downloading-files)
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
     - 🤝 [Middlewares](#middlewares)
-        - [Global Middlewares](#global-middlewares)
-        - [Local Middlewares](#local-middlewares)
+        - 🔹 [Global Middlewares](#global-middlewares)
+            - 🔸 [Define Multiple Middlewares](#define-multiple-middlewares)
+            - 🔸 [Skip Global Middlewares](#skip-multiple-middlewares)
+        - 🔹 [Local Middlewares](#local-middlewares)
+        - 🔹 [Real World Example](#middlewares-real-world-example)
     - 💬 [Conversations](#conversations)
     - 🎮 [Keyboards](#keyboards)
-        - [ReplyKeyboardMarkup](#reply-keyboard-markup)
-        - [ReplyKeyboardRemove](#reply-keyboard-remove)
-        - [InlineKeyboardMarkup](#inline-keyboard-markup)
-        - [ForceReply](#force-reply) (Soon...)
+        - 🔹 [ReplyKeyboardMarkup](#reply-keyboard-markup)
+        - 🔹 [ReplyKeyboardRemove](#reply-keyboard-remove)
+        - 🔹 [InlineKeyboardMarkup](#inline-keyboard-markup)
+        - 🔹 [ForceReply](#force-reply) (Soon...)
     - 🧩 [Handlers](#handlers)
     - 🚁 [Helpers](#helpers)
         - [How to use Helpers in action?](#how-to-use-helpers)
@@ -34,8 +37,8 @@
     - 🔮 [Available Types](#available-types)
     - ⚓️ [Available Constants](#available-constants)
     - ♟ [Usage Without Handlers](#usage-without-handlers)
-        - [Webhook Implementation](#without-handlers-webhook-implementation)
-        - [LongPolling Implementation](#without-handlers-longpolling-implementation)
+        - 🔹 [Webhook Implementation](#without-handlers-webhook-implementation)
+        - 🔹 [LongPolling Implementation](#without-handlers-longpolling-implementation)
     - 🚀 [Performance](#performance) (Not complete yet...)
 - 🐞 [Bug Report](#bug-report)
 - ❤️ [Support Us!](#support-us)
@@ -403,7 +406,7 @@ In PTB-PHP there are two types of middlewares:
 - Global Middlewares
 - Local Middlewares
 
-### Global Middlewares <a name="global-middlewares"></a>
+### 🔹 Global Middlewares <a name="global-middlewares"></a>
 
 These middlewares always executes before handlers automatically
 
@@ -432,7 +435,7 @@ onMessageText(pattern: '/start', callable: function() {
 });
 ```
 
-#### Define Multiple Middlewares:
+#### 🔸 Defining Multiple Middlewares: <a name="defining-multiple-middlewares"></a>
 
 ```php
 use function DevDasher\PTB\middlewares;
@@ -468,7 +471,7 @@ onMessageText(pattern: '/help', callable: function() {
 });
 ```
 
-#### Skip Global Middlewares
+#### 🔸 Skipping Global Middlewares: <a name="skipping-multiple-middlewares"></a>
 
 You can skip one or more global middlewares from being running for special handlers:
 
@@ -507,7 +510,7 @@ onMessageText(
 );
 ```
 
-### Local Middlewares <a name="local-middlewares"></a>
+### 🔹 Local Middlewares <a name="local-middlewares"></a>
 
 It is possible to define a separate middleware for each handler:
 
@@ -542,7 +545,7 @@ onMessageText(
 );
 ```
 
-### Real World Example
+### 🔹 Real World Example: <a name="middlewares-real-world-example"></a>
 
 ```php
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
@@ -822,7 +825,7 @@ onMessageText('/register', function() { // FIRST STEP
 
 The PTB-PHP library provides a simple way to build and send keyboards.
 
-### ReplyKeyboardMarkup <a name="reply-keyboard-markup"></a>
+### 🔹 ReplyKeyboardMarkup <a name="reply-keyboard-markup"></a>
 
 The `ReplyKeyboardMarkup(...)` function helps you to create a reply keyabord. Here is an example:
 
@@ -852,7 +855,7 @@ onMessageText(pattern: 'Say Hi!', callable: fn() => sendMessage('Hi!'));
 onMessageText(pattern: 'Say Bye!', callable: fn() => sendMessage('Bye!'));
 ```
 
-### ReplyKeyboardRemove <a name="reply-keyboard-remove"></a>
+### 🔹 ReplyKeyboardRemove <a name="reply-keyboard-remove"></a>
 
 Use `ReplyKeyboardRemove(...)` to remove an existing `ReplyMarkupKeyboard`:
 
@@ -889,7 +892,7 @@ onMessageText('/remove_keyboard', function() {
 https://github.com/devdasher/ptb-php/assets/78247242/efca3898-4c71-409a-a216-9500ef5be7f6
 
 
-### InlineKeyboardMarkup <a name="inline-keyboard-markup"></a>
+### 🔹 InlineKeyboardMarkup <a name="inline-keyboard-markup"></a>
 
 The `InlineKeyboardMarkup(...)` function helps you to create a inline keyabord. Here is an example:
 
@@ -927,7 +930,7 @@ onCallbackQueryData(
 );
 ```
 
-### ForceReply <a name="force-reply"></a>
+### 🔹 ForceReply <a name="force-reply"></a>
 
 Soon...
 
@@ -1397,7 +1400,7 @@ You just need to pass your bot token and username to the `configurePTB(...)` fun
 
 Here is an example:
 
-### Webhook implementation: <a name="without-handlers-webhook-implementation"></a>
+### 🔹 Webhook implementation: <a name="without-handlers-webhook-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
@@ -1484,7 +1487,7 @@ if ($text === '/start') {
 
 ```
 
-### LongPolling implementation: <a name="without-handlers-longpolling-implementation"></a>
+### 🔹 LongPolling implementation: <a name="without-handlers-longpolling-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
