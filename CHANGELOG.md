@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2023-07-26
+
+- Various bug fixes
+
 ## [1.3.0] - 2023-07-26
 
 - Added `?array $allowed_updates = null` parameter to the `configurePTB(...)` function. To check allowed update types. if current update type is not allowed, The library will be ignore that update.
