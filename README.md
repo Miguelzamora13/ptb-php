@@ -25,7 +25,7 @@
         - 🔹 [Local Middlewares](#local-middlewares)
         - 🔹 [Real World Example](#middlewares-real-world-example)
     - 💬 [Conversations](#conversations)
-        - [⚠️ Important Notice](#conversations-important-notice)
+        - 🔹 [Important Notice](#conversations-important-notice)
     - 🎮 [Keyboards](#keyboards)
         - 🔹 [ReplyKeyboardMarkup](#reply-keyboard-markup)
         - 🔹 [ReplyKeyboardRemove](#reply-keyboard-remove)
@@ -824,7 +824,7 @@ onMessageText('/register', function() { // FIRST STEP
 });
 ```
 
-### ⚠️ Important Notice <a name="conversations-important-notice"></a>
+### 🔹 Important Notice <a name="conversations-important-notice"></a>
 
 The [laravel/serializableclosure](https://github.com/laravel/serializable-closure) package currently has issues with correctly identifying Named Parameters. Due to PHP's lack of support for `Closure Serialization`, we are forced to use on third-party packages.
 
