@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.2.9
+ * @version 1.3.0
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -1012,6 +1012,21 @@ define('_REGEX_PLACEHOLDERS_REPLACEMENT', '(?P<$1>\w+)');
 define('_PACKAGE_NAME', 'devdasher/ptb-php');
 define('_CACHE_CONVERSATION_TTL', 10800);
 define('_CACHE_USER_DATA_TTL', 120);
+define('_FIELD_EXCEPTION', 'exception');
+define('_FIELD_FALLBACK', 'fallback');
+define('_FIELD_API_ERROR', 'api_error');
+define('_FIELD_CALLABLE', 'callable');
+define('_FIELD_HANDLERS', 'handlers');
+define('_FIELD_SKIP_MIDDLEWARES', 'skip_middlewares');
+define('_FIELD_MIDDLEWARES', 'middlewares');
+define('_FIELD_IS_WEBHOOK', 'is_webhook');
+define('_FIELD_CACHE', 'cache');
+define('_FIELD_TOKEN', 'token');
+define('_FIELD_USERNAME', 'username');
+define('_FIELD_API_CURL_OPTIONS', 'api_curl_options');
+define('_FIELD_UPDATE', 'update');
+define('_FIELD_GLOBAL_DATA', 'global_data');
+define('_FIELD_ALLOWED_UPDATES', 'allowed_updates');
 
 function configurePTB(
     string $username,
@@ -1019,19 +1034,19 @@ function configurePTB(
     string $api_base_url = API_BASE_URL,
     array $curl_options = [],
     bool $is_webhook = false,
-    bool $long_polling_logger = false,
     ?CacheInterface $cache = null,
     array $update = [],
     array $global_data = [],
+    ?array $allowed_updates = null,
 ): void {
     $GLOBALS[_PACKAGE_NAME] = array_merge([
-        'long_polling_logger' => $long_polling_logger,
-        'is_webhook' => $is_webhook,
-        'cache' => $cache ?? (!__isComposerUsed() ?: new Psr16Cache(new ArrayAdapter())),
-        'update' => $update,
-        'global_data' => $global_data,
-        'middlewares' => [],
-        'handlers' => [],
+        _FIELD_IS_WEBHOOK => $is_webhook,
+        _FIELD_CACHE => $cache ?? (!__isComposerUsed() ?: new Psr16Cache(new ArrayAdapter())),
+        _FIELD_UPDATE => $update,
+        _FIELD_GLOBAL_DATA => $global_data,
+        _FIELD_ALLOWED_UPDATES => $allowed_updates ?? _updateTypes(),
+        _FIELD_MIDDLEWARES => [],
+        _FIELD_HANDLERS => [],
     ], $GLOBALS[_PACKAGE_NAME] ?? []);
     _registerNewBot(
         username: $username,
@@ -1673,7 +1688,7 @@ function onEditedMessageText(
     array $skip_middlewares = [],
 ): void {
     __addHandler(
-        keys: "edited_message.{$pattern}",
+        keys: "edited_message.text.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -1909,7 +1924,7 @@ function onChannelPostText(
     array $skip_middlewares = [],
 ): void {
     __addHandler(
-        keys: "channel_post.{$pattern}",
+        keys: "channel_post.text.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -2144,7 +2159,7 @@ function onEditedChannelPostText(
     array $skip_middlewares = [],
 ): void {
     __addHandler(
-        keys: "edited_channel_post.{$pattern}",
+        keys: "edited_channel_post.text.{$pattern}",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -2505,19 +2520,6 @@ function onChosenInlineResultId(
     );
 }
 
-function onAnyUpdateType(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
-): void {
-    __addHandler(
-        keys: "any",
-        callable: $callable,
-        middlewares: $middlewares,
-        skip_middlewares: $skip_middlewares,
-    );
-}
-
 function fallbackOn(
     string $updateType,
     callable $callable,
@@ -2528,7 +2530,7 @@ function fallbackOn(
         throw new Exception("Invalid update type '{$updateType}'!");
     }
     __addHandler(
-        keys: "fallback.{$updateType}",
+        keys: "{$updateType}.fallback",
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
@@ -6229,7 +6231,7 @@ function _setGlobalData(int|string $key, mixed $value = null): void {
 }
 
 function _getGlobalData(int|string $key, mixed $defaultValue = null): mixed {
-    return $GLOBALS[_PACKAGE_NAME]['global_data'][$key] ?? $defaultValue;
+    return $GLOBALS[_PACKAGE_NAME][_FIELD_GLOBAL_DATA][$key] ?? $defaultValue;
 }
 
 function _input(string|callable $prompt,Closure $next_step, array $conversation_data = []): void {
@@ -6264,6 +6266,10 @@ function _setMultipleConverstaionData(array $data, null|int|DateInterval $ttl = 
     }
 }
 
+function _cache(): ?CacheInterface {
+    return __config(_FIELD_CACHE);
+}
+
 function __getUserCacheKey(): string {
     static $key;
     if (!$key) {
@@ -6277,13 +6283,13 @@ function __getConversationKey(): string {
 }
 
 function __getConversation(?string $keys = null): array {
-    return __arrayGet(__cache()->get(__getConversationKey()), $keys) ?? [];
+    return __arrayGet(_cache()->get(__getConversationKey()), $keys) ?? [];
 }
 
 function __updateConversationData(string $keys, mixed $value): void {
     $conversation = __getConversation();
     __setOrPushValue(array: $conversation, keys: $keys, value: $value);
-    __cache()->set(
+    _cache()->set(
         key: __getConversationKey(),
         value: $conversation,
         ttl: _CACHE_CONVERSATION_TTL,
@@ -6291,7 +6297,7 @@ function __updateConversationData(string $keys, mixed $value): void {
 }
 
 function __deleteConversation(): bool {
-    return __cache()->delete(__getConversationKey());
+    return _cache()->delete(__getConversationKey());
 }
 
 function __isStartedAConversation(): bool {
@@ -6387,8 +6393,8 @@ function __makeApiRequest(string $method = null, array $parameters = [], array $
     $response = json_decode($result, true);
     if (isset($response['ok']) && !$response['ok']) {
         $handlers = __handlers();
-        if (isset($handlers['api_error'])) {
-            return $handlers['api_error']($response);
+        if (isset($handlers[_FIELD_API_ERROR])) {
+            return $handlers[_FIELD_API_ERROR]($response);
         }
     }
     return $response;
@@ -6410,10 +6416,6 @@ function __makeCurlRequest(string $url, array $options = []): string|bool {
 
 function __getCommonKeys(array $array1, array $array2): array {
     return array_intersect($array1, array_keys($array2));
-}
-
-function __config(?string $keys = null): mixed {
-    return __arrayGet($GLOBALS[_PACKAGE_NAME] ?? [], $keys);
 }
 
 function __arrayGet(?array $data, ?string $keys = null): mixed {
@@ -6456,11 +6458,6 @@ function __setOrPushValue(array &$array, mixed $value, ?string $keys = null, boo
     }
 }
 
-
-function __setUpdate(array $update): void {
-    __setOrPushValue($GLOBALS[_PACKAGE_NAME], $update, 'update');
-}
-
 function __addHandler(
     string $keys,
     callable $callable,
@@ -6471,21 +6468,21 @@ function __addHandler(
     foreach(explode('.', $keys) as $key) {
         $handler = &$handler[$key];
     }
-    $handler['callable'] = $callable;
+    $handler[_FIELD_CALLABLE] = $callable;
     if ($middlewares) {
         if (is_callable($middlewares)) {
-            $handler['middlewares'][] = $middlewares;
+            $handler[_FIELD_MIDDLEWARES][] = $middlewares;
         } else {
-            $handler['middlewares'] = $middlewares;
+            $handler[_FIELD_MIDDLEWARES] = $middlewares;
         }
     }
     if ($skip_middlewares) {
-        $handler['skip_middlewares'] = $skip_middlewares;
+        $handler[_FIELD_SKIP_MIDDLEWARES] = $skip_middlewares;
     }
 }
 
 function __addMiddleware(callable $callable, string $name = null): void {
-    $handler = &$GLOBALS[_PACKAGE_NAME]['middlewares'];
+    $handler = &$GLOBALS[_PACKAGE_NAME][_FIELD_MIDDLEWARES];
     if ($name) {
         $handler[$name] = $callable;
     } else {
@@ -6493,171 +6490,117 @@ function __addMiddleware(callable $callable, string $name = null): void {
     }
 }
 
-function __processCurrentUpdate() {
-    return __fireHandlers(__handlers());
+function __getCallableParameters(string $pattern, string $value): false|array {
+    $pattern = __replacePlaceholdersWithRegexSyntax($pattern);
+    return __getParametersFromPattern($pattern, $value);
 }
 
-function __getPatternParameters(string $pattern, string $value): ?array {
-    $pattern = preg_replace(
+function __replacePlaceholdersWithRegexSyntax(string $pattern): string {
+    return preg_replace(
         pattern: _REGEX_FIND_PLACEHOLDERS,
         replacement: _REGEX_PLACEHOLDERS_REPLACEMENT,
-        subject: addcslashes($pattern, '/')
+        subject: addcslashes($pattern, '/'),
     );
+}
+
+function __getParametersFromPattern(string $pattern, string $value): false|array {
     if (!preg_match("/^{$pattern}$/i", $value, $matches)) {
-        return null;
+        return false;
     }
     unset($matches[0]);
     $parameters = array_unique($matches);
     return $parameters;
 }
 
-function __fireAllMiddlewares(?array $handler = null): void {
-    __fireGlobalMiddlewares(__middlewares(), $handler['skip_middlewares'] ?? []);
-    __fireHandlerMiddlewares($handler['middlewares'] ?? []);
-}
-
-function __fireGlobalMiddlewares(array $middlewares, array $skipMiddlewares = []): void {
-    foreach ($middlewares as $name => $middleware) {
-        if ($name[0].$name[1] === 'l:' || in_array($name, $skipMiddlewares)) {
-            continue;
-        }
-        if (is_callable($middleware)) {
-            $middleware();
-        }
+function __fireMiddlewares(array $middlewares, array $skip = []): void {
+    if ($skip) {
+        $middlewares = array_diff_key(__middlewares(), array_flip($skip));
     }
-}
-
-function __fireHandlerMiddlewares(array $middlewares): void {
-    $globalMiddlewares = __middlewares();
     foreach ($middlewares as $middleware) {
         if (is_callable($middleware)) {
-            $middleware();
-        } elseif (isset($globalMiddlewares["l:$middleware"])) {
-            $globalMiddlewares["l:$middleware"]();
+            call_user_func($middleware);
         } elseif (is_array($middleware)) {
-            __fireHandlerMiddlewares($middleware);
+            __fireMiddlewares($middleware);
         }
     }
 }
 
 function __fireHandlers(array $handlers) {
     $updateType = _updateType();
-    $fallbackHandlers = $handlers['fallback'] ?? null;
     try {
-        if (!isset($handlers[$updateType])) {
-            if (isset($handlers['any'])) {
-                return $handlers['any']['callable']();
+        if (isset($handlers[$updateType]) && $updateHandlers = $handlers[$updateType]) {
+            echo '1'.PHP_EOL;
+            if (
+                in_array($updateType, [
+                    UPDATE_TYPE_MESSAGE,
+                    UPDATE_TYPE_EDITED_MESSAGE,
+                    UPDATE_TYPE_CHANNEL_POST,
+                    UPDATE_TYPE_EDITED_CHANNEL_POST,
+                ])
+                && isset($updateHandlers[$messageType = _messageType()])
+            ) {
+                echo '2'.PHP_EOL;
+
+                if (_isText()) {
+                    echo '3'.PHP_EOL;
+
+                    $result = __fireTextHandlers($updateHandlers[FIELD_TEXT], _text());
+                    
+                } elseif (in_array($messageType, _messageTypes())) {
+                    $result = __fireHandler($updateHandlers[$messageType]);
+                }
+            } elseif (_isCallbackQuery() && isset($updateHandlers[FIELD_DATA])) {
+                $result = __fireTextHandlers($updateHandlers[FIELD_DATA], _callbackQueryData());
+        
+            } elseif (_isInlineQuery() && isset($updateHandlers[FIELD_QUERY])) {
+                $result = __fireTextHandlers($updateHandlers[FIELD_QUERY], _inlineQueryText());
+        
+            } elseif (_isChosenInlineResult()) {
+                if (isset($updateHandlers[FIELD_QUERY])) {
+                    $result = __fireTextHandlers($updateHandlers[FIELD_QUERY], _chosenInlineResultQuery());
+                }
+                if (isset($updateHandlers[FIELD_RESULT_ID])) {
+                    $result = __fireTextHandlers($updateHandlers[FIELD_RESULT_ID], _chosenInlineResultId());
+                }
             }
-            if (isset($fallbackHandlers[$updateType])) {
-                return $fallbackHandlers[$updateType]['callable']();
-            }
-            if (isset($fallbackHandlers['callable'])) {
-                return $fallbackHandlers['callable']();
-            }
-            return;
         }
-        $updateTypeHandlers = $handlers[$updateType];
-        if (
-            in_array($updateType, [
-                UPDATE_TYPE_MESSAGE,
-                UPDATE_TYPE_EDITED_MESSAGE,
-                UPDATE_TYPE_CHANNEL_POST,
-                UPDATE_TYPE_EDITED_CHANNEL_POST,
-            ])
-            && isset($updateTypeHandlers[$messageType = _messageType()])
-        ) {
-            if ($messageType === MESSAGE_TYPE_TEXT) {
-                $isStartedAConversation = __cache() && __isStartedAConversation();
-                $text = _text();
-                foreach ($updateTypeHandlers[$messageType] as $pattern => $handler) {
-                    $parameters = __getPatternParameters($pattern, $text);
-                    if (is_null($parameters)) {
-                        continue;
-                    }
-                    if ($isStartedAConversation) {
-                        _endConversation();
-                    }
-                    __fireAllMiddlewares($handler);
-                    return $handler['callable'](...$parameters);
-                }
-                if ($isStartedAConversation) {
-                    $conversation = __getConversation();
-                    $serializedClosure = $conversation['next_step'];
-                    $closure = __unserializeClosure($serializedClosure);
-                    return $closure(...($conversation['data'] ?? []));
-                }
-            } elseif (in_array($messageType, _messageTypes())) {
-                __fireAllMiddlewares($updateTypeHandlers[$messageType]);
-                return $updateTypeHandlers[$messageType]['callable']();
-            }
-        } elseif ($updateType === UPDATE_TYPE_CALLBACK_QUERY) {
-            $callbackData = _callbackQueryData();
-            foreach ($updateTypeHandlers['data'] as $pattern => $handler) {
-                $parameters = __getPatternParameters($pattern, $callbackData);
-                if (is_null($parameters)) {
-                    continue;
-                }
-                __fireAllMiddlewares($handler);
-                return $handler['callable'](...$parameters);
-            }
-        } elseif ($updateType === UPDATE_TYPE_INLINE_QUERY) {
-            $query = _inlineQueryText();
-            foreach ($updateTypeHandlers['query'] as $pattern => $handler) {
-                $parameters = __getPatternParameters($pattern, $query);
-                if (is_null($parameters)) {
-                    continue;
-                }
-                __fireAllMiddlewares($handler);
-                return $handler['callable'](...$parameters);
-            }
-        } elseif ($updateType === UPDATE_TYPE_CHOSEN_INLINE_RESULT) {
-            if ($query = _chosenInlineResultQuery()) {
-                foreach ($updateTypeHandlers['query'] as $pattern => $handler) {
-                    $parameters = __getPatternParameters($pattern, $query);
-                    if (is_null($parameters)) {
-                        continue;
-                    }
-                    __fireAllMiddlewares($handler);
-                    return $handler['callable'](...$parameters);
-                }
-            } elseif ($resultId = _chosenInlineResultId()) {
-                foreach ($updateTypeHandlers['result_id'] as $pattern => $handler) {
-                    $parameters = __getPatternParameters($pattern, $resultId);
-                    if (is_null($parameters)) {
-                        continue;
-                    }
-                    __fireAllMiddlewares($handler);
-                    return $handler['callable'](...$parameters);
-                }
-            }
-            
+        if (isset($result) && $result === false) {
+            return __fireHandler($updateHandlers);
         }
-        if (isset($updateTypeHandlers['callable'])) {
-            __fireAllMiddlewares($updateTypeHandlers);
-            return $updateTypeHandlers['callable']();
-        }
-        if (isset($fallbackHandlers[$updateType]['callable'])) {
-            __fireAllMiddlewares($fallbackHandlers[$updateType]);
-            return $fallbackHandlers[$updateType]['callable']();
-        }
-        if (isset($fallbackHandlers['callable'])) {
-            __fireAllMiddlewares($fallbackHandlers);
-            return $fallbackHandlers['callable']();
-        }
+        
     } catch (Throwable $e) {
-        if (isset($handlers['exception']['callable'])) {
-            return $handlers['exception']['callable']($e);
+        if (isset($handlers[_FIELD_EXCEPTION][_FIELD_CALLABLE])) {
+            return call_user_func($handlers[_FIELD_EXCEPTION][_FIELD_CALLABLE], $e);
         }
         throw $e;
     }
 }
 
-function __prepareApiMethodParameters(array $parameters): array {
-    return __removeNullValues(__autoFillApiMethodParameters(__removeInvalidParameters($parameters)));
+function __fireHandler(array $handler, array $parameters = []): bool {
+    __fireMiddlewares(__middlewares(), $handler[_FIELD_SKIP_MIDDLEWARES] ?? []);
+    __fireMiddlewares($handler[_FIELD_MIDDLEWARES] ?? []);
+    call_user_func($handler[_FIELD_CALLABLE], $parameters);
+    return true;
 }
 
-function __prepareApiTypeFields(array $fields): array {
-    return __removeNullValues(__autoFillApiTypeFields($fields));
+function __fireTextHandlers(array $handlers, string $value): bool {
+    foreach ($handlers as $pattern => $handler) {
+        $parameters = __getCallableParameters($pattern, $value);
+        if ($parameters === false) {
+            continue;
+        }
+        if (__isStartedAConversation()) {
+            _endConversation();
+        }
+        return __fireHandler($handler, $parameters);
+    }
+    if (__isStartedAConversation()) {
+        $conversation = __getConversation();
+        $closure = __unserializeClosure($conversation['next_step']);
+        call_user_func($closure, ...($conversation['data'] ?? []));
+        return true;
+    }
+    return false;
 }
 
 function __removeNullValues(array $array): array {
@@ -6673,52 +6616,16 @@ function __extractFunctionName(string $function): string {
     return basename(strtr($function, '\\', '/'));
 }
 
+function __prepareApiMethodParameters(array $parameters): array {
+    return __removeNullValues(__autoFillApiMethodParameters(__removeInvalidParameters($parameters)));
+}
+
+function __prepareApiTypeFields(array $fields): array {
+    return __removeNullValues(__autoFillApiTypeFields($fields));
+}
+
 function __prepareAndMakeApiRequest(string $function, array $parameters = [], array $options = []): array {
     return __makeApiRequest(__extractFunctionName($function), __prepareApiMethodParameters($parameters), $options);
-}
-
-function __botToken(?string $username = null): ?string {
-    return __config('bots.'.($username ?? __config('default_bot_username')).'.token');
-}
-
-function __apiBaseUrl(?string $username = null): string {
-    return __config('bots.'.($username ?? __config('default_bot_username')).'.api_base_url') ?? API_BASE_URL;
-}
-
-function __defaultBotUsername(): string {
-    return __config('default_bot_username');
-}
-
-function __isWebhook(): ?bool {
-    return __config('is_webhook');
-}
-
-function __defaultCurlOptions(): array {
-    return __config('curl_options') ?? [];
-}
-
-function __handlers(): array {
-    return __config('handlers');
-}
-
-function __middlewares(): array {
-    return __config('middlewares');
-}
-
-function __globalData(): array {
-    return __config('global_data');
-}
-
-function __update(): array {
-    return __config('update');
-}
-
-function __cache(): ?CacheInterface {
-    return __config('cache');
-}
-
-function __longPollingLoggerEnabled(): bool {
-    return __config('long_polling_logger');
 }
 
 function __snakeToCamelCase(string $string) {
@@ -6737,36 +6644,97 @@ function __isComposerUsed(): bool {
     return false;
 }
 
+function __config(?string $keys = null): mixed {
+    return __arrayGet($GLOBALS[_PACKAGE_NAME] ?? [], $keys);
+}
+
+function __defaultBotUsername(): string {
+    return __config('default_bot_username');
+}
+
+function __botToken(?string $username = null): ?string {
+    return __config('bots.'.($username ?? __config('default_bot_username')).'.token');
+}
+
+function __apiBaseUrl(?string $username = null): string {
+    return __config('bots.'.($username ?? __config('default_bot_username')).'.api_base_url') ?? API_BASE_URL;
+}
+
+function __isWebhook(): ?bool {
+    return __config('is_webhook');
+}
+
+function __defaultCurlOptions(): array {
+    return __config('curl_options') ?? [];
+}
+
+function __handlers(): ?array {
+    return __config('handlers');
+}
+
+function __middlewares(): ?array {
+    return __config(_FIELD_MIDDLEWARES);
+}
+
+function __globalData(): ?array {
+    return __config(_FIELD_GLOBAL_DATA);
+}
+
+function __update(): ?array {
+    return __config(_FIELD_UPDATE);
+}
+
+function __setUpdate(array $update): void {
+    __setOrPushValue($GLOBALS[_PACKAGE_NAME], $update, _FIELD_UPDATE);
+}
+
+function __allowedUpdates(): ?array {
+    return __config(_FIELD_ALLOWED_UPDATES);
+}
+
+function __handleWebhook(): void {
+    $input = file_get_contents('php://input');
+    if (!$input) {
+        return;
+    }
+    $update = json_decode($input, true);
+    __processUpdate($update);
+}
+
+function __handleLongPolling(): void {
+    if (PHP_SAPI !== 'cli') {
+        die("This script can only be executed from the command line.");
+    }
+    echo 'Listening...'.PHP_EOL;
+    $offset = 1;
+    $timeout = 10;
+    while (true) {
+        $response = getUpdates(timeout: $timeout, offset: $offset);
+        if (!$response['ok']) {
+            throw new \Exception('Could not fetch updates with the getUpdates method!');
+        }
+        $updates = $response['result'];
+        foreach ($updates as $update) {
+            $offset = $update['update_id'] + 1;
+            __processUpdate($update);
+        }
+        usleep(2000000);
+    }
+}
+
+function __processUpdate(array $update): void {
+    __setUpdate($update);
+    $updateType = _updateType();
+    if (!in_array($updateType, __allowedUpdates())) {
+        return;
+    }
+    __fireHandlers(__handlers());
+}
+
 function run(): void {
-    if (__config('is_webhook')) {
-        $input = file_get_contents('php://input');
-        if (!$input) {
-            return;
-        }
-        $update = json_decode($input, true);
-        __setUpdate($update);
-        __processCurrentUpdate();
+    if (__isWebhook()) {
+        __handleWebhook();
     } else {
-        if (php_sapi_name() !== 'cli') {
-            die("This script can only be executed from the command line.");
-        }
-        echo 'Listening...'.PHP_EOL;
-        $offset = 1;
-        while (true) {
-            $response = getUpdates(timeout: 10, offset: $offset);
-            if (!$response['ok']) {
-                throw new \Exception('Could not fetch updates with the getUpdates method!');
-            }
-            $updates = $response['result'];
-            foreach ($updates as $update) {
-                if (__longPollingLoggerEnabled()) {
-                    print_r($update);
-                }
-                __setUpdate($update);
-                __processCurrentUpdate();
-                $offset = $update['update_id'] + 1;
-            }
-            usleep(2000000);
-        }
+        __handleLongPolling();
     }
 }

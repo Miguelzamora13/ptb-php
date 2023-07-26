@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2023-07-26
+
+- Added `?array $allowed_updates = null` parameter to the `configurePTB(...)` function. To check allowed update types. if current update type is not allowed, The library will be ignore that update.
+- Added PHP_SAPI check in the LongPolling running mode to restrict script execution to command line only
+- Removed parameter `bool $long_polling_logger = false` from `configurePTB(...)` function
+- Removed function `__longPollingLoggerEnabled()`
+- Removed handler `onAnyUpdateType(...)`. the `fallback(...)` handler performs the same functionality
+- Renamed `__processCurrentUpdate()` function to `__processUpdate($update)`
+- Renamed `__cache()` function to `_cache()`
+- Fixed bug: missing key `text` in the `onEditedMessageText(...)` handler
+- Fixed bug: missing key `text` in the `onChannelPostText(...)` handler
+- Fixed bug: missing key `text`  in the `onEditedChannelPostText(...)` handler
+- Code improvements related to the handlers and various bug fixes
+
+
 ## [1.2.9] - 2023-07-22
 
 - Added new parameters to the `configurePTB(...)` function:

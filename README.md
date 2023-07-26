@@ -394,7 +394,158 @@ onMessage(callable: function() {
 
 ## 🤝 Middlewares  <a name="middlewares"></a>
 
-Soon...
+Middleware is a layer of code that intercepts and processes requests and responses in web applications. It provides a modular and reusable way to handle common tasks such as authentication, logging, error handling, and data validation. Each middleware component inspects and modifies the request and response objects and can either terminate the cycle or pass control to the next middleware. By promoting separation of concerns and modularity, middleware allows for easy customization and maintenance of web applications. It is widely used enhance functionality, security, and maintainability.
+
+In PTB-PHP there are two types of middlewares:
+
+- Global Middlewares
+- Local Middlewares
+
+### Global Middlewares
+
+These middlewares always executes before handlers automatically
+
+If you remember, we have already seen a simple example of it above.
+
+```php
+use function DevDasher\PTB\middleware;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+
+# Defining a middleware:
+middleware(
+    callable: function() {
+        //...
+        //...
+        sendMessage(text: 'Global middleware 1');
+        //...
+        //...
+    },
+    name: 'GLOBAL_MIDDLEWARE_1', // Optional. The name of this middleware.
+);
+# You can define another middleware like above here.
+
+onMessageText(pattern: '/start', callable: function() {
+    sendMessage(text: 'START');
+});
+```
+
+#### Define Multiple Middlewares:
+
+```php
+use function DevDasher\PTB\middlewares;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+
+middlewares(callables: [
+    'GLOBAL_MIDDLEWARE_1' => function() { // 1
+        //...
+        //...
+        sendMessage(text: 'Global middleware 1');
+        //...
+        //...
+    },
+
+    'GLOBAL_MIDDLEWARE_2' => function() { // 2
+        //...
+        //...
+        sendMessage(text: 'Global middleware 2');
+        //...
+        //...
+    },
+]);
+
+// The previous two middlewares will always run before these handlers:
+
+onMessageText(pattern: '/start', callable: function() {
+    sendMessage(text: 'START');
+});
+
+onMessageText(pattern: '/help', callable: function() {
+    sendMessage(text: 'HELP');
+});
+```
+
+#### Skip Global Middlewares
+
+You can skip one or more global middlewares from being running for special handlers:
+
+```php
+use function DevDasher\PTB\middlewares;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+
+middlewares(callables: [
+    'GLOBAL_MIDDLEWARE_1' => function() { // 1
+        sendMessage(text: 'Global middleware 1');
+    },
+
+    'GLOBAL_MIDDLEWARE_2' => function() { // 2
+        sendMessage(text: 'Global middleware 2');
+    },
+]);
+
+
+onMessageText( // The previous two middlewares will always run before this handler.
+    pattern: '/start',
+    callable: function() {
+        sendMessage(text: 'START');
+    },
+);
+
+onMessageText(
+    pattern: '/help',
+    callable: function() {
+        sendMessage(text: 'HELP');
+    },
+
+    # Here, pass the names of global middlewares in array like this:
+    skip_middlewares: ['GLOBAL_MIDDLEWARE_2'], 
+    # The global middleware with the name 'GLOBAL_MIDDLEWARE_2' will NOT execute before this handler
+);
+```
+
+### Local Middlewares
+
+It is possible to define a separate middleware for each handler:
+
+```php
+use function DevDasher\PTB\middleware;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+
+middleware(callable: function() { // 1
+    sendMessage(text: 'Global middleware 1');
+});
+
+onMessageText(
+    pattern: '/start',
+    callable: function() {
+        sendMessage(text: 'START');
+    },
+
+    # Defining local middleware for this handler:
+    middlewares: [
+        function() { // This local middleware will execute only before this handler.
+            sendMessage(text: 'Local middleware 1');
+        },
+    ],
+);
+
+onMessageText(
+    pattern: '/help',
+    callable: function() {
+        sendMessage(text: 'HELP');
+    },
+);
+```
+
+### Real World Example
+
+```php
+//...
+```
+
 
 ## 💬 Conversations <a name="conversations"></a>
 
@@ -1132,7 +1283,7 @@ Here are some of them:
 
 And much more! ... check the source code yourself :)
 
-# ♟ Usage Without Handlers <a name="usage-without-handlers"></a>
+## ♟ Usage Without Handlers <a name="usage-without-handlers"></a>
 
 If you are not comfortable with existing handlers and this type of coding, there is no problem. You can choose your own code style.
 
@@ -1250,7 +1401,7 @@ foreach ($updates as $update) {
 //...
 ```
 
-# 🚀 Performance <a name="performance"></a>
+## 🚀 Performance <a name="performance"></a>
 
 The performance of a Telegram bot is crucial for providing a seamless user experience. Response speed plays a vital role in ensuring timely interactions and satisfying user expectations. To improve the performance of a Telegram bot built with PHP, several methods can be employed. Firstly, optimizing code efficiency by minimizing unnecessary computations and database queries can significantly enhance response speed. Caching frequently accessed data or utilizing in-memory caching systems like Redis can also boost performance. Additionally, employing asynchronous processing techniques, such using queues or event-driven architectures, can help handle concurrent requests more efficiently. Utilizing a scalable infrastructure with load balancing and horizontal scaling can further improve performance by distributing the workload across multiple servers. Regular monitoring and profiling of the bot's performance can identify bottlenecks and areas for optimization, allowing for continuous improvement.
 
