@@ -20,11 +20,12 @@
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
     - 🤝 [Middlewares](#middlewares)
         - 🔹 [Global Middlewares](#global-middlewares)
-            - 🔸 [Define Multiple Middlewares](#defining-multiple-middlewares)
-            - 🔸 [Skip Global Middlewares](#skipping-multiple-middlewares)
+            - 🔸 [Defining Multiple Middlewares](#defining-multiple-middlewares)
+            - 🔸 [Skipping Global Middlewares](#skipping-multiple-middlewares)
         - 🔹 [Local Middlewares](#local-middlewares)
         - 🔹 [Real World Example](#middlewares-real-world-example)
     - 💬 [Conversations](#conversations)
+        - [⚠️ Important Notice](#conversations-important-notice)
     - 🎮 [Keyboards](#keyboards)
         - 🔹 [ReplyKeyboardMarkup](#reply-keyboard-markup)
         - 🔹 [ReplyKeyboardRemove](#reply-keyboard-remove)
@@ -822,6 +823,14 @@ onMessageText('/register', function() { // FIRST STEP
 
 });
 ```
+
+### ⚠️ Important Notice <a name="conversations-important-notice"></a>
+
+The [laravel/serializableclosure](https://github.com/laravel/serializable-closure) package currently has issues with correctly identifying Named Parameters. Due to PHP's lack of support for `Closure Serialization`, we are forced to use on third-party packages.
+
+This issue may cause certain problems for your bot! So, if you wish, wait until further notice (at least until this problem is resolved by the developers of this package or this feature is added by PHP itself in future versions).
+
+If you have a solution for it, please raise it with relevant details in the [Issues](https://github.com/devdasher/ptb-php/issues) section or send your solution to [@devdasher](https://t.me/devdasher) in Telegram.
 
 ## 🎮 Keyboards <a name="keyboards"></a>
 
