@@ -1635,7 +1635,7 @@ A well-organized project structure is crucial for developing a Telegram bot, esp
             - HelpCommand.php
             - AccountCommand.php
             - ...
-        - Conversations/
+        - Conversations/ **(This feature is not implemented in the library yet...)**
             - RegisterConversation.php
             - TransferMoneyConversation.php
             - DeleteUserConversation.php
