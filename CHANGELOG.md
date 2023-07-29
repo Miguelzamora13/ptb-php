@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.3] - 2023-07-29
+
+- Added support of OOP for handlers and middlewares. Please refer to the [documentation](https://github.com/devdasher/ptb-php#usage-with-oop) for further information and examples
+- Added new constant helpers: `FIELD_OK`, `FIELD_RESULT`, `FIELD_PARAMETERS`
+- Added new handlers:
+    - `onChannelPostDeleteChatTitle(...)`
+    - `onChannelPostNewChatPhoto(...)`
+    - `onChannelPostDeleteChatPhoto(...)`
+    - `onChannelPostVideoChatScheduled(...)`
+    - `onChannelPostVideoChatStarted(...)`
+    - `onChannelPostVideoChatEnded(...)`
+    - `onChannelPostVideoChatParticipantsInvited(...)`
+- Code improvements
+
+## [1.3.2] - 2023-07-26
+
+- Bug fix
+
 ## [1.3.1] - 2023-07-26
 
 - Added `?array $allowed_updates = null` parameter to the `configurePTB(...)` function. To check allowed update types. if current update type is not allowed, The library will be ignore that update.
