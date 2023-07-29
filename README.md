@@ -20,8 +20,8 @@
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
     - 🤝 [Middlewares](#middlewares)
         - [Global Middlewares](#global-middlewares)
-            - 🔸 [Defining Multiple Middlewares](#defining-multiple-middlewares)
-            - 🔸 [Skipping Global Middlewares](#skipping-multiple-middlewares)
+            - [Defining Multiple Middlewares](#defining-multiple-middlewares)
+            - [Skipping Global Middlewares](#skipping-multiple-middlewares)
         - [Local Middlewares](#local-middlewares)
         - [Real World Example](#middlewares-real-world-example)
     - 💬 [Conversations](#conversations)
@@ -439,7 +439,7 @@ onMessageText(pattern: '/start', callable: function() {
 });
 ```
 
-#### 🔸 Defining Multiple Middlewares <a name="defining-multiple-middlewares"></a>
+#### Defining Multiple Middlewares <a name="defining-multiple-middlewares"></a>
 
 ```php
 use function DevDasher\PTB\middlewares;
@@ -475,7 +475,7 @@ onMessageText(pattern: '/help', callable: function() {
 });
 ```
 
-#### 🔸 Skipping Global Middlewares <a name="skipping-multiple-middlewares"></a>
+#### Skipping Global Middlewares <a name="skipping-multiple-middlewares"></a>
 
 You can skip one or more global middlewares from being running for special handlers:
 
@@ -700,7 +700,7 @@ configurePTB(
 );
 
 # Here we examine a scenario of receiving input from the user in three steps
-onMessageText('/register', function() { // FIRST 1
+onMessageText('/register', function() { // FIRST STEP
 
     # When user send the /register command...
     # We ask the user's name (This is the first step)
@@ -1312,13 +1312,14 @@ use function DevDasher\PTB\sendMessage;
 
 onMessage(function() {
 
-    # Get the update in different ways:
+    # Get the update:
     $update = _update(); // Array
 
 
     # Get the update_id in different ways:
     $updateId = _updateId();
     $updateId = _update('update_id'); // Another way
+    $updateId = $update['update_id'];
 
 
     # Get the message in different ways:
