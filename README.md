@@ -15,6 +15,7 @@
 - ❓ [Why Procedural and NOT OOP?](#why-procedural)
 - 📚 [Documentation](#documentation)
     - ⚙️ [Configuraion](#configuration)
+        - [Available Configuration Parameters](#available-configuration-parameters)
     - 📤 [Uploading Files](#uploading-files)
     - 📥 [Downloading Files](#downloading-files)
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
@@ -208,7 +209,7 @@ The following list represents just a fraction of the library's capabilities, and
 
 ## ⚙️ Configuration <a name="configuration"></a>
 
-For the library to work, you need to set at least two mandatory parameters:
+To use the library, you must configure it by setting at least two mandatory parameters. Here's an example:
 
 ```php
 use function DevDasher\PTB\configurePTB;
@@ -231,7 +232,7 @@ configurePTB(
 | `bool $is_webhook = false`                | ❌       | Set this to `true` if you want to use Webhook to receive updates from Telegram. This is suitable for production environments. By default, Long Polling is used (`false`).
 | `?CacheInterface $cache = null`           | ❌       | A cache adapter implementation that will be used for caching purposes. You can pass a cache adapter object that implements the `Psr\SimpleCache\CacheInterface`.
 | `array $update = []`                      | ❌       | Allows you to set the input update sent from Telegram servers manually, or add a fake update for testing purposes.
-| `array $global_data = []`                 | ❌       | An optional array of key-value pairs that allows you to store global data (e.g., configuration values) accessible to all middlewares and handlers in the library.
+| `array $global_data = []`                 | ❌       | An optional array of key-value pairs that allows you to store global data (e.g., configuration values) accessible to all middlewares and handlers in the library using `_getGlobalData(...)` helper. The `_setGLobalData(...)` does the same thing.
 | `?array $allowed_updates = null`          | ❌       | Defines the allowed types of updates that the library should handle. You can effectively determine allowed updates through the `setWebhook` method. Updates that are not allowed will be automatically rejected by the library. This provides an additional layer of validation for incoming updates.
 
 ## 📤 Uploading Files <a name="uploading-files"></a>
