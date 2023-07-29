@@ -19,18 +19,18 @@
     - 📥 [Downloading Files](#downloading-files)
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
     - 🤝 [Middlewares](#middlewares)
-        - 🔹 [Global Middlewares](#global-middlewares)
+        - [Global Middlewares](#global-middlewares)
             - 🔸 [Defining Multiple Middlewares](#defining-multiple-middlewares)
             - 🔸 [Skipping Global Middlewares](#skipping-multiple-middlewares)
-        - 🔹 [Local Middlewares](#local-middlewares)
-        - 🔹 [Real World Example](#middlewares-real-world-example)
+        - [Local Middlewares](#local-middlewares)
+        - [Real World Example](#middlewares-real-world-example)
     - 💬 [Conversations](#conversations)
-        - 🔹 [Important Notice](#conversations-important-notice)
+        - [Important Notice](#conversations-important-notice)
     - 🎮 [Keyboards](#keyboards)
-        - 🔹 [ReplyKeyboardMarkup](#reply-keyboard-markup)
-        - 🔹 [ReplyKeyboardRemove](#reply-keyboard-remove)
-        - 🔹 [InlineKeyboardMarkup](#inline-keyboard-markup)
-        - 🔹 [ForceReply](#force-reply)
+        - [ReplyKeyboardMarkup](#reply-keyboard-markup)
+        - [ReplyKeyboardRemove](#reply-keyboard-remove)
+        - [InlineKeyboardMarkup](#inline-keyboard-markup)
+        - [ForceReply](#force-reply)
     - 🧩 [Handlers](#handlers)
     - 🚁 [Helpers](#helpers)
         - [How to use Helpers in action?](#how-to-use-helpers)
@@ -38,8 +38,10 @@
     - 🔮 [Available Types](#available-types)
     - ⚓️ [Available Constants](#available-constants)
     - ♟ [Usage Without Handlers](#usage-without-handlers)
-        - 🔹 [Webhook Implementation](#without-handlers-webhook-implementation)
-        - 🔹 [LongPolling Implementation](#without-handlers-longpolling-implementation)
+        - [Webhook Implementation](#without-handlers-webhook-implementation)
+        - [LongPolling Implementation](#without-handlers-longpolling-implementation)
+    - 🧱 [Usage With OOP](#usage-with-oop) (Soon...)
+    - 🔗 [Deep Links](#deep-links) (Soon...)
     - 🚀 [Performance](#performance) (Not complete yet...)
 - 🐞 [Bug Report](#bug-report)
 - ❤️ [Support Us!](#support-us)
@@ -407,7 +409,7 @@ In PTB-PHP there are two types of middlewares:
 - Global Middlewares
 - Local Middlewares
 
-### 🔹 Global Middlewares <a name="global-middlewares"></a>
+### Global Middlewares <a name="global-middlewares"></a>
 
 These middlewares always executes before handlers automatically
 
@@ -511,7 +513,7 @@ onMessageText(
 );
 ```
 
-### 🔹 Local Middlewares <a name="local-middlewares"></a>
+### Local Middlewares <a name="local-middlewares"></a>
 
 It is possible to define a separate middleware for each handler:
 
@@ -546,7 +548,7 @@ onMessageText(
 );
 ```
 
-### 🔹 Real World Example <a name="middlewares-real-world-example"></a>
+### Real World Example <a name="middlewares-real-world-example"></a>
 
 ```php
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
@@ -824,7 +826,7 @@ onMessageText('/register', function() { // FIRST STEP
 });
 ```
 
-### 🔹 Important Notice <a name="conversations-important-notice"></a>
+### Important Notice <a name="conversations-important-notice"></a>
 
 The [laravel/serializableclosure](https://github.com/laravel/serializable-closure) package currently has issues with correctly identifying Named Parameters. Due to PHP's lack of support for `Closure Serialization`, we are forced to use on third-party packages.
 
@@ -836,7 +838,7 @@ If you have a solution for it, please raise it with relevant details in the [Iss
 
 The PTB-PHP library provides a simple way to build and send keyboards.
 
-### 🔹 ReplyKeyboardMarkup <a name="reply-keyboard-markup"></a>
+### ReplyKeyboardMarkup <a name="reply-keyboard-markup"></a>
 
 The `ReplyKeyboardMarkup(...)` function helps you to create a reply keyabord. Here is an example:
 
@@ -866,7 +868,7 @@ onMessageText(pattern: 'Say Hi!', callable: fn() => sendMessage('Hi!'));
 onMessageText(pattern: 'Say Bye!', callable: fn() => sendMessage('Bye!'));
 ```
 
-### 🔹 ReplyKeyboardRemove <a name="reply-keyboard-remove"></a>
+### ReplyKeyboardRemove <a name="reply-keyboard-remove"></a>
 
 Use `ReplyKeyboardRemove(...)` to remove an existing `ReplyMarkupKeyboard`:
 
@@ -903,7 +905,7 @@ onMessageText('/remove_keyboard', function() {
 https://github.com/devdasher/ptb-php/assets/78247242/efca3898-4c71-409a-a216-9500ef5be7f6
 
 
-### 🔹 InlineKeyboardMarkup <a name="inline-keyboard-markup"></a>
+### InlineKeyboardMarkup <a name="inline-keyboard-markup"></a>
 
 The `InlineKeyboardMarkup(...)` function helps you to create a inline keyabord. Here is an example:
 
@@ -941,7 +943,7 @@ onCallbackQueryData(
 );
 ```
 
-### 🔹 ForceReply <a name="force-reply"></a>
+### ForceReply <a name="force-reply"></a>
 
 ```php
 use function DevDasher\PTB\sendMessage;
@@ -1424,7 +1426,7 @@ You just need to pass your bot token and username to the `configurePTB(...)` fun
 
 Here is an example:
 
-### 🔹 Webhook implementation: <a name="without-handlers-webhook-implementation"></a>
+### Webhook implementation: <a name="without-handlers-webhook-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
@@ -1511,7 +1513,7 @@ if ($text === '/start') {
 
 ```
 
-### 🔹 LongPolling Implementation <a name="without-handlers-longpolling-implementation"></a>
+### LongPolling Implementation <a name="without-handlers-longpolling-implementation"></a>
 
 ```php
 use function DevDasher\PTB\configurePTB;
@@ -1533,6 +1535,14 @@ foreach ($updates as $update) {
 //...
 //...
 ```
+
+### 🧱 Usage With OOP <a name="usage-with-oop"></a>
+
+Soon...
+
+### 🔗 Deep Links <a name="deep-links"></a>
+
+Soon...
 
 ## 🚀 Performance <a name="performance"></a>
 
