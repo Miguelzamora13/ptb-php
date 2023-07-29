@@ -37,6 +37,9 @@ use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Psr16Cache;
 use Throwable;
 
+define('FIELD_OK', 'ok');
+define('FIELD_RESULT', 'result');
+define('FIELD_PARAMETERS', 'parameters');
 define('FIELD_UPDATE_ID', 'update_id');
 define('FIELD_MESSAGE', 'message');
 define('FIELD_EDITED_MESSAGE', 'edited_message');
@@ -1023,7 +1026,7 @@ define('_FIELD_IS_WEBHOOK', 'is_webhook');
 define('_FIELD_CACHE', 'cache');
 define('_FIELD_TOKEN', 'token');
 define('_FIELD_USERNAME', 'username');
-define('_FIELD_API_CURL_OPTIONS', 'api_curl_options');
+define('_FIELD_CURL_OPTIONS', 'curl_options');
 define('_FIELD_UPDATE', 'update');
 define('_FIELD_GLOBAL_DATA', 'global_data');
 define('_FIELD_ALLOWED_UPDATES', 'allowed_updates');
@@ -1056,24 +1059,21 @@ function configurePTB(
     );
 }
 
-function middleware(callable $callable, ?string $name = null): void {
+function middleware(array|string|callable $callable, ?string $name = null): void {
     __addMiddleware(callable: $callable, name: $name);
 }
 
 function middlewares(array $callables): void {
     foreach ($callables as $name => $callable) {
-        if (!is_callable($callable)) {
-            continue;
-        }
-        middleware($callable, $name);
+        middleware($callable, is_numeric($name) ? null : $name);
     }
 }
 
 function onMessageText(
     string $pattern,
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.text.{$pattern}",
@@ -1084,9 +1084,9 @@ function onMessageText(
 }
 
 function onMessagePhoto(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.photo",
@@ -1097,9 +1097,9 @@ function onMessagePhoto(
 }
 
 function onMessageAnimation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.animation",
@@ -1110,9 +1110,9 @@ function onMessageAnimation(
 }
 
 function onMessageVideo(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.video",
@@ -1123,9 +1123,9 @@ function onMessageVideo(
 }
 
 function onMessageVideoNote(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.video_note",
@@ -1136,9 +1136,9 @@ function onMessageVideoNote(
 }
 
 function onMessageAudio(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.audio",
@@ -1149,9 +1149,9 @@ function onMessageAudio(
 }
 
 function onMessageVoice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.voice",
@@ -1162,9 +1162,9 @@ function onMessageVoice(
 }
 
 function onMessageDocument(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.document",
@@ -1175,9 +1175,9 @@ function onMessageDocument(
 }
 
 function onMessageLocation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.location",
@@ -1188,9 +1188,9 @@ function onMessageLocation(
 }
 
 function onMessageContact(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.contact",
@@ -1201,9 +1201,9 @@ function onMessageContact(
 }
 
 function onMessagePoll(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.poll',
@@ -1214,9 +1214,9 @@ function onMessagePoll(
 }
 
 function onMessageVenue(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.venue",
@@ -1227,9 +1227,9 @@ function onMessageVenue(
 }
 
 function onMessageGame(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.game",
@@ -1240,9 +1240,9 @@ function onMessageGame(
 }
 
 function onMessageDice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.dice",
@@ -1253,9 +1253,9 @@ function onMessageDice(
 }
 
 function onMessageSticker(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message.sticker",
@@ -1266,9 +1266,9 @@ function onMessageSticker(
 }
 
 function onMessageNewChatMembers(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.new_chat_members',
@@ -1279,9 +1279,9 @@ function onMessageNewChatMembers(
 }
 
 function onMessageLeftChatMember(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.left_chat_member',
@@ -1292,9 +1292,9 @@ function onMessageLeftChatMember(
 }
 
 function onMessageNewChatTitle(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.new_chat_title',
@@ -1305,9 +1305,9 @@ function onMessageNewChatTitle(
 }
 
 function onMessageNewChatPhoto(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.new_chat_photo',
@@ -1318,9 +1318,9 @@ function onMessageNewChatPhoto(
 }
 
 function onMessageDeleteChatPhoto(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.delete_chat_photo',
@@ -1331,9 +1331,9 @@ function onMessageDeleteChatPhoto(
 }
 
 function onMessageGroupChatCreated(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.group_chat_created',
@@ -1344,9 +1344,9 @@ function onMessageGroupChatCreated(
 }
 
 function onMessageSupergroupChatCreated(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.supergroup_chat_created',
@@ -1357,9 +1357,9 @@ function onMessageSupergroupChatCreated(
 }
 
 function onMessageChannelChatCreated(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.channel_chat_created',
@@ -1370,9 +1370,9 @@ function onMessageChannelChatCreated(
 }
 
 function onMessageAutoDeleteTimerChanged(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.message_auto_delete_timer_changed',
@@ -1383,9 +1383,9 @@ function onMessageAutoDeleteTimerChanged(
 }
 
 function onMessageMigrateToChatId(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.migrate_to_chat_id',
@@ -1396,9 +1396,9 @@ function onMessageMigrateToChatId(
 }
 
 function onMessageMigrateFromChatId(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.migrate_from_chat_id',
@@ -1409,9 +1409,9 @@ function onMessageMigrateFromChatId(
 }
 
 function onMessagePinnedMessage(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.pinned_message',
@@ -1422,9 +1422,9 @@ function onMessagePinnedMessage(
 }
 
 function onMessageInvoice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.invoice',
@@ -1435,9 +1435,9 @@ function onMessageInvoice(
 }
 
 function onMessageSuccessfulPayment(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.successful_payment',
@@ -1448,9 +1448,9 @@ function onMessageSuccessfulPayment(
 }
 
 function onMessageUserShared(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.user_shared',
@@ -1461,9 +1461,9 @@ function onMessageUserShared(
 }
 
 function onMessageChatShared(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.chat_shared',
@@ -1474,9 +1474,9 @@ function onMessageChatShared(
 }
 
 function onMessageConnectedWebsite(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.connected_website',
@@ -1487,9 +1487,9 @@ function onMessageConnectedWebsite(
 }
 
 function onMessageWriteAccessAllowed(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.write_access_allowed',
@@ -1500,9 +1500,9 @@ function onMessageWriteAccessAllowed(
 }
 
 function onMessagePassportData(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.passport_data',
@@ -1513,9 +1513,9 @@ function onMessagePassportData(
 }
 
 function onMessageProximityAlertTriggered(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.proximity_alert_triggered',
@@ -1526,9 +1526,9 @@ function onMessageProximityAlertTriggered(
 }
 
 function onMessageForumTopicCreated(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.forum_topic_created',
@@ -1539,9 +1539,9 @@ function onMessageForumTopicCreated(
 }
 
 function onMessageForumTopicEdited(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.forum_topic_edited',
@@ -1552,9 +1552,9 @@ function onMessageForumTopicEdited(
 }
 
 function onMessageForumTopicClosed(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.forum_topic_closed',
@@ -1565,9 +1565,9 @@ function onMessageForumTopicClosed(
 }
 
 function onMessageForumTopicReopened(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.forum_topic_reopened',
@@ -1578,9 +1578,9 @@ function onMessageForumTopicReopened(
 }
 
 function onMessageGeneralForumTopicHidden(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.general_forum_topic_hidden',
@@ -1591,9 +1591,9 @@ function onMessageGeneralForumTopicHidden(
 }
 
 function onMessageGeneralForumTopicUnhidden(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.general_forum_topic_unhidden',
@@ -1604,9 +1604,9 @@ function onMessageGeneralForumTopicUnhidden(
 }
 
 function onMessageVideoChatScheduled(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.video_chat_scheduled',
@@ -1617,9 +1617,9 @@ function onMessageVideoChatScheduled(
 }
 
 function onMessageVideoChatStarted(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.video_chat_started',
@@ -1630,9 +1630,9 @@ function onMessageVideoChatStarted(
 }
 
 function onMessageVideoChatEnded(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.video_chat_ended',
@@ -1643,9 +1643,9 @@ function onMessageVideoChatEnded(
 }
 
 function onMessageVideoChatParticipantsInvited(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.video_chat_participants_invited',
@@ -1656,9 +1656,9 @@ function onMessageVideoChatParticipantsInvited(
 }
 
 function onMessageWebAppData(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'message.web_app_data',
@@ -1669,9 +1669,9 @@ function onMessageWebAppData(
 }
 
 function onMessage(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "message",
@@ -1683,9 +1683,9 @@ function onMessage(
 
 function onEditedMessageText(
     string $pattern,
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "edited_message.text.{$pattern}",
@@ -1696,9 +1696,9 @@ function onEditedMessageText(
 }
 
 function onEditedMessagePhoto(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.photo',
@@ -1709,9 +1709,9 @@ function onEditedMessagePhoto(
 }
 
 function onEditedMessageAnimation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.animation',
@@ -1722,9 +1722,9 @@ function onEditedMessageAnimation(
 }
 
 function onEditedMessageVideo(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.video',
@@ -1735,9 +1735,9 @@ function onEditedMessageVideo(
 }
 
 function onEditedMessageVideoNote(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.video_note',
@@ -1748,9 +1748,9 @@ function onEditedMessageVideoNote(
 }
 
 function onEditedMessageAudio(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.audio',
@@ -1761,9 +1761,9 @@ function onEditedMessageAudio(
 }
 
 function onEditedMessageVoice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.voice',
@@ -1774,9 +1774,9 @@ function onEditedMessageVoice(
 }
 
 function onEditedMessageDocument(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.document',
@@ -1787,9 +1787,9 @@ function onEditedMessageDocument(
 }
 
 function onEditedMessageLocation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.location',
@@ -1800,9 +1800,9 @@ function onEditedMessageLocation(
 }
 
 function onEditedMessageContact(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.contact',
@@ -1813,9 +1813,9 @@ function onEditedMessageContact(
 }
 
 function onEditedMessagePoll(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.poll',
@@ -1826,9 +1826,9 @@ function onEditedMessagePoll(
 }
 
 function onEditedMessageVenue(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.venue',
@@ -1839,9 +1839,9 @@ function onEditedMessageVenue(
 }
 
 function onEditedMessageGame(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.game',
@@ -1852,9 +1852,9 @@ function onEditedMessageGame(
 }
 
 function onEditedMessageDice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.dice',
@@ -1865,9 +1865,9 @@ function onEditedMessageDice(
 }
 
 function onEditedMessageSticker(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message.sticker',
@@ -1878,9 +1878,9 @@ function onEditedMessageSticker(
 }
 
 function onEditedMessage(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_message',
@@ -1891,9 +1891,9 @@ function onEditedMessage(
 }
 
 function onCallbackQuery(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'callback_query',
@@ -1905,9 +1905,9 @@ function onCallbackQuery(
 
 function onCallbackQueryData(
     string $pattern,
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "callback_query.data.{$pattern}",
@@ -1919,9 +1919,9 @@ function onCallbackQueryData(
 
 function onChannelPostText(
     string $pattern,
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "channel_post.text.{$pattern}",
@@ -1932,9 +1932,9 @@ function onChannelPostText(
 }
 
 function onChannelPostPhoto(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.photo',
@@ -1945,9 +1945,9 @@ function onChannelPostPhoto(
 }
 
 function onChannelPostAnimation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.animation',
@@ -1958,9 +1958,9 @@ function onChannelPostAnimation(
 }
 
 function onChannelPostVideo(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.video',
@@ -1971,9 +1971,9 @@ function onChannelPostVideo(
 }
 
 function onChannelPostVideoNote(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.video_note',
@@ -1984,9 +1984,9 @@ function onChannelPostVideoNote(
 }
 
 function onChannelPostAudio(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.audio',
@@ -1997,9 +1997,9 @@ function onChannelPostAudio(
 }
 
 function onChannelPostVoice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.voice',
@@ -2010,9 +2010,9 @@ function onChannelPostVoice(
 }
 
 function onChannelPostDocument(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.document',
@@ -2023,9 +2023,9 @@ function onChannelPostDocument(
 }
 
 function onChannelPostLocation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.location',
@@ -2036,9 +2036,9 @@ function onChannelPostLocation(
 }
 
 function onChannelPostContact(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.contact',
@@ -2049,9 +2049,9 @@ function onChannelPostContact(
 }
 
 function onChannelPostPoll(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.poll',
@@ -2062,9 +2062,9 @@ function onChannelPostPoll(
 }
 
 function onChannelPostVenue(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.venue',
@@ -2075,9 +2075,9 @@ function onChannelPostVenue(
 }
 
 function onChannelPostGame(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.game',
@@ -2088,9 +2088,9 @@ function onChannelPostGame(
 }
 
 function onChannelPostDice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.dice',
@@ -2101,9 +2101,9 @@ function onChannelPostDice(
 }
 
 function onChannelPostSticker(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.sticker',
@@ -2114,9 +2114,9 @@ function onChannelPostSticker(
 }
 
 function onChannelPostMessageAutoDeleteTimerChanged(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.message_auto_delete_timer_changed',
@@ -2127,9 +2127,9 @@ function onChannelPostMessageAutoDeleteTimerChanged(
 }
 
 function onChannelPostPinnedMessage(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post.pinned_message',
@@ -2140,9 +2140,9 @@ function onChannelPostPinnedMessage(
 }
 
 function onChannelPost(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'channel_post',
@@ -2154,9 +2154,9 @@ function onChannelPost(
 
 function onEditedChannelPostText(
     string $pattern,
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "edited_channel_post.text.{$pattern}",
@@ -2167,9 +2167,9 @@ function onEditedChannelPostText(
 }
 
 function onEditedChannelPostPhoto(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.photo',
@@ -2180,9 +2180,9 @@ function onEditedChannelPostPhoto(
 }
 
 function onEditedChannelPostAnimation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.animation',
@@ -2193,9 +2193,9 @@ function onEditedChannelPostAnimation(
 }
 
 function onEditedChannelPostVideo(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.video',
@@ -2206,9 +2206,9 @@ function onEditedChannelPostVideo(
 }
 
 function onEditedChannelPostVideoNote(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.video_note',
@@ -2219,9 +2219,9 @@ function onEditedChannelPostVideoNote(
 }
 
 function onEditedChannelPostAudio(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.audio',
@@ -2232,9 +2232,9 @@ function onEditedChannelPostAudio(
 }
 
 function onEditedChannelPostVoice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.voice',
@@ -2245,9 +2245,9 @@ function onEditedChannelPostVoice(
 }
 
 function onEditedChannelPostDocument(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.document',
@@ -2258,9 +2258,9 @@ function onEditedChannelPostDocument(
 }
 
 function onEditedChannelPostLocation(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.location',
@@ -2271,9 +2271,9 @@ function onEditedChannelPostLocation(
 }
 
 function onEditedChannelPostContact(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.contact',
@@ -2284,9 +2284,9 @@ function onEditedChannelPostContact(
 }
 
 function onEditedChannelPostPoll(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.poll',
@@ -2297,9 +2297,9 @@ function onEditedChannelPostPoll(
 }
 
 function onEditedChannelPostVenue(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.venue',
@@ -2310,9 +2310,9 @@ function onEditedChannelPostVenue(
 }
 
 function onEditedChannelPostGame(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.game',
@@ -2323,9 +2323,9 @@ function onEditedChannelPostGame(
 }
 
 function onEditedChannelPostDice(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.dice',
@@ -2336,9 +2336,9 @@ function onEditedChannelPostDice(
 }
 
 function onEditedChannelPostSticker(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post.sticker',
@@ -2349,9 +2349,9 @@ function onEditedChannelPostSticker(
 }
 
 function onEditedChannelPost(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'edited_channel_post',
@@ -2362,9 +2362,9 @@ function onEditedChannelPost(
 }
 
 function onChatMember(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'chat_member',
@@ -2375,9 +2375,9 @@ function onChatMember(
 }
 
 function onMyChatMember(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'my_chat_member',
@@ -2388,9 +2388,9 @@ function onMyChatMember(
 }
 
 function onPoll(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'poll',
@@ -2401,9 +2401,9 @@ function onPoll(
 }
 
 function onPollAnswer(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'poll_answer',
@@ -2414,9 +2414,9 @@ function onPollAnswer(
 }
 
 function onInlineQuery(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'inline_query',
@@ -2428,9 +2428,9 @@ function onInlineQuery(
 
 function onInlineQueryText(
     string $pattern,
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "inline_query.query.{$pattern}",
@@ -2441,9 +2441,9 @@ function onInlineQueryText(
 }
 
 function onShippingQuery(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'shipping_query',
@@ -2454,9 +2454,9 @@ function onShippingQuery(
 }
 
 function onChatJoinRequest(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'chat_join_request',
@@ -2467,9 +2467,9 @@ function onChatJoinRequest(
 }
 
 function onPreCheckoutQuery(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'pre_checkout_query',
@@ -2480,9 +2480,9 @@ function onPreCheckoutQuery(
 }
 
 function onChosenInlineResult(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'chosen_inline_result',
@@ -2494,9 +2494,9 @@ function onChosenInlineResult(
 
 function onChosenInlineResultQuery(
     string $pattern,
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "chosen_inline_result.query.{$pattern}",
@@ -2508,9 +2508,9 @@ function onChosenInlineResultQuery(
 
 function onChosenInlineResultId(
     string $pattern,
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: "chosen_inline_result.result_id.{$pattern}",
@@ -2522,9 +2522,9 @@ function onChosenInlineResultId(
 
 function fallbackOn(
     string $updateType,
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     if (!in_array($updateType, _updateTypes())) {
         throw new Exception("Invalid update type '{$updateType}'!");
@@ -2538,9 +2538,9 @@ function fallbackOn(
 }
 
 function fallback(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'fallback',
@@ -2551,9 +2551,9 @@ function fallback(
 }
 
 function onException(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'exception',
@@ -2564,9 +2564,9 @@ function onException(
 }
 
 function onApiError(
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
     __addHandler(
         keys: 'api_error',
@@ -3335,7 +3335,7 @@ function InputMediaAnimation(
     ?int $duration = null,
     ?bool $has_spoiler = null,
 ): array {
-    return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_ANIMATION], get_defined_vars()));
+    return __prepareApiTypeFields(array_merge([FIELD_TYPE => INPUT_MEDIA_TYPE_ANIMATION], get_defined_vars()));
 }
 
 function InputMediaDocument(
@@ -3347,7 +3347,7 @@ function InputMediaDocument(
     null|CURLFile|string $thumbnail = null,
     ?bool $disable_content_type_detection = null,
 ): array {
-    return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_DOCUMENT], get_defined_vars()));
+    return __prepareApiTypeFields(array_merge([FIELD_TYPE => INPUT_MEDIA_TYPE_DOCUMENT], get_defined_vars()));
 }
 
 function InputMediaAudio(
@@ -3360,7 +3360,7 @@ function InputMediaAudio(
     ?int $performer = null,
     ?string $title = null,
 ): array {
-    return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_AUDIO], get_defined_vars()));
+    return __prepareApiTypeFields(array_merge([FIELD_TYPE => INPUT_MEDIA_TYPE_AUDIO], get_defined_vars()));
 }
 
 function InputMediaPhoto(
@@ -3370,7 +3370,7 @@ function InputMediaPhoto(
     ?array $caption_entities = null,
     ?bool $has_spoiler = null,
 ): array {
-    return __prepareApiTypeFields(array_merge(['type' => INPUT_MEDIA_TYPE_PHOTO], get_defined_vars()));
+    return __prepareApiTypeFields(array_merge([FIELD_TYPE => INPUT_MEDIA_TYPE_PHOTO], get_defined_vars()));
 }
 
 function InputMediaVideo(
@@ -3385,7 +3385,7 @@ function InputMediaVideo(
     ?int $duration = null,
     ?bool $supports_streaming = null,
 ): array {
-    return __prepareApiTypeFields(array_merge(['type' => 'video'], get_defined_vars()));
+    return __prepareApiTypeFields(array_merge([FIELD_TYPE => INPUT_MEDIA_TYPE_VIDEO], get_defined_vars()));
 }
 
 function InputFile(string $file_path): CURLFile { 
@@ -5416,7 +5416,7 @@ function _file(?string $keys = null): mixed {
         throw new Exception('The message type is not a file, you called this function in inappropriate place!');
     }
     $function = __NAMESPACE__.'\\'.__snakeToCamelCase(_messageType());
-    return $function($keys);
+    return call_user_func($function, $keys);
 }
 
 function _photo(?string $keys = null): mixed {
@@ -6029,13 +6029,13 @@ function _row(array ...$buttons): array {
 function _downloadBotFile(array|string $file, string $save_path, ?array $options = []): bool {
     if (is_string($file)) {
         $file = getFile(file_id: $file);
-        if (!$file || !$file['ok']) {
+        if (!$file || !$file[FIELD_OK]) {
             throw new Exception("File not found!");
         }
     }
-    $filePath = $file['file_path'] ?? $file['result']['file_path'] ?? null;
+    $filePath = $file[FIELD_FILE_PATH] ?? $file[FIELD_RESULT][FIELD_FILE_PATH] ?? null;
     if (!$filePath) {
-        throw new Exception("The 'file_path' is not specified!");
+        throw new Exception("The '".FIELD_FILE_PATH."' is not specified!");
     }
     $apiBaseUrl = ($options['api_base_url'] ?? __apiBaseUrl()).'/file';
     if (!$apiBaseUrl) {
@@ -6049,7 +6049,7 @@ function _downloadBotFile(array|string $file, string $save_path, ?array $options
     return _download(
         url: $url,
         save_path: $save_path,
-        curl_options: $options['curl_options'] ?? [],
+        curl_options: $options[_FIELD_CURL_OPTIONS] ?? [],
     );
 }
 
@@ -6385,13 +6385,13 @@ function __makeApiRequest(string $method = null, array $parameters = [], array $
         CURLOPT_FORBID_REUSE => false,
         CURLOPT_FRESH_CONNECT => false,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
-    ] + ($options['curl_options'] ?? __defaultCurlOptions());
+    ] + ($options[_FIELD_CURL_OPTIONS] ?? __defaultCurlOptions());
     $result = __makeCurlRequest(url: $url, options: $curlOptions);
     if (is_bool($result)) {
         return $result;
     }
     $response = json_decode($result, true);
-    if (isset($response['ok']) && !$response['ok']) {
+    if (isset($response[FIELD_OK]) && !$response[FIELD_OK]) {
         $handlers = __handlers();
         if (isset($handlers[_FIELD_API_ERROR])) {
             return __fireHandler($handlers[_FIELD_API_ERROR], [$response]);
@@ -6458,31 +6458,52 @@ function __setOrPushValue(array &$array, mixed $value, ?string $keys = null, boo
     }
 }
 
+function __prepareCallable(array|string|callable $callable) {
+    if (is_string($callable) && class_exists($callable)) {
+        $callable = new $callable;
+    }
+    if (is_array($callable) && isset($callable[0]) && class_exists(strval($callable[0]))) {
+        $callable[0] = new $callable[0];
+    }
+    if (!is_callable($callable)) {
+        throw new Exception('Invalid callable provided!');
+    }
+    return $callable;
+}
+
 function __addHandler(
     string $keys,
-    callable $callable,
-    callable|array $middlewares = [],
-    array $skip_middlewares = [],
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
 ): void {
-    $handler = &$GLOBALS[_PACKAGE_NAME]['handlers'];
+    $handler = &$GLOBALS[_PACKAGE_NAME][_FIELD_HANDLERS];
     foreach(explode('.', $keys) as $key) {
         $handler = &$handler[$key];
     }
-    $handler[_FIELD_CALLABLE] = $callable;
-    if ($middlewares) {
-        if (is_callable($middlewares)) {
-            $handler[_FIELD_MIDDLEWARES][] = $middlewares;
-        } else {
-            $handler[_FIELD_MIDDLEWARES] = $middlewares;
-        }
+    $handler[_FIELD_CALLABLE] = __prepareCallable($callable);
+    $middlewares = !is_array($middlewares) ? [$middlewares] : $middlewares;
+    foreach ($middlewares as $middleware) {
+        $handler[_FIELD_MIDDLEWARES][] = __prepareCallable($middleware);
     }
-    if ($skip_middlewares) {
-        $handler[_FIELD_SKIP_MIDDLEWARES] = $skip_middlewares;
+    $skip_middlewares = !is_array($skip_middlewares) ? [$skip_middlewares] : $skip_middlewares;
+    foreach ($skip_middlewares as $name) {
+        if (is_string($name)) {
+            $handler[_FIELD_SKIP_MIDDLEWARES][] = $name;
+        }
     }
 }
 
-function __addMiddleware(callable $callable, string $name = null): void {
+function __addMiddleware(array|string|callable $callable, string $name = null): void {
     $handler = &$GLOBALS[_PACKAGE_NAME][_FIELD_MIDDLEWARES];
+    $callable = __prepareCallable($callable);
+    if (!$name) {
+        if (is_object($callable) && !$callable instanceof Closure) {
+            $name = $callable::class;
+        } elseif (is_array($callable) && is_object($callable[0]) && !$callable[0] instanceof Closure) {
+            $name = $callable[0]::class;
+        }
+    }
     if ($name) {
         $handler[$name] = $callable;
     } else {
@@ -6519,8 +6540,6 @@ function __fireMiddlewares(array $middlewares, array $skip = []): void {
     foreach ($middlewares as $middleware) {
         if (is_callable($middleware)) {
             call_user_func($middleware);
-        } elseif (is_array($middleware)) {
-            __fireMiddlewares($middleware);
         }
     }
 }
@@ -6588,6 +6607,7 @@ function __fireHandler(array $handler, array $parameters = [], array $options = 
         __fireMiddlewares(__middlewares(), $handler[_FIELD_SKIP_MIDDLEWARES] ?? []);
     }
     __fireMiddlewares($handler[_FIELD_MIDDLEWARES] ?? []);
+    $callable = $handler[_FIELD_CALLABLE];
     call_user_func($handler[_FIELD_CALLABLE], ...$parameters);
     return true;
 }
@@ -6670,15 +6690,15 @@ function __apiBaseUrl(?string $username = null): string {
 }
 
 function __isWebhook(): ?bool {
-    return __config('is_webhook');
+    return __config(_FIELD_IS_WEBHOOK);
 }
 
 function __defaultCurlOptions(): array {
-    return __config('curl_options') ?? [];
+    return __config(_FIELD_CURL_OPTIONS) ?? [];
 }
 
 function __handlers(): ?array {
-    return __config('handlers');
+    return __config(_FIELD_HANDLERS);
 }
 
 function __middlewares(): ?array {
@@ -6719,12 +6739,12 @@ function __handleLongPolling(): void {
     $timeout = 10;
     while (true) {
         $response = getUpdates(timeout: $timeout, offset: $offset);
-        if (!$response['ok']) {
+        if (!$response[FIELD_OK]) {
             throw new \Exception('Could not fetch updates with the getUpdates method!');
         }
-        $updates = $response['result'];
+        $updates = $response[FIELD_RESULT];
         foreach ($updates as $update) {
-            $offset = $update['update_id'] + 1;
+            $offset = $update[FIELD_UPDATE_ID] + 1;
             __processUpdate($update);
         }
         usleep(2000000);
