@@ -40,7 +40,8 @@
     - ♟ [Usage Without Handlers](#usage-without-handlers)
         - [Webhook Implementation](#without-handlers-webhook-implementation)
         - [LongPolling Implementation](#without-handlers-longpolling-implementation)
-    - 🧱 [Usage With OOP](#usage-with-oop) (Soon...)
+    - 🧱 [Usage With OOP](#usage-with-oop)
+        - [Optimizing Project Structure](#optimizing-project-structure)
     - 🔗 [Deep Links](#deep-links) (Soon...)
     - 🚀 [Performance](#performance) (Not complete yet...)
 - 🐞 [Bug Report](#bug-report)
@@ -1538,7 +1539,91 @@ foreach ($updates as $update) {
 
 ### 🧱 Usage With OOP <a name="usage-with-oop"></a>
 
-Soon...
+The PTB-PHP library provides developers with the flexibility to utilize object-oriented programming (OOP) alongside procedural code. While the library primarily encourages a procedural approach, it acknowledges that certain scenarios may require OOP concepts. As such, PTB-PHP allows the use of classes and objects within middleware and handlers, offering developers the freedom to incorporate OOP where necessary, rather than limiting them to pure functions.
+
+Let's see an example:
+```php
+use function DevDasher\PTB\middleware;
+use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB\onMessageText;
+
+# Suppose we have two clasess, one for handler, and another for middleware:
+class StartCommand {
+    # This is a magic method in PHP that allows us to call a class as if it were a callable
+    public function __invoke() {
+        sendMessage(text: 'Start');
+        //...
+        //...
+    }
+    //...
+}
+
+class CheckUserStatusMiddleware {
+    public function __invoke() {
+        sendMessage(text: 'Hello from '.__CLASS__);
+        //...
+        //...
+    }
+    //...
+}
+
+# Here, we pass the class name for middleware:
+middleware(CheckUserStatusMiddleware::class);
+
+# Or pass an object of class:
+// middleware(new CheckUserStatusMiddleware);
+
+# Or pass class and method name in an array like this:
+// middleware([CheckUserStatusMiddleware::class, 'method_name']);
+// middleware([new CheckUserStatusMiddleware, 'method_name']);
+
+# And here, we pass a class name for handler:
+onMessageText(pattern: '/start', callable: StartCommand::class);
+
+# Or pass an object of class:
+// onMessageText(pattern: '/start', callable: new StartCommand);
+
+# Or pass class and method name in an array like this:
+// onMessageText(pattern: '/start', callable: [StartCommand::class, 'method_name']);
+// onMessageText(pattern: '/start', callable: [new StartCommand, 'method_name']);
+```
+
+#### Optimizing Project Structure <a name="optimizing-project-structure"></a>
+
+A well-organized project structure is crucial for developing a Telegram bot, especially when using object-oriented programming (OOP) principles. Here's an enhanced suggested structure to optimize your project:
+
+- MyBot
+    - app/
+        - Commands/
+            - StartCommand.php
+            - HelpCommand.php
+            - AccountCommand.php
+            - ...
+        - Conversations/
+            - RegisterConversation.php
+            - TransferMoneyConversation.php
+            - DeleteUserConversation.php
+            - ...
+        - Middlewares/
+            - CollectUserMiddleware.php
+            - CheckUserStatusMiddleware.php
+            - CheckBotStatusMiddleware.php
+            - AdminAuthMiddleware.php
+            - ...
+    - config/
+        - config.php
+        - functions.php
+        - messages.php
+        - ...
+    - vendor/
+    - .gitignore
+    - bot.php **(Your main file to set webhook or other things...)**
+    - CHANGELOG.md
+    - composer.json
+    - composer.lock
+    - LICENSE
+    - README.md
+    
 
 ### 🔗 Deep Links <a name="deep-links"></a>
 
