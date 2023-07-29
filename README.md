@@ -222,13 +222,17 @@ configurePTB(
 
 ### Available Configuration Parameters <a name="available-configuration-parameters"></a>
 
-| Parameter                                      | Description
-|------------------------------------------------|-------------
-| `string $username`                             | The bot token
-| `string $token`                                | The bot username
-| `string $api_base_url = API_BASE_URL`          | ...
-| `array $curl_options = []`                     | ...
-| `bool $is_webhook = false`                     | Pass `true` if you want to use Webhook to get updates, appropriate for production. default is `false` (LongPolling)
+| Parameter                                 | Required | Description                                                        
+|-------------------------------------------|----------|--------------------------------------------------------------------
+| `string $username`                        | ✅       | The bot username used for identification.                          
+| `string $token`                           | ✅       | The bot token required to authenticate and access the Telegram API. 
+| `string $api_base_url = API_BASE_URL`     | ❌       | The base URL for the Telegram API. Default is 'https://api.telegram.org', but you can provide your own custom base URL.
+| `array $curl_options = []`                | ❌       | Additional cURL options for sending requests to the Telegram API. Some options are already set by default, but you can add or overwrite them using this parameter.
+| `bool $is_webhook = false`                | ❌       | Set this to `true` if you want to use Webhook to receive updates from Telegram. This is suitable for production environments. By default, Long Polling is used (`false`).
+| `?CacheInterface $cache = null`           | ❌       | A cache adapter implementation that will be used for caching purposes. You can pass a cache adapter object that implements the `Psr\SimpleCache\CacheInterface`.
+| `array $update = []`                      | ❌       | Allows you to set the input update sent from Telegram servers manually, or add a fake update for testing purposes.
+| `array $global_data = []`                 | ❌       | An optional array of key-value pairs that allows you to store global data (e.g., configuration values) accessible to all middlewares and handlers in the library.
+| `?array $allowed_updates = null`          | ❌       | Defines the allowed types of updates that the library should handle. You can effectively determine allowed updates through the `setWebhook` method. Updates that are not allowed will be automatically rejected by the library. This provides an additional layer of validation for incoming updates.
 
 ## 📤 Uploading Files <a name="uploading-files"></a>
 
