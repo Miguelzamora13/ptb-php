@@ -1587,6 +1587,28 @@ onMessageText(pattern: '/start', callable: StartCommand::class);
 # Or pass class and method name in an array like this:
 // onMessageText(pattern: '/start', callable: [StartCommand::class, 'method_name']);
 // onMessageText(pattern: '/start', callable: [new StartCommand, 'method_name']);
+
+
+# Here we define some additional commands assuming that we have defined related classes somewhere in the program:
+onMessageText(
+    pattern: '/admin',
+    callable: AdminCommand::class,
+
+    # A middleware for checking if user is an admin or not
+    middlewares: AdminAuthMiddleware::class, 
+
+    # Of course, if you need multiple middlewares, just pass them in an array
+    // middlewares: [AdminAuthMiddleware::class, AnotherMiddleware::class, /* ... */ ],
+
+
+    # Here we say that the CheckUserStatusMiddleware class sould not be executed before this handler
+    skip_middlewares: CheckUserStatusMiddleware::class,
+
+    # Of course, if you need to pass multiple middleware names, just pass them in an array
+    // middlewares: [CheckUserStatusMiddleware::class, AnotherMiddlewareToSkip::class, /* ... */ ],
+);
+
+//...
 ```
 
 #### Optimizing Project Structure <a name="optimizing-project-structure"></a>
