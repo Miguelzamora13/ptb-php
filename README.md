@@ -1047,8 +1047,15 @@ Here is a list of all available handlers in the library:
 | `onChannelPostGame(...)`                            | Handles `game` on `channel_post` update type
 | `onChannelPostDice(...)`                            | Handles `dice` on `channel_post` update type
 | `onChannelPostSticker(...)`                         | Handles `sticker` on `channel_post` update type
+| `onChannelPostNewChatTitle(...)`                    | Handles `new_chat_title` on `channel_post` update type
+| `onChannelPostNewChatPhoto(...)`                    | Handles `new_chat_photo` on `channel_post` update type
+| `onChannelPostDeleteChatPhoto(...)`                 | Handles `delete_chat_photo` on `channel_post` update type
 | `onChannelPostMessageAutoDeleteTimerChanged(...)`   | Handles `message_auto_delete_timer_changed` on `channel_post` update type
 | `onChannelPostPinnedMessage(...)`                   | Handles `pinned_message` on `channel_post` update type
+| `onChannelPostVideoChatScheduled(...)`              | Handles `video_chat_scheduled` on `channel_post` update type
+| `onChannelPostVideoChatStarted(...)`                | Handles `video_chat_started` on `channel_post` update type
+| `onChannelPostVideoChatEnded(...)`                  | Handles `video_chat_ended` on `channel_post` update type
+| `onChannelPostVideoChatParticipantsInvited(...)`    | Handles `video_chat_participants_invited` on `channel_post` update type
 | `onChannelPost(...)`                                | Will be called if none of the above handlers match
 
 | EditedChannelPost Handlers              | Description
@@ -1467,7 +1474,7 @@ if (isset($update['message'])) {
 }
 
 if ($text === '/start') {
-    return sendMessage(text: 'START ANY', chat_id: $chatId);
+    return sendMessage(text: 'START', chat_id: $chatId);
 }
 
 //...

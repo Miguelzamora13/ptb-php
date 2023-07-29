@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.3.2
+ * @version 1.3.3
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -2113,6 +2113,44 @@ function onChannelPostSticker(
     );
 }
 
+function onChannelPostNewChatTitle(
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'channel_post.new_chat_title',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+function onChannelPostNewChatPhoto(
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'channel_post.new_chat_photo',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+
+function onChannelPostDeleteChatPhoto(
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'channel_post.delete_chat_photo',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+
 function onChannelPostMessageAutoDeleteTimerChanged(
     array|string|callable $callable,
     array|string|callable $middlewares = [],
@@ -2133,6 +2171,58 @@ function onChannelPostPinnedMessage(
 ): void {
     __addHandler(
         keys: 'channel_post.pinned_message',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+
+function onChannelPostVideoChatScheduled(
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'channel_post.video_chat_scheduled',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+
+function onChannelPostVideoChatStarted(
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'channel_post.video_chat_started',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+
+function onChannelPostVideoChatEnded(
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'channel_post.video_chat_ended',
+        callable: $callable,
+        middlewares: $middlewares,
+        skip_middlewares: $skip_middlewares,
+    );
+}
+
+function onChannelPostVideoChatParticipantsInvited(
+    array|string|callable $callable,
+    array|string|callable $middlewares = [],
+    array|string $skip_middlewares = [],
+): void {
+    __addHandler(
+        keys: 'channel_post.video_chat_participants_invited',
         callable: $callable,
         middlewares: $middlewares,
         skip_middlewares: $skip_middlewares,
