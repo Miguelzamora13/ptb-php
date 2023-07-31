@@ -5505,7 +5505,7 @@ function _file(?string $keys = null): mixed {
     if (!_isFile()) {
         throw new Exception('The message type is not a file, you called this function in inappropriate place!');
     }
-    $function = __NAMESPACE__.'\\'.__snakeToCamelCase(_messageType());
+    $function = __NAMESPACE__.'\\_'.__snakeToCamelCase(_messageType());
     return call_user_func($function, $keys);
 }
 
@@ -6668,7 +6668,7 @@ function __fireHandlers(array $handlers) {
                 }
             }
         }
-        if (isset($result) && $result === false) {
+        if (!isset($result) || $result === false) {
             if (isset($updateHandlers[_FIELD_CALLABLE])) {
                 return __fireHandler($updateHandlers);
             }
