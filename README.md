@@ -1677,10 +1677,9 @@ More details soon...
 
 We would love to feature your projects that utilize our library! Please share the links with us, and we will gladly showcase them in this section.
 
-| Bot Name                | Description  | Source Code
-|-------------------------|--------------|---------------
-| SampleBot               | Description  | [GitHub](https://github.com/#)
-| ...                     | ...          | N/A
+| Bot Name         | Username                           | Source Code                                      | Source Code Status         | Telegram Status           | Description
+|------------------|------------------------------------|--------------------------------------------------|----------------------------|---------------------------|----------------
+| MKeepBot         | [@mkeepbot](https://t.me/mkeepbot) |[GitHub](https://github.com/devdasher/mkeepbot)   | Development in progress... | 🔴 Deactive               |  A Telegram bot to share posts with others easily uisng the PTB-PHP library.
 
 # 🐞 Bug Report <a name="bug-report"></a>
 
