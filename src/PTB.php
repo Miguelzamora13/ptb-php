@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.3.3
+ * @version 1.3.5
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -6651,7 +6651,11 @@ function __fireHandlers(array $handlers) {
                     $result = __fireTextHandlers($updateHandlers[FIELD_TEXT], _text());
                     
                 } elseif (in_array($messageType, _messageTypes())) {
-                    $result = __fireHandler($updateHandlers[$messageType]);
+                    if (__isStartedAConversation()) {
+                        $result = __fireConversation();
+                    } else {
+                        $result = __fireHandler($updateHandlers[$messageType]);
+                    }
                 }
             } elseif (_isCallbackQuery() && isset($updateHandlers[FIELD_DATA])) {
                 $result = __fireTextHandlers($updateHandlers[FIELD_DATA], _callbackQueryData());
@@ -6669,6 +6673,9 @@ function __fireHandlers(array $handlers) {
             }
         }
         if (!isset($result) || $result === false) {
+            if (__isStartedAConversation()) {
+                return __fireConversation();
+            } 
             if (isset($updateHandlers[_FIELD_CALLABLE])) {
                 return __fireHandler($updateHandlers);
             }
@@ -6697,7 +6704,6 @@ function __fireHandler(array $handler, array $parameters = [], array $options = 
         __fireMiddlewares(__middlewares(), $handler[_FIELD_SKIP_MIDDLEWARES] ?? []);
     }
     __fireMiddlewares($handler[_FIELD_MIDDLEWARES] ?? []);
-    $callable = $handler[_FIELD_CALLABLE];
     call_user_func($handler[_FIELD_CALLABLE], ...$parameters);
     return true;
 }
@@ -6714,12 +6720,16 @@ function __fireTextHandlers(array $handlers, string $value): bool {
         return __fireHandler($handler, $parameters);
     }
     if (__isStartedAConversation()) {
-        $conversation = __getConversation();
-        $closure = __unserializeClosure($conversation['next_step']);
-        call_user_func($closure, ...($conversation['data'] ?? []));
-        return true;
+        return __fireConversation();
     }
     return false;
+}
+
+function __fireConversation(?array $conversation = null): bool {
+    $conversation = $conversation ?? __getConversation();
+    $closure = __unserializeClosure($conversation['next_step']);
+    call_user_func($closure, ...($conversation['data'] ?? []));
+    return true;
 }
 
 function __removeNullValues(array $array): array {
