@@ -23,14 +23,14 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.0.1
+ * @version 1.0.2
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
 */
 
 use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\onAnyUpdateType;
+use function DevDasher\PTB\fallback;
 use function DevDasher\PTB\run;
 use function DevDasher\PTB\sendMessage;
 use function DevDasher\PTB\_update;
@@ -43,7 +43,7 @@ configurePTB(
     is_webhook: false, // Webhook or LongPolling?
 );
 
-onAnyUpdateType(callable: function() {
+fallback(callable: function() {
     sendMessage(text: json_encode(_update(), JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 });
 
