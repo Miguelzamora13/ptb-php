@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.6] - 2023-07-29
+
+- Implemented support for utilizing Conversations using OOP approach.
+- Modified the parameter `Closure $closure` to `object $next_step` in the _nextStepOfConversation(...) function for improved functionality and readability.
+
 ## [1.3.3] - 2023-07-29
 
 - Added support of OOP for handlers and middlewares. Please refer to the [documentation](https://github.com/devdasher/ptb-php#usage-with-oop) for further information and examples

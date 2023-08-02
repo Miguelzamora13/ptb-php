@@ -19,7 +19,7 @@
     along with the PTB (Procedural Telegram Bot).
     If not, see https://www.gnu.org/licenses/.
 
- * @version 1.3.5
+ * @version 1.3.6
  * @author Pooria Bashiri <po.pooria@gmail.com>
  * @link http://github.com/DevDasher/PTB-PHP
  * @link http://t.me/DevDasher
@@ -33,6 +33,7 @@ use DateInterval;
 use Exception;
 use Laravel\SerializableClosure\SerializableClosure;
 use Psr\SimpleCache\CacheInterface;
+use stdClass;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Psr16Cache;
 use Throwable;
@@ -6330,8 +6331,13 @@ function _input(string|callable $prompt,Closure $next_step, array $conversation_
     _nextStepOfConversation($next_step);
 }
 
-function _nextStepOfConversation(Closure $closure): void {
-    __updateConversationData('next_step', __serializeClosure($closure));
+function _nextStepOfConversation(object $next_step): void {
+    if ($next_step instanceof Closure) {
+        $serialized = __serializeClosure($next_step);
+    } else {
+        $serialized = serialize($next_step);
+    }
+    __updateConversationData('next_step', $serialized);
 }
 
 function _endConversation(): void {
@@ -6551,6 +6557,9 @@ function __setOrPushValue(array &$array, mixed $value, ?string $keys = null, boo
 function __prepareCallable(array|string|callable $callable) {
     if (is_string($callable) && class_exists($callable)) {
         $callable = new $callable;
+        if (str_ends_with($callable::class, 'Conversation')) {
+            return $callable;
+        }
     }
     if (is_array($callable) && isset($callable[0]) && class_exists(strval($callable[0]))) {
         $callable[0] = new $callable[0];
@@ -6675,7 +6684,7 @@ function __fireHandlers(array $handlers) {
         if (!isset($result) || $result === false) {
             if (__isStartedAConversation()) {
                 return __fireConversation();
-            } 
+            }
             if (isset($updateHandlers[_FIELD_CALLABLE])) {
                 return __fireHandler($updateHandlers);
             }
@@ -6704,7 +6713,22 @@ function __fireHandler(array $handler, array $parameters = [], array $options = 
         __fireMiddlewares(__middlewares(), $handler[_FIELD_SKIP_MIDDLEWARES] ?? []);
     }
     __fireMiddlewares($handler[_FIELD_MIDDLEWARES] ?? []);
-    call_user_func($handler[_FIELD_CALLABLE], ...$parameters);
+    $callable = $handler[_FIELD_CALLABLE];
+    if (is_object($callable) && str_ends_with($callable::class, 'Conversation')) {
+        $methods = get_class_methods($callable);
+        $currentMethod = current($methods);
+        $callable->{$currentMethod}();
+        $nextMethod = next($methods);
+        if (!$nextMethod) {
+            _endConversation();
+            return true;
+        }
+        $object = new stdClass;
+        $object->nextStep = [$callable, $nextMethod];
+        _nextStepOfConversation($object);
+    } else {
+        call_user_func($callable, ...$parameters);
+    }
     return true;
 }
 
@@ -6727,8 +6751,28 @@ function __fireTextHandlers(array $handlers, string $value): bool {
 
 function __fireConversation(?array $conversation = null): bool {
     $conversation = $conversation ?? __getConversation();
-    $closure = __unserializeClosure($conversation['next_step']);
-    call_user_func($closure, ...($conversation['data'] ?? []));
+    $nextStep = $conversation['next_step'];
+    $unserialized = unserialize($nextStep);
+    if ($unserialized instanceof SerializableClosure) {
+        $closure =  $unserialized->getClosure();
+        call_user_func($closure, ...($conversation['data'] ?? []));
+    } else {
+        $object = $unserialized;
+        $nextStep = $object?->nextStep;
+        $currentMethod = $nextStep[1];
+        $conversationObject = $nextStep[0];
+        call_user_func([$conversationObject, $currentMethod], ...($conversation['data'] ?? []));
+        // $conversationObject->{$currentMethod}();
+        $methods = get_class_methods($conversationObject);
+        $index = array_search($currentMethod, $methods);
+        $nextMethod = $methods[$index+1] ?? null;
+        if (!$nextMethod) {
+            _endConversation();
+            return true;
+        }
+        $object->nextStep = [$conversationObject, $nextMethod];
+        _nextStepOfConversation($object);
+    }
     return true;
 }
 

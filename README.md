@@ -27,6 +27,7 @@
         - [Real World Example](#middlewares-real-world-example)
     - 💬 [Conversations](#conversations)
         - [Important Notice](#conversations-important-notice)
+        - [OOP Way](#conversations-oop-way)
     - 🎮 [Keyboards](#keyboards)
         - [ReplyKeyboardMarkup](#reply-keyboard-markup)
         - [ReplyKeyboardRemove](#reply-keyboard-remove)
@@ -715,7 +716,7 @@ onMessageText('/register', function() { // FIRST STEP
 
     # This helper is to determine the next (second) step.
     # This will be executed later, when the user submits the second input
-    _nextStepOfConversation(closure: function() { // SECOND STEP
+    _nextStepOfConversation(next_step: function() { // SECOND STEP
 
         # This will be the user's answer to the first question that we asked him for his name
         $text = _text();
@@ -737,7 +738,7 @@ onMessageText('/register', function() { // FIRST STEP
         _nextStepOfConversation(
             // Here, we get the name we saved in the cache automatically
             //       in the function parameter. Related to the _setConversationData(...) helper.
-            closure: function($name) { // THIRD AND FINAL STEP
+            next_step: function($name) { // THIRD AND FINAL STEP
 
                 # Storing the text value in a variable:
                 $text = _text();
@@ -835,12 +836,72 @@ onMessageText('/register', function() { // FIRST STEP
 
 ### Important Notice <a name="conversations-important-notice"></a>
 
-The [laravel/serializableclosure](https://github.com/laravel/serializable-closure) package currently has issues with correctly identifying Named Parameters. Due to PHP's lack of support for `Closure Serialization`, we are forced to use on third-party packages.
+In Procedural way the [laravel/serializableclosure](https://github.com/laravel/serializable-closure) package currently has issues with correctly identifying Named Parameters. Due to PHP's lack of support for `Closure Serialization`, we are forced to use on third-party packages.
 
 This issue may cause certain problems for your bot! So, if you wish, wait until further notice (at least until this problem is resolved by the developers of this package or this feature is added by PHP itself in future versions).
 
 If you have a solution for it, please raise it with relevant details in the [Issues](https://github.com/devdasher/ptb-php/issues) section or send your solution to [@devdasher](https://t.me/devdasher) in Telegram.
 
+### OOP Way <a name="conversations-oop-way"></a>
+
+Here, we implement the scenario that we examined in the previous examples in the OOP way:
+
+```php
+use function DevDasher\PTB\_setConversationData;
+use function DevDasher\PTB\_text;
+use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB\sendMessage;
+
+//...
+
+# Suupose we have this class in our program:
+class RegisterConversation {
+    /*
+        Additional notes:
+
+        - The class name MUST end with 'Conversation', like: RegisterConversation, FeedbackConversation, etc.
+
+        - The library automatically executes each method in the class in each step respectively.
+
+            And after executing the last method in the class (step3), it automatically ends the conversation.
+
+            But pay attention to the fact that the order of the methods in the class is very important.
+
+            With this, you no longer need to call functions like _nextStepOfConversation(...) and _endConversation().
+    */
+
+    public function step1() { // FIRST STEP
+        sendMessage('Send your name:');
+    }
+
+    public function step2() { // SECOND STEP
+        $text = _text();
+        //...
+        //...
+        $name = $text;
+
+        _setConversationData('name', $name);
+
+        sendMessage('Send your age:');
+    }
+
+    # We get the value of $name in the method parameter, that we have stored in the previous step (step 2):
+    public function step3($name) { // THIRD AND FINAL STEP
+        $text = _text();
+        //...
+        //...
+        $age = $text;
+
+        sendMessage(text: "Thank you! Your registration was successful!\n\nYour Name: {$name}\nYour Age: {$age}");
+    }
+}
+
+# Here we only pass the class name:
+onMessageText('/register', RegisterConversation::class);
+# Currently, only the class name can be passed as above. This will be improved later.
+
+//...
+```
 ## 🎮 Keyboards <a name="keyboards"></a>
 
 The PTB-PHP library provides a simple way to build and send keyboards.
@@ -1677,10 +1738,9 @@ More details soon...
 
 We would love to feature your projects that utilize our library! Please share the links with us, and we will gladly showcase them in this section.
 
-| Bot Name                | Description  | Source Code
-|-------------------------|--------------|---------------
-| SampleBot               | Description  | [GitHub](https://github.com/#)
-| ...                     | ...          | N/A
+| Bot Name         | Username                           | Source Code                                      | Source Code Status         | Telegram Status           | Description
+|------------------|------------------------------------|--------------------------------------------------|----------------------------|---------------------------|----------------
+| MKeepBot         | [@mkeepbot](https://t.me/mkeepbot) |[GitHub](https://github.com/devdasher/mkeepbot)   | Development in progress... | 🔴 Deactive               |  A Telegram bot to share posts with others easily uisng the PTB-PHP library.
 
 # 🐞 Bug Report <a name="bug-report"></a>
 
