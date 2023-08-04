@@ -1772,4 +1772,4 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 - [All Contributors](../../contributors)
 
 # 📜 License <a name="license"></a>
-The GNU License (GNU v3). Please see [License File](LICENSE.md) for more information.
+The GPL License (GPLv3). Please see [License File](LICENSE.md) for more information.
