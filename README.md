@@ -52,6 +52,7 @@
 - 📝 [Changelog](#changelog)
 - 🙌 [Credits](#credits)
 - 📜 [License](#license)
+     - ⚠️ [Disclaimer of Warranty](#disclaimer-of-warranty)
 
 # 🌟 Introduction <a name="introduction"></a>
 
@@ -1771,5 +1772,13 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 - [Pooria Bashiri](https://github.com/devdahser)
 - [All Contributors](../../contributors)
 
+
 # 📜 License <a name="license"></a>
+
 The GPL License (GPLv3). Please see [License File](LICENSE.md) for more information.
+
+## ⚠️ Disclaimer of Warranty <a name="disclaimer-of-warranty"></a>
+
+The PTB-PHP (Procedural Telegram Bot - PHP) library is distributed under the terms of the GNU General Public License, which grants users the legal permission to copy, distribute, and modify the software. However, it is important to note that the library is provided "as is" without any warranty or guarantee of its performance or functionality. The developer of the PTB-PHP library does not make any guarantees about its quality, suitability, or fitness for a particular purpose. The library may contain bugs or errors in any version, and the user is fully responsible for its usage and any consequences that may arise from it. It is recommended to thoroughly test the library and ensure its compatibility with specific use cases before deploying it in a production environment. The user should acknowledge that they are using the PTB-PHP library at their own risk. If the user encounters any issues or has any questions about the library, they can contact the developer for support or inquiries.
+
+
