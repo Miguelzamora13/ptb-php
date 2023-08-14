@@ -2,9 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.4.0] - 2023-08-20
+## [1.4.0] - 2023-08-14
 
 Code improvements.
+
+Many changes have been made in this version.
+We will add details as soon as possible.
 
 ## [1.3.6] - 2023-07-29
 
