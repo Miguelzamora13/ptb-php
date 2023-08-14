@@ -29,12 +29,11 @@
  * @link http://t.me/DevDasher
 */
 
-use function DevDasher\PTB\_messageId;
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\messageId;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\run;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Config\run;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getMessageId;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 require(__DIR__.'/../../src/PTB.php'); // path to PTB.php
 
@@ -56,7 +55,7 @@ onMessageText(
     callable: function($value) {
         sendMessage(
             text: $value,
-            reply_to_message_id: _messageId(),
+            reply_to_message_id: getMessageId(),
             allow_sending_without_reply: true,
         );
     }

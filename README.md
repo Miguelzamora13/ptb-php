@@ -1,5 +1,3 @@
-## 🇮🇷 [توضیحات فارسی](README.fa.md)
-
 # PTB-PHP = Procedural Telegram Bot (PHP Library)
 
 > The PTB Library gives your project flexibility, scalability and super speed
@@ -46,12 +44,13 @@
         - [Optimizing Project Structure](#optimizing-project-structure)
     - 🔗 [Deep Links](#deep-links) (Soon...)
     - 🚀 [Performance](#performance) (Not complete yet...)
-- ✨ [Showcase Projects](#showcase-projects)
+- ✨ [Projects Showcase](#projects-showcase)
 - 🐞 [Bug Report](#bug-report)
 - ❤️ [Support Us!](#support-us)
 - 📝 [Changelog](#changelog)
 - 🙌 [Credits](#credits)
 - 📜 [License](#license)
+    - ⚠️ [Disclaimer of Warranty](#disclaimer-of-warranty)
 
 # 🌟 Introduction <a name="introduction"></a>
 
@@ -62,12 +61,12 @@ This library utilizes the latest features of **PHP 8** and aims to excel in term
 ```php
 <?php
 
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\middleware;
-use function DevDasher\PTB\onMessage;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\run;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Handlers\middleware;
+use function DevDasher\PTB_PHP\Handlers\onMessage;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Config\run;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 // require(__DIR__.'/vendor/autoload.php'); // You can use Composer's autolaoder
 require(__DIR__.'/path/to/PTB.php'); // Or require the PTB.php file directly
@@ -174,9 +173,10 @@ Or you can include the PTB.php file on your PHP code directly
 
 If you are using Composer:
 
-- **[symfont/cache](https://github.com/symfony/cache)**: ^6.3
+- **[symfony/cache](https://github.com/symfony/cache)**: ^6.3
 - **[psr/simplecache](https://github.com/php-fig/simple-cache)**: ^3.0
 - **[laravel/serializableclosure](https://github.com/laravel/serializable-closure)**: ^1.3
+- **[devdasher/php-helpers](https://github.com/devdasher/php-helpers)**: ^1.0
 
 # 💪 Features <a name="features"></a>
 
@@ -213,7 +213,7 @@ The following list represents just a fraction of the library's capabilities, and
 To use the library, you must configure it by setting at least two mandatory parameters. Here's an example:
 
 ```php
-use function DevDasher\PTB\configurePTB;
+use function DevDasher\PTB_PHP\Config\configurePTB;
 
 configurePTB(
     token: 'TOKEN',
@@ -233,18 +233,18 @@ configurePTB(
 | `bool $is_webhook = false`                | ❌       | Set this to `true` if you want to use Webhook to receive updates from Telegram. This is suitable for production environments. By default, Long Polling is used (`false`).
 | `?CacheInterface $cache = null`           | ❌       | A cache adapter implementation that will be used for caching purposes. You can pass a cache adapter object that implements the `Psr\SimpleCache\CacheInterface`.
 | `array $update = []`                      | ❌       | Allows you to set the input update sent from Telegram servers manually, or add a fake update for testing purposes.
-| `array $global_data = []`                 | ❌       | An optional array of key-value pairs that allows you to store global data (e.g., configuration values) accessible to all middlewares and handlers in the library using `_getGlobalData(...)` helper. The `_setGLobalData(...)` does the same thing.
-| `?array $allowed_updates = null`          | ❌       | Defines the allowed types of updates that the library should handle. You can effectively determine allowed updates through the `setWebhook` method. Updates that are not allowed will be automatically rejected by the library. This provides an additional layer of validation for incoming updates.
+| `array $global_data = []`                 | ❌       | An optional array of key-value pairs that allows you to store global data (e.g., configuration values) accessible to all middlewares and handlers in the library using `getGlobalData(...)` helper. The `_setGLobalData(...)` does the same thing.
+| `?array $allowedgetUpdates = null`          | ❌       | Defines the allowed types of updates that the library should handle. You can effectively determine allowed updates through the `setWebhook` method. Updates that are not allowed will be automatically rejected by the library. This provides an additional layer of validation for incoming updates.
 
 ## 📤 Uploading Files <a name="uploading-files"></a>
 
 Here is some examples of how you can send files to the user in different ways:
 
 ```php
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendPhoto;
-use function DevDasher\PTB\sendVideo;
-use function DevDasher\PTB\InputFile;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendPhoto;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendVideo;
+use function DevDasher\PTB_PHP\Telegram\Types\InputFile;
 
 onMessageText(pattern: '/photo', callable: function() {
     $response = sendPhoto(
@@ -296,25 +296,25 @@ onMessageText(pattern: '/video', callable: function() {
 And here is an example of how you can download files sent to the bot:
 
 ```php
-use function DevDasher\PTB\_download;
-use function DevDasher\PTB\_downloadBotFile;
-use function DevDasher\PTB\_messageId;
-use function DevDasher\PTB\_photo;
-use function DevDasher\PTB\getFile;
-use function DevDasher\PTB\onMessagePhoto;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Helpers\downloadURL;
+use function DevDasher\PTB_PHP\Telegram\Helpers\downloadBotFile;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getMessageId;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getPhoto;
+use function DevDasher\PTB_PHP\Handlers\onMessagePhoto;
+use function DevDasher\PTB_PHP\Telegram\Methods\getFile;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 onMessagePhoto(callable: function() {
-    $photo = _photo(); // A Helper, to get the photo details sent to the bot
+    $photo = getPhoto(); // A Helper, to get the photo details sent to the bot
     $response = sendMessage(
         text: 'Downloading...',
-        reply_to_message_id: _messageId(),
+        reply_to_message_id: getMessageId(),
     );
     $file = getFile(file_id: $photo['file_id']); // Get details about the photo (photo path on Telegram servers...) 
     if (!$file['ok']) {
         return sendMessage(text: 'Something went wrong!');
     }
-    $result = _downloadBotFile(
+    $result = downloadBotFile(
         # Pass the $file array here:
         file: $file,
 
@@ -339,21 +339,21 @@ onMessagePhoto(callable: function() {
 // For the rest (video, sticker, etc), it is almost the same
 ```
 
-Alternatively, you can use the `_download(...)` function to download files, but you need to pass the url to it:
+Alternatively, you can use the `downloadURL(...)` function to download files, but you need to pass the url to it:
 
 ```php
-use function DevDasher\PTB\_download;
+use function DevDasher\PTB_PHP\Helpers\downloadURL;
 
 //...
     $url = 'https://api.telegram.org/file/botTOKEN/FILE_NAME.jpg';
-    $result = _download(
+    $result = downloadURL(
         url: $url,
         save_path: 'where/to/save/this/file.jpg',
     );
 //...
 ```
 
-It's better to use the `_downloadBotFile(...)` function.
+It's better to use the `downloadBotFile(...)` function.
 
 
 ## 🤖 Multiple Bot Management <a name="multiple-bot-management"></a>
@@ -361,10 +361,12 @@ It's better to use the `_downloadBotFile(...)` function.
 You can manage your bots easily. see this example:
 
 ```php
-use function DevDasher\PTB\_registerNewBot;
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\onMessage;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Config\addNewBot;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Config\sendApiRequest;
+use function DevDasher\PTB_PHP\Handlers\onMessage;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
+
 
 # You set the first and default bot details here:
 configurePTB(
@@ -375,7 +377,7 @@ configurePTB(
 
 onMessage(callable: function() {
     # A helper function to add a new bot, do this anywhere you want:
-    _registerNewBot(
+    addNewBot(
         token: 'SECOND_BOT_TOKEN',
         username: 'SECOND_BOT_USERNAME',
         //...
@@ -385,11 +387,12 @@ onMessage(callable: function() {
     $response = sendMessage(text: 'Hey there!');
 
     # Now, we send a message to the second bot like this:
-    $response = sendMessage(
-        text: "What's up bro?",
-
-        # This parameter is present in all functions (related to sending requests)
-        _options: [
+    $response = sendApiRequest(
+        method: METHOD_SEND_MESSAGE,
+        parameters: [
+            'text' => "What's up bro?",
+        ],
+        options: [
             # Here, you can specify the second bot username:
             'bot_username' => 'SECOND_BOT_USERNAME',
 
@@ -398,8 +401,6 @@ onMessage(callable: function() {
 
             //...
         ],
-
-        //...
     );
 
     //...
@@ -424,9 +425,9 @@ These middlewares always executes before handlers automatically
 If you remember, we have already seen a simple example of it above.
 
 ```php
-use function DevDasher\PTB\middleware;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Handlers\middleware;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 # Defining a middleware:
 middleware(
@@ -449,9 +450,9 @@ onMessageText(pattern: '/start', callable: function() {
 #### Defining Multiple Middlewares <a name="defining-multiple-middlewares"></a>
 
 ```php
-use function DevDasher\PTB\middlewares;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Handlers\middlewares;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 middlewares(callables: [
     'GLOBAL_MIDDLEWARE_1' => function() { // 1
@@ -487,9 +488,9 @@ onMessageText(pattern: '/help', callable: function() {
 You can skip one or more global middlewares from being running for special handlers:
 
 ```php
-use function DevDasher\PTB\middlewares;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Handlers\middlewares;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 middlewares(callables: [
     'GLOBAL_MIDDLEWARE_1' => function() { // 1
@@ -516,7 +517,7 @@ onMessageText(
     },
 
     # Here, pass the names of global middlewares in array like this:
-    skip_middlewares: ['GLOBAL_MIDDLEWARE_2'], 
+    skip_global_middlewares: ['GLOBAL_MIDDLEWARE_2'], 
     # The global middleware with the name 'GLOBAL_MIDDLEWARE_2' will NOT execute before this handler
 );
 ```
@@ -526,9 +527,9 @@ onMessageText(
 It is possible to define a separate middleware for each handler:
 
 ```php
-use function DevDasher\PTB\middleware;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Handlers\middleware;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 middleware(callable: function() { // 1
     sendMessage(text: 'Global middleware 1');
@@ -541,7 +542,7 @@ onMessageText(
     },
 
     # Defining local middleware for this handler:
-    middlewares: [
+    local_middlewares: [
         function() { // This local middleware will execute only before this handler.
             sendMessage(text: 'Local middleware 1');
         },
@@ -562,23 +563,24 @@ onMessageText(
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Psr16Cache;
 
-use function DevDasher\PTB\_getGlobalData;
-use function DevDasher\PTB\_messageId;
-use function DevDasher\PTB\_row;
-use function DevDasher\PTB\_setGlobalData;
-use function DevDasher\PTB\_user;
-use function DevDasher\PTB\answerCallbackQuery;
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\fallback;
-use function DevDasher\PTB\InlineKeyboardButton;
-use function DevDasher\PTB\InlineKeyboardMarkup;
-use function DevDasher\PTB\middlewares;
-use function DevDasher\PTB\onCallbackQueryData;
-use function DevDasher\PTB\onException;
-use function DevDasher\PTB\onMessage;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\run;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Config\run;
+use function DevDasher\PTB_PHP\Config\getGlobalData;
+use function DevDasher\PTB_PHP\Config\setGlobalData;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getMessageId;
+use function DevDasher\PTB_PHP\Telegram\Helpers\keyboard;
+use function DevDasher\PTB_PHP\Telegram\Helpers\row;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getUser;
+use function DevDasher\PTB_PHP\Telegram\Methods\answerCallbackQuery;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Handlers\fallback;
+use function DevDasher\PTB_PHP\Handlers\middlewares;
+use function DevDasher\PTB_PHP\Handlers\onCallbackQueryData;
+use function DevDasher\PTB_PHP\Handlers\onException;
+use function DevDasher\PTB_PHP\Handlers\onMessage;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Types\InlineKeyboardButton;
+use function DevDasher\PTB_PHP\Telegram\Types\InlineKeyboardMarkup;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 require(__DIR__.'/../vendor/autoload.php');
 
@@ -602,19 +604,19 @@ middlewares([
         #   and here we define only an array of it:
         $user = [
             'id' => 1, // ID in the database
-            'user_id' => _user('id'),
-            'first_name' => _user('first_name'),
-            'username' => _user('username'),
+            'user_id' => getUser('id'),
+            'first_name' => getUser('first_name'),
+            'username' => getUser('username'),
             'is_banned' => false,
             'is_admin' => true,
             //...
         ];
-        _setGlobalData('user', $user); // A helper, to save some data in global state
-        // Means that we can access to this user info with the _getGlobalData(...) in all handlers
+        setGlobalData('user', $user); // A helper, to save some data in global state
+        // Means that we can access to this user info with the getGlobalData(...) in all handlers
     },
 
     'CheckUserStatusMiddleware' => function() {
-        $user = _getGlobalData('user'); # Get user data from global state
+        $user = getGlobalData('user'); # Get user data from global state
         if (isset($user['is_banned']) && $user['is_banned']) {
             throw new Exception('You are banned from bot!');
         }
@@ -624,7 +626,7 @@ middlewares([
 ]);
 
 onMessageText(pattern: '/start', callable: function() {
-    $user = _getGlobalData('user'); 
+    $user = getGlobalData('user'); 
     sendMessage(text: "Welcome {$user['first_name']}");
 });
 
@@ -633,15 +635,15 @@ onMessageText(
     callable: function() {
         sendMessage(
             text: "Welcome to the admins panel:",
-            reply_markup: InlineKeyboardMarkup(inline_keyboard: [
-                _row(InlineKeyboardButton(text: 'Users', callback_data: 'panel/users')),
-                _row(InlineKeyboardButton(text: 'Stats', callback_data: 'panel/stats')),
-            ]),
+            reply_markup: InlineKeyboardMarkup(inline_keyboard: keyboard(
+                row(InlineKeyboardButton(text: 'Users', callback_data: 'panel/users')),
+                row(InlineKeyboardButton(text: 'Stats', callback_data: 'panel/stats')),
+            )),
         );
     },
-    middlewares: [
+    local_middlewares: [
         function() { // Check if user is admin
-            $user = _getGlobalData('user'); 
+            $user = getGlobalData('user'); 
             if (!isset($user['is_admin']) || !$user['is_admin']) {
                 throw new Exception('You are not the admin of the bot!');
             }
@@ -658,7 +660,7 @@ onCallbackQueryData(pattern: 'panel/stats', callable: function() {
 });
 
 fallback(callable: function() {
-    sendMessage(text: 'Unknown command!', reply_to_message_id: _messageId());
+    sendMessage(text: 'Unknown command!', reply_to_message_id: getMessageId());
 });
 
 onException(callable: function(Throwable $e) {
@@ -687,13 +689,13 @@ Here we examine an example:
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Psr16Cache;
 
-use function DevDasher\PTB\_text;
-use function DevDasher\PTB\_nextStepOfConversation;
-use function DevDasher\PTB\_setConversationData;
-use function DevDasher\PTB\_endConversation;
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getText;
+use function DevDasher\PTB_PHP\Config\setConversationNextStep;
+use function DevDasher\PTB_PHP\Config\setConversationData;
+use function DevDasher\PTB_PHP\Config\endConversation;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 configurePTB(
     token: 'TOKEN',
@@ -716,10 +718,10 @@ onMessageText('/register', function() { // FIRST STEP
 
     # This helper is to determine the next (second) step.
     # This will be executed later, when the user submits the second input
-    _nextStepOfConversation(next_step: function() { // SECOND STEP
+    setConversationNextStep(next_step: function() { // SECOND STEP
 
         # This will be the user's answer to the first question that we asked him for his name
-        $text = _text();
+        $text = getText();
 
         // Here you can put a validation for the $text variable to make sure that the user has sent a text to the bot.
 
@@ -727,7 +729,7 @@ onMessageText('/register', function() { // FIRST STEP
         $name = $text;
 
         # With this helper, we store the user's input in the cache (as conversation data)
-        _setConversationData('name', $name);
+        setConversationData('name', $name);
         # Note that this value will be passed as a parameter to the function you define for the next steps (third step...)
 
         # Now, This time we ask the user's age (We are still in the second step)
@@ -735,13 +737,13 @@ onMessageText('/register', function() { // FIRST STEP
 
         # Again, since we need to get another value from the user,
         # We define the next step (third step) here:
-        _nextStepOfConversation(
+        setConversationNextStep(
             // Here, we get the name we saved in the cache automatically
-            //       in the function parameter. Related to the _setConversationData(...) helper.
+            //       in the function parameter. Related to the setConversationData(...) helper.
             next_step: function($name) { // THIRD AND FINAL STEP
 
                 # Storing the text value in a variable:
-                $text = _text();
+                $text = getText();
 
                 // Some input validation for the $text variable goes here...
 
@@ -754,7 +756,7 @@ onMessageText('/register', function() { // FIRST STEP
                 # And with this helper, we end the conversation.
                 # Remember to call this function to end the conversation!
                 # Otherwise, this step will be executed again with every user request!
-                _endConversation();
+                endConversation();
             }
         );
     });
@@ -772,14 +774,14 @@ onMessageText('/register', function() { // FIRST STEP
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Psr16Cache;
 
-use function DevDasher\PTB\_text;
-use function DevDasher\PTB\_messageId;
-use function DevDasher\PTB\_input;
-use function DevDasher\PTB\_setConversationData;
-use function DevDasher\PTB\_endConversation;
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getText;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getMessageId;
+use function DevDasher\PTB_PHP\Config\getInputFromUser;
+use function DevDasher\PTB_PHP\Config\setConversationData;
+use function DevDasher\PTB_PHP\Config\endConversation;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 configurePTB(
     token: 'TOKEN',
@@ -792,8 +794,8 @@ configurePTB(
 
 onMessageText('/register', function() { // FIRST STEP
 
-    # Alternative to the _nextStepOfConversation(...)
-    _input(
+    # Alternative to the setConversationNextStep(...)
+    getInputFromUser(
 
         # This text will be send to the user with sendMessage method
         prompt: 'Send your name:',
@@ -801,29 +803,29 @@ onMessageText('/register', function() { // FIRST STEP
         # Or you can pass a closure and send a message in your own way:
         // prompt: fn() => sendMessage(
         //     text: 'Send your name:',
-        //     reply_to_message_id: _messageId(),
+        //     reply_to_message_id: getMessageId(),
         // ),
 
         next_step: function() {  // SECOND STEP
-            $text = _text();
+            $text = getText();
             // ...
             // ...
             $name = $text;
             
-            _setConversationData('name', $name);
+            setConversationData('name', $name);
         
-            _input(
+            getInputFromUser(
                 prompt: 'Send your age:',
 
                 next_step: function($name) { // THIRD AND FINAL STEP
-                    $text = _text();
+                    $text = getText();
                     // ...
                     // ...
                     $age = $text;
 
                     sendMessage(text: "Thank you! Your registration was successful!\n\nYour Name: {$name}\nYour Age: {$age}");
 
-                    _endConversation();
+                    endConversation();
                 },
             );
 
@@ -847,19 +849,20 @@ If you have a solution for it, please raise it with relevant details in the [Iss
 Here, we implement the scenario that we examined in the previous examples in the OOP way:
 
 ```php
-use function DevDasher\PTB\_setConversationData;
-use function DevDasher\PTB\_text;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Config\setConversationData;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Conversation\Conversation;
 
 //...
 
 # Suupose we have this class in our program:
-class RegisterConversation {
+class RegisterConversation extends Conversation {
     /*
         Additional notes:
 
-        - The class name MUST end with 'Conversation', like: RegisterConversation, FeedbackConversation, etc.
+        - The class name MUST extends the base class 'DevDasher\PTB_PHP\Conversation\Conversation'
 
         - The library automatically executes each method in the class in each step respectively.
 
@@ -867,7 +870,7 @@ class RegisterConversation {
 
             But pay attention to the fact that the order of the methods in the class is very important.
 
-            With this, you no longer need to call functions like _nextStepOfConversation(...) and _endConversation().
+            With this, you no longer need to call functions like setConversationNextStep(...) and endConversation().
     */
 
     public function step1() { // FIRST STEP
@@ -875,19 +878,19 @@ class RegisterConversation {
     }
 
     public function step2() { // SECOND STEP
-        $text = _text();
+        $text = getText();
         //...
         //...
         $name = $text;
 
-        _setConversationData('name', $name);
+        setConversationData('name', $name);
 
         sendMessage('Send your age:');
     }
 
     # We get the value of $name in the method parameter, that we have stored in the previous step (step 2):
     public function step3($name) { // THIRD AND FINAL STEP
-        $text = _text();
+        $text = getText();
         //...
         //...
         $age = $text;
@@ -898,10 +901,58 @@ class RegisterConversation {
 
 # Here we only pass the class name:
 onMessageText('/register', RegisterConversation::class);
-# Currently, only the class name can be passed as above. This will be improved later.
+
+# Another way:
+// onMessageText('/register', new RegisterConversation);
 
 //...
 ```
+
+#### Another example:
+
+If you wanna add other methods that are not part of steps to the class, do this:
+
+```php
+use function DevDasher\PTB_PHP\Config\setConversationData;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Conversation\Conversation;
+
+class RegisterConversation extends Conversation {
+
+    # Override this property like this:
+    protected array $steps = ['step1', 'step2', 'step3']; // Specify steps here.
+
+
+    public function step1() { // FIRST STEP
+        //...
+    }
+
+    public function step2() { // SECOND STEP
+        //...
+    }
+
+    public function step3() { // THIRD STEP
+        //...
+    }
+
+
+    # These class methods will not be executed as conversation step:
+
+    public function getSomethingFromSomewhere1() { // A method associated with this class
+        //...
+    }
+
+    public function getSomethingFromSomewhere2() { // Aother method associated with this class
+        //...
+    }
+
+    //...
+}
+
+```
+
 ## 🎮 Keyboards <a name="keyboards"></a>
 
 The PTB-PHP library provides a simple way to build and send keyboards.
@@ -911,19 +962,20 @@ The PTB-PHP library provides a simple way to build and send keyboards.
 The `ReplyKeyboardMarkup(...)` function helps you to create a reply keyabord. Here is an example:
 
 ```php
-use function DevDasher\PTB\_row;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendMessage;
-use function DevDasher\PTB\ReplyKeyboardMarkup;
-use function DevDasher\PTB\KeyboardButton;
+use function DevDasher\PTB_PHP\Telegram\Helpers\keyboard;
+use function DevDasher\PTB_PHP\Telegram\Helpers\row;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
+use function DevDasher\PTB_PHP\Telegram\Types\ReplyKeyboardMarkup;
+use function DevDasher\PTB_PHP\Telegram\Types\KeyboardButton;
 
 onMessageText(pattern: '/start', callable: function() {
     sendMessage(
         text: 'START Message',
         reply_markup: ReplyKeyboardMarkup(
-            keyboard: [
-                _row(KeyboardButton(text: 'Say Hi!'), KeyboardButton(text: 'Say Bye!')),
-            ],
+            keyboard: keyboard(
+                row(KeyboardButton(text: 'Say Hi!'), KeyboardButton(text: 'Say Bye!')),
+            ),
             is_persistent: true,
             resize_keyboard: true,
             //...
@@ -941,20 +993,21 @@ onMessageText(pattern: 'Say Bye!', callable: fn() => sendMessage('Bye!'));
 Use `ReplyKeyboardRemove(...)` to remove an existing `ReplyMarkupKeyboard`:
 
 ```php
-use function DevDasher\PTB\_row;
-use function DevDasher\PTB\ReplyKeyboardMarkup;
-use function DevDasher\PTB\KeyboardButton;
-use function DevDasher\PTB\ReplyKeyboardRemove;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Telegram\Helpers\keyboard;
+use function DevDasher\PTB_PHP\Telegram\Helpers\row;
+use function DevDasher\PTB_PHP\Telegram\Types\ReplyKeyboardMarkup;
+use function DevDasher\PTB_PHP\Telegram\Types\KeyboardButton;
+use function DevDasher\PTB_PHP\Telegram\Types\ReplyKeyboardRemove;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 onMessageText('/keyboard', function() {
     sendMessage(
         text: 'START',
         reply_markup: ReplyKeyboardMarkup(
-            keyboard: [
-                _row(KeyboardButton(text: 'Button 1'), KeyboardButton(text: 'Button 2'))
-            ],
+            keyboard: keyboard(
+                row(KeyboardButton(text: 'Button 1'), KeyboardButton(text: 'Button 2')),
+            ),
             resize_keyboard: true,
         ),
     );
@@ -978,24 +1031,25 @@ https://github.com/devdasher/ptb-php/assets/78247242/efca3898-4c71-409a-a216-950
 The `InlineKeyboardMarkup(...)` function helps you to create a inline keyabord. Here is an example:
 
 ```php
-use function DevDasher\PTB\_row;
-use function DevDasher\PTB\answerCallbackQuery;
-use function DevDasher\PTB\InlineKeyboardButton;
-use function DevDasher\PTB\InlineKeyboardMarkup;
-use function DevDasher\PTB\onCallbackQueryData;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Telegram\Helpers\keyboard;
+use function DevDasher\PTB_PHP\Telegram\Helpers\row;
+use function DevDasher\PTB_PHP\Telegram\Methods\answerCallbackQuery;
+use function DevDasher\PTB_PHP\Telegram\Types\InlineKeyboardButton;
+use function DevDasher\PTB_PHP\Telegram\Types\InlineKeyboardMarkup;
+use function DevDasher\PTB_PHP\Handlers\onCallbackQueryData;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 onMessageText(pattern: '/account', callable: function() {
     sendMessage(
         text: "Account Details\n\n...",
         reply_markup: InlineKeyboardMarkup(
-            inline_keyboard: [
-                _row(
+            inline_keyboard: keyboard(
+                row(
                     InlineKeyboardButton(text: 'Suspend', callback_data: 'account/suspend'),
                     InlineKeyboardButton(text: 'Delete', callback_data: 'account/delete')
                 ),
-            ],
+            ),
         )
     );
 });
@@ -1014,8 +1068,8 @@ onCallbackQueryData(
 ### ForceReply <a name="force-reply"></a>
 
 ```php
-use function DevDasher\PTB\sendMessage;
-use function DevDasher\PTB\ForceReply;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
+use function DevDasher\PTB_PHP\Telegram\Types\ForceReply;
 
 //...
     sendMessage(
@@ -1032,7 +1086,7 @@ use function DevDasher\PTB\ForceReply;
 
 Handlers are essential components in building interactive and dynamic conversational experiences. They enable the customization of logic and actions based on specific triggers or conditions. For instance, handlers can be triggered by user messages, chat joins, button clicks, or any other desired action for the bot to respond appropriately. Key aspects of handlers include event binding, where they are associated with specific events; logic and actions, which define what happens when the event occurs; event types, allowing handlers to cater to different event categories; registration, ensuring appropriate handler invocation upon event occurrence; and customization, enabling the bot to respond differently based on various situations. Leveraging handlers effectively facilitates the creation of chatbots capable of interactive and adaptable user interactions, while offering a maintainable and extensible code structure.
 
-Here is a list of all available handlers in the library:
+Here is a list of all available handlers in the library on namespace `DevDasher\PTB_PHP\Handlers`:
 
 | Message Handlers                              | Description
 |-----------------------------------------------|-------------
@@ -1054,8 +1108,8 @@ Here is a list of all available handlers in the library:
 | `onMessageNewChatMembers(...)`                | Handles `new_chat_members` on `message` update type
 | `onMessageLeftChatMember(...)`                | Handles `left_chat_member` on `message` update type
 | `onMessageNewChatTitle(...)`                  | Handles `new_chat_title` on `message` update type
-| `onMessageNewChatPhoto(...)`                  | Handles `new_chat_photo` on `message` update type
-| `onMessageDeleteChatPhoto(...)`               | Handles `delete_chat_photo` on `message` update type
+| `onMessageNewChatPhoto(...)`                  | Handles `new_chatgetPhoto` on `message` update type
+| `onMessageDeleteChatPhoto(...)`               | Handles `delete_chatgetPhoto` on `message` update type
 | `onMessageGroupChatCreated(...)`              | Handles `group_chat_created` on `message` update type
 | `onMessageSupergroupChatCreated(...)`         | Handles `supergroup_chat_created` on `message` update type
 | `onMessageChannelChatCreated(...)`            | Handles `channel_chat_created` on `message` update type
@@ -1114,8 +1168,8 @@ Here is a list of all available handlers in the library:
 | `onChannelPostDice(...)`                            | Handles `dice` on `channel_post` update type
 | `onChannelPostSticker(...)`                         | Handles `sticker` on `channel_post` update type
 | `onChannelPostNewChatTitle(...)`                    | Handles `new_chat_title` on `channel_post` update type
-| `onChannelPostNewChatPhoto(...)`                    | Handles `new_chat_photo` on `channel_post` update type
-| `onChannelPostDeleteChatPhoto(...)`                 | Handles `delete_chat_photo` on `channel_post` update type
+| `onChannelPostNewChatPhoto(...)`                    | Handles `new_chatgetPhoto` on `channel_post` update type
+| `onChannelPostDeleteChatPhoto(...)`                 | Handles `delete_chatgetPhoto` on `channel_post` update type
 | `onChannelPostMessageAutoDeleteTimerChanged(...)`   | Handles `message_auto_delete_timer_changed` on `channel_post` update type
 | `onChannelPostPinnedMessage(...)`                   | Handles `pinned_message` on `channel_post` update type
 | `onChannelPostVideoChatScheduled(...)`              | Handles `video_chat_scheduled` on `channel_post` update type
@@ -1192,243 +1246,243 @@ Here is a list of all available handlers in the library:
 
 Helpers refer to a set of utility functions (or constants...) that are designed to assist developers in performing common tasks or operations more efficiently. These helper functions encapsulate commonly used code snippets, providing a convenient way to reuse and simplify complex logic. By abstracting away repetitive or boilerplate code, function helpers enhance code readability, maintainability, and promote modular programming practices. They can range from simple functions for string manipulation or array operations to more advanced functionalities like file handling, database interactions, or API integrations. Function helpers serve as valuable tools in libraries, empowering developers to streamline their workflow and focus on higher-level application logic.
 
-Here is a list of all available helpers in the library:
+Here is a list of all available helpers in the library on namespace `DevDasher\PTB_PHP\Telegram\Helpers`:
 
 ✍️ **Note:** In the table below, in the `Description` column, the term `ANY` (with capital letters) refers to one of update types, like `message`, `edited_message`, `channel_post`, `edited_channel_post` and in some cases `callback_query`. etc.
 
-| Helper                                                | Description                                                                                                                                                       | Return Type
+| Helper                                                 | Description                                                                                                                                                       | Return Type
 |-------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------
-| `_update(?string $keys = null)`                       | Returns the update as an array                                                                                                                                    | `array` for itself, `mixed` for subkeys
-| `_updateId()`                                         | Returns the `update_id`                                                                                                                                           | `?int`
-| `_updateType()`                                       | Returns the current update type                                                                                                                                   | `?string`
-| `_updateTypes(array $exclude = [])`                   | Returns all available update types                                                                                                                                | `array` of strings
-| `_message(?string $keys = null)`                      | Returns `ANY` if available, `null` otherwise.                                                                                                                     | `array` for itself, `mixed` for subkeys
-| `_messageId()`                                        | Returns `ANY->message_id` if available, `null` otherwise.                                                                                                         | `?int`
-| `_messageType()`                                      | Returns the current message type if available, `null` otherwise.                                                                                                  | `?string`
-| `_messageTypes(array $exclude = [])`                  | Returns all available message types                                                                                                                               | `array` of strings
-| `_mediaGroupId()`                                     | Returns `ANY->media_group_id` if available, `null` otherwise                                                                                                      | `?int`
-| `_replyToMessage(?string $keys = null)`               | Returns `ANY->reply_to_message` if available, `null` otherwise.                                                                                                   | `array` for itself, `mixed` for subkeys
-| `_callbackQuery(?string $keys = null)`                | Returns `callback_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
-| `_callbackQueryId()`                                  | Returns `callback_query->id` if available, `null` otherwise.                                                                                                      | `?int`
-| `_callbackQueryData()`                                | Returns `callback_query->data` if available, `null` otherwise.                                                                                                    | `?string`
-| `_inlineQuery(?string $keys = null)`                  | Returns `inline_query` if available, `null` otherwise.                                                                                                            | `array` for itself, `mixed` for subkeys
-| `_inlineQueryId()`                                    | Returns `inline_query->id` if available, `null` otherwise.                                                                                                        | `?int`
-| `_inlineQueryText()`                                  | Returns `inline_query->query` if available, `null` otherwise.                                                                                                     | `?string`
-| `_shippingQuery(?string $keys = null)`                | Returns `shipping_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
-| `_chosenInlineResult(?string $keys = null)`           | Returns `chosen_inline_result` if available, `null` otherwise.                                                                                                    | `array` for itself, `mixed` for subkeys
-| `_chosenInlineResultId()`                             | Returns `chosen_inline_result->result_id` if available, `null` otherwise.                                                                                         | `?string`
-| `_chosenInlineResultQuery()`                          | Returns `chosen_inline_result->query` if available, `null` otherwise.                                                                                             | `?string`
-| `_chosenInlineResultInlineMessageId()`                | Returns `chosen_inline_result->inline_message_id` if available, `null` otherwise.                                                                                 | `?string`
-| `_preCheckoutQuery(?string $keys = null)`             | Returns `pre_checkout_query` if available, `null` otherwise.                                                                                                      | `array` for itself, `mixed` for subkeys
-| `_replyMarkup(?string $keys = null)`                  | Returns `ANY->reply_markup` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
-| `_text()`                                             | Returns `ANY->text` if available, `null` otherwise                                                                                                                | `?string`
-| `_photo(?string $keys = null)`                        | Returns the last item (and high quality) of `ANY->photo` if available, `null` otherwise                                                                           | `array` for itself, `mixed` for subkeys
-| `_photos()`                                           | Returns `ANY->photo` if available, `null` otherwise                                                                                                               | `?array`
-| `_document(?string $keys = null)`                     | Returns `ANY->document` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
-| `_sticker(?string $keys = null)`                      | Returns `ANY->sticker` if available, `null` otherwise                                                                                                             | `array` for itself, `mixed` for subkeys
-| `_video(?string $keys = null)`                        | Returns `ANY->video` if available, `null` otherwise                                                                                                               | `array` for itself, `mixed` for subkeys
-| `_videoNote(?string $keys = null)`                    | Returns `ANY->video_note` if available, `null` otherwise                                                                                                          | `array` for itself, `mixed` for subkeys
-| `_voice(?string $keys = null)`                        | Returns `ANY->voice` if available, `null` otherwise                                                                                                               | `array` for itself, `mixed` for subkeys
-| `_audio(?string $keys = null)`                        | Returns `ANY->audio` if available, `null` otherwise                                                                                                               | `array` for itself, `mixed` for subkeys
-| `_dice(?string $keys = null)`                         | Returns `ANY->dice` if available, `null` otherwise                                                                                                                | `array` for itself, `mixed` for subkeys
-| `_game(?string $keys = null)`                         | Returns `ANY->game` if available, `null` otherwise                                                                                                                | `array` for itself, `mixed` for subkeys
-| `_gamePhoto(?string $keys = null)`                    | Returns the last item (and high quality) of `ANY->game->photo` if available, `null` otherwise                                                                     | `array` for itself, `mixed` for subkeys
-| `_gamePhotos()`                                       | Returns `ANY->game->photo` if available, `null` otherwise                                                                                                         | `?array`
-| `_venue(?string $keys = null)`                        | Returns `ANY->venue` if available, `null` otherwise                                                                                                               | `array` for itself, `mixed` for subkeys
-| `_location(?string $keys = null)`                     | Returns `ANY->location` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
-| `_animation(?string $keys = null)`                    | Returns `ANY->animation` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
-| `_caption()`                                          | Returns `ANY->caption` if available, `null` otherwise                                                                                                             | `?string`
-| `_entities()`                                         | Returns `ANY->entities` OR `ANY->caption_entities` if available, `null` otherwise                                                                                 | `?array`
-| `_poll(?string $keys = null)`                         | Returns `poll` OR `ANY->poll` if available, `null` otherwise                                                                                                      | `array` for itself, `mixed` for subkeys
-| `_pollOptions()`                                      | Returns `poll->options` if available, `null` otherwise                                                                                                            | `?array`
-| `_pollAnswer(?string $keys = null)`                   | Returns `poll_answer` if available, `null` otherwise                                                                                                              | `array` for itself, `mixed` for subkeys
-| `_viaBot(?string $keys = null)`                       | Returns `ANY->via_bot` if available, `null` otherwise                                                                                                             | `array` for itself, `mixed` for subkeys
-| `_from(?string $keys = null)`                         | Returns `ANY->from` if available, `null` otherwise                                                                                                                | `array` for itself, `mixed` for subkeys
-| `_user(?string $keys = null)`                         | Returns the current `user` if available, `null` otherwise, alternative to `_from(...)`                                                                            | `array` for itself, `mixed` for subkeys
-| `_userId()`                                           | Returns the current user id (`ANY->from->id`) if available, `null` otherwise                                                                                      | `?int`
-| `_chat(?string $keys = null)`                         | Returns the current `chat` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
-| `_chatId()`                                           | Returns `chat->id` if available, `null` otherwise                                                                                                                 | `?int`
-| `_chatType()`                                         | Returns the current `chat->type` if available, `null` otherwise                                                                                                   | `?string`
-| `_chatTypes(array $exclude = [])`                     | Returns all available chat types                                                                                                                                  | `array` of strings
-| `_chatActions(array $exclude = [])`                   | Returns all available chat actions                                                                                                                                | `array` of strings
-| `_chatMember(?string $keys = null)`                   | Returns `chat_member` if available, `null` otherwise.                                                                                                             | `array` for itself, `mixed` for subkeys
-| `_chatMemberStatuses(array $exclude = [])`            | Returns all available chat member statuses                                                                                                                        | `array` of strings
-| `_myChatMember(?string $keys = null)`                 | Returns `my_chat_member` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
-| `_formattingOptions(array $exclude = [])`             | Returns all available formatting options                                                                                                                          | `array` of strings
-| `_fileTypes(array $exclude = [])`                     | Returns all available message types that are files                                                                                                                | `array` of strings
-| `_forwardFrom(?string $keys = null)`                  | Returns `ANY->forward_from` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
-| `_forwardFromChat(?string $keys = null)`              | Returns `ANY->forward_from_chat` if available, `null` otherwise                                                                                                   | `array` for itself, `mixed` for subkeys
-| `_forwardDate()`                                      | Returns `ANY->forward_date` if available, `null` otherwise                                                                                                        | `?int`
-| `_forwardFromMessageId()`                             | Returns `ANY->forward_from_message_id` if available, `null` otherwise                                                                                             | `?int`
-| `_senderChat(?string $keys = null)`                   | Returns `ANY->sender_chat` if available, `null` otherwise                                                                                                         | `?array` for itself, `mixed` for subkeys
-| `_authorSignature()`                                  | Returns `ANY->author_signature` if available, `null` otherwise                                                                                                    | `?string`
-| `_date()`                                             | Returns `ANY->date` if available, `null` otherwise                                                                                                                | `?int`
-| `_editDate()`                                         | Returns `ANY->edit_date` if available, `null` otherwise                                                                                                           | `?int`
-| `_chatTitle()`                                        | Returns `chat->title`  if available, `null` otherwise                                                                                                             | `?string`
-| `_pollQuestion()`                                     | Returns `poll->question` if available, `null` otherwise                                                                                                           | `?string`
-| `_pollType()`                                         | Returns `poll->type` if available, `null` otherwise                                                                                                               | `?string`
-| `_pollId()`                                           | Returns `poll->id` if available, `null` otherwise                                                                                                                 | `?string`
-| `_animationFileName()`                                | Returns `animation->file_name` if available, `null` otherwise                                                                                                     | `?string`
-| `_animationMimeType()`                                | Returns `animation->mime_type` if available, `null` otherwise                                                                                                     | `?string`
-| `_animationDuration()`                                | Returns `animation->duration` if available, `null` otherwise                                                                                                      | `?int`
-| `_animationWidth()`                                   | Returns `animation->width` if available, `null` otherwise                                                                                                         | `?int`
-| `_animationHeight()`                                  | Returns `animation->height` if available, `null` otherwise                                                                                                        | `?int`
-| `_animationThumb(?string $keys = null)`               | Returns `animation->thumb` if available, `null` otherwise                                                                                                         | `?array` for itself, `mixed` for subkeys
-| `_gameTitle()`                                        | Returns `ANY->game->title` if available, `null` otherwise                                                                                                         | `?string`
-| `_gameDescription()`                                  | Returns `ANY->game->description` if available, `null` otherwise                                                                                                   | `?string`
-| `_forumTopicCreated(?string $keys = null)`            | Returns `message->forum_topic_created` if available, `null` otherwise                                                                                             | `?array` for itself, `mixed` for subkeys
-| `_forumTopicEdited(?string $keys = null)`             | Returns `message->forum_topic_edited` if available, `null` otherwise                                                                                              | `?array` for itself, `mixed` for subkeys
-| `_forumTopicClosed(?string $keys = null)`             | Returns `message->forum_topic_closed` if available, `null` otherwise                                                                                              | `?array` for itself, `mixed` for subkeys
-| `_forumTopicReopened(?string $keys = null)`           | Returns `message->forum_topic_reopened` if available, `null` otherwise                                                                                            | `?array` for itself, `mixed` for subkeys
-| `_messageThreadId()`                                  | Returns `message->message_thread_id` if available, `null` otherwise                                                                                               | `?int`
-| `_userFirstName()`                                    | Returns `ANY->from->first_name` if available, `null` otherwise                                                                                                    | `?string`
-| `_userUsername()`                                     | Returns `ANY->from->username` if available, `null` otherwise                                                                                                      | `?string`
-| `_chatShared(?string $keys = null)`                   | Returns `message->chat_shared` if available, `null` otherwise                                                                                                     | `?array` for itself, `mixed for subkeys`
-| `_userShared(?string $keys = null)`                   | Returns `message->user_shared` if available, `null` otherwise                                                                                                     | `?array` for itself, `mixed for subkeys`
-| `_connectedWebsite()`                                 | Returns `message->connected_website` if available, `null` otherwise                                                                                               | `?string`
-| `_writeAccessAllowed(?string $keys = null)`           | Returns `message->write_access_allowed` if available, `null` otherwise                                                                                            | `?array` for itself, `mixed for subkeys`
-| `_passportData(?string $keys = null)`                 | Returns `message->passport_data` if available, `null` otherwise                                                                                                   | `?array` for itself, `mixed for subkeys`
-| `_proximityAlertTriggered(?string $keys = null)`      | Returns `message->proximity_alert_trigerred` if available, `null` otherwise                                                                                       | `?array` for itself, `mixed for subkeys`
-| `_generalForumTopicHidden(?string $keys = null)`      | Returns `message->general_forum_hidden` if available, `null` otherwise                                                                                            | `?array` for itself, `mixed for subkeys`
-| `_generalForumTopicUnhidden(?string $keys = null)`    | Returns `message->general_forum_unhidden` if available, `null` otherwise                                                                                          | `?array` for itself, `mixed for subkeys`
-| `_videoChatScheduled(?string $keys = null)`           | Returns `message->video_chat_scheduled` if available, `null` otherwise                                                                                            | `?array` for itself, `mixed for subkeys`
-| `_videoChatStarted(?string $keys = null)`             | Returns `message->video_chat_started` if available, `null` otherwise                                                                                              | `?array` for itself, `mixed for subkeys`
-| `_videoChatEnded(?string $keys = null)`               | Returns `message->video_chat_ended` if available, `null` otherwise                                                                                                | `?array` for itself, `mixed for subkeys`
-| `_videoChatParticipantsInvited(?string $keys = null)` | Returns `message->video_chat_participants_invited` if available, `null` otherwise                                                                                 | `?array` for itself, `mixed for subkeys`
-| `_webAppData(?string $keys = null)`                   | Returns `message->web_app_data` if available, `null` otherwise                                                                                                    | `?array` for itself, `mixed for subkeys`
-| `_replyMarkupInlineKeyboard()`                        | Returns `ANY->reply_markup->inline_keyboard` if available, `null` otherwise                                                                                       | `?array`
-| `_isMessage()`                                        | Returns `true` if the current update type was `message`, `false` otherwise                                                                                        | `bool`
-| `_isCallbackQuery()`                                  | Returns `true` if the current update type was `callback_query`, `false` otherwise                                                                                 | `bool`
-| `_isEditedMessage()`                                  | Returns `true` if the current update type was `edited_message`, `false` otherwise                                                                                 | `bool`
-| `_isChannelPost()`                                    | Returns `true` if the current update type was `channel_post`, `false` otherwise                                                                                   | `bool`
-| `_isEditedChannelPost()`                              | Returns `true` if the current update type was `edited_channel_post`, `false` otherwise                                                                            | `bool`
-| `_isShippingQuery()`                                  | Returns `true` if the current update type was `shipping_query`, `false` otherwise                                                                                 | `bool`
-| `_isChatJoinRequest()`                                | Returns `true` if the current update type was `chat_join_request`, `false` otherwise                                                                              | `bool`
-| `_isInlineQuery()`                                    | Returns `true` if the current update type was `inline_query`, `false` otherwise                                                                                   | `bool`
-| `_isMyChatMember()`                                   | Returns `true` if the current update type was `my_chat_member`, `false` otherwise                                                                                 | `bool`
-| `_isChatMember()`                                     | Returns `true` if the current update type was `chat_member`, `false` otherwise                                                                                    | `bool`
-| `_isChosenInlineResult()`                             | Returns `true` if the current update type was `chosen_inline_result`, `false` otherwise                                                                           | `bool`
-| `_isPollAnswer()`                                     | Returns `true` if the current update type was `poll_answer`, `false` otherwise                                                                                    | `bool`
-| `_isPoll()`                                           | Returns `true` if the current update type OR message type was `poll`, `false` otherwise                                                                           | `bool`
-| `_isPhoto()`                                          | Returns `true` if the current message type was `photo`, `false` otherwise                                                                                         | `bool`
-| `_isSticker()`                                        | Returns `true` if the current message type was `sticker`, `false` otherwise                                                                                       | `bool`
-| `_isAnimation()`                                      | Returns `true` if the current message type was `animation`, `false` otherwise                                                                                     | `bool`
-| `_isVideo()`                                          | Returns `true` if the current message type was `video`, `false` otherwise                                                                                         | `bool`
-| `_isVideoNote()`                                      | Returns `true` if the current message type was `video_note`, `false` otherwise                                                                                    | `bool`
-| `_isDice()`                                           | Returns `true` if the current message type was `dice`, `false` otherwise                                                                                          | `bool`
-| `_isGame()`                                           | Returns `true` if the current message type was `game`, `false` otherwise                                                                                          | `bool`
-| `_isVenue()`                                          | Returns `true` if the current message type was `venue`, `false` otherwise                                                                                         | `bool`
-| `_isVoice()`                                          | Returns `true` if the current message type was `voice`, `false` otherwise                                                                                         | `bool`
-| `_isDocument()`                                       | Returns `true` if the current message type was `document`, `false` otherwise                                                                                      | `bool`
-| `_isLocation()`                                       | Returns `true` if the current message type was `location`, `false` otherwise                                                                                      | `bool`
-| `_isContact()`                                        | Returns `true` if the current message type was `contact`, `false` otherwise                                                                                       | `bool`
-| `_isAudio()`                                          | Returns `true` if the current message type was `audio`, `false` otherwise                                                                                         | `bool`
-| `_isText()`                                           | Returns `true` if the current message type was `text`, `false` otherwise                                                                                          | `bool`
-| `_isNewChatMembers()`                                 | Returns `true` if the current message type was `new_chat_members`, `false` otherwise                                                                              | `bool`
-| `_isLeftChatMember()`                                 | Returns `true` if the current message type was `left_chat_member`, `false` otherwise                                                                              | `bool`
-| `_isNewChatTitle()`                                   | Returns `true` if the current message type was `new_chat_title`, `false` otherwise                                                                                | `bool`
-| `_isNewChatPhoto()`                                   | Returns `true` if the current message type was `new_chat_photo`, `false` otherwise                                                                                | `bool`
-| `_isDeleteChatPhoto()`                                | Returns `true` if the current message type was `delete_chat_photo`, `false` otherwise                                                                             | `bool`
-| `_isGroupChatCreated()`                               | Returns `true` if the current message type was `group_chat_created`, `false` otherwise                                                                            | `bool`
-| `_isSupergroupChatCreated()`                          | Returns `true` if the current message type was `supergroup_chat_created`, `false` otherwise                                                                       | `bool`
-| `_isChannelChatCreated()`                             | Returns `true` if the current message type was `channel_chat_created`, `false` otherwise                                                                          | `bool`
-| `_isAutoDeleteTimerChanged()`                         | Returns `true` if the current message type was `message_auto_delete_timer_changed`, `false` otherwise                                                             | `bool`
-| `_isMigrateToChatId()`                                | Returns `true` if the current message type was `migrate_to_chat_id`, `false` otherwise                                                                            | `bool`
-| `_isMigrateFromChatId()`                              | Returns `true` if the current message type was `migrate_from_chat_id`, `false` otherwise                                                                          | `bool`
-| `_isPinnedMessage()`                                  | Returns `true` if the current message type was `pinned_message`, `false` otherwise                                                                                | `bool`
-| `_isInvoice()`                                        | Returns `true` if the current message type was `invoice`, `false` otherwise                                                                                       | `bool`
-| `_isSuccessfulPayment()`                              | Returns `true` if the current message type was `successful_payment`, `false` otherwise                                                                            | `bool`
-| `_isUserShared()`                                     | Returns `true` if the current message type was `user_shared`, `false` otherwise                                                                                   | `bool`
-| `_isChatShared()`                                     | Returns `true` if the current message type was `chat_shared`, `false` otherwise                                                                                   | `bool`
-| `_isConnectedWebsite()`                               | Returns `true` if the current message type was `connected_website`, `false` otherwise                                                                             | `bool`
-| `_isWriteAccessAllowed()`                             | Returns `true` if the current message type was `write_access_allowed`, `false` otherwise                                                                          | `bool`
-| `_isPassportData()`                                   | Returns `true` if the current message type was `passport_data`, `false` otherwise                                                                                 | `bool`
-| `_isProximityAlertTriggered()`                        | Returns `true` if the current message type was `proximity_alert_triggered`, `false` otherwise                                                                     | `bool`
-| `_isForumTopicCreated()`                              | Returns `true` if the current message type was `forum_topic_created`, `false` otherwise                                                                           | `bool`
-| `_isForumTopicEdited()`                               | Returns `true` if the current message type was `forum_topoic_edited`, `false` otherwise                                                                           | `bool`
-| `_isForumTopicClosed()`                               | Returns `true` if the current message type was `forum_topic_closed`, `false` otherwise                                                                            | `bool`
-| `_isForumTopicReopened()`                             | Returns `true` if the current message type was `forum_topoic_reopened`, `false` otherwise                                                                         | `bool`
-| `_isGeneralForumTopicHidden()`                        | Returns `true` if the current message type was `general_forum_topic_hidden`, `false` otherwise                                                                    | `bool`
-| `_isGeneralForumTopicUnhidden()`                      | Returns `true` if the current message type was `general_forum_topic_unhidden`, `false` otherwise                                                                  | `bool`
-| `_isVideoChatScheduled()`                             | Returns `true` if the current message type was `video_chat_scheduled`, `false` otherwise                                                                          | `bool`
-| `_isVideoChatStarted()`                               | Returns `true` if the current message type was `video_chat_started`, `false` otherwise                                                                            | `bool`
-| `_isVideoChatEnded()`                                 | Returns `true` if the current message type was `video_chat_ended`, `false` otherwise                                                                              | `bool`
-| `_isVideoChatParticipantsInvited()`                   | Returns `true` if the current message type was `video_chat_participants_invited`, `false` otherwise                                                               | `bool`
-| `_isWebAppData()`                                     | Returns `true` if the current message type was `web_app_data`, `false` otherwise                                                                                  | `bool`
-| `_isPollAnonymous()`                                  | Returns `true` if the `poll->is_anonymous` was true, `false` otherwise                                                                                            | `bool`
-| `_isPollClosed()`                                     | Returns `true` if the `poll->is_closed` was true, `false` otherwise                                                                                               | `bool`
-| `_isTopicMessage()`                                   | Returns `true` if `message->is_topic_message` was true, `false` otherwise                                                                                         | `bool`
-| `_isSender()`                                         | Returns `true` if the current chat type was `sender`                                                                                                              | `bool`
-| `_isGroup()`                                          | Returns `true` if the current chat type was `gorup`                                                                                                               | `bool`
-| `_isSupergroup()`                                     | Returns `true` if the current chat type was `supergroup`                                                                                                          | `bool`
-| `_isPrivate()`                                        | Returns `true` if the current chat type was `private`                                                                                                             | `bool`
-| `_isChannel()`                                        | Returns `true` if the current chat type was `channel`                                                                                                             | `bool`
-| `_isForwarded()`                                      | Returns `true` if a message was forwarded                                                                                                                         | `bool`
-| `_isBot()`                                            | Returns `true` if the `from->is_bot` was true, `false` otherwise                                                                                                  | `bool`
-| `_isForum()`                                          | Returns `true` if the `chat->is_forum` was true, `false` otherwise                                                                                                | `bool`
+| `getUpdate(?string $keys = null)`                       | Returns the update as an array                                                                                                                                    | `array` for itself, `mixed` for subkeys
+| `getUpdateId()`                                         | Returns the `update_id`                                                                                                                                           | `?int`
+| `getUpdateType()`                                       | Returns the current update type                                                                                                                                   | `?string`
+| `getUpdateTypes(array $exclude = [])`                   | Returns all available update types                                                                                                                                | `array` of strings
+| `getMessage(?string $keys = null)`                      | Returns `ANY` if available, `null` otherwise.                                                                                                                     | `array` for itself, `mixed` for subkeys
+| `getMessageId()`                                        | Returns `ANY->message_id` if available, `null` otherwise.                                                                                                         | `?int`
+| `getMessageType()`                                      | Returns the current message type if available, `null` otherwise.                                                                                                  | `?string`
+| `getMessageTypes(array $exclude = [])`                  | Returns all available message types                                                                                                                               | `array` of strings
+| `getMediaGroupId()`                                     | Returns `ANY->media_group_id` if available, `null` otherwise                                                                                                      | `?int`
+| `getReplyToMessage(?string $keys = null)`               | Returns `ANY->reply_to_message` if available, `null` otherwise.                                                                                                   | `array` for itself, `mixed` for subkeys
+| `getCallbackQuery(?string $keys = null)`                | Returns `callback_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
+| `getCallbackQueryId()`                                  | Returns `callback_query->id` if available, `null` otherwise.                                                                                                      | `?int`
+| `getCallbackQueryData()`                                | Returns `callback_query->data` if available, `null` otherwise.                                                                                                    | `?string`
+| `getInlineQuery(?string $keys = null)`                  | Returns `inline_query` if available, `null` otherwise.                                                                                                            | `array` for itself, `mixed` for subkeys
+| `getInlineQueryId()`                                    | Returns `inline_query->id` if available, `null` otherwise.                                                                                                        | `?int`
+| `getInlineQueryText()`                                  | Returns `inline_query->query` if available, `null` otherwise.                                                                                                     | `?string`
+| `getShippingQuery(?string $keys = null)`                | Returns `shipping_query` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
+| `getChosenInlineResult(?string $keys = null)`           | Returns `chosen_inline_result` if available, `null` otherwise.                                                                                                    | `array` for itself, `mixed` for subkeys
+| `getChosenInlineResultId()`                             | Returns `chosen_inline_result->result_id` if available, `null` otherwise.                                                                                         | `?string`
+| `getChosenInlineResultQuery()`                          | Returns `chosen_inline_result->query` if available, `null` otherwise.                                                                                             | `?string`
+| `getChosenInlineResultInlineMessageId()`                | Returns `chosen_inline_result->inline_message_id` if available, `null` otherwise.                                                                                 | `?string`
+| `getPreCheckoutQuery(?string $keys = null)`             | Returns `pre_checkout_query` if available, `null` otherwise.                                                                                                      | `array` for itself, `mixed` for subkeys
+| `getReplyMarkup(?string $keys = null)`                  | Returns `ANY->reply_markup` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
+| `getText()`                                             | Returns `ANY->text` if available, `null` otherwise                                                                                                                | `?string`
+| `getPhoto(?string $keys = null)`                        | Returns the last item (and high quality) of `ANY->photo` if available, `null` otherwise                                                                           | `array` for itself, `mixed` for subkeys
+| `getPhotos()`                                           | Returns `ANY->photo` if available, `null` otherwise                                                                                                               | `?array`
+| `getDocument(?string $keys = null)`                     | Returns `ANY->document` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
+| `getSticker(?string $keys = null)`                      | Returns `ANY->sticker` if available, `null` otherwise                                                                                                             | `array` for itself, `mixed` for subkeys
+| `getVideo(?string $keys = null)`                        | Returns `ANY->video` if available, `null` otherwise                                                                                                               | `array` for itself, `mixed` for subkeys
+| `getVideoNote(?string $keys = null)`                    | Returns `ANY->video_note` if available, `null` otherwise                                                                                                          | `array` for itself, `mixed` for subkeys
+| `getVoice(?string $keys = null)`                        | Returns `ANY->voice` if available, `null` otherwise                                                                                                               | `array` for itself, `mixed` for subkeys
+| `getAudio(?string $keys = null)`                        | Returns `ANY->audio` if available, `null` otherwise                                                                                                               | `array` for itself, `mixed` for subkeys
+| `getDice(?string $keys = null)`                         | Returns `ANY->dice` if available, `null` otherwise                                                                                                                | `array` for itself, `mixed` for subkeys
+| `getGame(?string $keys = null)`                         | Returns `ANY->game` if available, `null` otherwise                                                                                                                | `array` for itself, `mixed` for subkeys
+| `getGamePhoto(?string $keys = null)`                    | Returns the last item (and high quality) of `ANY->game->photo` if available, `null` otherwise                                                                     | `array` for itself, `mixed` for subkeys
+| `getGamePhotos()`                                       | Returns `ANY->game->photo` if available, `null` otherwise                                                                                                         | `?array`
+| `getVenue(?string $keys = null)`                        | Returns `ANY->venue` if available, `null` otherwise                                                                                                               | `array` for itself, `mixed` for subkeys
+| `getLocation(?string $keys = null)`                     | Returns `ANY->location` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
+| `getAnimation(?string $keys = null)`                    | Returns `ANY->animation` if available, `null` otherwise                                                                                                           | `array` for itself, `mixed` for subkeys
+| `getCaption()`                                          | Returns `ANY->caption` if available, `null` otherwise                                                                                                             | `?string`
+| `getEntities()`                                         | Returns `ANY->entities` OR `ANY->caption_entities` if available, `null` otherwise                                                                                 | `?array`
+| `getPoll(?string $keys = null)`                         | Returns `poll` OR `ANY->poll` if available, `null` otherwise                                                                                                      | `array` for itself, `mixed` for subkeys
+| `getPollOptions()`                                      | Returns `poll->options` if available, `null` otherwise                                                                                                            | `?array`
+| `getPollAnswer(?string $keys = null)`                   | Returns `poll_answer` if available, `null` otherwise                                                                                                              | `array` for itself, `mixed` for subkeys
+| `getViaBot(?string $keys = null)`                       | Returns `ANY->via_bot` if available, `null` otherwise                                                                                                             | `array` for itself, `mixed` for subkeys
+| `getFrom(?string $keys = null)`                         | Returns `ANY->from` if available, `null` otherwise                                                                                                                | `array` for itself, `mixed` for subkeys
+| `getUser(?string $keys = null)`                         | Returns the current `user` if available, `null` otherwise, alternative to `_from(...)`                                                                            | `array` for itself, `mixed` for subkeys
+| `getUserId()`                                           | Returns the current user id (`ANY->from->id`) if available, `null` otherwise                                                                                      | `?int`
+| `getChat(?string $keys = null)`                         | Returns the current `chat` if available, `null` otherwise                                                                                                         | `array` for itself, `mixed` for subkeys
+| `getChatId()`                                           | Returns `chat->id` if available, `null` otherwise                                                                                                                 | `?int`
+| `getChatType()`                                         | Returns the current `chat->type` if available, `null` otherwise                                                                                                   | `?string`
+| `getChatTypes(array $exclude = [])`                     | Returns all available chat types                                                                                                                                  | `array` of strings
+| `getChatActions(array $exclude = [])`                   | Returns all available chat actions                                                                                                                                | `array` of strings
+| `getChatMember(?string $keys = null)`                   | Returns `chat_member` if available, `null` otherwise.                                                                                                             | `array` for itself, `mixed` for subkeys
+| `getChatMemberStatuses(array $exclude = [])`            | Returns all available chat member statuses                                                                                                                        | `array` of strings
+| `getMyChatMember(?string $keys = null)`                 | Returns `my_chat_member` if available, `null` otherwise.                                                                                                          | `array` for itself, `mixed` for subkeys
+| `getFormattingOptions(array $exclude = [])`             | Returns all available formatting options                                                                                                                          | `array` of strings
+| `getFileTypes(array $exclude = [])`                     | Returns all available message types that are files                                                                                                                | `array` of strings
+| `getForwardFrom(?string $keys = null)`                  | Returns `ANY->forward_from` if available, `null` otherwise                                                                                                        | `array` for itself, `mixed` for subkeys
+| `getForwardFromChat(?string $keys = null)`              | Returns `ANY->forward_from_chat` if available, `null` otherwise                                                                                                   | `array` for itself, `mixed` for subkeys
+| `getForwardDate()`                                      | Returns `ANY->forward_date` if available, `null` otherwise                                                                                                        | `?int`
+| `getForwardFromMessageId()`                             | Returns `ANY->forward_from_message_id` if available, `null` otherwise                                                                                             | `?int`
+| `getSenderChat(?string $keys = null)`                   | Returns `ANY->sender_chat` if available, `null` otherwise                                                                                                         | `?array` for itself, `mixed` for subkeys
+| `getAuthorSignature()`                                  | Returns `ANY->author_signature` if available, `null` otherwise                                                                                                    | `?string`
+| `getDate()`                                             | Returns `ANY->date` if available, `null` otherwise                                                                                                                | `?int`
+| `getEditDate()`                                         | Returns `ANY->edit_date` if available, `null` otherwise                                                                                                           | `?int`
+| `getChatTitle()`                                        | Returns `chat->title`  if available, `null` otherwise                                                                                                             | `?string`
+| `getPollQuestion()`                                     | Returns `poll->question` if available, `null` otherwise                                                                                                           | `?string`
+| `getPollType()`                                         | Returns `poll->type` if available, `null` otherwise                                                                                                               | `?string`
+| `getPollId()`                                           | Returns `poll->id` if available, `null` otherwise                                                                                                                 | `?string`
+| `getAnimationFileName()`                                | Returns `animation->file_name` if available, `null` otherwise                                                                                                     | `?string`
+| `getAnimationMimeType()`                                | Returns `animation->mime_type` if available, `null` otherwise                                                                                                     | `?string`
+| `getAnimationDuration()`                                | Returns `animation->duration` if available, `null` otherwise                                                                                                      | `?int`
+| `getAnimationWidth()`                                   | Returns `animation->width` if available, `null` otherwise                                                                                                         | `?int`
+| `getAnimationHeight()`                                  | Returns `animation->height` if available, `null` otherwise                                                                                                        | `?int`
+| `getAnimationThumb(?string $keys = null)`               | Returns `animation->thumb` if available, `null` otherwise                                                                                                         | `?array` for itself, `mixed` for subkeys
+| `getGameTitle()`                                        | Returns `ANY->game->title` if available, `null` otherwise                                                                                                         | `?string`
+| `getGameDescription()`                                  | Returns `ANY->game->description` if available, `null` otherwise                                                                                                   | `?string`
+| `getForumTopicCreated(?string $keys = null)`            | Returns `message->forum_topic_created` if available, `null` otherwise                                                                                             | `?array` for itself, `mixed` for subkeys
+| `getForumTopicEdited(?string $keys = null)`             | Returns `message->forum_topic_edited` if available, `null` otherwise                                                                                              | `?array` for itself, `mixed` for subkeys
+| `getForumTopicClosed(?string $keys = null)`             | Returns `message->forum_topic_closed` if available, `null` otherwise                                                                                              | `?array` for itself, `mixed` for subkeys
+| `getForumTopicReopened(?string $keys = null)`           | Returns `message->forum_topic_reopened` if available, `null` otherwise                                                                                            | `?array` for itself, `mixed` for subkeys
+| `getMessageThreadId()`                                  | Returns `message->message_thread_id` if available, `null` otherwise                                                                                               | `?int`
+| `getUserFirstName()`                                    | Returns `ANY->from->first_name` if available, `null` otherwise                                                                                                    | `?string`
+| `getUserUsername()`                                     | Returns `ANY->from->username` if available, `null` otherwise                                                                                                      | `?string`
+| `getChatShared(?string $keys = null)`                   | Returns `message->chat_shared` if available, `null` otherwise                                                                                                     | `?array` for itself, `mixed for subkeys`
+| `getUserShared(?string $keys = null)`                   | Returns `message->user_shared` if available, `null` otherwise                                                                                                     | `?array` for itself, `mixed for subkeys`
+| `getConnectedWebsite()`                                 | Returns `message->connected_website` if available, `null` otherwise                                                                                               | `?string`
+| `getWriteAccessAllowed(?string $keys = null)`           | Returns `message->write_access_allowed` if available, `null` otherwise                                                                                            | `?array` for itself, `mixed for subkeys`
+| `getPassportData(?string $keys = null)`                 | Returns `message->passport_data` if available, `null` otherwise                                                                                                   | `?array` for itself, `mixed for subkeys`
+| `getProximityAlertTriggered(?string $keys = null)`      | Returns `message->proximity_alert_trigerred` if available, `null` otherwise                                                                                       | `?array` for itself, `mixed for subkeys`
+| `getGeneralForumTopicHidden(?string $keys = null)`      | Returns `message->general_forum_hidden` if available, `null` otherwise                                                                                            | `?array` for itself, `mixed for subkeys`
+| `getGeneralForumTopicUnhidden(?string $keys = null)`    | Returns `message->general_forum_unhidden` if available, `null` otherwise                                                                                          | `?array` for itself, `mixed for subkeys`
+| `getVideoChatScheduled(?string $keys = null)`           | Returns `message->video_chat_scheduled` if available, `null` otherwise                                                                                            | `?array` for itself, `mixed for subkeys`
+| `getVideoChatStarted(?string $keys = null)`             | Returns `message->video_chat_started` if available, `null` otherwise                                                                                              | `?array` for itself, `mixed for subkeys`
+| `getVideoChatEnded(?string $keys = null)`               | Returns `message->video_chat_ended` if available, `null` otherwise                                                                                                | `?array` for itself, `mixed for subkeys`
+| `getVideoChatParticipantsInvited(?string $keys = null)` | Returns `message->video_chat_participants_invited` if available, `null` otherwise                                                                                 | `?array` for itself, `mixed for subkeys`
+| `getWebAppData(?string $keys = null)`                   | Returns `message->web_app_data` if available, `null` otherwise                                                                                                    | `?array` for itself, `mixed for subkeys`
+| `getReplyMarkupInlineKeyboard()`                        | Returns `ANY->reply_markup->inline_keyboard` if available, `null` otherwise                                                                                       | `?array`
+| `isMessage()`                                        | Returns `true` if the current update type was `message`, `false` otherwise                                                                                        | `bool`
+| `isCallbackQuery()`                                  | Returns `true` if the current update type was `callback_query`, `false` otherwise                                                                                 | `bool`
+| `isEditedMessage()`                                  | Returns `true` if the current update type was `edited_message`, `false` otherwise                                                                                 | `bool`
+| `isChannelPost()`                                    | Returns `true` if the current update type was `channel_post`, `false` otherwise                                                                                   | `bool`
+| `isEditedChannelPost()`                              | Returns `true` if the current update type was `edited_channel_post`, `false` otherwise                                                                            | `bool`
+| `isShippingQuery()`                                  | Returns `true` if the current update type was `shipping_query`, `false` otherwise                                                                                 | `bool`
+| `isChatJoinRequest()`                                | Returns `true` if the current update type was `chat_join_request`, `false` otherwise                                                                              | `bool`
+| `isInlineQuery()`                                    | Returns `true` if the current update type was `inline_query`, `false` otherwise                                                                                   | `bool`
+| `isMyChatMember()`                                   | Returns `true` if the current update type was `my_chat_member`, `false` otherwise                                                                                 | `bool`
+| `isChatMember()`                                     | Returns `true` if the current update type was `chat_member`, `false` otherwise                                                                                    | `bool`
+| `isChosenInlineResult()`                             | Returns `true` if the current update type was `chosen_inline_result`, `false` otherwise                                                                           | `bool`
+| `isPollAnswer()`                                     | Returns `true` if the current update type was `poll_answer`, `false` otherwise                                                                                    | `bool`
+| `isPoll()`                                           | Returns `true` if the current update type OR message type was `poll`, `false` otherwise                                                                           | `bool`
+| `isPhoto()`                                          | Returns `true` if the current message type was `photo`, `false` otherwise                                                                                         | `bool`
+| `isSticker()`                                        | Returns `true` if the current message type was `sticker`, `false` otherwise                                                                                       | `bool`
+| `isAnimation()`                                      | Returns `true` if the current message type was `animation`, `false` otherwise                                                                                     | `bool`
+| `isVideo()`                                          | Returns `true` if the current message type was `video`, `false` otherwise                                                                                         | `bool`
+| `isVideoNote()`                                      | Returns `true` if the current message type was `video_note`, `false` otherwise                                                                                    | `bool`
+| `isDice()`                                           | Returns `true` if the current message type was `dice`, `false` otherwise                                                                                          | `bool`
+| `isGame()`                                           | Returns `true` if the current message type was `game`, `false` otherwise                                                                                          | `bool`
+| `isVenue()`                                          | Returns `true` if the current message type was `venue`, `false` otherwise                                                                                         | `bool`
+| `isVoice()`                                          | Returns `true` if the current message type was `voice`, `false` otherwise                                                                                         | `bool`
+| `isDocument()`                                       | Returns `true` if the current message type was `document`, `false` otherwise                                                                                      | `bool`
+| `isLocation()`                                       | Returns `true` if the current message type was `location`, `false` otherwise                                                                                      | `bool`
+| `isContact()`                                        | Returns `true` if the current message type was `contact`, `false` otherwise                                                                                       | `bool`
+| `isAudio()`                                          | Returns `true` if the current message type was `audio`, `false` otherwise                                                                                         | `bool`
+| `isText()`                                           | Returns `true` if the current message type was `text`, `false` otherwise                                                                                          | `bool`
+| `isNewChatMembers()`                                 | Returns `true` if the current message type was `new_chat_members`, `false` otherwise                                                                              | `bool`
+| `isLeftChatMember()`                                 | Returns `true` if the current message type was `left_chat_member`, `false` otherwise                                                                              | `bool`
+| `isNewChatTitle()`                                   | Returns `true` if the current message type was `new_chat_title`, `false` otherwise                                                                                | `bool`
+| `isNewChatPhoto()`                                   | Returns `true` if the current message type was `new_chatgetPhoto`, `false` otherwise                                                                                | `bool`
+| `isDeleteChatPhoto()`                                | Returns `true` if the current message type was `delete_chatgetPhoto`, `false` otherwise                                                                             | `bool`
+| `isGroupChatCreated()`                               | Returns `true` if the current message type was `group_chat_created`, `false` otherwise                                                                            | `bool`
+| `isSupergroupChatCreated()`                          | Returns `true` if the current message type was `supergroup_chat_created`, `false` otherwise                                                                       | `bool`
+| `isChannelChatCreated()`                             | Returns `true` if the current message type was `channel_chat_created`, `false` otherwise                                                                          | `bool`
+| `isAutoDeleteTimerChanged()`                         | Returns `true` if the current message type was `message_auto_delete_timer_changed`, `false` otherwise                                                             | `bool`
+| `isMigrateToChatId()`                                | Returns `true` if the current message type was `migrate_to_chat_id`, `false` otherwise                                                                            | `bool`
+| `isMigrateFromChatId()`                              | Returns `true` if the current message type was `migrate_from_chat_id`, `false` otherwise                                                                          | `bool`
+| `isPinnedMessage()`                                  | Returns `true` if the current message type was `pinned_message`, `false` otherwise                                                                                | `bool`
+| `isInvoice()`                                        | Returns `true` if the current message type was `invoice`, `false` otherwise                                                                                       | `bool`
+| `isSuccessfulPayment()`                              | Returns `true` if the current message type was `successful_payment`, `false` otherwise                                                                            | `bool`
+| `isUserShared()`                                     | Returns `true` if the current message type was `user_shared`, `false` otherwise                                                                                   | `bool`
+| `isChatShared()`                                     | Returns `true` if the current message type was `chat_shared`, `false` otherwise                                                                                   | `bool`
+| `isConnectedWebsite()`                               | Returns `true` if the current message type was `connected_website`, `false` otherwise                                                                             | `bool`
+| `isWriteAccessAllowed()`                             | Returns `true` if the current message type was `write_access_allowed`, `false` otherwise                                                                          | `bool`
+| `isPassportData()`                                   | Returns `true` if the current message type was `passport_data`, `false` otherwise                                                                                 | `bool`
+| `isProximityAlertTriggered()`                        | Returns `true` if the current message type was `proximity_alert_triggered`, `false` otherwise                                                                     | `bool`
+| `isForumTopicCreated()`                              | Returns `true` if the current message type was `forum_topic_created`, `false` otherwise                                                                           | `bool`
+| `isForumTopicEdited()`                               | Returns `true` if the current message type was `forum_topoic_edited`, `false` otherwise                                                                           | `bool`
+| `isForumTopicClosed()`                               | Returns `true` if the current message type was `forum_topic_closed`, `false` otherwise                                                                            | `bool`
+| `isForumTopicReopened()`                             | Returns `true` if the current message type was `forum_topoic_reopened`, `false` otherwise                                                                         | `bool`
+| `isGeneralForumTopicHidden()`                        | Returns `true` if the current message type was `general_forum_topic_hidden`, `false` otherwise                                                                    | `bool`
+| `isGeneralForumTopicUnhidden()`                      | Returns `true` if the current message type was `general_forum_topic_unhidden`, `false` otherwise                                                                  | `bool`
+| `isVideoChatScheduled()`                             | Returns `true` if the current message type was `video_chat_scheduled`, `false` otherwise                                                                          | `bool`
+| `isVideoChatStarted()`                               | Returns `true` if the current message type was `video_chat_started`, `false` otherwise                                                                            | `bool`
+| `isVideoChatEnded()`                                 | Returns `true` if the current message type was `video_chat_ended`, `false` otherwise                                                                              | `bool`
+| `isVideoChatParticipantsInvited()`                   | Returns `true` if the current message type was `video_chat_participants_invited`, `false` otherwise                                                               | `bool`
+| `isWebAppData()`                                     | Returns `true` if the current message type was `web_app_data`, `false` otherwise                                                                                  | `bool`
+| `isPollAnonymous()`                                  | Returns `true` if the `poll->is_anonymous` was true, `false` otherwise                                                                                            | `bool`
+| `isPollClosed()`                                     | Returns `true` if the `poll->is_closed` was true, `false` otherwise                                                                                               | `bool`
+| `isTopicMessage()`                                   | Returns `true` if `message->is_topic_message` was true, `false` otherwise                                                                                         | `bool`
+| `isSender()`                                         | Returns `true` if the current chat type was `sender`                                                                                                              | `bool`
+| `isGroup()`                                          | Returns `true` if the current chat type was `gorup`                                                                                                               | `bool`
+| `isSupergroup()`                                     | Returns `true` if the current chat type was `supergroup`                                                                                                          | `bool`
+| `isPrivate()`                                        | Returns `true` if the current chat type was `private`                                                                                                             | `bool`
+| `isChannel()`                                        | Returns `true` if the current chat type was `channel`                                                                                                             | `bool`
+| `isForwarded()`                                      | Returns `true` if a message was forwarded                                                                                                                         | `bool`
+| `isBot()`                                            | Returns `true` if the `from->is_bot` was true, `false` otherwise                                                                                                  | `bool`
+| `isForum()`                                          | Returns `true` if the `chat->is_forum` was true, `false` otherwise                                                                                                | `bool`
 
 ### How to use Helpers in action? <a name="how-to-use-helpers"></a>
 
 Here is an example:
 
 ```php
-use function DevDasher\PTB\_update;
-use function DevDasher\PTB\_updateId;
-use function DevDasher\PTB\_message;
-use function DevDasher\PTB\_from;
-use function DevDasher\PTB\_user;
-use function DevDasher\PTB\_userId;
-use function DevDasher\PTB\_isPhoto;
-use function DevDasher\PTB\_photos;
-use function DevDasher\PTB\_photo;
-use function DevDasher\PTB\onMessage;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getUpdate;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getUpdateId;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getMessage;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getFrom;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getUser;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getUserId;
+use function DevDasher\PTB_PHP\Telegram\Helpers\isPhoto;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getPhotos;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getPhoto;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
+use function DevDasher\PTB_PHP\Handlers\onMessage;
 
 onMessage(function() {
 
     # Get the update:
-    $update = _update(); // Array
+    $update = getUpdate(); // Array
 
 
     # Get the update_id in different ways:
-    $updateId = _updateId();
-    $updateId = _update('update_id'); // Another way
+    $updateId = getUpdateId();
+    $updateId = getUpdate('update_id'); // Another way
     $updateId = $update['update_id'];
 
 
     # Get the message in different ways:
     $message = $update['message'];
-    $message = _update('message'); // Another way
-    $message = _message();
+    $message = getUpdate('message'); // Another way
+    $message = getMessage();
 
 
     # Get current user info in different ways:
     $from = _from();
     //...
-    $user = _user(); // Alternative to _from();
+    $user = getUser(); // Alternative to _from();
 
     $userId = $update['message']['from']['id'];
-    $userId = _update('message.from.id');
+    $userId = getUpdate('message.from.id');
     $userId = $message['from']['id'];
-    $userId = _message('from.id');
+    $userId = getMessage('from.id');
     $userId = $user['id'];
-    $userId = _userId();
-    $userId = _user('id');
+    $userId = getUserId();
+    $userId = getUser('id');
     //...
 
     # SEE THE AVAILABLE HELPERS AND TEST OTHES THINGS YOURSELF #
 
-    if (_isPhoto()) {
+    if (isPhoto()) {
         # Get the photos in different ways:
-        $photos = _update('message.photo');
-        $photos = _message('photo');
-        $photos = _photos();
+        $photos = getUpdate('message.photo');
+        $photos = getMessage('photo');
+        $photos = getPhotos();
 
         $photo = end($photos); // Get the last photo that has high quality
-        $photo = _photo(); // Another and better way
+        $photo = getPhoto(); // Another and better way
 
         $photoFileId = $photo['file_id'];
-        $photoFileId = _photo('file_id');
+        $photoFileId = getPhoto('file_id');
         //...
 
         return sendMessage('You sent a photo!');
@@ -1466,7 +1520,7 @@ All Telegram Bot API [Available types](https://core.telegram.org/bots/api#availa
 A lot of useful constants are available in the library for fast development and convenience of most developers.
 
 Here are some of them:
-- **Types Fields**: `FIELD_*` for example: `FIELD_UPDATE_ID`, `FIELD_TITLE`, etc
+- **Types Fields**: `FIELD_*` for example: `FIELDgetUpdate_ID`, `FIELD_TITLE`, etc
 - **Method Names**: `METHOD_*` for example: `METHOD_SEND_ANY`, `METHOD_DELETE_ANY`, etc
 - **Methods Parameters**: `PARAM_*` for example: `PARAM_CHAT_ID`, `PARAM_TEXT`, etc
 - **Update Types**: `UPDATE_TYPE_*` for example: `UPDATE_TYPE_ANY`, `UPDATE_TYPE_EDITED_ANY`, etc
@@ -1505,12 +1559,12 @@ Here is an example:
 ### Webhook implementation: <a name="without-handlers-webhook-implementation"></a>
 
 ```php
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 $input = file_get_contents('php://input');
 $update = json_decode($input, true);
-// Here, you can use the __setUpdate($update) for work with all the available helper functions
+// Here, you can use the setUpdate($update) for work with all the available helper functions
 // See the next example.
 
 configurePTB(
@@ -1551,11 +1605,11 @@ if ($text === '/start') {
 #### Another Example:
 
 ```php
-use function DevDasher\PTB\_text;
-use function DevDasher\PTB\_chatId;
-use function DevDasher\PTB\__setUpdate;
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getText;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getChatId;
+use function DevDasher\PTB_PHP\Config\setUpdate;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 $input = file_get_contents('php://input');
 $update = json_decode($input, true);
@@ -1569,11 +1623,11 @@ configurePTB(
 
     //...
 );
-// __setUpdate($update); // Or pass the $update in this way.
+// setUpdate($update); // Or pass the $update in this way.
 
 
-$text = _text(); // Now, we can use all available helper functions. like this one here.
-$chatId = _chatId();
+$text = getText(); // Now, we can use all available helper functions. like this one here.
+$chatId = getChatId();
 //...
 
 if ($text === '/start') {
@@ -1592,8 +1646,8 @@ if ($text === '/start') {
 ### LongPolling Implementation <a name="without-handlers-longpolling-implementation"></a>
 
 ```php
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\getUpdates;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Telegram\Methods\getUpdates;
 
 configurePTB(
     token: 'TOKEN',
@@ -1618,9 +1672,9 @@ The PTB-PHP library provides developers with the flexibility to utilize object-o
 
 Let's see an example:
 ```php
-use function DevDasher\PTB\middleware;
-use function DevDasher\PTB\sendMessage;
-use function DevDasher\PTB\onMessageText;
+use function DevDasher\PTB_PHP\Handlers\middleware;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
 
 # Suppose we have two clasess, one for handler, and another for middleware:
 class StartCommand {
@@ -1669,14 +1723,14 @@ onMessageText(
     callable: AdminCommand::class,
 
     # A middleware for checking if user is an admin or not
-    middlewares: AdminAuthMiddleware::class, 
+    local_middlewares: AdminAuthMiddleware::class, 
 
     # Of course, if you need multiple middlewares, just pass them in an array
     // middlewares: [AdminAuthMiddleware::class, AnotherMiddleware::class, /* ... */ ],
 
 
     # Here we say that the CheckUserStatusMiddleware class sould not be executed before this handler
-    skip_middlewares: CheckUserStatusMiddleware::class,
+    skip_global_middlewares: CheckUserStatusMiddleware::class,
 
     # Of course, if you need to pass multiple middleware names, just pass them in an array
     // middlewares: [CheckUserStatusMiddleware::class, AnotherMiddlewareToSkip::class, /* ... */ ],
@@ -1734,7 +1788,7 @@ In the future, we will provide you with additional explanations and training in 
 
 More details soon...
 
-# ✨ Showcase Projects <a name="showcase-projects"></a>
+# ✨ Projects Showcase <a name="projects-showcase"></a>
 
 We would love to feature your projects that utilize our library! Please share the links with us, and we will gladly showcase them in this section.
 
@@ -1772,4 +1826,9 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 - [All Contributors](../../contributors)
 
 # 📜 License <a name="license"></a>
+
 The GPL License (GPLv3). Please see [License File](LICENSE.md) for more information.
+
+## ⚠️ Disclaimer of Warranty <a name="disclaimer-of-warranty"></a>
+
+The PTB-PHP (Procedural Telegram Bot - PHP) library is distributed under the terms of the GNU General Public License, which grants users the legal permission to copy, distribute, and modify the software. However, it is important to note that the library is provided "as is" without any warranty or guarantee of its performance or functionality. The developer of the PTB-PHP library does not make any guarantees about its quality, suitability, or fitness for a particular purpose. The library may contain bugs or errors in any version, and the user is fully responsible for its usage and any consequences that may arise from it. It is recommended to thoroughly test the library and ensure its compatibility with specific use cases before deploying it in a production environment. The user should acknowledge that they are using the PTB-PHP library at their own risk. If the user encounters any issues or has any questions about the library, they can contact the developer for support or inquiries.

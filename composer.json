@@ -5,10 +5,15 @@
     "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
-            "DevDasher\\PTB\\": "src/"
+            "DevDasher\\PTB_PHP\\": "src/"
         },
         "files": [
-            "src/PTB.php"
+            "src/helpers.php",
+            "src/Config/config.php",
+            "src/Handlers/handlers.php",
+            "src/Telegram/Helpers/helpers.php",
+            "src/Telegram/Methods/methods.php",
+            "src/Telegram/Types/types.php"
         ]
     },
     "authors": [
@@ -22,7 +27,8 @@
         "ext-curl": "*",
         "symfony/cache": "^6.3",
         "psr/simple-cache": "^3.0",
-        "laravel/serializable-closure": "^1.3"
+        "laravel/serializable-closure": "^1.3",
+        "devdasher/php-helpers": "^1.0"
     },
     "minimum-stability": "stable",
     "prefer-stable": true

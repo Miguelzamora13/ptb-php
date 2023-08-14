@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2023-08-20
+
+Code improvements.
+
 ## [1.3.6] - 2023-07-29
 
 - Implemented support for utilizing Conversations using OOP approach.

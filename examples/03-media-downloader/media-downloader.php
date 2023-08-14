@@ -29,24 +29,22 @@
  * @link http://t.me/DevDasher
 */
 
-use function DevDasher\PTB\_downloadBotFile;
-use function DevDasher\PTB\_file;
-use function DevDasher\PTB\_fileTypes;
-use function DevDasher\PTB\_messageId;
-use function DevDasher\PTB\_messageType;
-use function DevDasher\PTB\_photo;
-use function DevDasher\PTB\_sticker;
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\editMessageText;
-use function DevDasher\PTB\getFile;
-use function DevDasher\PTB\middleware;
-use function DevDasher\PTB\middlewares;
-use function DevDasher\PTB\onException;
-use function DevDasher\PTB\onMessagePhoto;
-use function DevDasher\PTB\onMessageSticker;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\run;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Config\run;
+use function DevDasher\PTB_PHP\Handlers\middlewares;
+use function DevDasher\PTB_PHP\Handlers\onException;
+use function DevDasher\PTB_PHP\Handlers\onMessagePhoto;
+use function DevDasher\PTB_PHP\Handlers\onMessageSticker;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Helpers\downloadBotFile;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getMessageFileTypes;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getMessageId;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getMessageType;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getPhoto;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getSticker;
+use function DevDasher\PTB_PHP\Telegram\Methods\editMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\getFile;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 require(__DIR__.'/../../src/PTB.php'); // path to PTB.php
 
@@ -64,26 +62,16 @@ onException(callable: function(Throwable $e) {
     throw $e;
 });
 
-middleware(callable: function() {
-    
-});
-
 // This middlewares will be called before the main handlers
 middlewares([
     'CHECK_FILE_TYPE' => function() {
-        $messageType = _messageType();
-        $allowedTypes = _fileTypes();
+        $messageType = getMessageType();
+        $allowedTypes = getMessageFileTypes();
         if (!in_array($messageType, $allowedTypes)) {
             // Here, the onException handler will be called
             throw new Exception('Ony files are allowed to download!');
         }
     },
-    'CHECK_FILE_SIZE' => function() {
-        $file = _file(); // Not the php's built in function!
-        if ($file['file_size'] > API_LIMIT_DOWNLOAD_FILE_SIZE_MAX) {
-            throw new Exception("The file size must be less than 20mb!");
-        }
-    }
 ]);
 
 onMessageText(
@@ -92,17 +80,17 @@ onMessageText(
         sendMessage(text: 'Ok, send me any sticker or photo to download');
     },
     // Skips global middlewares from running for this handler
-    skip_middlewares: ['CHECK_FILE_TYPE', 'CHECK_FILE_SIZE'],
+    skip_global_middlewares: ['CHECK_FILE_TYPE', 'CHECK_FILE_SIZE'],
 );
 
 onMessagePhoto(callable: function() {
     $respose = sendMessage(
         text: 'Downloading...',
-        reply_to_message_id: _messageId()
+        reply_to_message_id: getMessageId()
     );
-    $photo = _photo();
+    $photo = getPhoto();
     $file = getFile($photo['file_id']);
-    $result = _downloadBotFile(
+    $result = downloadBotFile(
         file: $file, // Or you can only pass the fild_id => $photo['file_id']
         save_path: __DIR__.'/../resources/photo.jpg',
     );
@@ -119,10 +107,10 @@ onMessagePhoto(callable: function() {
 onMessageSticker(callable: function() {
     $respose = sendMessage(
         text: 'Downloading...',
-        reply_to_message_id: _messageId()
+        reply_to_message_id: getMessageId()
     );
-    $result = _downloadBotFile(
-        file: _sticker('file_id'), // Here we pass the file_id
+    $result = downloadBotFile(
+        file: getSticker('file_id'), // Here we pass the file_id
         save_path: __DIR__.'/../resources/sticker.webp',
     );
     if (!$result) {

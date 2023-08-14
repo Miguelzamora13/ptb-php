@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85bbbae8a140b988581f44d8fced82ec",
+    "content-hash": "2bbea2f18c775b858a1dfe4cf8019e4b",
     "packages": [
+        {
+            "name": "devdasher/php-helpers",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devdasher/php-helpers.git",
+                "reference": "2198ef5700ea6550bc7d6d9a39c04ad38fe59859"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devdasher/php-helpers/zipball/2198ef5700ea6550bc7d6d9a39c04ad38fe59859",
+                "reference": "2198ef5700ea6550bc7d6d9a39c04ad38fe59859",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/serializable-closure": "^1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/php-helpers.php"
+                ],
+                "psr-4": {
+                    "DevDasher\\PHPHelpers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Pooria Bashiri",
+                    "email": "po.pooria@gmail.com"
+                }
+            ],
+            "description": "Collection of useful PHP helpers (missing functions, etc)",
+            "support": {
+                "issues": "https://github.com/devdasher/php-helpers/issues",
+                "source": "https://github.com/devdasher/php-helpers/tree/1.0.7"
+            },
+            "time": "2023-08-14T10:18:00+00:00"
+        },
         {
             "name": "laravel/serializable-closure",
             "version": "v1.3.0",

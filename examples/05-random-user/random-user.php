@@ -33,13 +33,13 @@
  * @link http://t.me/DevDasher
 */
 
-use function DevDasher\PTB\__makeCurlRequest;
-use function DevDasher\PTB\_messageId;
-use function DevDasher\PTB\configurePTB;
-use function DevDasher\PTB\editMessageText;
-use function DevDasher\PTB\onMessageText;
-use function DevDasher\PTB\run;
-use function DevDasher\PTB\sendMessage;
+use function DevDasher\PTB_PHP\Config\configurePTB;
+use function DevDasher\PTB_PHP\Config\run;
+use function DevDasher\PTB_PHP\Config\sendRequestUsingCURL;
+use function DevDasher\PTB_PHP\Handlers\onMessageText;
+use function DevDasher\PTB_PHP\Telegram\Helpers\getMessageId;
+use function DevDasher\PTB_PHP\Telegram\Methods\editMessageText;
+use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
 require(__DIR__.'/../../src/PTB.php'); // path to PTB.php
 
@@ -52,17 +52,17 @@ configurePTB(
 onMessageText(pattern: '/start', callable: function() {
     sendMessage(
         text: "Hi!\n\nTouch /generate command to get random and fake user data!",
-        reply_to_message_id: _messageId(),
+        reply_to_message_id: getMessageId(),
     );
 });
 
 onMessageText(pattern: '/generate', callable: function() {
     $response = sendMessage(
         text: 'Please wait...',
-        reply_to_message_id: _messageId(),
+        reply_to_message_id: getMessageId(),
     );
     $url = 'https://randomuser.me/api/';
-    $result = __makeCurlRequest(url: $url, options: [
+    $result = sendRequestUsingCURL(url: $url, options: [
         CURLOPT_RETURNTRANSFER => true,
     ]);
     if (!$result) {
