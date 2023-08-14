@@ -862,7 +862,7 @@ class RegisterConversation extends Conversation {
     /*
         Additional notes:
 
-        - The class name MUST extends the base class 'DevDasher\PTB_PHP\Conversation\Conversation'
+        - The class MUST extends the base class 'DevDasher\PTB_PHP\Conversation\Conversation'
 
         - The library automatically executes each method in the class in each step respectively.
 
@@ -1726,14 +1726,14 @@ onMessageText(
     local_middlewares: AdminAuthMiddleware::class, 
 
     # Of course, if you need multiple middlewares, just pass them in an array
-    // middlewares: [AdminAuthMiddleware::class, AnotherMiddleware::class, /* ... */ ],
+    // local_middlewares: [AdminAuthMiddleware::class, AnotherMiddleware::class, /* ... */ ],
 
 
     # Here we say that the CheckUserStatusMiddleware class sould not be executed before this handler
     skip_global_middlewares: CheckUserStatusMiddleware::class,
 
     # Of course, if you need to pass multiple middleware names, just pass them in an array
-    // middlewares: [CheckUserStatusMiddleware::class, AnotherMiddlewareToSkip::class, /* ... */ ],
+    // skip_global_middlewares: [CheckUserStatusMiddleware::class, AnotherMiddlewareToSkip::class, /* ... */ ],
 );
 
 //...
