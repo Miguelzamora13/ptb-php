@@ -127,6 +127,7 @@ define('FIELD_ANIMATION', 'animation');
 define('FIELD_AUDIO', 'audio');
 define('FIELD_DOCUMENT', 'document');
 define('FIELD_STICKER', 'sticker');
+define('FIELD_STORY', 'story');
 define('FIELD_VIDEO', 'video');
 define('FIELD_VIDEO_NOTE', 'video_note');
 define('FIELD_VOICE', 'voice');

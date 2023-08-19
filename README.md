@@ -853,7 +853,7 @@ use function DevDasher\PTB_PHP\Config\setConversationData;
 use function DevDasher\PTB_PHP\Telegram\Helpers\getText;
 use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 use function DevDasher\PTB_PHP\Handlers\onMessageText;
-use function DevDasher\PTB_PHP\Conversation\Conversation;
+use function DevDasher\PTB_PHP\Conversations\Conversation;
 
 //...
 
@@ -862,7 +862,7 @@ class RegisterConversation extends Conversation {
     /*
         Additional notes:
 
-        - The class MUST extends the base class 'DevDasher\PTB_PHP\Conversation\Conversation'
+        - The class MUST extends the base class 'DevDasher\PTB_PHP\Conversations\Conversation'
 
         - The library automatically executes each method in the class in each step respectively.
 
@@ -917,7 +917,7 @@ use function DevDasher\PTB_PHP\Config\setConversationData;
 use function DevDasher\PTB_PHP\Telegram\Helpers\getText;
 use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 use function DevDasher\PTB_PHP\Handlers\onMessageText;
-use function DevDasher\PTB_PHP\Conversation\Conversation;
+use function DevDasher\PTB_PHP\Conversations\Conversation;
 
 class RegisterConversation extends Conversation {
 
