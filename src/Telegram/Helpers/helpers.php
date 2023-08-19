@@ -1973,6 +1973,15 @@ function isSticker(): bool {
 }
 
 /**
+ * Check if the message type is story.
+ *
+ * @return bool
+ */
+function isStory(): bool {
+    return getMessageType() === MESSAGE_TYPE_STORY;
+}
+
+/**
  * Check if the message type is animation.
  *
  * @return bool
