@@ -193,6 +193,7 @@ define('FIELD_EMOJI', 'emoji');
 define('FIELD_VALUE', 'value');
 define('FIELD_VOTER_COUNT', 'voter_count');
 define('FIELD_VOTER_CHAT', 'voter_chat');
+define('FIELD_EMOJI_STATUS_EXPIRATION_DATE', 'emoji_status_expiration_date');
 define('FIELD_POLL_ID', 'poll_id');
 define('FIELD_OPTION_IDS', 'option_ids');
 define('FIELD_ID', 'id');
