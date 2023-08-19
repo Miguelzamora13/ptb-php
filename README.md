@@ -1105,6 +1105,7 @@ Here is a list of all available handlers in the library on namespace `DevDasher\
 | `onMessageGame(...)`                          | Handles `game` on `message` update type
 | `onMessageDice(...)`                          | Handles `dice` on `message` update type
 | `onMessageSticker(...)`                       | Handles `sticker` on `message` update type
+| `onMessageStory(...)`                         | Handles `story` on `message` update type
 | `onMessageNewChatMembers(...)`                | Handles `new_chat_members` on `message` update type
 | `onMessageLeftChatMember(...)`                | Handles `left_chat_member` on `message` update type
 | `onMessageNewChatTitle(...)`                  | Handles `new_chat_title` on `message` update type
@@ -1167,6 +1168,7 @@ Here is a list of all available handlers in the library on namespace `DevDasher\
 | `onChannelPostGame(...)`                            | Handles `game` on `channel_post` update type
 | `onChannelPostDice(...)`                            | Handles `dice` on `channel_post` update type
 | `onChannelPostSticker(...)`                         | Handles `sticker` on `channel_post` update type
+| `onChannelPostStory(...)`                         | Handles `story` on `channel_post` update type
 | `onChannelPostNewChatTitle(...)`                    | Handles `new_chat_title` on `channel_post` update type
 | `onChannelPostNewChatPhoto(...)`                    | Handles `new_chatgetPhoto` on `channel_post` update type
 | `onChannelPostDeleteChatPhoto(...)`                 | Handles `delete_chatgetPhoto` on `channel_post` update type
@@ -1280,6 +1282,7 @@ Here is a list of all available helpers in the library on namespace `DevDasher\P
 | `getPhotos()`                                           | Returns `ANY->photo` if available, `null` otherwise                                                                                                               | `?array`
 | `getDocument(?string $keys = null)`                     | Returns `ANY->document` if available, `null` otherwise                                                                                                            | `array` for itself, `mixed` for subkeys
 | `getSticker(?string $keys = null)`                      | Returns `ANY->sticker` if available, `null` otherwise                                                                                                             | `array` for itself, `mixed` for subkeys
+| `getStory(?string $keys = null)`                        | Returns `ANY->story` if available, `null` otherwise                                                                                                             | `array` for itself, `mixed` for subkeys
 | `getVideo(?string $keys = null)`                        | Returns `ANY->video` if available, `null` otherwise                                                                                                               | `array` for itself, `mixed` for subkeys
 | `getVideoNote(?string $keys = null)`                    | Returns `ANY->video_note` if available, `null` otherwise                                                                                                          | `array` for itself, `mixed` for subkeys
 | `getVoice(?string $keys = null)`                        | Returns `ANY->voice` if available, `null` otherwise                                                                                                               | `array` for itself, `mixed` for subkeys
