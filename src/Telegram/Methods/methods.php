@@ -1466,6 +1466,19 @@ function unhideGeneralForumTopic(
 }
 
 /**
+ * Use this method to clear the list of pinned messages in a General forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
+ *
+ * @param null|integer|string|null $chat_id
+ * @return array
+ */
+function unpinAllGeneralForumTopicMessages(
+    null|int|string $chat_id = null,
+): array {
+    return prepareAndSendApiRequest(__FUNCTION__, get_defined_vars());
+}
+
+
+/**
  * Use this method to send answers to callback queries sent from [inline keyboards](https://core.telegram.org/bots/features#inline-keyboards). The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.
  * 
  * - Alternatively, the user can be redirected to the specified Game URL. For this option to work, you must first create a game for your bot via [@BotFather](https://t.me/botfather) and accept the terms. Otherwise, you may use links like `t.me/your_bot?start=XXXX` that open your bot with a parameter.
