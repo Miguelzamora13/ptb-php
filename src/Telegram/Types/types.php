@@ -311,6 +311,7 @@ function Message(
     ?array $document = null,
     ?array $photo = null,
     ?array $sticker = null,
+    ?array $story = null,
     ?array $video = null,
     ?array $video_note = null,
     ?array $voice = null,
