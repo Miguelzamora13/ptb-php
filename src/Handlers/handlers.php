@@ -636,6 +636,14 @@ function onChannelPostSticker(
     addHandler('channel_post.sticker', ...getHandlersCommonParameters(get_defined_vars()));
 }
 
+function onChannelPostStory(
+    array|string|callable $callable,
+    array|string|callable $local_middlewares = [],
+    array|string $skip_global_middlewares = [],
+): void {
+    addHandler('channel_post.story', ...getHandlersCommonParameters(get_defined_vars()));
+}
+
 function onChannelPostNewChatTitle(
     array|string|callable $callable,
     array|string|callable $local_middlewares = [],
