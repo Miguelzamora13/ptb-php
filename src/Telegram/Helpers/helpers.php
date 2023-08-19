@@ -1347,6 +1347,16 @@ function getSticker(?string $key = null): mixed {
 }
 
 /**
+ * Get the story of the current message as array or subkeys value for the given key.
+ *
+ * @param string|null $key
+ * @return mixed
+ */
+function getStory(?string $key = null): mixed {
+    return array_get(getMessage(FIELD_STORY), $key);
+}
+
+/**
  * Get the video of the current message as array or subkeys value for the given key.
  *
  * @param string|null $key
