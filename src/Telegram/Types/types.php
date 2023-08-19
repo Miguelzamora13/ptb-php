@@ -181,6 +181,7 @@ function Chat(
     ?array $photo = null,
     ?array $active_usernames = null,
     ?string $emoji_status_custom_emoji_id = null,
+    ?int $emoji_status_expiration_date = null,
     ?string $bio = null,
     ?bool $has_private_forwards = null,
     ?bool $has_restricted_voice_and_videogetMessages = null,
