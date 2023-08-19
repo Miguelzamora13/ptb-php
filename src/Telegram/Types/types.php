@@ -636,7 +636,12 @@ function PollOption(string $text, int $voter_count): array {
  * 
  * @link https://core.telegram.org/bots/api#pollanswer
  */
-function PollAnswer(string $poll_id, array $user, array $option_ids): array {
+function PollAnswer(
+    string $poll_id,
+    array $option_ids,
+    ?array $user = null,
+    ?array $voter_chat = null,
+): array {
     return prepareApiTypeFields(get_defined_vars());
 }
 
