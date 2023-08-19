@@ -161,6 +161,14 @@ function onMessageSticker(
     addHandler("message.sticker", ...getHandlersCommonParameters(get_defined_vars()));
 }
 
+function onMessageStory(
+    array|string|callable $callable,
+    array|string|callable $local_middlewares = [],
+    array|string $skip_global_middlewares = [],
+): void {
+    addHandler("message.story", ...getHandlersCommonParameters(get_defined_vars()));
+}
+
 function onMessageNewChatMembers(
     array|string|callable $callable,
     array|string|callable $local_middlewares = [],
