@@ -192,6 +192,7 @@ define('FIELD_VCARD', 'vcard');
 define('FIELD_EMOJI', 'emoji');
 define('FIELD_VALUE', 'value');
 define('FIELD_VOTER_COUNT', 'voter_count');
+define('FIELD_VOTER_CHAT', 'voter_chat');
 define('FIELD_POLL_ID', 'poll_id');
 define('FIELD_OPTION_IDS', 'option_ids');
 define('FIELD_ID', 'id');
