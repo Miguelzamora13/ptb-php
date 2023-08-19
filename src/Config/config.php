@@ -25,7 +25,7 @@ namespace DevDasher\PTB_PHP\Config;
 use Closure;
 use CURLFile;
 use DateInterval;
-use DevDasher\PTB_PHP\Conversation\Conversation;
+use DevDasher\PTB_PHP\Conversations\Conversation;
 use Exception;
 use Psr\SimpleCache\CacheInterface;
 use ReflectionClass;
@@ -369,8 +369,7 @@ function sendApiRequest(string $method = null, array $parameters = [], array $op
         CURLOPT_FORBID_REUSE => false,
         CURLOPT_FRESH_CONNECT => false,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
-    ] + ($options[_FIELD_CURL_OPTIONS] ?? getCurlOptions() ?? []);
-
+    ] + ($options[_FIELD_CURL_OPTIONS] ?? getCurlOptions());
     $result = sendRequestUsingCURL(url: $url, options: $curlOptions);
     if (is_bool($result)) {
         return $result;
@@ -580,12 +579,12 @@ function getApiBaseUrl(?string $bot_username = null): ?string {
     return getBot(_FIELD_API_BASE_URL, $bot_username);
 }
 
-function isWebhook(): ?bool {
-    return getConfig(_FIELD_IS_WEBHOOK);
+function getCurlOptions(?string $bot_username = null): ?array {
+    return getBot(_FIELD_CURL_OPTIONS, $bot_username);
 }
 
-function getCurlOptions(): ?array {
-    return getConfig(_FIELD_CURL_OPTIONS);
+function isWebhook(): ?bool {
+    return getConfig(_FIELD_IS_WEBHOOK);
 }
 
 function getHandlers(): ?array {
