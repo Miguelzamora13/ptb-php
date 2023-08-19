@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.1] - 2023-08-19
+
+- Update to Bot API 6.8
+    - Added new handlers: `onMessageStory`, `onChannelPostStory`
+    - Added new helper constants: `FIELD_STORY`, `MESSAGE_TYPE_STORY`, `FIELD_EMOJI_STATUS_EXPIRATION_DATE`
+    - Added new helper funcs: `isStory`, `getStory`
+    - Added new method: `unpinAllGeneralForumTopicMessages`
+    - Added new parameter `voter_chat` to the `PollAnswer` func
+    - Added new parameter `story` to the `Message` func
+    - Added new parameter `emoji_status_expiration_date` to the `Chat` func
+    - Added `MESSAGE_TYPE_STORY` to the `getMessageTypes` helper func
+    - Added `MESSAGE_TYPE_STORY` to the `getMessageTypes` helper func
+- Some fixed and bugfix.
+
 ## [1.4.0] - 2023-08-14
 
 Code improvements.
