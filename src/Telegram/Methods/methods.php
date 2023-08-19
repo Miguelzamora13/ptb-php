@@ -5,8 +5,6 @@
  *
  * The PTB library is distributed under the terms of the GNU General Public License and is free to use, modify, and redistribute.
  * 
- * This file contains a set of functions that are available in the Telegram BOT API documentation.
- *
  * Please note that as the developer of the PTB-PHP library, I do not make any guarantees about its performance or functionality. The library may contain bugs or errors in any version.
  * 
  * It is important to thoroughly test the library and ensure its compatibility with your specific use case before deploying it in a production environment.
