@@ -2589,6 +2589,7 @@ function getMessageTypes(array $exclude = []): array {
     return array_diff([
         MESSAGE_TYPE_TEXT,
         MESSAGE_TYPE_STICKER,
+        MESSAGE_TYPE_STORY,
         MESSAGE_TYPE_ANIMATION,
         MESSAGE_TYPE_VIDEO,
         MESSAGE_TYPE_VIDEO_NOTE,
