@@ -1313,11 +1313,7 @@ function getGamePhotos(): ?array {
  * @return mixed
  */
 function getReplyMarkup(?string $key = null): mixed {
-    $message = getMessage(FIELD_REPLY_MARKUP);
-    if (!$message) {
-        return null;
-    }
-    return array_get($message, $key);
+    return array_get(getMessage(FIELD_REPLY_MARKUP), $key);
 }
 
 /**

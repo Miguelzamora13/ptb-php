@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "devdasher/php-helpers",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/devdasher/php-helpers.git",
-                "reference": "2198ef5700ea6550bc7d6d9a39c04ad38fe59859"
+                "reference": "45d73387156470c830e4693050ee5256186eb149"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/devdasher/php-helpers/zipball/2198ef5700ea6550bc7d6d9a39c04ad38fe59859",
-                "reference": "2198ef5700ea6550bc7d6d9a39c04ad38fe59859",
+                "url": "https://api.github.com/repos/devdasher/php-helpers/zipball/45d73387156470c830e4693050ee5256186eb149",
+                "reference": "45d73387156470c830e4693050ee5256186eb149",
                 "shasum": ""
             },
             "require": {
@@ -45,9 +45,9 @@
             "description": "Collection of useful PHP helpers (missing functions, etc)",
             "support": {
                 "issues": "https://github.com/devdasher/php-helpers/issues",
-                "source": "https://github.com/devdasher/php-helpers/tree/1.0.7"
+                "source": "https://github.com/devdasher/php-helpers/tree/1.0.8"
             },
-            "time": "2023-08-14T10:18:00+00:00"
+            "time": "2023-08-25T13:11:11+00:00"
         },
         {
             "name": "laravel/serializable-closure",
