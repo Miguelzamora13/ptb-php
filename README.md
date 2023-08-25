@@ -46,7 +46,7 @@
     - 🚀 [Performance](#performance) (Not complete yet...)
 - ✨ [Projects Showcase](#projects-showcase)
 - 🐞 [Bug Report](#bug-report)
-- ❤️ [Support Us!](#support-us)
+- ❤️ [Support](#support)
 - 📝 [Changelog](#changelog)
 - 🙌 [Credits](#credits)
 - 📜 [License](#license)
@@ -207,8 +207,11 @@ This library is continuously updated and offers a wide range of features.
 
 The following list represents just a fraction of the library's capabilities, and we are actively working expand this documentation. Here are some of the key highlights:
 
-
 ## ⚙️ Configuration <a name="configuration"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 To use the library, you must configure it by setting at least two mandatory parameters. Here's an example:
 
@@ -236,7 +239,13 @@ configurePTB(
 | `array $global_data = []`                 | ❌       | An optional array of key-value pairs that allows you to store global data (e.g., configuration values) accessible to all middlewares and handlers in the library using `getGlobalData(...)` helper. The `_setGLobalData(...)` does the same thing.
 | `?array $allowedgetUpdates = null`          | ❌       | Defines the allowed types of updates that the library should handle. You can effectively determine allowed updates through the `setWebhook` method. Updates that are not allowed will be automatically rejected by the library. This provides an additional layer of validation for incoming updates.
 
+</details>
+
 ## 📤 Uploading Files <a name="uploading-files"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 Here is some examples of how you can send files to the user in different ways:
 
@@ -290,8 +299,13 @@ onMessageText(pattern: '/video', callable: function() {
 
 //...
 ```
+</details>
 
 ## 📥 Downloading Files <a name="downloading-files"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 And here is an example of how you can download files sent to the bot:
 
@@ -355,8 +369,13 @@ use function DevDasher\PTB_PHP\Helpers\downloadURL;
 
 It's better to use the `downloadBotFile(...)` function.
 
+</details>
 
 ## 🤖 Multiple Bot Management <a name="multiple-bot-management"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 You can manage your bots easily. see this example:
 
@@ -409,7 +428,13 @@ onMessage(callable: function() {
 //...
 ```
 
+</details>
+
 ## 🤝 Middlewares <a name="middlewares"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 Middleware is a layer of code that intercepts and processes requests and responses in web applications. It provides a modular and reusable way to handle common tasks such as authentication, logging, error handling, and data validation. Each middleware component inspects and modifies the request and response objects and can either terminate the cycle or pass control to the next middleware. By promoting separation of concerns and modularity, middleware allows for easy customization and maintenance of web applications. It is widely used enhance functionality, security, and maintainability.
 
@@ -670,8 +695,13 @@ onException(callable: function(Throwable $e) {
 run();
 ```
 
+</details>
 
 ## 💬 Conversations <a name="conversations"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 The Conversations feature enables seamless interaction between users and the bot by facilitating the retrieval of input values. It allows the bot to engage in dynamic and context-aware conversations with users, capturing their responses and providing personalized and tailored experiences. By utilizing Conversations, developers can effortlessly gather user input, process it, and deliver relevant and meaningful responses, enhancing the overall user experience and enabling more interactive and engaging interactions within the Telegram bot ecosystem.
 
@@ -828,11 +858,8 @@ onMessageText('/register', function() { // FIRST STEP
                     endConversation();
                 },
             );
-
         }
-        
     );
-
 });
 ```
 
@@ -953,7 +980,13 @@ class RegisterConversation extends Conversation {
 
 ```
 
+</details>
+
 ## 🎮 Keyboards <a name="keyboards"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 The PTB-PHP library provides a simple way to build and send keyboards.
 
@@ -1082,7 +1115,13 @@ use function DevDasher\PTB_PHP\Telegram\Types\ForceReply;
 //...
 ```
 
+</details>
+
 ## 🧩 Handlers <a name="handlers"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 Handlers are essential components in building interactive and dynamic conversational experiences. They enable the customization of logic and actions based on specific triggers or conditions. For instance, handlers can be triggered by user messages, chat joins, button clicks, or any other desired action for the bot to respond appropriately. Key aspects of handlers include event binding, where they are associated with specific events; logic and actions, which define what happens when the event occurs; event types, allowing handlers to cater to different event categories; registration, ensuring appropriate handler invocation upon event occurrence; and customization, enabling the bot to respond differently based on various situations. Leveraging handlers effectively facilitates the creation of chatbots capable of interactive and adaptable user interactions, while offering a maintainable and extensible code structure.
 
@@ -1244,7 +1283,13 @@ Here is a list of all available handlers in the library on namespace `DevDasher\
 |------------------------|-------------
 | `onApiError(...)`      | Will be called if an error occurs on the Telegram side while sending the request
 
+</details>
+
 ## 🚁 Helpers <a name="helpers"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 Helpers refer to a set of utility functions (or constants...) that are designed to assist developers in performing common tasks or operations more efficiently. These helper functions encapsulate commonly used code snippets, providing a convenient way to reuse and simplify complex logic. By abstracting away repetitive or boilerplate code, function helpers enhance code readability, maintainability, and promote modular programming practices. They can range from simple functions for string manipulation or array operations to more advanced functionalities like file handling, database interactions, or API integrations. Function helpers serve as valuable tools in libraries, empowering developers to streamline their workflow and focus on higher-level application logic.
 
@@ -1495,8 +1540,13 @@ onMessage(function() {
 });
 ```
 
+</details>
 
 ## 💎 Available Methods <a name="available-methods"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#available-methods) are available in the library.
 
@@ -1508,7 +1558,13 @@ All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#avai
 - `sendPhoto(...)`
 - ...
 
+</details>
+
 ## 🔮 Available Types <a name="available-types"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 All Telegram Bot API [Available types](https://core.telegram.org/bots/api#available-types) are available in the library.
 
@@ -1519,7 +1575,13 @@ All Telegram Bot API [Available types](https://core.telegram.org/bots/api#availa
 - `Message(...)`
 - ...
 
+</details>
+
 ## ⚓️ Available Constants <a name="available-constants"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 A lot of useful constants are available in the library for fast development and convenience of most developers.
 
@@ -1552,7 +1614,13 @@ Here are some of them:
 
 And much more! ... check the source code yourself :)
 
+</details>
+
 ## ♟ Usage Without Handlers <a name="usage-without-handlers"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 If you are not comfortable with existing handlers and this type of coding, there is no problem. You can choose your own code style.
 
@@ -1669,8 +1737,13 @@ foreach ($updates as $update) {
 //...
 //...
 ```
+</details>
 
-### 🧱 Usage With OOP <a name="usage-with-oop"></a>
+## 🧱 Usage With OOP <a name="usage-with-oop"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 The PTB-PHP library provides developers with the flexibility to utilize object-oriented programming (OOP) alongside procedural code. While the library primarily encourages a procedural approach, it acknowledges that certain scenarios may require OOP concepts. As such, PTB-PHP allows the use of classes and objects within middleware and handlers, offering developers the freedom to incorporate OOP where necessary, rather than limiting them to pure functions.
 
@@ -1779,18 +1852,25 @@ A well-organized project structure is crucial for developing a Telegram bot, esp
     - LICENSE
     - README.md
     
+</details>
 
-### 🔗 Deep Links <a name="deep-links"></a>
+## 🔗 Deep Links <a name="deep-links"></a>
 
 Soon...
 
 ## 🚀 Performance <a name="performance"></a>
+
+<details>
+
+<summary>Click to show/hide details</summary>
 
 The performance of a Telegram bot is crucial for providing a seamless user experience. Response speed plays a vital role in ensuring timely interactions and satisfying user expectations. To improve the performance of a Telegram bot built with PHP, several methods can be employed. Firstly, optimizing code efficiency by minimizing unnecessary computations and database queries can significantly enhance response speed. Caching frequently accessed data or utilizing in-memory caching systems like Redis can also boost performance. Additionally, employing asynchronous processing techniques, such using queues or event-driven architectures, can help handle concurrent requests more efficiently. Utilizing a scalable infrastructure with load balancing and horizontal scaling can further improve performance by distributing the workload across multiple servers. Regular monitoring and profiling of the bot's performance can identify bottlenecks and areas for optimization, allowing for continuous improvement.
 
 In the future, we will provide you with additional explanations and training in this particular field to ensure that you can achieve optimal performance with our library, PTB-PHP.
 
 More details soon...
+
+</details>
 
 # ✨ Projects Showcase <a name="projects-showcase"></a>
 
@@ -1816,7 +1896,7 @@ We would also like to take this opportunity to encourage you to use our library 
 
 Thank you for your support and happy coding!
 
-# ❤️ Support Us! <a name="support-us"></a>
+# ❤️ Support <a name="support"></a>
 
 Thank you for using our library! We greatly appreciate your support. If you find our library helpful, please consider giving us a 🌟 star on GitHub. Your positive feedback and engagement help us improve and continue providing valuable resources to the community. Don't forget to share this library with your friends and colleagues who might benefit from it. Together, we can make a difference in the development community. Thank you for being a part of our journey!
 
