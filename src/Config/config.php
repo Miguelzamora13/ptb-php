@@ -63,6 +63,7 @@ use function DevDasher\PTB_PHP\Telegram\Helpers\getUserId;
 use function DevDasher\PTB_PHP\Telegram\Helpers\isCallbackQuery;
 use function DevDasher\PTB_PHP\Telegram\Helpers\isChosenInlineResult;
 use function DevDasher\PTB_PHP\Telegram\Helpers\isInlineQuery;
+use function DevDasher\PTB_PHP\Telegram\Helpers\isMessage;
 use function DevDasher\PTB_PHP\Telegram\Helpers\isOfMessage;
 use function DevDasher\PTB_PHP\Telegram\Helpers\isText;
 use function DevDasher\PTB_PHP\Telegram\Methods\getUpdates;
@@ -181,32 +182,32 @@ function processUpdate(array $update): void {
 
 function fireHandlers(array $handlers) {
     $updateType = getUpdateType();
+    $updateHandlers = $handlers[$updateType];
+    $messageType = getMessageType();
     try {
-        if (isset($handlers[$updateType]) && $updateHandlers = $handlers[$updateType]) {
-            if (isOfMessage() && isset($updateHandlers[$messageType = getMessageType()])) {
-                if (isText()) {
-                    $result = fireTextHandlers($updateHandlers[FIELD_TEXT], getText());
-                    
-                } elseif (in_array($messageType, getMessageTypes())) {
-                    if (isUserInConversation()) {
-                        $result = fireConversation();
-                    } else {
-                        $result = fireHandler($updateHandlers[$messageType]);
-                    }
+        if (isOfMessage() && isset($updateHandlers[$messageType])) {
+            if (isText()) {
+                $result = fireTextHandlers($updateHandlers[FIELD_TEXT], getText());
+                
+            } elseif (in_array($messageType, getMessageTypes())) {
+                if (isUserInConversation()) {
+                    $result = fireConversation();
+                } else {
+                    $result = fireHandler($updateHandlers[$messageType]);
                 }
-            } elseif (isCallbackQuery() && isset($updateHandlers[FIELD_DATA])) {
-                $result = fireTextHandlers($updateHandlers[FIELD_DATA], getCallbackQueryData());
-        
-            } elseif (isInlineQuery() && isset($updateHandlers[FIELD_QUERY])) {
-                $result = fireTextHandlers($updateHandlers[FIELD_QUERY], getInlineQueryText());
-        
-            } elseif (isChosenInlineResult()) {
-                if (isset($updateHandlers[FIELD_QUERY])) {
-                    $result = fireTextHandlers($updateHandlers[FIELD_QUERY], getChosenInlineResultQuery());
-                }
-                if (isset($updateHandlers[FIELD_RESULT_ID])) {
-                    $result = fireTextHandlers($updateHandlers[FIELD_RESULT_ID], getChosenInlineResultId());
-                }
+            }
+        } elseif (isCallbackQuery() && isset($updateHandlers[FIELD_DATA])) {
+            $result = fireTextHandlers($updateHandlers[FIELD_DATA], getCallbackQueryData());
+    
+        } elseif (isInlineQuery() && isset($updateHandlers[FIELD_QUERY])) {
+            $result = fireTextHandlers($updateHandlers[FIELD_QUERY], getInlineQueryText());
+    
+        } elseif (isChosenInlineResult()) {
+            if (isset($updateHandlers[FIELD_QUERY])) {
+                $result = fireTextHandlers($updateHandlers[FIELD_QUERY], getChosenInlineResultQuery());
+            }
+            if (isset($updateHandlers[FIELD_RESULT_ID])) {
+                $result = fireTextHandlers($updateHandlers[FIELD_RESULT_ID], getChosenInlineResultId());
             }
         }
         if (!isset($result) || $result === false) {
@@ -219,9 +220,9 @@ function fireHandlers(array $handlers) {
             if (isset($updateHandlers[_FIELD_FALLBACK])) {
                 return fireHandler($updateHandlers[_FIELD_FALLBACK]);
             }
-        }
-        if (isset($handlers[_FIELD_FALLBACK])) {
-            return fireHandler($handlers[_FIELD_FALLBACK]);
+            if (isset($handlers[_FIELD_FALLBACK])) {
+                return fireHandler($handlers[_FIELD_FALLBACK]);
+            }
         }
     } catch (Throwable $e) {
         if (isset($handlers[_FIELD_EXCEPTION])) {

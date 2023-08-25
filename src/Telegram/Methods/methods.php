@@ -1887,7 +1887,7 @@ function stopPoll(
  * @link https://core.telegram.org/bots/api#deletemessage
  */
 function deleteMessage(
-    int $message_id,
+    null|int $message_id = null,
     null|int|string $chat_id = null,
 ): array {
     return prepareAndSendApiRequest(__FUNCTION__, get_defined_vars());
