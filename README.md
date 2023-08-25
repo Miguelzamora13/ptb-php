@@ -68,8 +68,7 @@ use function DevDasher\PTB_PHP\Handlers\onMessageText;
 use function DevDasher\PTB_PHP\Config\run;
 use function DevDasher\PTB_PHP\Telegram\Methods\sendMessage;
 
-// require(__DIR__.'/vendor/autoload.php'); // You can use Composer's autolaoder
-require(__DIR__.'/path/to/PTB.php'); // Or require the PTB.php file directly
+require(__DIR__.'/vendor/autoload.php'); // You can use Composer's autolaoder
 
 /*
     This function is for setting the initial settings of the library
@@ -161,8 +160,6 @@ You can install the package via composer:
 ```bash
 composer require devdasher/ptb-php
 ```
-
-Or you can include the PTB.php file on your PHP code directly
 
 # 📐 Requirements <a name="requirements"></a>
 
