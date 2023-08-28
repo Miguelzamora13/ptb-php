@@ -13,35 +13,19 @@
 - ❓ [Why Procedural and NOT OOP?](#why-procedural)
 - 📚 [Documentation](#documentation)
     - ⚙️ [Configuraion](#configuration)
-        - [Available Configuration Parameters](#available-configuration-parameters)
     - 📤 [Uploading Files](#uploading-files)
     - 📥 [Downloading Files](#downloading-files)
     - 🤖 [Multiple Bot Management](#multiple-bot-management)
     - 🤝 [Middlewares](#middlewares)
-        - [Global Middlewares](#global-middlewares)
-            - [Defining Multiple Middlewares](#defining-multiple-middlewares)
-            - [Skipping Global Middlewares](#skipping-multiple-middlewares)
-        - [Local Middlewares](#local-middlewares)
-        - [Real World Example](#middlewares-real-world-example)
     - 💬 [Conversations](#conversations)
-        - [Important Notice](#conversations-important-notice)
-        - [OOP Way](#conversations-oop-way)
     - 🎮 [Keyboards](#keyboards)
-        - [ReplyKeyboardMarkup](#reply-keyboard-markup)
-        - [ReplyKeyboardRemove](#reply-keyboard-remove)
-        - [InlineKeyboardMarkup](#inline-keyboard-markup)
-        - [ForceReply](#force-reply)
     - 🧩 [Handlers](#handlers)
     - 🚁 [Helpers](#helpers)
-        - [How to use Helpers in action?](#how-to-use-helpers)
     - 💎 [Available Methods](#available-methods)
     - 🔮 [Available Types](#available-types)
     - ⚓️ [Available Constants](#available-constants)
     - ♟ [Usage Without Handlers](#usage-without-handlers)
-        - [Webhook Implementation](#without-handlers-webhook-implementation)
-        - [LongPolling Implementation](#without-handlers-longpolling-implementation)
     - 🧱 [Usage With OOP](#usage-with-oop)
-        - [Optimizing Project Structure](#optimizing-project-structure)
     - 🔗 [Deep Links](#deep-links) (Soon...)
     - 🚀 [Performance](#performance) (Not complete yet...)
 - ✨ [Projects Showcase](#projects-showcase)
@@ -204,11 +188,13 @@ This library is continuously updated and offers a wide range of features.
 
 The following list represents just a fraction of the library's capabilities, and we are actively working expand this documentation. Here are some of the key highlights:
 
-## ⚙️ Configuration <a name="configuration"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+    
+## ⚙️ Configuration <a name="configuration"></a>
+
+</summary>
 
 To use the library, you must configure it by setting at least two mandatory parameters. Here's an example:
 
@@ -238,11 +224,12 @@ configurePTB(
 
 </details>
 
-## 📤 Uploading Files <a name="uploading-files"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## 📤 Uploading Files <a name="uploading-files"></a>
+</summary>
 
 Here is some examples of how you can send files to the user in different ways:
 
@@ -298,11 +285,12 @@ onMessageText(pattern: '/video', callable: function() {
 ```
 </details>
 
-## 📥 Downloading Files <a name="downloading-files"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## 📥 Downloading Files <a name="downloading-files"></a>
+</summary>
 
 And here is an example of how you can download files sent to the bot:
 
@@ -368,11 +356,12 @@ It's better to use the `downloadBotFile(...)` function.
 
 </details>
 
-## 🤖 Multiple Bot Management <a name="multiple-bot-management"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## 🤖 Multiple Bot Management <a name="multiple-bot-management"></a>
+</summary>
 
 You can manage your bots easily. see this example:
 
@@ -427,11 +416,12 @@ onMessage(callable: function() {
 
 </details>
 
-## 🤝 Middlewares <a name="middlewares"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+    
+## 🤝 Middlewares <a name="middlewares"></a>
+</summary>
 
 Middleware is a layer of code that intercepts and processes requests and responses in web applications. It provides a modular and reusable way to handle common tasks such as authentication, logging, error handling, and data validation. Each middleware component inspects and modifies the request and response objects and can either terminate the cycle or pass control to the next middleware. By promoting separation of concerns and modularity, middleware allows for easy customization and maintenance of web applications. It is widely used enhance functionality, security, and maintainability.
 
@@ -694,11 +684,12 @@ run();
 
 </details>
 
-## 💬 Conversations <a name="conversations"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## 💬 Conversations <a name="conversations"></a>
+</summary>
 
 The Conversations feature enables seamless interaction between users and the bot by facilitating the retrieval of input values. It allows the bot to engage in dynamic and context-aware conversations with users, capturing their responses and providing personalized and tailored experiences. By utilizing Conversations, developers can effortlessly gather user input, process it, and deliver relevant and meaningful responses, enhancing the overall user experience and enabling more interactive and engaging interactions within the Telegram bot ecosystem.
 
@@ -979,11 +970,12 @@ class RegisterConversation extends Conversation {
 
 </details>
 
-## 🎮 Keyboards <a name="keyboards"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+    
+## 🎮 Keyboards <a name="keyboards"></a>
+</summary>
 
 The PTB-PHP library provides a simple way to build and send keyboards.
 
@@ -1282,11 +1274,12 @@ Here is a list of all available handlers in the library on namespace `DevDasher\
 
 </details>
 
-## 🚁 Helpers <a name="helpers"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## 🚁 Helpers <a name="helpers"></a>
+</summary>
 
 Helpers refer to a set of utility functions (or constants...) that are designed to assist developers in performing common tasks or operations more efficiently. These helper functions encapsulate commonly used code snippets, providing a convenient way to reuse and simplify complex logic. By abstracting away repetitive or boilerplate code, function helpers enhance code readability, maintainability, and promote modular programming practices. They can range from simple functions for string manipulation or array operations to more advanced functionalities like file handling, database interactions, or API integrations. Function helpers serve as valuable tools in libraries, empowering developers to streamline their workflow and focus on higher-level application logic.
 
@@ -1539,11 +1532,12 @@ onMessage(function() {
 
 </details>
 
-## 💎 Available Methods <a name="available-methods"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## 💎 Available Methods <a name="available-methods"></a>
+</summary>
 
 All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#available-methods) are available in the library.
 
@@ -1557,11 +1551,12 @@ All Telegram Bot API [Available methods](https://core.telegram.org/bots/api#avai
 
 </details>
 
-## 🔮 Available Types <a name="available-types"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## 🔮 Available Types <a name="available-types"></a>
+</summary>
 
 All Telegram Bot API [Available types](https://core.telegram.org/bots/api#available-types) are available in the library.
 
@@ -1574,11 +1569,12 @@ All Telegram Bot API [Available types](https://core.telegram.org/bots/api#availa
 
 </details>
 
-## ⚓️ Available Constants <a name="available-constants"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## ⚓️ Available Constants <a name="available-constants"></a>
+</summary>
 
 A lot of useful constants are available in the library for fast development and convenience of most developers.
 
@@ -1613,11 +1609,12 @@ And much more! ... check the source code yourself :)
 
 </details>
 
-## ♟ Usage Without Handlers <a name="usage-without-handlers"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## ♟ Usage Without Handlers <a name="usage-without-handlers"></a>
+</summary>
 
 If you are not comfortable with existing handlers and this type of coding, there is no problem. You can choose your own code style.
 
@@ -1736,11 +1733,12 @@ foreach ($updates as $update) {
 ```
 </details>
 
-## 🧱 Usage With OOP <a name="usage-with-oop"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## 🧱 Usage With OOP <a name="usage-with-oop"></a>
+</summary>
 
 The PTB-PHP library provides developers with the flexibility to utilize object-oriented programming (OOP) alongside procedural code. While the library primarily encourages a procedural approach, it acknowledges that certain scenarios may require OOP concepts. As such, PTB-PHP allows the use of classes and objects within middleware and handlers, offering developers the freedom to incorporate OOP where necessary, rather than limiting them to pure functions.
 
@@ -1855,11 +1853,12 @@ A well-organized project structure is crucial for developing a Telegram bot, esp
 
 Soon...
 
-## 🚀 Performance <a name="performance"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## 🚀 Performance <a name="performance"></a>
+</summary>
 
 The performance of a Telegram bot is crucial for providing a seamless user experience. Response speed plays a vital role in ensuring timely interactions and satisfying user expectations. To improve the performance of a Telegram bot built with PHP, several methods can be employed. Firstly, optimizing code efficiency by minimizing unnecessary computations and database queries can significantly enhance response speed. Caching frequently accessed data or utilizing in-memory caching systems like Redis can also boost performance. Additionally, employing asynchronous processing techniques, such using queues or event-driven architectures, can help handle concurrent requests more efficiently. Utilizing a scalable infrastructure with load balancing and horizontal scaling can further improve performance by distributing the workload across multiple servers. Regular monitoring and profiling of the bot's performance can identify bottlenecks and areas for optimization, allowing for continuous improvement.
 
