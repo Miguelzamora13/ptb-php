@@ -1106,11 +1106,12 @@ use function DevDasher\PTB_PHP\Telegram\Types\ForceReply;
 
 </details>
 
-## 🧩 Handlers <a name="handlers"></a>
-
 <details>
 
-<summary>Click to show/hide details</summary>
+<summary>
+
+## 🧩 Handlers <a name="handlers"></a>
+</summary>
 
 Handlers are essential components in building interactive and dynamic conversational experiences. They enable the customization of logic and actions based on specific triggers or conditions. For instance, handlers can be triggered by user messages, chat joins, button clicks, or any other desired action for the bot to respond appropriately. Key aspects of handlers include event binding, where they are associated with specific events; logic and actions, which define what happens when the event occurs; event types, allowing handlers to cater to different event categories; registration, ensuring appropriate handler invocation upon event occurrence; and customization, enabling the bot to respond differently based on various situations. Leveraging handlers effectively facilitates the creation of chatbots capable of interactive and adaptable user interactions, while offering a maintainable and extensible code structure.
 
@@ -1849,9 +1850,16 @@ A well-organized project structure is crucial for developing a Telegram bot, esp
     
 </details>
 
+<details>
+
+<summary>
+
 ## 🔗 Deep Links <a name="deep-links"></a>
+</summary>
 
 Soon...
+
+</details>
 
 <details>
 
