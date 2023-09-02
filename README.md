@@ -219,8 +219,8 @@ configurePTB(
 | `bool $is_webhook = false`                | ❌       | Set this to `true` if you want to use Webhook to receive updates from Telegram. This is suitable for production environments. By default, Long Polling is used (`false`).
 | `?CacheInterface $cache = null`           | ❌       | A cache adapter implementation that will be used for caching purposes. You can pass a cache adapter object that implements the `Psr\SimpleCache\CacheInterface`.
 | `array $update = []`                      | ❌       | Allows you to set the input update sent from Telegram servers manually, or add a fake update for testing purposes.
-| `array $global_data = []`                 | ❌       | An optional array of key-value pairs that allows you to store global data (e.g., configuration values) accessible to all middlewares and handlers in the library using `getGlobalData(...)` helper. The `_setGLobalData(...)` does the same thing.
-| `?array $allowedgetUpdates = null`          | ❌       | Defines the allowed types of updates that the library should handle. You can effectively determine allowed updates through the `setWebhook` method. Updates that are not allowed will be automatically rejected by the library. This provides an additional layer of validation for incoming updates.
+| `array $global_data = []`                 | ❌       | An optional array of key-value pairs that allows you to store global data (e.g., configuration values) accessible to all middlewares and handlers in the library using `getGlobalData(...)` helper. The `setGLobalData(...)` does the same thing.
+| `?array $allowed_updates = null`          | ❌       | Defines the allowed types of updates that the library should handle. You can effectively determine allowed updates through the `setWebhook` method. Updates that are not allowed will be automatically rejected by the library. This provides an additional layer of validation for incoming updates.
 
 </details>
 
