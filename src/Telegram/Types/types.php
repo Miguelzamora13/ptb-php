@@ -34,7 +34,7 @@ use function DevDasher\PTB_PHP\Config\prepareApiTypeFields;
  *
  * @param integer|null $update_id
  * @param array|null $message
- * @param array|null $editedgetMessage
+ * @param array|null $edited_message
  * @param array|null $channel_post
  * @param array|null $edited_channel_post
  * @param array|null $inline_query
@@ -54,7 +54,7 @@ use function DevDasher\PTB_PHP\Config\prepareApiTypeFields;
 function Update(
     int $update_id = null,
     ?array $message = null,
-    ?array $editedgetMessage = null,
+    ?array $edited_message = null,
     ?array $channel_post = null,
     ?array $edited_channel_post = null,
     ?array $inline_query = null,
@@ -76,13 +76,13 @@ function Update(
  *
  * @param string $url
  * @param boolean $has_custom_certificate
- * @param integer $pendinggetUpdate_count
+ * @param integer $pending_update_count
  * @param string|null $ip_address
  * @param integer|null $last_error_date
  * @param string|null $last_errorgetMessage
  * @param integer|null $last_synchronization_error_date
  * @param integer|null $max_connections
- * @param array|null $allowedgetUpdates
+ * @param array|null $allowed_updates
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#webhookinfo
@@ -90,13 +90,13 @@ function Update(
 function WebhookInfo(
     string $url,
     bool $has_custom_certificate,
-    int $pendinggetUpdate_count,
+    int $pending_update_count,
     ?string $ip_address = null,
     ?int $last_error_date = null,
     ?string $last_errorgetMessage = null,
     ?int $last_synchronization_error_date = null,
     ?int $max_connections = null,
-    ?array $allowedgetUpdates = null,
+    ?array $allowed_updates = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -150,12 +150,12 @@ function User(
  * @param string|null $emoji_status_custom_emoji_id
  * @param string|null $bio
  * @param boolean|null $has_private_forwards
- * @param boolean|null $has_restricted_voice_and_videogetMessages
- * @param boolean|null $join_to_sendgetMessages
+ * @param boolean|null $has_restricted_voice_and_video_messages
+ * @param boolean|null $join_to_send_messages
  * @param boolean|null $join_by_request
  * @param string|null $description
  * @param string|null $invite_link
- * @param array|null $pinnedgetMessage
+ * @param array|null $pinned_message
  * @param array|null $permissions
  * @param integer|null $slow_mode_delay
  * @param integer|null $message_auto_delete_time
@@ -184,12 +184,12 @@ function Chat(
     ?int $emoji_status_expiration_date = null,
     ?string $bio = null,
     ?bool $has_private_forwards = null,
-    ?bool $has_restricted_voice_and_videogetMessages = null,
-    ?bool $join_to_sendgetMessages = null,
+    ?bool $has_restricted_voice_and_video_messages = null,
+    ?bool $join_to_send_messages = null,
     ?bool $join_by_request = null,
     ?string $description = null,
     ?string $invite_link = null,
-    ?array $pinnedgetMessage = null,
+    ?array $pinned_message = null,
     ?array $permissions = null,
     ?int $slow_mode_delay = null,
     ?int $message_auto_delete_time = null,
@@ -215,11 +215,11 @@ function Chat(
  * @param array|null $sender_chat
  * @param array|null $forward_from
  * @param array|null $forward_from_chat
- * @param integer|null $forward_fromgetMessage_id
+ * @param integer|null $forward_from_message_id
  * @param string|null $forward_signature
  * @param string|null $forward_sender_name
  * @param integer|null $forward_date
- * @param boolean|null $is_topicgetMessage
+ * @param boolean|null $is_topic_message
  * @param boolean|null $is_automatic_forward
  * @param array|null $reply_togetMessage
  * @param array|null $via_bot
@@ -257,7 +257,7 @@ function Chat(
  * @param array|null $message_auto_delete_timer_changed
  * @param integer|null $migrate_to_chat_id
  * @param integer|null $migrate_from_chat_id
- * @param array|null $pinnedgetMessage
+ * @param array|null $pinned_message
  * @param array|null $invoice
  * @param array|null $successful_payment
  * @param array|null $user_shared
@@ -291,11 +291,11 @@ function Message(
     ?array $sender_chat = null,
     ?array $forward_from = null,
     ?array $forward_from_chat = null,
-    ?int $forward_fromgetMessage_id = null,
+    ?int $forward_from_message_id = null,
     ?string $forward_signature = null,
     ?string $forward_sender_name = null,
     ?int $forward_date = null,
-    ?bool $is_topicgetMessage = null,
+    ?bool $is_topic_message = null,
     ?bool $is_automatic_forward = null,
     ?array $reply_togetMessage = null,
     ?array $via_bot = null,
@@ -334,7 +334,7 @@ function Message(
     ?array $message_auto_delete_timer_changed = null,
     ?int $migrate_to_chat_id = null,
     ?int $migrate_from_chat_id = null,
-    ?array $pinnedgetMessage = null,
+    ?array $pinned_message = null,
     ?array $invoice = null,
     ?array $successful_payment = null,
     ?array $user_shared = null,
@@ -1203,7 +1203,7 @@ function SwitchInlineQueryChosenChat(
  * @param string $id
  * @param array $from
  * @param array|null $message
- * @param string|null $inlinegetMessage_id
+ * @param string|null $inline_message_id
  * @param string|null $chat_instance
  * @param string|null $data
  * @param string|null $game_short_name
@@ -1215,7 +1215,7 @@ function CallbackQuery(
     string $id,
     array $from,
     ?array $message = null,
-    ?string $inlinegetMessage_id = null,
+    ?string $inline_message_id = null,
     ?string $chat_instance = null,
     ?string $data = null,
     ?string $game_short_name = null,
@@ -1305,15 +1305,15 @@ function ChatInviteLink(
  *
  * @param boolean|null $is_anonymous
  * @param boolean|null $can_manage_chat
- * @param boolean|null $can_deletegetMessages
+ * @param boolean|null $can_delete_messages
  * @param boolean|null $can_manage_video_chats
  * @param boolean|null $can_restrict_members
  * @param boolean|null $can_promote_members
  * @param boolean|null $can_change_info
  * @param boolean|null $can_invite_users
- * @param boolean|null $can_postgetMessages
- * @param boolean|null $can_editgetMessages
- * @param boolean|null $can_pingetMessages
+ * @param boolean|null $can_post_messages
+ * @param boolean|null $can_edit_messages
+ * @param boolean|null $can_pin_messages
  * @param boolean|null $can_manage_topics
  * @return array
  * 
@@ -1322,15 +1322,15 @@ function ChatInviteLink(
 function ChatAdministratorRights(
     ?bool $is_anonymous = null,
     ?bool $can_manage_chat = null,
-    ?bool $can_deletegetMessages = null,
+    ?bool $can_delete_messages = null,
     ?bool $can_manage_video_chats = null,
     ?bool $can_restrict_members = null,
     ?bool $can_promote_members = null,
     ?bool $can_change_info = null,
     ?bool $can_invite_users = null,
-    ?bool $can_postgetMessages = null,
-    ?bool $can_editgetMessages = null,
-    ?bool $can_pingetMessages = null,
+    ?bool $can_post_messages = null,
+    ?bool $can_edit_messages = null,
+    ?bool $can_pin_messages = null,
     ?bool $can_manage_topics = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
@@ -1364,15 +1364,15 @@ function ChatMemberOwner(
  * @param boolean $can_be_edited
  * @param boolean $is_anonymous
  * @param boolean $can_manage_chat
- * @param boolean $can_deletegetMessages
+ * @param boolean $can_delete_messages
  * @param boolean $can_manage_video_chats
  * @param boolean $can_restrict_members
  * @param boolean $can_promote_members
  * @param boolean $can_change_info
  * @param boolean $can_invite_users
- * @param boolean|null $can_postgetMessages
- * @param boolean|null $can_editgetMessages
- * @param boolean|null $can_pingetMessages
+ * @param boolean|null $can_post_messages
+ * @param boolean|null $can_edit_messages
+ * @param boolean|null $can_pin_messages
  * @param boolean|null $can_manage_topics
  * @param boolean|null $custom_title
  * @return array
@@ -1385,15 +1385,15 @@ function ChatMemberAdministrator(
     bool $can_be_edited,
     bool $is_anonymous,
     bool $can_manage_chat,
-    bool $can_deletegetMessages,
+    bool $can_delete_messages,
     bool $can_manage_video_chats,
     bool $can_restrict_members,
     bool $can_promote_members,
     bool $can_change_info,
     bool $can_invite_users,
-    ?bool $can_postgetMessages = null,
-    ?bool $can_editgetMessages = null,
-    ?bool $can_pingetMessages = null,
+    ?bool $can_post_messages = null,
+    ?bool $can_edit_messages = null,
+    ?bool $can_pin_messages = null,
     ?bool $can_manage_topics = null,
     ?bool $custom_title = null,
 ): array {
@@ -1419,7 +1419,7 @@ function ChatMemberMember(string $status, array $user): array {
  * @param string $status
  * @param array $user
  * @param boolean $is_member
- * @param boolean $can_sendgetMessages
+ * @param boolean $can_send_messages
  * @param boolean $can_send_audios
  * @param boolean $can_send_documents
  * @param boolean $can_send_photos
@@ -1427,11 +1427,11 @@ function ChatMemberMember(string $status, array $user): array {
  * @param boolean $can_send_video_notes
  * @param boolean $can_send_voice_notes
  * @param boolean $can_send_polls
- * @param boolean $can_send_othergetMessages
+ * @param boolean $can_send_other_messages
  * @param boolean $can_add_web_page_previews
  * @param boolean $can_change_info
  * @param boolean $can_invite_users
- * @param boolean $can_pingetMessages
+ * @param boolean $can_pin_messages
  * @param boolean $can_manage_topics
  * @param integer $until_date
  * @return array
@@ -1442,7 +1442,7 @@ function ChatMemberRestricted(
     string $status,
     array $user,
     bool $is_member,
-    bool $can_sendgetMessages,
+    bool $can_send_messages,
     bool $can_send_audios,
     bool $can_send_documents,
     bool $can_send_photos,
@@ -1450,11 +1450,11 @@ function ChatMemberRestricted(
     bool $can_send_video_notes,
     bool $can_send_voice_notes,
     bool $can_send_polls,
-    bool $can_send_othergetMessages,
+    bool $can_send_other_messages,
     bool $can_add_web_page_previews,
     bool $can_change_info,
     bool $can_invite_users,
-    bool $can_pingetMessages,
+    bool $can_pin_messages,
     bool $can_manage_topics,
     int $until_date,
 ): array {
@@ -1541,7 +1541,7 @@ function ChatJoinRequest(
 /**
  * Describes actions that a non-administrator user is allowed to take in a chat.
  *
- * @param boolean|null $can_sendgetMessages
+ * @param boolean|null $can_send_messages
  * @param boolean|null $can_send_audios
  * @param boolean|null $can_send_documents
  * @param boolean|null $can_send_photos
@@ -1549,18 +1549,18 @@ function ChatJoinRequest(
  * @param boolean|null $can_send_video_notes
  * @param boolean|null $can_send_voice_notes
  * @param boolean|null $can_send_polls
- * @param boolean|null $can_send_othergetMessages
+ * @param boolean|null $can_send_other_messages
  * @param boolean|null $can_add_web_page_previews
  * @param boolean|null $can_change_info
  * @param boolean|null $can_invite_users
- * @param boolean|null $can_pingetMessages
+ * @param boolean|null $can_pin_messages
  * @param boolean|null $can_manage_topics
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#chatpermissions
  */
 function ChatPermissions(
-    ?bool $can_sendgetMessages = null,
+    ?bool $can_send_messages = null,
     ?bool $can_send_audios = null,
     ?bool $can_send_documents = null,
     ?bool $can_send_photos = null,
@@ -1568,11 +1568,11 @@ function ChatPermissions(
     ?bool $can_send_video_notes = null,
     ?bool $can_send_voice_notes = null,
     ?bool $can_send_polls = null,
-    ?bool $can_send_othergetMessages = null,
+    ?bool $can_send_other_messages = null,
     ?bool $can_add_web_page_previews = null,
     ?bool $can_change_info = null,
     ?bool $can_invite_users = null,
-    ?bool $can_pingetMessages = null,
+    ?bool $can_pin_messages = null,
     ?bool $can_manage_topics = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
@@ -2110,7 +2110,7 @@ function InlineQueryResultsButton(
  * @param string $type
  * @param string|integer $id
  * @param string $title
- * @param array $inputgetMessage_content
+ * @param array $input_message_content
  * @param array|null $reply_markup
  * @param string|null $url
  * @param boolean|null $hide_url
@@ -2126,7 +2126,7 @@ function InlineQueryResultArticle(
     string $type,
     string|int $id,
     string $title,
-    array $inputgetMessage_content,
+    array $input_message_content,
     ?array $reply_markup = null,
     ?string $url = null,
     ?bool $hide_url = null,
@@ -2153,7 +2153,7 @@ function InlineQueryResultArticle(
  * @param string|null $parse_mode
  * @param array|null $caption_entities
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultphoto
@@ -2171,7 +2171,7 @@ function InlineQueryResultPhoto(
     ?string $parse_mode = null,
     ?array $caption_entities = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2192,7 +2192,7 @@ function InlineQueryResultPhoto(
  * @param string|null $parse_mode
  * @param array|null $caption_entities
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultgif
@@ -2211,7 +2211,7 @@ function InlineQueryResultGif(
     ?string $parse_mode = null,
     ?array $caption_entities = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2232,7 +2232,7 @@ function InlineQueryResultGif(
  * @param string|null $parse_mode
  * @param array|null $caption_entities
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultmpeg4gif
@@ -2251,7 +2251,7 @@ function InlineQueryResultMpeg4Gif(
     ?string $parse_mode = null,
     ?array $caption_entities= null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content= null,
+    ?array $input_message_content= null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2275,7 +2275,7 @@ function InlineQueryResultMpeg4Gif(
  * @param integer|null $video_duration
  * @param string|null $description
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultvideo
@@ -2295,7 +2295,7 @@ function InlineQueryResultVideo(
     ?int $video_duration = null,
     ?string $description = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2313,7 +2313,7 @@ function InlineQueryResultVideo(
  * @param string|null $performer
  * @param integer|null $audio_duration
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultaudio
@@ -2329,7 +2329,7 @@ function InlineQueryResultAudio(
     ?string $performer,
     ?int $audio_duration,
     ?array $reply_markup,
-    ?array $inputgetMessage_content,
+    ?array $input_message_content,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2346,7 +2346,7 @@ function InlineQueryResultAudio(
  * @param array|null $caption_entities
  * @param integer|null $voice_duration
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultvoice
@@ -2361,7 +2361,7 @@ function InlineQueryResultVoice(
     ?array $caption_entities = null,
     ?int $voice_duration = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2379,7 +2379,7 @@ function InlineQueryResultVoice(
  * @param array|null $caption_entities
  * @param string|null $description
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @param string|null $thumbnail_url
  * @param integer|null $thumbnail_width
  * @param integer|null $thumbnail_height
@@ -2398,7 +2398,7 @@ function InlineQueryResultDocument(
     ?array $caption_entities = null,
     ?string $description = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
     ?string $thumbnail_url = null,
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
@@ -2419,7 +2419,7 @@ function InlineQueryResultDocument(
  * @param integer|null $heading
  * @param integer|null $proximity_alert_radius
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @param string|null $thumbnail_url
  * @param integer|null $thumbnail_width
  * @param integer|null $thumbnail_height
@@ -2438,7 +2438,7 @@ function InlineQueryResultLocation(
     ?int $heading = null,
     ?int $proximity_alert_radius = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
     ?string $thumbnail_url = null,
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
@@ -2460,7 +2460,7 @@ function InlineQueryResultLocation(
  * @param string|null $google_place_id
  * @param string|null $google_place_type
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @param string|null $thumbnail_url
  * @param integer|null $thumbnail_width
  * @param integer|null $thumbnail_height
@@ -2480,7 +2480,7 @@ function InlineQueryResultVenue(
     ?string $google_place_id = null,
     ?string $google_place_type = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
     ?string $thumbnail_url = null,
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
@@ -2498,7 +2498,7 @@ function InlineQueryResultVenue(
  * @param string|null $last_name
  * @param string|null $vcard
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @param string|null $thumbnail_url
  * @param integer|null $thumbnail_width
  * @param integer|null $thumbnail_height
@@ -2514,7 +2514,7 @@ function InlineQueryResultContact(
     ?string $last_name = null,
     ?string $vcard = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
     ?string $thumbnail_url = null,
     ?int $thumbnail_width = null,
     ?int $thumbnail_height = null,
@@ -2556,7 +2556,7 @@ function InlineQueryResultGame(
  * @param string|null $parse_mode
  * @param array|null $caption_entities
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultcachedphoto
@@ -2571,7 +2571,7 @@ function InlineQueryResultCachedPhoto(
     ?string $parse_mode = null,
     ?array $caption_entities = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2587,7 +2587,7 @@ function InlineQueryResultCachedPhoto(
  * @param string|null $parse_mode
  * @param array|null $caption_entities
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultcachedgif
@@ -2601,7 +2601,7 @@ function InlineQueryResultCachedGif(
     ?string $parse_mode = null,
     ?array $caption_entities = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2617,7 +2617,7 @@ function InlineQueryResultCachedGif(
  * @param string|null $parse_mode
  * @param array|null $caption_entities
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultcachedmpeg4gif
@@ -2631,7 +2631,7 @@ function InlineQueryResultCachedMpeg4Gif(
     ?string $parse_mode = null,
     ?array $caption_entities = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2645,7 +2645,7 @@ function InlineQueryResultCachedMpeg4Gif(
  * @param string|integer $id
  * @param string $sticker_file_id
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultcachedsticker
@@ -2655,7 +2655,7 @@ function InlineQueryResultCachedSticker(
     string|int $id,
     string $sticker_file_id,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2672,7 +2672,7 @@ function InlineQueryResultCachedSticker(
  * @param string|null $parse_mode
  * @param array|null $caption_entities
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultcacheddocument
@@ -2687,7 +2687,7 @@ function InlineQueryResultCachedDocument(
     ?string $parse_mode = null,
     ?array $caption_entities = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2704,7 +2704,7 @@ function InlineQueryResultCachedDocument(
  * @param string|null $parse_mode
  * @param array|null $caption_entities
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultcachedvideo
@@ -2719,7 +2719,7 @@ function InlineQueryResultCachedVideo(
     ?string $parse_mode = null,
     ?array $caption_entities = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2735,7 +2735,7 @@ function InlineQueryResultCachedVideo(
  * @param string|null $parse_mode
  * @param array|null $caption_entities
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultcachedvoice
@@ -2749,7 +2749,7 @@ function InlineQueryResultCachedVoice(
     ?string $parse_mode = null,
     ?array $caption_entities = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2764,7 +2764,7 @@ function InlineQueryResultCachedVoice(
  * @param string|null $parse_mode
  * @param array|null $caption_entities
  * @param array|null $reply_markup
- * @param array|null $inputgetMessage_content
+ * @param array|null $input_message_content
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#inlinequeryresultcachedaudio
@@ -2777,7 +2777,7 @@ function InlineQueryResultCachedAudio(
     ?string $parse_mode = null,
     ?array $caption_entities = null,
     ?array $reply_markup = null,
-    ?array $inputgetMessage_content = null,
+    ?array $input_message_content = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2935,7 +2935,7 @@ function InputInvoiceMessageContent(
  * @param string $result_id
  * @param array $from
  * @param array|null $location
- * @param string|null $inlinegetMessage_id
+ * @param string|null $inline_message_id
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#choseninlineresult
@@ -2945,7 +2945,7 @@ function ChosenInlineResult(
     string $result_id,
     array $from,
     ?array $location = null,
-    ?string $inlinegetMessage_id = null,
+    ?string $inline_message_id = null,
 ): array {
     return prepareApiTypeFields(get_defined_vars());
 }
@@ -2953,12 +2953,12 @@ function ChosenInlineResult(
 /**
  * Describes an inline message sent by a [Web App](https://core.telegram.org/bots/webapps) on behalf of a user.
  *
- * @param string $inlinegetMessage_id
+ * @param string $inline_message_id
  * @return array
  * 
  * @link https://core.telegram.org/bots/api#sentwebappmessage
  */
-function SentWebAppMessage(string $inlinegetMessage_id): array {
+function SentWebAppMessage(string $inline_message_id): array {
     return prepareApiTypeFields(get_defined_vars());
 }
 
